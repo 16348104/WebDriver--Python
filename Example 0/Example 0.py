@@ -1,10 +1,12 @@
-from lib2to3.pgen2 import driver
-
 from selenium import webdriver
-
-# browser = webdriver.Chrome()
-browser = webdriver.Firefox()
+import time
+browser = webdriver.Chrome()
+# browser = webdriver.Firefox()
 # browser = webdriver.Ie()
-browser.get('http://www.baidu.com')
-driver.find_element_by_id("kw").send_keys("selenium2")
-driver.find_element_by_id("su").click()
+# browser.get('http://www.baidu.com')
+browser.get(r'E:\163study\WebDriver--Python\upload.html')  # 文件的地址
+browser.find_element_by_name('file').send_keys(r'E:/map.png')  # 上传文件
+print('文件上传完毕')
+browser.find_element_by_class_name()
+time.sleep(5)
+browser.quit()
