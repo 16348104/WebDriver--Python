@@ -1,11 +1,12 @@
 from selenium import webdriver
 import time
 
-browser = webdriver.Chrome()
+# browser = webdriver.Chrome()
 # browser = webdriver.Firefox()
 # browser = webdriver.Ie()
 # browser = webdriver.Firefox(executable_path = '/Users/xiaodaxing/Downloads/PycharmProjects/Example 0/geckodriver')  #mac firefox
 # browser = webdriver.Chrome(executable_path = '/Users/xiaodaxing/Downloads/PycharmProjects/Example 0/chromedriver')  #mac os
+browser = webdriver.safari()
 browser.get('http://learn.tsinghua.edu.cn')
 elem_user = browser.find_element_by_name('i_user')
 elem_pass = browser.find_element_by_name('i_pass')
