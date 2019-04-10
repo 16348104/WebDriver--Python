@@ -17,7 +17,8 @@ elem_pass.clear()
 # elem_user.find_element_by_name('i_user').send_keys('2016012872')
 # 键入密码
 elem_pass.find_element_by_name('i_pass').send_keys('')
-browser.find_element_by_id('loginButtonId').click()
+browser.find_element_by_id('loginButtonId').click(
+
 time.sleep(10)
 # 取ID为txtPwd的网页元素(密码输入元素)
 # elem_pass=driver.find_element_by_id('txtPwd')
