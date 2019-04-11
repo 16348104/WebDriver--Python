@@ -6,11 +6,13 @@ import time
 # browser = webdriver.Ie()
 # browser = webdriver.Firefox(executable_path = '/Users/xiaodaxing/Downloads/PycharmProjects/Example 0/geckodriver')  #mac firefox
 # browser = webdriver.Chrome(executable_path = '/Users/xiaodaxing/Downloads/PycharmProjects/Example 0/chromedriver')  #mac os
-browser = webdriver.safari()
+browser = webdriver.Safari()  # Mac safari
+browser.maximize_window()
 browser.get('http://www.baidu.com')
 # browser.find_element_by_name('i_user').clear()
 # browser.find_element_by_name('i_pass').clear()
 # 键入用户名
+
 # browser.find_element_by_name('i_user').send_keys('2016012872')
 # # 键入密码
 # browser.find_element_by_name('i_pass').send_keys('aihailin0928')
