@@ -13,9 +13,9 @@ browser.get('http://www.baidu.com')
 # browser.find_element_by_name('i_pass').clear()
 # 键入用户名
 
-# browser.find_element_by_name('i_user').send_keys('2016012872')
+# browser.find_element_by_name('i_user').send_keys('')
 # # 键入密码
-# browser.find_element_by_name('i_pass').send_keys('aihailin0928')
+# browser.find_element_by_name('i_pass').send_keys('')
 # browser.find_element_by_id('loginButtonId').click()
 # time.sleep(2)
 # browser.get('http://learn.tsinghua.edu.cn/f/wlxt/index/course/student/course?wlkcid=2018-2019-226ef84e7689589e901689906e324686a')
