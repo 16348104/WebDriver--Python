@@ -12,7 +12,6 @@ browser.get('http://www.baidu.com')
 # browser.find_element_by_name('i_user').clear()
 # browser.find_element_by_name('i_pass').clear()
 # 键入用户名
-
 # browser.find_element_by_name('i_user').send_keys('')
 # # 键入密码
 # browser.find_element_by_name('i_pass').send_keys('')
