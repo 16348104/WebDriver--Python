@@ -2,31 +2,35 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
 
-# driver = webdriver.Chrome()
+driver = webdriver.Chrome()
 # driver = webdriver.Firefox()
 # driver = webdriver.Ie()
 # driver = webdriver.Firefox(executable_path = '/Users/xiaodaxing/Downloads/PycharmProjects/Example 0/geckodriver')  #mac firefox
-driver = webdriver.Chrome(
-    executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/Example 0/chromedriver')  # mac  chrome
+# driver = webdriver.Chrome(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/Example 0/chromedriver')  # mac  chrome
 # driver = webdriver.Safari() #Mac os
 print("========登录网络学堂==========")
-print(driver.current_window_handle)
 driver.get('http://learn.tsinghua.edu.cn')
 driver.maximize_window()
-# 登录网络学堂
+# 登录网络学堂，【第一个窗口】
 driver.find_element_by_name('i_user').clear()
 driver.find_element_by_name('i_pass').clear()
-# 键入用户名
-driver.find_element_by_name('i_user').send_keys('2016012872')
-# # 键入密码
-driver.find_element_by_name('i_pass').send_keys('aihailin0928')
-time.sleep(2)  # 休眠
+driver.find_element_by_name('i_user').send_keys('2016012872')  # 键入用户名
+driver.find_element_by_name('i_pass').send_keys('aihailin0928')  # 键入密码
 driver.find_element_by_id('loginButtonId').click()
+# 进入课程【第二个窗口】
+# driver.find_element('//*[@id="suoxuecourse"]/dd/div[2]/div[1]/a')
+driver.find_element_by_link_text('基于Linux的C++(20740084-998)').click()
+time.sleep(3)  # 休眠
+# 使用第二种方法切换浏览器【切换到第二个窗口】
+window_1 = driver.current_window_handle
+windows = driver.window_handles
+for current_window in windows:
+    if current_window != window_1:
+        driver.switch_to.window(current_window)
+time.sleep(3)
+# driver.get( 'http://learn.tsinghua.edu.cn/f/wlxt/index/course/student/course?wlkcid=2018-2019-226ef84e7689589e901689906e324686a')
 
 print("===========测试课程公告============")
-driver.get(
-    'http://learn.tsinghua.edu.cn/f/wlxt/index/course/student/course?wlkcid=2018-2019-226ef84e7689589e901689906e324686a')
-time.sleep(1)
 # # 浏览公告#
 # driver.get(
 #     'http://learn.tsinghua.edu.cn/f/wlxt/kcgg/wlkc_ggb/student/beforePageListXs?wlkcid=2018-2019-226ef84e7689589e901689906e324686a&sfgk=0')
@@ -36,7 +40,8 @@ time.sleep(1)
 
 # 课程邮件#
 print('======测试课程邮件=====')
-driver.get("http://learn.tsinghua.edu.cn/f/wlxt/mail/yj_yjxxb/student/beforePageList?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
+driver.get(
+    "http://learn.tsinghua.edu.cn/f/wlxt/mail/yj_yjxxb/student/beforePageList?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
 # driver.find_element_by_xpath('//a[@href="/f/wlxt/mail/yj_yjxxb/student/beforePageList?wlkcid=2018-2019-226ef84e7689589e901689906e324686a"]').click()
 driver.find_element_by_xpath('//*[@id="list"]/tbody/tr[1]/td[2]/a').click()
 time.sleep(3)
