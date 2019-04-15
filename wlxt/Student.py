@@ -42,7 +42,6 @@ print("===========测试课程公告============")
 print('======测试课程邮件=====')
 driver.find_element_by_link_text('课程邮件').click()
 # driver.get( "http://learn.tsinghua.edu.cn/f/wlxt/mail/yj_yjxxb/student/beforePageList?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
-
 driver.find_element_by_xpath('//*[@id="list"]/tbody/tr[1]/td[2]/a').click()
 time.sleep(3)
 driver.find_element_by_id('returnButton').click()
