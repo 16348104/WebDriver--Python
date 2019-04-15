@@ -40,9 +40,9 @@ print("===========测试课程公告============")
 
 # 课程邮件#
 print('======测试课程邮件=====')
-driver.get(
-    "http://learn.tsinghua.edu.cn/f/wlxt/mail/yj_yjxxb/student/beforePageList?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
-# driver.find_element_by_xpath('//a[@href="/f/wlxt/mail/yj_yjxxb/student/beforePageList?wlkcid=2018-2019-226ef84e7689589e901689906e324686a"]').click()
+driver.find_element_by_link_text('课程邮件').click()
+# driver.get( "http://learn.tsinghua.edu.cn/f/wlxt/mail/yj_yjxxb/student/beforePageList?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
+
 driver.find_element_by_xpath('//*[@id="list"]/tbody/tr[1]/td[2]/a').click()
 time.sleep(3)
 driver.find_element_by_id('returnButton').click()
@@ -53,8 +53,8 @@ for i in addresses:
     i.click()
     time.sleep(1)
 driver.find_element_by_xpath('//ul[@id="myTags"]//li//input').send_keys('wlxt@tsinghua.edu.cn')
+time.sleep(3)
 driver.find_element_by_xpath('//input[@id="bt"]').send_keys('网络学堂学生端测试邮件！')
-time.sleep(2)
 driver.find_element_by_xpath('//input[@id="submitButton"]').click()
 time.sleep(3)
 driver.quit()
