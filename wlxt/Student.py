@@ -1,6 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-import time
+import time, random
 
 driver = webdriver.Chrome()
 # driver = webdriver.Firefox()
@@ -15,14 +15,16 @@ driver.maximize_window()
 driver.find_element_by_name('i_user').clear()
 driver.find_element_by_name('i_pass').clear()
 driver.implicitly_wait(30)
-#driver.find_element_by_name('i_user').send_keys('')  # 键入用户名
-#driver.find_element_by_name('i_pass').send_keys('')  # 键入密码
-#.find_element_by_id('loginButtonId').send_keys(Keys.ENTER)
+# driver.find_element_by_name('i_user').send_keys('')  # 键入用户名
+# driver.find_element_by_name('i_pass').send_keys('')  # 键入密码
+# .find_element_by_id('loginButtonId').send_keys(Keys.ENTER)
 # 进入课程【第二个窗口】
 # driver.find_element('//*[@id="suoxuecourse"]/dd[5]/div[2]/div[1]/a').click()
 # driver.find_element_by_link_text('基于Linux的C++(20740084-998)').click()
 driver.find_element_by_xpath('//*[@id="suoxuecourse"]//a[contains(text(),"基于Linux的C++(20740084-998)")]').click()
 time.sleep(2)  # 休眠
+print(driver.title)
+
 # 使用第二种方法切换浏览器【切换到第二个窗口】
 window_1 = driver.current_window_handle
 windows = driver.window_handles
@@ -66,7 +68,9 @@ print('=====登录成功=====')
 print("=====测试课程文件=====")
 driver.find_element_by_link_text('课程文件').click()
 li = driver.find_elements_by_xpath("//i[contains(@class,'webicon-download downLoadFile')]")
-print(len(li))
+ran = (random.randint(0, len(li)))  #随机数
+li.pop(ran).click()                 #下载文件
+driver.implicitly_wait(2)
 print('=====课件测试完毕=====')
 
 # print('=====测试课程作业=====')
