@@ -61,7 +61,7 @@ print('=====登录成功=====')
 # print('=====邮件测试完毕=====')
 
 
-#课程文件
+# 课程文件
 print("=====测试课程文件=====")
 driver.find_element_by_link_text('课程文件').click()
 li = driver.find_elements_by_xpath("//i[contains(@class,'webicon-download downLoadFile')]")
@@ -82,8 +82,6 @@ print('=====课件测试完毕=====')
 # driver.quit()
 
 # print(len(addresses))
-
-
 
 
 # driver.get(r'E:\163study\WebDriver--Python\upload.html')  # 文件的地址
