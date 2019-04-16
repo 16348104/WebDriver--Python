@@ -14,9 +14,10 @@ driver.maximize_window()
 # 登录网络学堂，【第一个窗口】
 driver.find_element_by_name('i_user').clear()
 driver.find_element_by_name('i_pass').clear()
-driver.find_element_by_name('i_user').send_keys('2016012872')  # 键入用户名
-driver.find_element_by_name('i_pass').send_keys('aihailin0928')  # 键入密码
-driver.find_element_by_id('loginButtonId').send_keys(Keys.ENTER)
+driver.implicitly_wait(30)
+#driver.find_element_by_name('i_user').send_keys('')  # 键入用户名
+#driver.find_element_by_name('i_pass').send_keys('')  # 键入密码
+#.find_element_by_id('loginButtonId').send_keys(Keys.ENTER)
 # 进入课程【第二个窗口】
 # driver.find_element('//*[@id="suoxuecourse"]/dd[5]/div[2]/div[1]/a').click()
 # driver.find_element_by_link_text('基于Linux的C++(20740084-998)').click()
