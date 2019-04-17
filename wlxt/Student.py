@@ -17,8 +17,8 @@ driver.maximize_window()
 driver.find_element_by_name('i_user').clear()
 driver.find_element_by_name('i_pass').clear()
 # driver.implicitly_wait(30)
-driver.find_element_by_name('i_user').send_keys('2016012872')  # 键入用户名
-driver.find_element_by_name('i_pass').send_keys('aihailin0928')  # 键入密码
+driver.find_element_by_name('i_user').send_keys('')  # 键入用户名
+driver.find_element_by_name('i_pass').send_keys('')  # 键入密码
 driver.find_element_by_id('loginButtonId').send_keys(Keys.ENTER)
 # 进入课程【第二个窗口】
 # driver.find_element('//*[@id="suoxuecourse"]/dd[5]/div[2]/div[1]/a').click()
