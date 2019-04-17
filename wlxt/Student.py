@@ -16,10 +16,10 @@ driver.maximize_window()
 # 登录网络学堂，【第一个窗口】
 driver.find_element_by_name('i_user').clear()
 driver.find_element_by_name('i_pass').clear()
-driver.implicitly_wait(30)
-# driver.find_element_by_name('i_user').send_keys('')  # 键入用户名
-# driver.find_element_by_name('i_pass').send_keys('')  # 键入密码
-# .find_element_by_id('loginButtonId').send_keys(Keys.ENTER)
+# driver.implicitly_wait(30)
+driver.find_element_by_name('i_user').send_keys('2016012872')  # 键入用户名
+driver.find_element_by_name('i_pass').send_keys('aihailin0928')  # 键入密码
+driver.find_element_by_id('loginButtonId').send_keys(Keys.ENTER)
 # 进入课程【第二个窗口】
 # driver.find_element('//*[@id="suoxuecourse"]/dd[5]/div[2]/div[1]/a').click()
 # driver.find_element_by_link_text('基于Linux的C++(20740084-998)').click()
@@ -44,12 +44,12 @@ print('=====登录成功=====')
 # print('=====公告测试完毕=====')
 
 # 课程邮件#
-# print('=====测试课程邮件=====')
-# driver.find_element_by_link_text('课程邮件').click()
-# driver.find_element_by_xpath('//*[@id="list"]/tbody/tr[1]/td[2]/a').click()
-# time.sleep(3)
-# driver.find_element_by_id('returnButton').click()
-# driver.find_element_by_xpath('//span[@class="rt right"]/child::a').click()
+print('=====测试课程邮件=====')
+driver.find_element_by_link_text('课程邮件').click()
+driver.find_element_by_xpath('//*[@id="list"]/tbody/tr[1]/td[2]/a').click()
+time.sleep(2)
+driver.find_element_by_id('returnButton').click()
+driver.find_element_by_xpath('//span[@class="rt right"]/child::a').click()
 # addresses = driver.find_elements_by_xpath("//span[contains(@class,'text-icon')]")
 # for i in addresses:
 #     # if i.get_attribute('text') != '肖大兴':
@@ -57,25 +57,35 @@ print('=====登录成功=====')
 #     time.sleep(1)
 # driver.find_element_by_xpath('//ul[@id="myTags"]//li//input').send_keys('wlxt@tsinghua.edu.cn')
 # driver.find_element_by_xpath('//ul[@id="myTags"]//li//input').send_keys(Keys.ENTER)
-# driver.implicitly_wait(3)
-# # driver.find_element_by_xpath('//ul[@id="myTags"]//li[2]/input').send_keys('xiesup@tsinghua.edu.cn')
-# # driver.implicitly_wait(3)
-# driver.find_element_by_xpath('//input[@id="bt"]').send_keys('网络学堂学生端测试邮件！')
+# driver.implicitly_wait(2)
+# driver.find_element_by_xpath('//ul[@id="myTags"]//li[2]/input').send_keys('xiesup@tsinghua.edu.cn')
+# driver.find_element_by_xpath('//ul[@id="myTags"]//li[2]//input').send_keys(Keys.ENTER)
+# driver.implicitly_wait(2)
+driver.find_element_by_xpath('//input[@id="bt"]').send_keys('网络学堂学生端测试邮件！')
+driver.implicitly_wait(2)
+driver.find_element_by_xpath("//*[@id='nrStr']")
+# js = "var myDate = new Date();$('textarea').val(myDate.toLocaleDateString());"
+js = "$('textarea').val('提交作业');"
+driver.execute_script(js)
 # driver.find_element_by_xpath('//input[@id="submitButton"]').click()
-# time.sleep(3)
-# print('=====邮件测试完毕=====')
-
+driver.implicitly_wait(4)
+print('=====邮件测试完毕=====')
 
 # 课程文件
-print("=====测试课程文件=====")
-driver.find_element_by_link_text('课程文件').click()
-li = driver.find_elements_by_xpath("//i[contains(@class,'webicon-download downLoadFile')]")
-ran = random.randint(1, 10) - 1  # 随机数
-driver.implicitly_wait(1)
-print(ran)
-li.pop(ran).click()
-driver.implicitly_wait(3)
-print('=====课件测试完毕=====')
+# print("=====测试课程文件=====")
+# driver.find_element_by_link_text('课程文件').click()
+# li = driver.find_elements_by_xpath("//i[contains(@class,'webicon-download downLoadFile')]")
+# ran = random.randint(1, 10) - 1  # 随机数
+# print(ran)
+# li.pop(ran).click()
+# # if driver.find_element_by_xpath("//img[@src='/res/app/wlxt/img/pbtn.png']"):
+# #     print("文本")
+# # if driver.find_element_by_xpath("audio[@id='mp3']").is_enabled():
+# #     print("mp3")
+# # if driver.find_element_by_xpath("//button[@title='Play Video']").is_enabled():
+# #     print("mp4")
+# driver.implicitly_wait(3)
+# print('=====课件测试完毕=====')
 
 # print('=====测试课程作业=====')
 # driver.find_element_by_link_text('课程作业').click()
@@ -84,10 +94,13 @@ print('=====课件测试完毕=====')
 # driver.find_element_by_xpath('//input[@id="saveBtn"]').click()
 # driver.implicitly_wait(2)
 # driver.find_element_by_xpath('//*[@id="s_documention"]')
+# js = "var myDate = new Date();$('textarea').val(myDate.toLocaleDateString());"
+# driver.execute_script(js)
 # driver.find_element_by_id('fileupload').send_keys(r'D:/listening.pdf')  # 上传文件
-# driver.find_element_by_xpath("//input[@onclick='daijiao()']").click()
+# # driver.find_element_by_xpath("//input[@onclick='daijiao()']").click()
 # driver.implicitly_wait(5)
 # print('=====作业测试完毕=====')
+
 # driver.quit()
 
 # print(len(addresses))

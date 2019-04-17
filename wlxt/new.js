@@ -1,4 +1,6 @@
-(function (textarea) {
-    ('textarea').val(editor.getData());
-});
+
+$(function () {
+    var myDate = new Date();
+    $('textarea').val(myDate.toLocaleDateString());
+})
 
