@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-import time, random
+import time
+import random
 
 driver = webdriver.Chrome()
 # driver = webdriver.Firefox()
@@ -9,6 +10,7 @@ driver = webdriver.Chrome()
 # driver = webdriver.Chrome(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/Example 0/chromedriver')  # mac  chrome
 # driver = webdriver.Safari() #Mac os
 print("======登录网络学堂=====")
+print('测试浏览器:' + driver.name)
 driver.get('http://learn.tsinghua.edu.cn')
 driver.maximize_window()
 # 登录网络学堂，【第一个窗口】
@@ -68,9 +70,11 @@ print('=====登录成功=====')
 print("=====测试课程文件=====")
 driver.find_element_by_link_text('课程文件').click()
 li = driver.find_elements_by_xpath("//i[contains(@class,'webicon-download downLoadFile')]")
-ran = (random.randint(0, len(li)))  #随机数
-li.pop(ran).click()                 #下载文件
-driver.implicitly_wait(2)
+ran = random.randint(1, 10) - 1  # 随机数
+driver.implicitly_wait(1)
+print(ran)
+li.pop(ran).click()
+driver.implicitly_wait(3)
 print('=====课件测试完毕=====')
 
 # print('=====测试课程作业=====')
