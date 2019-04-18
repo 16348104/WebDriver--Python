@@ -24,9 +24,8 @@ driver.find_element_by_id('loginButtonId').send_keys(Keys.ENTER)
 # driver.find_element('//*[@id="suoxuecourse"]/dd[5]/div[2]/div[1]/a').click()
 # driver.find_element_by_link_text('基于Linux的C++(20740084-998)').click()
 driver.find_element_by_xpath('//*[@id="suoxuecourse"]//a[contains(text(),"基于Linux的C++(20740084-998)")]').click()
-time.sleep(2)  # 休眠
+driver.implicitly_wait(2)  # 休眠
 print(driver.title)
-
 # 使用第二种方法切换浏览器【切换到第二个窗口】
 window_1 = driver.current_window_handle
 windows = driver.window_handles
@@ -46,26 +45,29 @@ print('=====登录成功=====')
 # 课程邮件#
 print('=====测试课程邮件=====')
 driver.find_element_by_link_text('课程邮件').click()
-driver.find_element_by_xpath('//*[@id="list"]/tbody/tr[1]/td[2]/a').click()
-time.sleep(2)
+driver.find_element_by_xpath('//*[@id="list"]/tbody/tr[1]/td[2]/a').click()    #浏览邮件
+driver.implicitly_wait(2)
 driver.find_element_by_id('returnButton').click()
 driver.find_element_by_xpath('//span[@class="rt right"]/child::a').click()
-# addresses = driver.find_elements_by_xpath("//span[contains(@class,'text-icon')]")
-# for i in addresses:
-#     # if i.get_attribute('text') != '肖大兴':
-#     i.click()
-#     time.sleep(1)
-# driver.find_element_by_xpath('//ul[@id="myTags"]//li//input').send_keys('wlxt@tsinghua.edu.cn')
-# driver.find_element_by_xpath('//ul[@id="myTags"]//li//input').send_keys(Keys.ENTER)
-# driver.implicitly_wait(2)
-# driver.find_element_by_xpath('//ul[@id="myTags"]//li[2]/input').send_keys('xiesup@tsinghua.edu.cn')
-# driver.find_element_by_xpath('//ul[@id="myTags"]//li[2]//input').send_keys(Keys.ENTER)
-# driver.implicitly_wait(2)
-driver.find_element_by_xpath('//input[@id="bt"]').send_keys('网络学堂学生端测试邮件！')
+addresses = driver.find_elements_by_xpath("//span[contains(@class,'text-icon')]")
+for i in addresses:
+    # if i.get_attribute('text') != '肖大兴':
+    i.click()
+    time.sleep(1)
+driver.find_element_by_xpath('//ul[@id="myTags"]//li//input').send_keys('wlxt@tsinghua.edu.cn')
+driver.find_element_by_xpath('//ul[@id="myTags"]//li//input').send_keys(Keys.ENTER)
 driver.implicitly_wait(2)
-driver.find_element_by_xpath("//*[@id='nrStr']")
-# js = "var myDate = new Date();$('textarea').val(myDate.toLocaleDateString());"
-js = "$('textarea').val('提交作业');"
+driver.find_element_by_xpath('//ul[@id="myTags"]//li[2]/input').send_keys('xiesup@tsinghua.edu.cn')
+driver.find_element_by_xpath('//ul[@id="myTags"]//li[2]//input').send_keys(Keys.ENTER)
+driver.implicitly_wait(2)
+driver.find_element_by_xpath('//ul[@id="myTags"]//li[3]/input').send_keys('yumj@tsinghua.edu.cn')
+driver.find_element_by_xpath('//ul[@id="myTags"]//li[3]//input').send_keys(Keys.ENTER)
+driver.implicitly_wait(2)
+driver.find_element_by_xpath('//input[@id="bt"]').send_keys('网络学堂学生端测试邮件！')
+driver.find_element_by_xpath("//textarea[@id='nrStr']")
+# js = "document.getElementById('nrStr').value= new Date().toLocaleDateString();"
+js = "document.getElementById('nrStr').value= ('ymj');"
+# js = "alert('123')"
 driver.execute_script(js)
 # driver.find_element_by_xpath('//input[@id="submitButton"]').click()
 driver.implicitly_wait(4)
@@ -93,8 +95,8 @@ print('=====邮件测试完毕=====')
 # driver.implicitly_wait(2)
 # driver.find_element_by_xpath('//input[@id="saveBtn"]').click()
 # driver.implicitly_wait(2)
-# driver.find_element_by_xpath('//*[@id="s_documention"]')
-# js = "var myDate = new Date();$('textarea').val(myDate.toLocaleDateString());"
+# driver.find_element_by_xpath('//textarea[@id="s_documention"]')
+# js = "document.getElementById('nrStr').value= new Date().toLocaleDateString()"
 # driver.execute_script(js)
 # driver.find_element_by_id('fileupload').send_keys(r'D:/listening.pdf')  # 上传文件
 # # driver.find_element_by_xpath("//input[@onclick='daijiao()']").click()

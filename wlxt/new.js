@@ -1,6 +1,11 @@
 
 $(function () {
-    var myDate = new Date();
-    $('textarea').val(myDate.toLocaleDateString());
+    //var myDate = new Date();
+    // $('textarea').val('shijian:'myDate.toLocaleDateString());
+    // $('textarea').val(myDate.innerHTML = Date());
+            document.getElementById('nrStr').value= new Date().toLocaleDateString();
+            document.getElementById('nrStr').value= ('11233');
+
+    alert('123')
 })
 
