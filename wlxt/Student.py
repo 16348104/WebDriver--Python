@@ -131,4 +131,5 @@ print('=====登录成功=====')
 
 # driver.get(r'E:\163study\WebDriver--Python\upload.html')  # 文件的地址
 # driver.find_element_by_name('file').send_keys(r'E:/map.png')  # 上传文件
+# driver.find_element_by_name('file').send_keys(r'/Users/xiaodaxing/Downloads/bear.jpg')  # mac上传文件
 # print('文件上传完毕')
