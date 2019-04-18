@@ -35,43 +35,64 @@ for current_window in windows:
 time.sleep(2)
 print('=====登录成功=====')
 
-# print("=====测试课程公告=====")
-# driver.find_element_by_link_text('课程公告').click()
-# driver.find_element_by_xpath(".//*[@id='table']/tbody/tr[1]/td[1]/a").click()
-# time.sleep(1)
-# driver.find_element_by_id('backBtn').click()
-# print('=====公告测试完毕=====')
+print("=====测试课程公告=====")
+driver.find_element_by_link_text('课程公告').click()
+driver.find_element_by_xpath(".//*[@id='table']/tbody/tr[1]/td[1]/a").click()
 
-# 课程邮件#
-print('=====测试课程邮件=====')
-driver.find_element_by_link_text('课程邮件').click()
-driver.find_element_by_xpath('//*[@id="list"]/tbody/tr[1]/td[2]/a').click()    #浏览邮件
-driver.implicitly_wait(2)
-driver.find_element_by_id('returnButton').click()
-driver.find_element_by_xpath('//span[@class="rt right"]/child::a').click()
-addresses = driver.find_elements_by_xpath("//span[contains(@class,'text-icon')]")
-for i in addresses:
-    # if i.get_attribute('text') != '肖大兴':
-    i.click()
-    time.sleep(1)
-driver.find_element_by_xpath('//ul[@id="myTags"]//li//input').send_keys('wlxt@tsinghua.edu.cn')
-driver.find_element_by_xpath('//ul[@id="myTags"]//li//input').send_keys(Keys.ENTER)
-driver.implicitly_wait(2)
-driver.find_element_by_xpath('//ul[@id="myTags"]//li[2]/input').send_keys('xiesup@tsinghua.edu.cn')
-driver.find_element_by_xpath('//ul[@id="myTags"]//li[2]//input').send_keys(Keys.ENTER)
-driver.implicitly_wait(2)
-driver.find_element_by_xpath('//ul[@id="myTags"]//li[3]/input').send_keys('yumj@tsinghua.edu.cn')
-driver.find_element_by_xpath('//ul[@id="myTags"]//li[3]//input').send_keys(Keys.ENTER)
-driver.implicitly_wait(2)
-driver.find_element_by_xpath('//input[@id="bt"]').send_keys('网络学堂学生端测试邮件！')
-driver.find_element_by_xpath("//textarea[@id='nrStr']")
-# js = "document.getElementById('nrStr').value= new Date().toLocaleDateString();"
-js = "document.getElementById('nrStr').value= ('ymj');"
-# js = "alert('123')"
-driver.execute_script(js)
-# driver.find_element_by_xpath('//input[@id="submitButton"]').click()
-driver.implicitly_wait(4)
-print('=====邮件测试完毕=====')
+
+def is_element_exist(id):
+    s = driver.find_element_by_id(id=wjid)
+    if len(s) == 0:
+        print
+        "元素未找到:%s" % id
+        return False
+    elif len(s) == 1:
+        return True
+    else:
+        print
+        "找到%s个元素：%s" % (len(s), id)
+        return False
+
+
+if is_element_exist("#wjid"):
+    driver.find_element_by_id("wjid").click()  # 浏览公告附件
+time.sleep(2)
+driver.find_element_by_id('backBtn').click()
+print('=====公告测试完毕=====')
+
+# # 课程邮件#
+# print('=====测试课程邮件=====')
+# driver.find_element_by_link_text('课程邮件').click()
+# driver.find_element_by_xpath('//*[@id="list"]/tbody/tr[1]/td[2]/a').click()  # 浏览邮件
+# driver.implicitly_wait(2)
+# driver.find_element_by_id('returnButton').click()
+# driver.find_element_by_xpath('//span[@class="rt right"]/child::a').click()
+# # addresses = driver.find_elements_by_xpath("//span[contains(@class,'text-icon')]")
+# # for i in addresses:
+# #     # if i.get_attribute('text') != '肖大兴':
+# #     i.click()
+# #     time.sleep(1)
+# # driver.find_element_by_xpath('//ul[@id="myTags"]//li//input').send_keys('wlxt@tsinghua.edu.cn')
+# # driver.find_element_by_xpath('//ul[@id="myTags"]//li//input').send_keys(Keys.ENTER)
+# # driver.implicitly_wait(2)
+# # driver.find_element_by_xpath('//ul[@id="myTags"]//li[2]/input').send_keys('xiesup@tsinghua.edu.cn')
+# # driver.find_element_by_xpath('//ul[@id="myTags"]//li[2]//input').send_keys(Keys.ENTER)
+# # driver.implicitly_wait(2)
+# # driver.find_element_by_xpath('//ul[@id="myTags"]//li[3]/input').send_keys('yumj@tsinghua.edu.cn')
+# # driver.find_element_by_xpath('//ul[@id="myTags"]//li[3]//input').send_keys(Keys.ENTER)
+# # driver.implicitly_wait(2)
+# driver.find_element_by_xpath('//input[@id="bt"]').send_keys('网络学堂学生端测试邮件！')
+# driver.find_element_by_xpath("//textarea[@id='nrStr']")
+# iframe = driver.find_element_by_xpath("//iframe[@title='RTF 編輯器, nrStr']")
+# driver.switch_to.frame(iframe)
+#
+# # driver.switch_to.default_content()
+# js = "document.getElementById('nrStr').value=111;"
+# # js = "alert('123')"
+# # driver.execute_script(js)
+# # driver.find_element_by_xpath('//input[@id="submitButton"]').click()
+# driver.implicitly_wait(4)
+# print('=====邮件测试完毕=====')
 
 # 课程文件
 # print("=====测试课程文件=====")
