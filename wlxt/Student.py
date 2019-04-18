@@ -3,11 +3,12 @@ from selenium.webdriver.common.keys import Keys
 import time
 import random
 
-driver = webdriver.Chrome()
+# driver = webdriver.Chrome()
 # driver = webdriver.Firefox()
 # driver = webdriver.Ie()
 # driver = webdriver.Firefox(executable_path = '/Users/xiaodaxing/Downloads/PycharmProjects/Example 0/geckodriver')  #mac firefox
-# driver = webdriver.Chrome(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/Example 0/chromedriver')  # mac  chrome
+driver = webdriver.Chrome(
+    executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/Example 0/chromedriver')  # mac  chrome
 # driver = webdriver.Safari() #Mac os
 print("======登录网络学堂=====")
 print('测试浏览器:' + driver.name)
@@ -35,61 +36,60 @@ for current_window in windows:
 time.sleep(2)
 print('=====登录成功=====')
 
-print("=====测试课程公告=====")
-driver.find_element_by_link_text('课程公告').click()
-driver.find_element_by_xpath(".//*[@id='table']/tbody/tr[1]/td[1]/a").click()
+# print("=====测试课程公告=====")
+# driver.find_element_by_link_text('课程公告').click()
+# driver.find_element_by_xpath(".//*[@id='table']/tbody/tr[1]/td[1]/a").click()
+#
+#
+# def is_element_exist(id):
+#     s = driver.find_element_by_id(id=wjid)
+#     if len(s) == 0:
+#         print
+#         "元素未找到:%s" % id
+#         return False
+#     elif len(s) == 1:
+#         return True
+#     else:
+#         print
+#         "找到%s个元素：%s" % (len(s), id)
+#         return False
+#
+#
+# if is_element_exist("#wjid"):
+#     driver.find_element_by_id("wjid").click()  # 浏览公告附件
+# time.sleep(2)
+# driver.find_element_by_id('backBtn').click()
+# print('=====公告测试完毕=====')
 
-
-def is_element_exist(id):
-    s = driver.find_element_by_id(id=wjid)
-    if len(s) == 0:
-        print
-        "元素未找到:%s" % id
-        return False
-    elif len(s) == 1:
-        return True
-    else:
-        print
-        "找到%s个元素：%s" % (len(s), id)
-        return False
-
-
-if is_element_exist("#wjid"):
-    driver.find_element_by_id("wjid").click()  # 浏览公告附件
-time.sleep(2)
-driver.find_element_by_id('backBtn').click()
-print('=====公告测试完毕=====')
-
-# # 课程邮件#
+# 课程邮件#
 # print('=====测试课程邮件=====')
 # driver.find_element_by_link_text('课程邮件').click()
 # driver.find_element_by_xpath('//*[@id="list"]/tbody/tr[1]/td[2]/a').click()  # 浏览邮件
 # driver.implicitly_wait(2)
 # driver.find_element_by_id('returnButton').click()
 # driver.find_element_by_xpath('//span[@class="rt right"]/child::a').click()
-# # addresses = driver.find_elements_by_xpath("//span[contains(@class,'text-icon')]")
-# # for i in addresses:
-# #     # if i.get_attribute('text') != '肖大兴':
-# #     i.click()
-# #     time.sleep(1)
-# # driver.find_element_by_xpath('//ul[@id="myTags"]//li//input').send_keys('wlxt@tsinghua.edu.cn')
-# # driver.find_element_by_xpath('//ul[@id="myTags"]//li//input').send_keys(Keys.ENTER)
-# # driver.implicitly_wait(2)
-# # driver.find_element_by_xpath('//ul[@id="myTags"]//li[2]/input').send_keys('xiesup@tsinghua.edu.cn')
-# # driver.find_element_by_xpath('//ul[@id="myTags"]//li[2]//input').send_keys(Keys.ENTER)
-# # driver.implicitly_wait(2)
-# # driver.find_element_by_xpath('//ul[@id="myTags"]//li[3]/input').send_keys('yumj@tsinghua.edu.cn')
-# # driver.find_element_by_xpath('//ul[@id="myTags"]//li[3]//input').send_keys(Keys.ENTER)
-# # driver.implicitly_wait(2)
+# addresses = driver.find_elements_by_xpath("//span[contains(@class,'text-icon')]")
+# for i in addresses:
+#     # if i.get_attribute('text') != '肖大兴':
+#     i.click()
+#     time.sleep(1)
+# driver.find_element_by_xpath('//ul[@id="myTags"]//li//input').send_keys('wlxt@tsinghua.edu.cn')
+# driver.find_element_by_xpath('//ul[@id="myTags"]//li//input').send_keys(Keys.ENTER)
+# driver.implicitly_wait(2)
+# driver.find_element_by_xpath('//ul[@id="myTags"]//li[2]/input').send_keys('xiesup@tsinghua.edu.cn')
+# driver.find_element_by_xpath('//ul[@id="myTags"]//li[2]//input').send_keys(Keys.ENTER)
+# driver.implicitly_wait(2)
+# driver.find_element_by_xpath('//ul[@id="myTags"]//li[3]/input').send_keys('yumj@tsinghua.edu.cn')
+# driver.find_element_by_xpath('//ul[@id="myTags"]//li[3]//input').send_keys(Keys.ENTER)
+# driver.implicitly_wait(2)
 # driver.find_element_by_xpath('//input[@id="bt"]').send_keys('网络学堂学生端测试邮件！')
-# driver.find_element_by_xpath("//textarea[@id='nrStr']")
-# iframe = driver.find_element_by_xpath("//iframe[@title='RTF 編輯器, nrStr']")
+# # driver.find_element_by_xpath("//textarea[@id='nrStr']")
+# # js = "document.getElementById('nrStr').value = new Date().toLocaleDateString();"
+# # val = driver.execute_script(js)
+# iframe = driver.find_element_by_xpath("//iframe[contains(@title,'nrStr')]")
 # driver.switch_to.frame(iframe)
-#
-# # driver.switch_to.default_content()
-# js = "document.getElementById('nrStr').value=111;"
-# # js = "alert('123')"
-# # driver.execute_script(js)
+# driver.find_element_by_xpath("//body[starts-with(@class,'cke')]").send_keys('学生端测试邮件')
+# driver.switch_to.default_content()
 # # driver.find_element_by_xpath('//input[@id="submitButton"]').click()
 # driver.implicitly_wait(4)
 # print('=====邮件测试完毕=====')
