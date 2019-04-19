@@ -3,12 +3,11 @@ from selenium.webdriver.common.keys import Keys
 import time
 import random
 
-# driver = webdriver.Chrome()
+driver = webdriver.Chrome()
 # driver = webdriver.Firefox()
 # driver = webdriver.Ie()
 # driver = webdriver.Firefox(executable_path = '/Users/xiaodaxing/Downloads/PycharmProjects/Example 0/geckodriver')  #mac firefox
-driver = webdriver.Chrome(
-    executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/Example 0/chromedriver')  # mac  chrome
+# driver = webdriver.Chrome(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/Example 0/chromedriver')  # mac  chrome
 # driver = webdriver.Safari() #Mac os
 print("======登录网络学堂=====")
 print('测试浏览器:' + driver.name)
@@ -17,30 +16,42 @@ driver.maximize_window()
 # 登录网络学堂，【第一个窗口】
 driver.find_element_by_name('i_user').clear()
 driver.find_element_by_name('i_pass').clear()
-# driver.implicitly_wait(30)
-driver.find_element_by_name('i_user').send_keys('')  # 键入用户名
-driver.find_element_by_name('i_pass').send_keys('')  # 键入密码
+# time.sleep(30)
+driver.find_element_by_name('i_user').send_keys('2016012872')  # 键入用户名
+driver.find_element_by_name('i_pass').send_keys('aihailin0928')  # 键入密码
 driver.find_element_by_id('loginButtonId').send_keys(Keys.ENTER)
 # 进入课程【第二个窗口】
 # driver.find_element('//*[@id="suoxuecourse"]/dd[5]/div[2]/div[1]/a').click()
 # driver.find_element_by_link_text('基于Linux的C++(20740084-998)').click()
-driver.find_element_by_xpath('//*[@id="suoxuecourse"]//a[contains(text(),"基于Linux的C++(20740084-998)")]').click()
-driver.implicitly_wait(2)  # 休眠
+driver.find_element_by_xpath('//*[@id="suoxuecourse"]//a[contains(text(),"20740084-998")]').click()
+time.sleep(1)  # 休眠
 print(driver.title)
-# 使用第二种方法切换浏览器【切换到第二个窗口】
-window_1 = driver.current_window_handle
-windows = driver.window_handles
+print(driver.current_window_handle)
+# 【切换到第二个窗口】
+window_1 = driver.current_window_handle  # 当前窗口句柄
+windows = driver.window_handles  # 窗口总数
 for current_window in windows:
     if current_window != window_1:
         driver.switch_to.window(current_window)
-time.sleep(2)
+time.sleep(3)
+print(window_1)
+print(current_window)
 print('=====登录成功=====')
 
-# print("=====测试课程公告=====")
-# driver.find_element_by_link_text('课程公告').click()
-# driver.find_element_by_xpath(".//*[@id='table']/tbody/tr[1]/td[1]/a").click()
+print("=====测试课程公告=====")
+driver.find_element_by_link_text('课程公告').click()
+print(current_window)
+driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[1]/a').click()
+time.sleep(1)
+# if driver.find_element_by_xpath("//div[@id='ggfj']").is_enabled():
+#     fj = driver.find_element_by_xpath("//div[@id='ggfj']").is_enabled()
+#     print('公告附件:'+fj)
+#     # fj = driver.find_element_by_xpath("//div[@id='ggfj']//a[@id='wjid']")
 #
-#
+# else:
+#     print('公告附件无')
+# driver.find_element_by_id('backBtn').click()
+
 # def is_element_exist(id):
 #     s = driver.find_element_by_id(id=wjid)
 #     if len(s) == 0:
@@ -57,8 +68,7 @@ print('=====登录成功=====')
 #
 # if is_element_exist("#wjid"):
 #     driver.find_element_by_id("wjid").click()  # 浏览公告附件
-# time.sleep(2)
-# driver.find_element_by_id('backBtn').click()
+
 # print('=====公告测试完毕=====')
 
 # 课程邮件#
