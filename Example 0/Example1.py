@@ -15,3 +15,7 @@ driver.find_element_by_id('kw').send_keys(Keys.BACKSPACE)  #在搜索框中输�
 # driver.find_element_by_id('kw').send_keys(Keys.CONTROL, 'v')  #输入Control+v模拟粘贴
 driver.find_element_by_id('kw').send_keys(Keys.ENTER)  #输入回车代替点击搜索按钮
 
+# driver.get(r'E:\163study\WebDriver--Python\upload.html')  # 文件的地址
+# driver.find_element_by_name('file').send_keys(r'E:/map.png')  # 上传文件
+# driver.find_element_by_name('file').send_keys(r'/Users/xiaodaxing/Downloads/bear.jpg')  # mac上传文件
+# print('文件上传完毕')
