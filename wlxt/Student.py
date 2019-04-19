@@ -17,8 +17,8 @@ driver.maximize_window()
 driver.find_element_by_name('i_user').clear()
 driver.find_element_by_name('i_pass').clear()
 # time.sleep(30)
-driver.find_element_by_name('i_user').send_keys('2016012872')  # 键入用户名
-driver.find_element_by_name('i_pass').send_keys('aihailin0928')  # 键入密码
+driver.find_element_by_name('i_user').send_keys('')  # 键入用户名
+driver.find_element_by_name('i_pass').send_keys('')  # 键入密码
 driver.find_element_by_id('loginButtonId').send_keys(Keys.ENTER)
 # 进入课程【第二个窗口】
 # driver.find_element('//*[@id="suoxuecourse"]/dd[5]/div[2]/div[1]/a').click()
@@ -39,10 +39,10 @@ print(current_window)
 print('=====登录成功=====')
 
 print("=====测试课程公告=====")
-driver.find_element_by_link_text('课程公告').click()
 print(current_window)
+driver.find_element_by_link_text('课程公告').click()
 driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[1]/a').click()
-time.sleep(1)
+
 # if driver.find_element_by_xpath("//div[@id='ggfj']").is_enabled():
 #     fj = driver.find_element_by_xpath("//div[@id='ggfj']").is_enabled()
 #     print('公告附件:'+fj)
@@ -127,7 +127,7 @@ time.sleep(1)
 # driver.find_element_by_xpath('//input[@id="saveBtn"]').click()
 # driver.implicitly_wait(2)
 # driver.find_element_by_xpath('//textarea[@id="s_documention"]')
-# js = "document.getElementById('nrStr').value= new Date().toLocaleDateString()"
+# js = "document.getElementById('s_documention').value= new Date().toLocaleDateString()"
 # driver.execute_script(js)
 # driver.find_element_by_id('fileupload').send_keys(r'D:/listening.pdf')  # 上传文件
 # # driver.find_element_by_xpath("//input[@onclick='daijiao()']").click()
