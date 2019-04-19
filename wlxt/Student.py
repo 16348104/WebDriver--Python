@@ -1,3 +1,4 @@
+#coding=utf-8
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
@@ -39,10 +40,9 @@ print(current_window)
 print('=====登录成功=====')
 
 print("=====测试课程公告=====")
-print(current_window)
 driver.find_element_by_link_text('课程公告').click()
-driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[1]/a').click()
-
+driver.find_element_by_xpath("//*[@id='table']/tbody/tr[1]/td[1]/a")
+driver.find_element_by_xpath("//*[@id='table']/tbody/tr[1]/td[1]/a").click()
 # if driver.find_element_by_xpath("//div[@id='ggfj']").is_enabled():
 #     fj = driver.find_element_by_xpath("//div[@id='ggfj']").is_enabled()
 #     print('公告附件:'+fj)
