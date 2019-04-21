@@ -7,7 +7,8 @@ import random
 # driver = webdriver.Chrome()
 # driver = webdriver.Firefox()
 # driver = webdriver.Ie()
-driver = webdriver.Firefox(executable_path = '/Users/xiaodaxing/Downloads/PycharmProjects/Example 0/geckodriver')  #mac firefox
+driver = webdriver.Firefox(
+    executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/Example 0/geckodriver')  # mac firefox
 # driver = webdriver.Chrome(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/Example 0/chromedriver')  # mac  chrome
 # driver = webdriver.Safari() #Mac os
 ##################################################登录网络学堂###########################################################
@@ -48,43 +49,48 @@ print('=====登录成功=====')
 # time.sleep(2)
 # ggfj = driver.find_element_by_xpath("//div[@id='ggfj']").is_displayed()
 # if ggfj:
-#     driver.find_element_by_xpath("//div[@id='ggfj']//a[@id='wjid']").click()  # 浏览公告附件
+#     print('无公告附件！')
+#     driver.find_element_by_id('backBtn').click()
+#
+# else:
 #     print('预览公告附件')
-#     # 【切换到第3个窗口】
+#     driver.find_element_by_xpath("//div[@id='ggfj']//a[@id='wjid']").click()  # 浏览公告附件
+#     #【第3个窗口】
 #     windows = driver.window_handles  # 窗口总数
 #     print('所有句柄:')
 #     print(windows)
-#     driver.switch_to.window(windows[1])
+#     driver.switch_to.window(windows[1]) #切换到第2个窗口
 #     time.sleep(3)
-# else:
-#     print('无公告附件！')
-#     driver.find_element_by_id('backBtn').click()
 #
 # print('=====公告测试完毕=====')
 
 ####################################################课程信息#############################################################
-print('测试课程信息')
-driver.find_element_by_css_selector('#wlxt_kc_v_kcxx_jskcxx').click()
-time.sleep(3)
-print('=====信息测试完毕=====')
+# print('测试课程信息')
+# driver.find_element_by_css_selector('#wlxt_kc_v_kcxx_jskcxx').click()
+# time.sleep(3)
+# print('=======课程信息测试完毕=====')
 
 ####################################################课程文件#############################################################
-# print("=====测试课程文件=====")
-# driver.find_element_by_xpath("//a[@id='wlxt_kj_wlkc_kjxxb']").click()
-# li = driver.find_elements_by_xpath("//i[contains(@class,'webicon-download downLoadFile')]")
-# ran = random.randint(1, 10) - 1  # 随机数
-# print('随机数:')
-# print(ran)
-# li.pop(ran).click()  # Download
-# print('下载课件')
-# # if driver.find_element_by_xpath("//img[@src='/res/app/wlxt/img/pbtn.png']"):
-# #     print("文本")
-# # if driver.find_element_by_xpath("audio[@id='mp3']").is_enabled():
-# #     print("mp3")
-# # if driver.find_element_by_xpath("//button[@title='Play Video']").is_enabled():
-# #     print("mp4")
-# time.sleep(5)
-# print('=====课件测试完毕=====')
+print("=====测试课程文件=====")
+driver.find_element_by_xpath("//a[@id='wlxt_kj_wlkc_kjxxb']").click()
+li = driver.find_elements_by_xpath("//i[contains(@class,'webicon-download downLoadFile')]")
+ran = random.randint(1, 10) - 1  # 随机数
+print('随机数:')
+print(ran)
+li.pop(ran).click()  # Download
+print('下载课件')
+print('预览课件')
+driver.switch_to.frame('playFrame')
+if driver.find_element_by_xpath("//img[@src='/res/app/wlxt/img/pbtn.png']"):
+    print("文本")
+elif driver.find_element_by_xpath("audio[@id='mp3']"):
+    print("mp3")
+elif driver.find_element_by_xpath("//button[@title='Play Video']"):
+    print("mp4")
+else:
+    driver.switch_to.parent_frame()
+time.sleep(5)
+print('=====课件测试完毕=====')
 
 ####################################################课程作业#############################################################
 # print('=====测试课程作业=====')
@@ -134,10 +140,10 @@ print('=====信息测试完毕=====')
 # print('=====邮件测试完毕=====')
 
 ########################################################我的分组#########################################################
-print('测试我的分组')
-driver.find_element_by_css_selector('#wlxt_qz_v_wlkc_qzcyb').click()
-time.sleep(3)
-print('=====分组测试完毕=====')
+# print('测试我的分组')
+# driver.find_element_by_css_selector('#wlxt_qz_v_wlkc_qzcyb').click()
+# time.sleep(3)
+# print('=====我的分组测试完毕=====')
 
 
 ##################################################退出网络学堂############################################################
@@ -147,6 +153,7 @@ driver.find_element_by_xpath("//div[contains(@class,'zeromodal-footer')]//button
     Keys.ENTER)
 # js = "alert('12345')"
 # driver.execute_script(js)
-# driver.switch_to_alert().accept()
+driver.switch_to_alert().accept()
+driver.switch_to.alert.accept()
 print('退出网络学堂')
 driver.quit()
