@@ -26,7 +26,7 @@ driver.find_element_by_id('loginButtonId').send_keys(Keys.ENTER)
 # 进入课程【第二个窗口】
 # driver.find_element('//*[@id="suoxuecourse"]/dd[5]/div[2]/div[1]/a').click()
 # driver.find_element_by_link_text('基于Linux的C++(20740084-998)').click()
-driver.find_element_by_xpath('//*[@id="suoxuecourse"]//a[contains(text(),"20740084-998")]').click()
+driver.find_element_by_xpath('//a[contains(text(),"20740084-998")]').click()
 print(driver.title)
 # 【切换到第二个窗口】
 window_1 = driver.current_window_handle  # 当前窗口句柄
