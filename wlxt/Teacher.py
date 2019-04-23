@@ -5,7 +5,10 @@ import time
 from selenium.webdriver.common.keys import Keys
 
 # driver = webdriver.Firefox(executable_path="E:/163study/WebDriver--Python/wlxt/geckodriver.exe")
-driver = webdriver.Chrome(executable_path='E:/163study/WebDriver--Python/wlxt/chromedriver.exe')
+# driver = webdriver.Chrome(executable_path='E:/163study/WebDriver--Python/wlxt/chromedriver.exe')
+# driver = webdriver.Firefox(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/wlxt/geckodriver')  # mac firefox
+# driver = webdriver.Chrome(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/wlxt/chromedriver')  # mac  chrome
+driver = webdriver.Safari() #Mac os
 
 ######################################################登录网络学堂######################################################
 # 打开网络学堂
@@ -19,8 +22,8 @@ tomorrow = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time() + 3600)
 print("当前时间戳为:", ticks)
 # print ("当前时间戳为:", tomorrow)
 
-driver.find_element_by_name("i_user").send_keys("")
-driver.find_element_by_name("i_pass").send_keys("")
+driver.find_element_by_name("i_user").send_keys("xdx2016")
+driver.find_element_by_name("i_pass").send_keys("ustb55aliyun")
 driver.find_element_by_id("loginButtonId").click()
 # 打开公告
 print('测试课程公告')
