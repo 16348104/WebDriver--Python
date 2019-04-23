@@ -2,9 +2,9 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
 
-driver = webdriver.Safari()  # Mac os
+# driver = webdriver.Safari()  # Mac os
 # driver = webdriver.Chrome(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/Example 0/chromedriver')  # mac  chrome
-# driver = webdriver.Chrome()
+driver = webdriver.Chrome()
 driver.get("http://www.baidu.com")
 time.sleep(3)
 

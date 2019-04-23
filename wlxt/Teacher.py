@@ -43,7 +43,7 @@ print('测试课程文件')
 js = "document.getElementById(\'fileupload\').style.display=\'block\'"
 driver.execute_script(js)
 driver.find_element_by_name("bt").send_keys("测试课件" + ticks)
-driver.find_element_by_name("fileupload").send_keys("D:\listening.pdf")
+driver.find_element_by_name("fileupload").send_keys("D:\Introduction.pdf")
 print(driver.title)
 time.sleep(5)
 driver.find_element_by_id("sub").click()
@@ -58,7 +58,7 @@ driver.find_element_by_name("bt").send_keys("测试全体作业" + ticks)
 # 定位上传按钮，添加本地文件
 js = "document.getElementById(\'fileupload\').style.display=\'block\'"
 driver.execute_script(js)
-driver.find_element_by_name("fileupload").send_keys("D:\listening.pdf")
+driver.find_element_by_name("fileupload").send_keys("D:\Introduction.pdf")
 time.sleep(5)
 driver.find_element_by_name("jzsj").send_keys(tomorrow)
 # driver.find_element_by_name("jzsj").send_keys("2019-04-15 10:00")

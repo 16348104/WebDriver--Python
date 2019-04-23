@@ -4,7 +4,7 @@ from selenium.webdriver.common.keys import Keys
 import time
 import random
 
-driver = webdriver.Chrome(executable_path='E:/163study/WebDriver--Python/wlxt/chromedriver.exe')
+driver = webdriver.Chrome()
 # driver = webdriver.Firefox(executable_path="E:/163study/WebDriver--Python/wlxt/geckodriver.exe")
 # driver = webdriver.Ie()
 # driver = webdriver.Firefox(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/wlxt/geckodriver')  # mac firefox
@@ -96,18 +96,18 @@ time.sleep(5)
 print('=====课件测试完毕=====')
 
 ####################################################课程作业############################################################
-# print('=====测试课程作业=====')
-# driver.find_element_by_xpath("//a[@id='wlxt_kczy_zy']").click()
-# time.sleep(3)
-# driver.find_element_by_xpath('//*[@id="wtj"]/tbody/tr[1]/td[2]/a').click()
-# time.sleep(1)
-# driver.find_element_by_xpath('//input[@id="saveBtn"]').click()
-# driver.find_element_by_xpath('//textarea[@id="s_documention"]')
-# js = "document.getElementById('s_documention').value= new Date().toLocaleDateString()"
-# driver.execute_script(js)
-# driver.find_element_by_id('fileupload').send_keys(r'D:/listening.pdf')  # 上传文件
-# driver.find_element_by_xpath("//input[@onclick='daijiao()']").click()
-# time.sleep(5)
+print('=====测试课程作业=====')
+driver.find_element_by_xpath("//a[@id='wlxt_kczy_zy']").click()
+time.sleep(3)
+driver.find_element_by_xpath('//*[@id="wtj"]/tbody/tr[1]/td[2]/a').click()
+time.sleep(1)
+driver.find_element_by_xpath('//input[@id="saveBtn"]').click()
+driver.find_element_by_xpath('//textarea[@id="s_documention"]')
+js = "document.getElementById('s_documention').value= new Date().toLocaleDateString()"
+driver.execute_script(js)
+driver.find_element_by_id('fileupload').send_keys(r'D:\Introduction.pdf')  # 上传文件
+driver.find_element_by_xpath("//input[@onclick='daijiao()']").click()
+time.sleep(5)
 # print('=====作业测试完毕=====')
 
 ########################################################我的分组#########################################################
