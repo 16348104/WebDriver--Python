@@ -4,12 +4,13 @@ from selenium.webdriver.common.keys import Keys
 import time
 import random
 
+# driver = webdriver.Chrome(executable_path='C:/Users/zb/Desktop/test/python/chromedriver.exe')  # 定时任务
 # driver = webdriver.Chrome()
-# driver = webdriver.Firefox(executable_path="E:/163study/WebDriver--Python/wlxt/geckodriver.exe")
+driver = webdriver.Firefox()
 # driver = webdriver.Ie()
 # driver = webdriver.Firefox(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/wlxt/geckodriver')  # mac firefox
 # driver = webdriver.Chrome(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/wlxt/chromedriver')  # mac  chrome
-driver = webdriver.Safari() #Mac os
+# driver = webdriver.Safari() #Mac os
 ##################################################登录网络学堂###########################################################
 print("======登录网络学堂=====")
 print('测试浏览器:' + driver.name)
@@ -23,6 +24,7 @@ driver.find_element_by_name('i_pass').clear()
 driver.find_element_by_name('i_user').send_keys('')  # 键入用户名
 driver.find_element_by_name('i_pass').send_keys('')  # 键入密码
 driver.find_element_by_id('loginButtonId').send_keys(Keys.ENTER)
+time.sleep(2)
 # 进入课程【第二个窗口】
 # driver.find_element_by_link_text('基于Linux的C++(20740084-998)').click()
 driver.find_element_by_xpath("//a[contains(text(),'基于Linux的C++(20740084-998)')]").click()
@@ -104,8 +106,8 @@ driver.find_element_by_xpath('//input[@id="saveBtn"]').click()
 driver.find_element_by_xpath('//textarea[@id="s_documention"]')
 js = "document.getElementById('s_documention').value= new Date().toLocaleDateString()"
 driver.execute_script(js)
-# driver.find_element_by_id('fileupload').send_keys(r'D:\Introduction.pdf')  # 上传文件
-driver.find_element_by_id('fileupload').send_keys(r'/Users/xiaodaxing/Desktop/1.jpg')  # Mac上传文件
+driver.find_element_by_id('fileupload').send_keys(r'D:\Introduction.pdf')  # 上传文件
+# driver.find_element_by_id('fileupload').send_keys(r'/Users/xiaodaxing/Desktop/1.jpg')  # Mac上传文件
 driver.find_element_by_xpath("//input[@onclick='daijiao()']").click()
 time.sleep(5)
 print('=====作业测试完毕=====')

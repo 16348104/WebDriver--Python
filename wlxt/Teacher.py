@@ -4,11 +4,12 @@ import time
 
 from selenium.webdriver.common.keys import Keys
 
-# driver = webdriver.Firefox(executable_path="E:/163study/WebDriver--Python/wlxt/geckodriver.exe")
-# driver = webdriver.Chrome(executable_path='E:/163study/WebDriver--Python/wlxt/chromedriver.exe')
+# driver = webdriver.Chrome(executable_path='C:/Users/zb/Desktop/test/python/chromedriver.exe')  # 定时任务
+# driver = webdriver.Firefox()
+driver = webdriver.Chrome()
 # driver = webdriver.Firefox(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/wlxt/geckodriver')  # mac firefox
 # driver = webdriver.Chrome(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/wlxt/chromedriver')  # mac  chrome
-driver = webdriver.Safari() #Mac os
+# driver = webdriver.Safari() #Mac os
 
 ######################################################登录网络学堂######################################################
 # 打开网络学堂
@@ -30,9 +31,10 @@ print('测试课程公告')
 driver.get(
     "http://learn.tsinghua.edu.cn/f/wlxt/kcgg/wlkc_ggb/teacher/beforeAdd?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
 # 发布公告
+time.sleep(2)
 driver.find_element_by_name("bt").send_keys("测试公告" + ticks)
 driver.find_element_by_id("saveBtn").click()
-time.sleep(2)
+time.sleep(1)
 print('公告测试完毕')
 
 ######################################################课程文件##########################################################
@@ -46,7 +48,7 @@ print('测试课程文件')
 js = "document.getElementById(\'fileupload\').style.display=\'block\'"
 driver.execute_script(js)
 driver.find_element_by_name("bt").send_keys("测试课件" + ticks)
-driver.find_element_by_name("fileupload").send_keys("D:\Introduction.pdf")
+driver.find_element_by_name("fileupload").send_keys("D:\listening.pdf")
 print(driver.title)
 time.sleep(5)
 driver.find_element_by_id("sub").click()
@@ -61,7 +63,7 @@ driver.find_element_by_name("bt").send_keys("测试全体作业" + ticks)
 # 定位上传按钮，添加本地文件
 js = "document.getElementById(\'fileupload\').style.display=\'block\'"
 driver.execute_script(js)
-driver.find_element_by_name("fileupload").send_keys("D:\Introduction.pdf")
+driver.find_element_by_name("fileupload").send_keys("D:\listening.pdf")
 time.sleep(5)
 driver.find_element_by_name("jzsj").send_keys(tomorrow)
 # driver.find_element_by_name("jzsj").send_keys("2019-04-15 10:00")
@@ -82,9 +84,9 @@ driver.find_element_by_id("bt").send_keys("网络学堂自动测试:系统正常
 driver.find_element_by_id("submitButton").click()
 print('邮件测试完毕')
 ##################################################退出网络学堂##########################################################
-time.sleep(2)
 driver.find_element_by_xpath("//a[contains(text(),'退出登录')]").click()
 driver.find_element_by_xpath("//div[contains(@class,'zeromodal-footer')]//button[contains(text(),'确定')]").send_keys(
     Keys.ENTER)
+time.sleep(2)
 print('退出网络学堂')
 driver.quit()
