@@ -28,15 +28,16 @@ driver.find_element_by_name("i_pass").send_keys("")
 driver.find_element_by_id("loginButtonId").click()
 # 打开公告
 print('测试课程公告')
-time.sleep(1)
+time.sleep(2)
 driver.get(
     "http://learn.tsinghua.edu.cn/f/wlxt/kcgg/wlkc_ggb/teacher/beforeAdd?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
 # 发布公告
 time.sleep(2)
 driver.find_element_by_name("bt").send_keys("测试公告" + ticks)
 driver.find_element_by_xpath("//div[@class='list title notext']//label[1]").click()
-driver.find_element_by_id("saveBtn").click()
+driver.find_element_by_xpath("//div[@class='list order clearfix']//label[1]").click()
 time.sleep(1)
+driver.find_element_by_id("saveBtn").click()
 print('公告测试完毕')
 
 ######################################################课程文件##########################################################
@@ -47,6 +48,7 @@ driver.get(
 
 # 定位上传按钮，添加本地文件
 print('测试课程文件')
+time.sleep(2)
 js = "document.getElementById(\'fileupload\').style.display=\'block\'"
 driver.execute_script(js)
 driver.find_element_by_name("bt").send_keys("测试课件" + ticks)
