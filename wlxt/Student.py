@@ -24,10 +24,10 @@ driver.find_element_by_name('i_pass').clear()
 driver.find_element_by_name('i_user').send_keys('')  # 键入用户名
 driver.find_element_by_name('i_pass').send_keys('')  # 键入密码
 driver.find_element_by_id('loginButtonId').send_keys(Keys.ENTER)
-time.sleep(2)
+time.sleep(1)
 # 进入课程【第二个窗口】
 # driver.find_element_by_link_text('基于Linux的C++(20740084-998)').click()
-driver.find_element_by_xpath("//a[contains(text(),'基于Linux的C++(20740084-998)')]").click()
+driver.find_element_by_xpath("//a[contains(text(),'LinuxC++(20740084-998)')]").click()
 print(driver.title)
 # 【切换到第二个窗口】
 window_1 = driver.current_window_handle  # 当前窗口句柄
@@ -106,7 +106,7 @@ driver.find_element_by_xpath('//input[@id="saveBtn"]').click()
 driver.find_element_by_xpath('//textarea[@id="s_documention"]')
 js = "document.getElementById('s_documention').value= new Date().toLocaleDateString()"
 driver.execute_script(js)
-driver.find_element_by_id('fileupload').send_keys(r'D:\Introduction.pdf')  # 上传文件
+driver.find_element_by_id('fileupload').send_keys(r'D:\listening.pdf')  # 上传文件
 # driver.find_element_by_id('fileupload').send_keys(r'/Users/xiaodaxing/Desktop/1.jpg')  # Mac上传文件
 driver.find_element_by_xpath("//input[@onclick='daijiao()']").click()
 time.sleep(5)
@@ -151,8 +151,8 @@ time.sleep(3)
 print('=====邮件测试完毕=====')
 
 ##################################################退出网络学堂############################################################
-time.sleep(2)
 driver.find_element_by_xpath("//a[contains(text(),'退出登录')]").click()
+time.sleep(2)
 driver.find_element_by_xpath("//div[contains(@class,'zeromodal-footer')]//button[contains(text(),'确定')]").send_keys(
     Keys.ENTER)
 # js = "alert('12345')"

@@ -80,7 +80,7 @@ driver.get(
     "http://learn.tsinghua.edu.cn/f/wlxt/mail/yj_yjxxb/teacher/beforeAdd?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
 driver.find_element_by_class_name("ui-autocomplete-input").send_keys(
     "xiesp@tsinghua.edu.cn,chc@tsinghua.edu.cn,xdx2016@tsinghua.edu.cn,dj1005@tsinghua.edu.cn,zhongwenfeng@tsinghua.edu.cn")
-driver.find_element_by_id("bt").send_keys("网络学堂自动测试:系统正常" + ticks)
+driver.find_element_by_id("bt").send_keys("网络学堂自动测试:教师端系统正常" + ticks)
 driver.find_element_by_id("submitButton").click()
 print('邮件测试完毕')
 ##################################################退出网络学堂##########################################################
