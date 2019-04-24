@@ -21,8 +21,8 @@ print('登录后句柄:' + driver.current_window_handle)  # 登录网络学堂�
 driver.find_element_by_name('i_user').clear()
 driver.find_element_by_name('i_pass').clear()
 # time.sleep(30)
-driver.find_element_by_name('i_user').send_keys('ahl16')  # 键入用户名
-driver.find_element_by_name('i_pass').send_keys('aihailin9808')  # 键入密码
+driver.find_element_by_name('i_user').send_keys('')  # 键入用户名
+driver.find_element_by_name('i_pass').send_keys('')  # 键入密码
 driver.find_element_by_id('loginButtonId').send_keys(Keys.ENTER)
 time.sleep(1)
 # 进入课程【第二个窗口】
