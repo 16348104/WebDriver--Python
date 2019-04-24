@@ -5,8 +5,8 @@ import time
 import random
 
 # driver = webdriver.Chrome(executable_path='C:/Users/zb/Desktop/test/python/chromedriver.exe')  # 定时任务
-# driver = webdriver.Chrome()
-driver = webdriver.Firefox()
+driver = webdriver.Chrome()
+# driver = webdriver.Firefox()
 # driver = webdriver.Ie()
 # driver = webdriver.Firefox(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/wlxt/geckodriver')  # mac firefox
 # driver = webdriver.Chrome(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/wlxt/chromedriver')  # mac  chrome
@@ -21,13 +21,13 @@ print('登录后句柄:' + driver.current_window_handle)  # 登录网络学堂�
 driver.find_element_by_name('i_user').clear()
 driver.find_element_by_name('i_pass').clear()
 # time.sleep(30)
-driver.find_element_by_name('i_user').send_keys('')  # 键入用户名
-driver.find_element_by_name('i_pass').send_keys('')  # 键入密码
+driver.find_element_by_name('i_user').send_keys('ahl16')  # 键入用户名
+driver.find_element_by_name('i_pass').send_keys('aihailin9808')  # 键入密码
 driver.find_element_by_id('loginButtonId').send_keys(Keys.ENTER)
 time.sleep(1)
 # 进入课程【第二个窗口】
 # driver.find_element_by_link_text('基于Linux的C++(20740084-998)').click()
-driver.find_element_by_xpath("//a[contains(text(),'LinuxC++(20740084-998)')]").click()
+driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()
 print(driver.title)
 # 【切换到第二个窗口】
 window_1 = driver.current_window_handle  # 当前窗口句柄
