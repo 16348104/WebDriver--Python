@@ -4,7 +4,7 @@ import time
 
 from selenium.webdriver.common.keys import Keys
 
-# driver = webdriver.Chrome(executable_path='C:/Users/zb/Desktop/test/python/chromedriver.exe')  # 定时任务
+# driver = webdriver.Chrome(executable_path='C:/Users/zb/Desktop/test/python/chromedriver.exe')  # todo
 # driver = webdriver.Firefox()
 driver = webdriver.Chrome()
 # driver = webdriver.Firefox(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/wlxt/geckodriver')  # mac firefox
@@ -29,10 +29,9 @@ driver.find_element_by_name("i_pass").send_keys("")
 driver.find_element_by_id("loginButtonId").click()
 time.sleep(1)
 ######################################################课程公告##########################################################
-# 打开公告
 print('测试课程公告')
-driver.get(
-    "http://learn.tsinghua.edu.cn/f/wlxt/kcgg/wlkc_ggb/teacher/beforeAdd?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
+# driver.get("http://learn.tsinghua.edu.cn/f/wlxt/kcgg/wlkc_ggb/teacher/beforeAdd?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
+driver.find_element_by_xpath("//dd[1]//div[1]//div[1]//a[1]").click()
 # 发布公告
 time.sleep(2)
 driver.find_element_by_name("bt").send_keys("测试公告" + ticks)
@@ -43,18 +42,15 @@ driver.find_element_by_id("saveBtn").click()
 print('公告测试完毕')
 time.sleep(3)
 ######################################################课程文件##########################################################
-
-# 上传课件
 # 打开课程文件
-driver.get(
-    "http://learn.tsinghua.edu.cn/f/wlxt/kj/wlkc_kjxxb/teacher/beforeAdd?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
-
+# driver.get("http://learn.tsinghua.edu.cn/f/wlxt/kj/wlkc_kjxxb/teacher/beforeAdd?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
+driver.find_element_by_xpath("//dd[1]//div[1]//div[1]//a[4]").click()  # 上传课件
 # 定位上传按钮，添加本地文件
 print('测试课程文件')
-js = "document.getElementById(\'fileupload\').style.display=\'block\'"
+js = "document.getElementById('fileupload').style.display=\'block\'"
 driver.execute_script(js)
 driver.find_element_by_name("bt").send_keys("测试课件" + ticks)
-driver.find_element_by_name("fileupload").send_keys("D:\Introduction.pdf")
+driver.find_element_by_name("fileupload").send_keys("D:\listening.pdf")  # todo
 time.sleep(5)
 driver.find_element_by_id("sub").click()
 print('文件完毕')
@@ -62,27 +58,26 @@ time.sleep(3)
 ######################################################课程作业##########################################################
 # 布置作业
 print('测试课程作业')
-driver.get(
-    "http://learn.tsinghua.edu.cn/f/wlxt/kczy/zy/teacher/bzzy?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
+# driver.get("http://learn.tsinghua.edu.cn/f/wlxt/kczy/zy/teacher/bzzy?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
+driver.find_element_by_xpath("//dd[1]//div[1]//div[1]//a[3]").click()
 driver.find_element_by_name("bt").send_keys("测试全体作业" + ticks)
 # 定位上传按钮，添加本地文件
-js = "document.getElementById(\'fileupload\').style.display=\'block\'"
+js = "document.getElementById('fileupload').style.display=\'block\'"
 driver.execute_script(js)
-driver.find_element_by_name("fileupload").send_keys("D:\Introduction.pdf")
+driver.find_element_by_name("fileupload").send_keys("D:\listening.pdf")  # todo
 time.sleep(5)
 driver.find_element_by_name("jzsj").send_keys(tomorrow)
-# driver.find_element_by_name("jzsj").send_keys("2019-04-15 10:00")
 driver.find_element_by_id("goBtn").click()
 print('作业测试完毕')
 time.sleep(3)
 ######################################################课程邮件##########################################################
 # 打开课程邮件
 print('测试课程邮件')
-driver.get(
-    "http://learn.tsinghua.edu.cn/f/wlxt/mail/yj_yjxxb/teacher/beforePageList?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
+driver.get("http://learn.tsinghua.edu.cn/f/wlxt/mail/yj_yjxxb/teacher/beforePageList?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
+
 # 新邮件
-driver.get(
-    "http://learn.tsinghua.edu.cn/f/wlxt/mail/yj_yjxxb/teacher/beforeAdd?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
+# driver.get("http://learn.tsinghua.edu.cn/f/wlxt/mail/yj_yjxxb/teacher/beforeAdd?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
+driver.find_element_by_xpath("//a[contains(text(),'新邮件')]").click()
 driver.find_element_by_class_name("ui-autocomplete-input").send_keys(
     "xiesp@tsinghua.edu.cn,chc@tsinghua.edu.cn,xdx2016@tsinghua.edu.cn,dj1005@tsinghua.edu.cn,zhongwenfeng@tsinghua.edu.cn")
 driver.find_element_by_id("bt").send_keys("网络学堂自动测试:教师端系统正常" + ticks)
@@ -96,4 +91,3 @@ driver.find_element_by_xpath("//div[contains(@class,'zeromodal-footer')]//button
 time.sleep(2)
 print('退出网络学堂')
 driver.quit()
-driver = webdriver.Chrome(executable_path='E:/work/Python/chromedriver.exe')

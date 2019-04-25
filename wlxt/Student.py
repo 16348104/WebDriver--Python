@@ -4,6 +4,7 @@ from selenium.webdriver.common.keys import Keys
 import time
 import random
 
+# TODO:
 # driver = webdriver.Chrome(executable_path='C:/Users/zb/Desktop/test/python/chromedriver.exe')  # 定时任务
 driver = webdriver.Chrome()
 # driver = webdriver.Firefox()
