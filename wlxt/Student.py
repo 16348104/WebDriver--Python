@@ -4,8 +4,8 @@ from selenium.webdriver.common.keys import Keys
 import time
 import random
 
-# TODO:
-# driver = webdriver.Chrome(executable_path='C:/Users/zb/Desktop/test/python/chromedriver.exe')  # 定时任务
+
+# driver = webdriver.Chrome(executable_path='C:/Users/zb/Desktop/test/python/chromedriver.exe')  # modify
 driver = webdriver.Chrome()
 # driver = webdriver.Firefox()
 # driver = webdriver.Ie()
@@ -107,7 +107,7 @@ driver.find_element_by_xpath('//input[@id="saveBtn"]').click()
 driver.find_element_by_xpath('//textarea[@id="s_documention"]')
 js = "document.getElementById('s_documention').value= new Date().toLocaleDateString()"
 driver.execute_script(js)
-driver.find_element_by_id('fileupload').send_keys(r'D:\listening.pdf')  # 上传文件
+driver.find_element_by_id('fileupload').send_keys(r'D:\listening.pdf')  # 上传文件modify
 # driver.find_element_by_id('fileupload').send_keys(r'/Users/xiaodaxing/Desktop/1.jpg')  # Mac上传文件
 driver.find_element_by_xpath("//input[@onclick='daijiao()']").click()
 time.sleep(5)
