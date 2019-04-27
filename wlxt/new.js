@@ -1,11 +1,12 @@
-
 $(function () {
     //var myDate = new Date();
     // $('textarea').val('shijian:'myDate.toLocaleDateString());
     // $('textarea').val(myDate.innerHTML = Date());
-            document.getElementById('nrStr').value= new Date().toLocaleDateString();
-            document.getElementById('nrStr').value= ('11233');
+    document.getElementById('nrStr').value = new Date().toLocaleDateString();
+    document.getElementById('nrStr').value = ('11233');
 
     alert('123')
+    var audio = document.getElementById('mp3');
+    audio.play();
 })
 
