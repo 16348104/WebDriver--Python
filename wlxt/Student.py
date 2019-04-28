@@ -1,5 +1,6 @@
 # coding=utf-8
 from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
 import time
 import random
@@ -79,21 +80,27 @@ print('随机数', ran)
 print('下载课件')
 driver.switch_to.frame('playFrame')
 print('开始预览课件')
-Video = driver.find_element_by_xpath("//button[@class='vjs-big-play-button']").is_displayed()
-Audio = driver.find_element_by_css_selector("#mp3").is_displayed()
-Word = driver.find_element_by_xpath("//body/a").is_displayed()
-if Word:  # 文本文件:
-    driver.find_element_by_xpath("//body/a").click()
-    print('预览文本文件')
-else:
-    pass
-# elif driver.find_element_by_css_selector("#mp3"):  # 音频文件
-#     js = " var audio = document.getElementById('mp3');  audio.play();"
-#     driver.execute_script(js).click()
-#     print("预览音频文件")
-# elif driver.find_element_by_xpath("//button[@class='vjs-big-play-button']"):  # 视频文件
-#     driver.find_element_by_xpath("//button[@class='vjs-big-play-button']").click()
-#     print("预览视频文件")
+try:
+    Unable_preview = driver.find_element_by_xpath("//a[@class='downLoadFile']")
+    Video = driver.find_element_by_xpath("//button[@class='vjs-big-play-button']")
+    Audio = driver.find_element_by_css_selector("#mp3")
+    Word = driver.find_element_by_xpath("//body/a")
+    if Word.is_displayed():  # 文本文件
+        Word.click()
+        print('预览文本文件')
+    elif Audio:  # 音频文件
+        js = " var audio = document.getElementById('mp3');  audio.play();"
+        driver.execute_script(js).click()
+        print("预览音频文件")
+    elif Video:  # 视频文件
+        Video.click()
+        print("预览视频文件")
+    elif Unable_preview:  # 视频文件
+        Unable_preview.click()
+        print("预览视频文件")
+except NoSuchElementException as msg:
+    print('此文件暂时无法预览', msg)
+
 
 driver.switch_to.parent_frame()
 time.sleep(5)
@@ -163,4 +170,4 @@ driver.find_element_by_xpath("//div[contains(@class,'zeromodal-footer')]//button
 # driver.switch_to_alert().accept()
 # driver.switch_to.alert.accept()
 print('退出网络学堂')
-driver.quit()
+# driver.quit()
