@@ -1,6 +1,7 @@
 # coding=utf-8
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys
 import time
 import random
@@ -78,6 +79,9 @@ ran = random.randint(1, 10) - 1  # 随机数
 print('随机数', ran)
 # li.pop(ran).click()  # Download
 print('下载课件')
+element = driver.find_element_by_xpath("//div[@id='content']")
+target = driver.find_element_by_xpath("//iframe[@id='playFrame']")
+ActionChains(driver).drag_and_drop(element, target).perform()
 driver.switch_to.frame('playFrame')
 print('开始预览课件')
 try:
@@ -111,10 +115,9 @@ except NoSuchElementException as msg:
     print('暂无文本文件', msg)
 else:
     Word.click()
-    time.sleep(0.5)
     # js_word = "var w=document.documentElement.scrollTop=10000"
-    driver.execute_script("console.log(document.documentElement.scrollTop=100000)")
-    # driver.execute_script('window.scrollTo(0, 0)')
+    driver.execute_script("document.documentElement.scrollTop=100000")
+    driver.execute_script('window.scrollTo(0, 0)')
     time.sleep(2)
     print('预览文本文件')
     # js = "document.getElementsByClassName('textLayer').scrollTop=700;console.log(document.getElementsByClassName('textLayer').scrollTop);"
