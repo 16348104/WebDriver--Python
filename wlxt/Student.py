@@ -111,12 +111,14 @@ except NoSuchElementException as msg:
     print('暂无文本文件', msg)
 else:
     Word.click()
-    time.sleep(1)
-    js_word = "alert('111');"
-    driver.execute_script(js_word)
+    time.sleep(0.5)
+    # js_word = "var w=document.documentElement.scrollTop=10000"
+    driver.execute_script("console.log(document.documentElement.scrollTop=100000)")
+    # driver.execute_script('window.scrollTo(0, 0)')
+    time.sleep(2)
     print('预览文本文件')
     # js = "document.getElementsByClassName('textLayer').scrollTop=700;console.log(document.getElementsByClassName('textLayer').scrollTop);"
-    time.sleep(3)
+    time.sleep(1)
 driver.switch_to.parent_frame()
 time.sleep(5)
 print('=====课件测试完毕=====')
