@@ -7,11 +7,11 @@ import time
 import random
 
 # driver = webdriver.Chrome(executable_path='C:/Users/zb/Desktop/test/python/chromedriver.exe')  # modify
-# driver = webdriver.Chrome()
+driver = webdriver.Chrome()
 # driver = webdriver.Firefox()
 # driver = webdriver.Ie()
 # driver = webdriver.Firefox(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/wlxt/geckodriver')  # mac firefox
-driver = webdriver.Chrome(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/wlxt/chromedriver')  # mac  chrome
+# driver = webdriver.Chrome(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/wlxt/chromedriver')  # mac  chrome
 # driver = webdriver.Safari() #Mac os
 ##################################################登录网络学堂###########################################################
 print("======登录网络学堂=====")
@@ -77,11 +77,11 @@ driver.find_element_by_xpath("//a[@id='wlxt_kj_wlkc_kjxxb']").click()
 li = driver.find_elements_by_xpath("//i[contains(@class,'webicon-download downLoadFile')]")
 ran = random.randint(1, 10) - 1  # 随机数
 print('随机数', ran)
-# li.pop(ran).click()  # Download
+li.pop(ran).click()  # Download
 print('下载课件')
-element = driver.find_element_by_xpath("//div[@id='content']")
-target = driver.find_element_by_xpath("//iframe[@id='playFrame']")
-ActionChains(driver).drag_and_drop(element, target).perform()
+# element = driver.find_element_by_xpath("//div[@id='content']")
+# target = driver.find_element_by_xpath("//iframe[@id='playFrame']")
+# ActionChains(driver).drag_and_drop(element, target).perform()
 driver.switch_to.frame('playFrame')
 print('开始预览课件')
 try:
@@ -99,7 +99,7 @@ except NoSuchElementException as msg:
 else:
     Video.click()
     print('预览视频文件')
-    time.sleep(3)
+    time.sleep(2)
 try:
     Audio = driver.find_element_by_css_selector("#mp3")
 except NoSuchElementException as msg:
@@ -108,16 +108,17 @@ else:
     js_audio = "var audio = document.getElementById('mp3');audio.play();"
     driver.execute_script(js_audio)
     print('预览音频文件')
-    time.sleep(3)
+    time.sleep(2)
 try:
     Word = driver.find_element_by_xpath("//body/a")
 except NoSuchElementException as msg:
     print('暂无文本文件', msg)
 else:
     Word.click()
-    # js_word = "var w=document.documentElement.scrollTop=10000"
-    driver.execute_script("document.documentElement.scrollTop=100000")
-    driver.execute_script('window.scrollTo(0, 0)')
+    # js = "document.documentElement.scrollTop=parseInt(document.body.offsetHeight)-parseInt(document.documentElement.offsetHeight)+1000;"
+    # driver.execute_script("document.documentElement.scrollTop=100000")
+    # driver.execute_script('window.scrollTo(0, 0)')
+    # driver.execute_script(js)
     time.sleep(2)
     print('预览文本文件')
     # js = "document.getElementsByClassName('textLayer').scrollTop=700;console.log(document.getElementsByClassName('textLayer').scrollTop);"
@@ -184,13 +185,13 @@ print('=====我的分组测试完毕=====')
 # print('=====邮件测试完毕=====')
 
 ##################################################退出网络学堂############################################################
-# driver.find_element_by_xpath("//a[contains(text(),'退出登录')]").click()
-# time.sleep(2)
-# driver.find_element_by_xpath("//div[contains(@class,'zeromodal-footer')]//button[contains(text(),'确定')]").send_keys(
-#     Keys.ENTER)
-# # js = "alert('12345')"
-# # driver.execute_script(js)
-# # driver.switch_to_alert().accept()
-# # driver.switch_to.alert.accept()
-# print('退出网络学堂')
-# driver.quit()
+driver.find_element_by_xpath("//a[contains(text(),'退出登录')]").click()
+time.sleep(2)
+driver.find_element_by_xpath("//div[contains(@class,'zeromodal-footer')]//button[contains(text(),'确定')]").send_keys(
+    Keys.ENTER)
+# js = "alert('12345')"
+# driver.execute_script(js)
+# driver.switch_to_alert().accept()
+# driver.switch_to.alert.accept()
+print('退出网络学堂')
+driver.quit()
