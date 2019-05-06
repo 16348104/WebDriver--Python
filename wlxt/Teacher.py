@@ -6,9 +6,9 @@ from selenium.webdriver.common.keys import Keys
 
 # driver = webdriver.Chrome(executable_path='C:/Users/zb/Desktop/test/python/chromedriver.exe')  # modify
 # driver = webdriver.Firefox()
-# driver = webdriver.Chrome()
+driver = webdriver.Chrome()
 # driver = webdriver.Firefox(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/wlxt/geckodriver')  # mac firefox
-driver = webdriver.Chrome(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/wlxt/chromedriver')  # mac  chrome
+# driver = webdriver.Chrome(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/wlxt/chromedriver')  # mac  chrome
 # driver = webdriver.Safari() #Mac os
 
 ######################################################登录网络学堂######################################################
@@ -30,8 +30,8 @@ driver.find_element_by_id("loginButtonId").click()
 time.sleep(1)
 ######################################################课程公告##########################################################
 print('测试课程公告')
-# driver.get("http://learn.tsinghua.edu.cn/f/wlxt/kcgg/wlkc_ggb/teacher/beforeAdd?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
-driver.find_element_by_xpath("//dd[1]//div[1]//div[1]//a[1]").click()
+driver.get("http://learn.tsinghua.edu.cn/f/wlxt/kcgg/wlkc_ggb/teacher/beforeAdd?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
+# driver.find_element_by_xpath("//dd[1]//div[1]//div[1]//a[1]").click()
 # 发布公告
 time.sleep(2)
 driver.find_element_by_name("bt").send_keys("测试公告" + ticks)
@@ -43,8 +43,8 @@ print('公告测试完毕')
 time.sleep(3)
 ######################################################课程文件##########################################################
 # 打开课程文件
-# driver.get("http://learn.tsinghua.edu.cn/f/wlxt/kj/wlkc_kjxxb/teacher/beforeAdd?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
-driver.find_element_by_xpath("//dd[1]//div[1]//div[1]//a[4]").click()  # 上传课件
+driver.get("http://learn.tsinghua.edu.cn/f/wlxt/kj/wlkc_kjxxb/teacher/beforeAdd?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
+# driver.find_element_by_xpath("//dd[1]//div[1]//div[1]//a[4]").click()  # 上传课件
 # 定位上传按钮，添加本地文件
 print('测试课程文件')
 js = "document.getElementById('fileupload').style.display=\'block\'"
@@ -58,8 +58,8 @@ time.sleep(3)
 ######################################################课程作业##########################################################
 # 布置作业
 print('测试课程作业')
-# driver.get("http://learn.tsinghua.edu.cn/f/wlxt/kczy/zy/teacher/bzzy?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
-driver.find_element_by_xpath("//dd[1]//div[1]//div[1]//a[3]").click()
+driver.get("http://learn.tsinghua.edu.cn/f/wlxt/kczy/zy/teacher/bzzy?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
+# driver.find_element_by_xpath("//dd[1]//div[1]//div[1]//a[3]").click()
 driver.find_element_by_name("bt").send_keys("测试全体作业" + ticks)
 # 定位上传按钮，添加本地文件
 js = "document.getElementById('fileupload').style.display=\'block\'"
