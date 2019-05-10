@@ -68,6 +68,8 @@ driver.find_element_by_name("fileupload").send_keys("D:\listening.pdf")  # modif
 time.sleep(5)
 driver.find_element_by_name("jzsj").send_keys(tomorrow)
 driver.find_element_by_id("goBtn").click()
+#设置截止时间
+driver.find_element_by_xpath("//span[@class='laydate-btns-confirm']").click()
 print('作业测试完毕')
 time.sleep(3)
 ######################################################课程邮件##########################################################

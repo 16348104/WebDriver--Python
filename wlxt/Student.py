@@ -77,7 +77,7 @@ driver.find_element_by_xpath("//a[@id='wlxt_kj_wlkc_kjxxb']").click()
 li = driver.find_elements_by_xpath("//i[contains(@class,'webicon-download downLoadFile')]")
 ran = random.randint(1, 10) - 1  # 随机数
 print('随机数', ran)
-li.pop(ran).click()  # Download
+# li.pop(ran).click()  # Download
 print('下载课件')
 # element = driver.find_element_by_xpath("//div[@id='content']")
 # target = driver.find_element_by_xpath("//iframe[@id='playFrame']")
@@ -128,20 +128,22 @@ time.sleep(5)
 print('=====课件测试完毕=====')
 
 ####################################################课程作业############################################################
-# print('=====测试课程作业=====')
-# driver.find_element_by_xpath("//a[@id='wlxt_kczy_zy']").click()
-# time.sleep(3)
-# driver.find_element_by_xpath('//*[@id="wtj"]/tbody/tr[1]/td[2]/a').click()
-# time.sleep(1)
-# driver.find_element_by_xpath('//input[@id="saveBtn"]').click()
-# driver.find_element_by_xpath('//textarea[@id="s_documention"]')
-# js = "document.getElementById('s_documention').value= new Date().toLocaleDateString()"
-# driver.execute_script(js)
-# driver.find_element_by_id('fileupload').send_keys(r'D:\listening.pdf')  # 上传文件modify
-# # driver.find_element_by_id('fileupload').send_keys(r'/Users/xiaodaxing/Desktop/1.jpg')  # Mac上传文件
-# driver.find_element_by_xpath("//input[@onclick='daijiao()']").click()
-# time.sleep(5)
-# print('=====作业测试完毕=====')
+print('=====测试课程作业=====')
+driver.find_element_by_xpath("//a[@id='wlxt_kczy_zy']").click()
+time.sleep(3)
+driver.find_element_by_xpath('//*[@id="wtj"]/tbody/tr[1]/td[2]/a').click()
+time.sleep(1)
+driver.find_element_by_xpath('//input[@id="saveBtn"]').click()
+driver.find_element_by_xpath('//textarea[@id="s_documention"]')
+js = "document.getElementById('s_documention').value= new Date().toLocaleDateString()"
+driver.execute_script(js)
+driver.find_element_by_id('fileupload').send_keys(r'D:\listening.pdf')  # 上传文件modify
+# driver.find_element_by_id('fileupload').send_keys(r'/Users/xiaodaxing/Desktop/1.jpg')  # Mac上传文件
+driver.find_element_by_xpath("//input[@onclick='daijiao()']").click()
+result = driver.find_element_by_class_name('zeromodal-title1').text
+print(result)
+time.sleep(5)
+print('=====作业测试完毕=====')
 
 ########################################################我的分组#########################################################
 print('测试我的分组')
@@ -180,7 +182,7 @@ iframe = driver.find_element_by_xpath("//iframe[contains(@title,'nrStr')]")
 driver.switch_to.frame(iframe)
 driver.find_element_by_xpath("//body[starts-with(@class,'cke')]").send_keys('学生端功能正常')
 driver.switch_to.default_content()
-driver.find_element_by_xpath('//input[@id="submitButton"]').click()
+# driver.find_element_by_xpath('//input[@id="submitButton"]').click()
 time.sleep(3)
 print('=====邮件测试完毕=====')
 
