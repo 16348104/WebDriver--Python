@@ -16,20 +16,20 @@ driver = webdriver.Chrome()
 ##################################################登录网络学堂###########################################################
 print("======登录网络学堂=====")
 print('测试浏览器:' + driver.name)
-driver.get('http://learn.tsinghua.edu.cn')
+driver.get('http://wlxt160.thitc.cn')
 driver.maximize_window()
 driver.implicitly_wait(2)
 print('登录后句柄:' + driver.current_window_handle)  # 登录网络学堂，【第一个窗口】
 driver.find_element_by_name('i_user').clear()
 driver.find_element_by_name('i_pass').clear()
 # time.sleep(30)
-driver.find_element_by_name('i_user').send_keys('')  # 键入用户名
-driver.find_element_by_name('i_pass').send_keys('')  # 键入密码
+driver.find_element_by_name('i_user').send_keys('2014210135')  # 键入用户名
+driver.find_element_by_name('i_pass').send_keys('123')  # 键入密码
 driver.find_element_by_id('loginButtonId').send_keys(Keys.ENTER)
 time.sleep(1)
 # 进入课程【第二个窗口】
 # driver.find_element_by_link_text('基于Linux的C++(20740084-998)').click()
-driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()
+driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  ##正式20740084-998
 print(driver.title)
 # 【切换到第二个窗口】
 window_1 = driver.current_window_handle  # 当前窗口句柄
@@ -128,22 +128,22 @@ time.sleep(5)
 print('=====课件测试完毕=====')
 
 ####################################################课程作业############################################################
-print('=====测试课程作业=====')
-driver.find_element_by_xpath("//a[@id='wlxt_kczy_zy']").click()
-time.sleep(3)
-driver.find_element_by_xpath('//*[@id="wtj"]/tbody/tr[1]/td[2]/a').click()
-time.sleep(1)
-driver.find_element_by_xpath('//input[@id="saveBtn"]').click()
-driver.find_element_by_xpath('//textarea[@id="s_documention"]')
-js = "document.getElementById('s_documention').value= new Date().toLocaleDateString()"
-driver.execute_script(js)
-driver.find_element_by_id('fileupload').send_keys(r'D:\listening.pdf')  # 上传文件modify
-# driver.find_element_by_id('fileupload').send_keys(r'/Users/xiaodaxing/Desktop/1.jpg')  # Mac上传文件
-driver.find_element_by_xpath("//input[@onclick='daijiao()']").click()
-result = driver.find_element_by_class_name('zeromodal-title1').text
-print(result)
-time.sleep(5)
-print('=====作业测试完毕=====')
+# print('=====测试课程作业=====')
+# driver.find_element_by_xpath("//a[@id='wlxt_kczy_zy']").click()
+# time.sleep(3)
+# driver.find_element_by_xpath('//*[@id="wtj"]/tbody/tr[1]/td[2]/a').click()
+# time.sleep(1)
+# driver.find_element_by_xpath('//input[@id="saveBtn"]').click()
+# driver.find_element_by_xpath('//textarea[@id="s_documention"]')
+# js = "document.getElementById('s_documention').value= new Date().toLocaleDateString()"
+# driver.execute_script(js)
+# driver.find_element_by_id('fileupload').send_keys(r'D:\listening.pdf')  # 上传文件modify
+# # driver.find_element_by_id('fileupload').send_keys(r'/Users/xiaodaxing/Desktop/1.jpg')  # Mac上传文件
+# driver.find_element_by_xpath("//input[@onclick='daijiao()']").click()
+# result = driver.find_element_by_class_name('zeromodal-title1').text
+# print(result)
+# time.sleep(5)
+# print('=====作业测试完毕=====')
 
 ########################################################我的分组#########################################################
 print('测试我的分组')
@@ -152,45 +152,44 @@ time.sleep(3)
 print('=====我的分组测试完毕=====')
 
 ####################################################课程邮件#############################################################
-print('=====测试课程邮件=====')
-driver.find_element_by_xpath("//a[@id='wlxt_mail_yj_yjxxb']").click()
-time.sleep(2)
-driver.find_element_by_xpath('//*[@id="list"]/tbody/tr[1]/td[2]/a').click()  # 浏览邮件
-driver.find_element_by_id('returnButton').click()
-driver.find_element_by_xpath('//span[@class="rt right"]/child::a').click()  # 去发邮件
-addresses = driver.find_elements_by_xpath("//span[contains(@class,'text-icon')]")
-for i in addresses:
-    # if i.get_attribute('text') != '肖大兴':
-    i.click()
-    time.sleep(1)
-driver.find_element_by_xpath('//ul[@id="myTags"]//li//input').send_keys('wlxt@tsinghua.edu.cn')
-driver.find_element_by_xpath('//ul[@id="myTags"]//li//input').send_keys(Keys.ENTER)
-time.sleep(1)
-driver.find_element_by_xpath('//ul[@id="myTags"]//li[2]/input').send_keys('谢素萍')
-driver.find_element_by_xpath('//ul[@id="myTags"]//li[2]//input').send_keys(Keys.ENTER)
-time.sleep(1)
-driver.find_element_by_xpath('//ul[@id="myTags"]//li[3]/input').send_keys('杜娟')
-driver.find_element_by_xpath('//ul[@id="myTags"]//li[3]//input').send_keys(Keys.ENTER)
-time.sleep(1)
-driver.find_element_by_xpath('//ul[@id="myTags"]//li[4]/input').send_keys('陈怀楚')
-driver.find_element_by_xpath('//ul[@id="myTags"]//li[4]//input').send_keys(Keys.ENTER)
-time.sleep(1)
-js = "document.getElementById('bt').value = new Date().toLocaleString();"
-val = driver.execute_script(js)
-driver.find_element_by_xpath('//input[@id="bt"]').send_keys('网络学堂自动化测试结果—学生端功能正常')
-iframe = driver.find_element_by_xpath("//iframe[contains(@title,'nrStr')]")
-driver.switch_to.frame(iframe)
-driver.find_element_by_xpath("//body[starts-with(@class,'cke')]").send_keys('学生端功能正常')
-driver.switch_to.default_content()
-# driver.find_element_by_xpath('//input[@id="submitButton"]').click()
-time.sleep(3)
-print('=====邮件测试完毕=====')
+# print('=====测试课程邮件=====')
+# driver.find_element_by_xpath("//a[@id='wlxt_mail_yj_yjxxb']").click()
+# time.sleep(2)
+# driver.find_element_by_xpath('//*[@id="list"]/tbody/tr[1]/td[2]/a').click()  # 浏览邮件
+# driver.find_element_by_id('returnButton').click()
+# driver.find_element_by_xpath('//span[@class="rt right"]/child::a').click()  # 去发邮件
+# addresses = driver.find_elements_by_xpath("//span[contains(@class,'text-icon')]")
+# for i in addresses:
+#     # if i.get_attribute('text') != '肖大兴':
+#     i.click()
+#     time.sleep(1)
+# driver.find_element_by_xpath('//ul[@id="myTags"]//li//input').send_keys('wlxt@tsinghua.edu.cn')
+# driver.find_element_by_xpath('//ul[@id="myTags"]//li//input').send_keys(Keys.ENTER)
+# time.sleep(1)
+# driver.find_element_by_xpath('//ul[@id="myTags"]//li[2]/input').send_keys('谢素萍')
+# driver.find_element_by_xpath('//ul[@id="myTags"]//li[2]//input').send_keys(Keys.ENTER)
+# time.sleep(1)
+# driver.find_element_by_xpath('//ul[@id="myTags"]//li[3]/input').send_keys('杜娟')
+# driver.find_element_by_xpath('//ul[@id="myTags"]//li[3]//input').send_keys(Keys.ENTER)
+# time.sleep(1)
+# driver.find_element_by_xpath('//ul[@id="myTags"]//li[4]/input').send_keys('陈怀楚')
+# driver.find_element_by_xpath('//ul[@id="myTags"]//li[4]//input').send_keys(Keys.ENTER)
+# time.sleep(1)
+# js = "document.getElementById('bt').value = new Date().toLocaleString();"
+# val = driver.execute_script(js)
+# driver.find_element_by_xpath('//input[@id="bt"]').send_keys('网络学堂自动化测试结果—学生端功能正常')
+# iframe = driver.find_element_by_xpath("//iframe[contains(@title,'nrStr')]")
+# driver.switch_to.frame(iframe)
+# driver.find_element_by_xpath("//body[starts-with(@class,'cke')]").send_keys('学生端功能正常')
+# driver.switch_to.default_content()
+# # driver.find_element_by_xpath('//input[@id="submitButton"]').click()
+# time.sleep(3)
+# print('=====邮件测试完毕=====')
 
 ##################################################退出网络学堂############################################################
-driver.find_element_by_xpath("//a[contains(text(),'退出登录')]").click()
+driver.find_element_by_xpath("//i[@class='webicon-out']").click()
 time.sleep(2)
-driver.find_element_by_xpath("//div[contains(@class,'zeromodal-footer')]//button[contains(text(),'确定')]").send_keys(
-    Keys.ENTER)
+driver.find_element_by_xpath("//div[contains(@class,'zeromodal-footer')]//button[contains(text(),'确定')]").click()
 # js = "alert('12345')"
 # driver.execute_script(js)
 # driver.switch_to_alert().accept()

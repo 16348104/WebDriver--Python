@@ -2,6 +2,7 @@
 from selenium import webdriver
 import time
 
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
 
 # driver = webdriver.Chrome(executable_path='C:/Users/zb/Desktop/test/python/chromedriver.exe')  # modify
@@ -66,10 +67,19 @@ js = "document.getElementById('fileupload').style.display=\'block\'"
 driver.execute_script(js)
 driver.find_element_by_name("fileupload").send_keys("D:\listening.pdf")  # modify
 time.sleep(5)
-driver.find_element_by_name("jzsj").send_keys(tomorrow)
-driver.find_element_by_id("goBtn").click()
 #设置截止时间
-driver.find_element_by_xpath("//span[@class='laydate-btns-confirm']").click()
+# driver.find_element_by_name("jzsj").send_keys(tomorrow)
+driver.find_element_by_id('endtime').click()
+time.sleep(1)
+try:
+    driver.find_element_by_xpath("//span[@class='laydate-btns-confirm']")
+except NoSuchElementException as msg:
+    print(msg)
+
+else:
+    driver.find_element_by_xpath("//span[@class='laydate-btns-confirm']").click()
+
+driver.find_element_by_id("goBtn").click()
 print('作业测试完毕')
 time.sleep(3)
 ######################################################课程邮件##########################################################
