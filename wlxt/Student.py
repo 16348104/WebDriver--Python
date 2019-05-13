@@ -8,11 +8,19 @@ import random
 
 # driver = webdriver.Chrome(executable_path='C:/Users/zb/Desktop/test/python/chromedriver.exe')  # modify
 driver = webdriver.Chrome()
+
+
 # driver = webdriver.Firefox()
 # driver = webdriver.Ie()
 # driver = webdriver.Firefox(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/wlxt/geckodriver')  # mac firefox
 # driver = webdriver.Chrome(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/wlxt/chromedriver')  # mac  chrome
 # driver = webdriver.Safari() #Mac os
+
+def time_format():
+    current_time = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
+    return current_time
+
+
 ##################################################登录网络学堂###########################################################
 print("======登录网络学堂=====")
 print('测试浏览器:' + driver.name)
@@ -23,8 +31,8 @@ print('登录后句柄:' + driver.current_window_handle)  # 登录网络学堂�
 driver.find_element_by_name('i_user').clear()
 driver.find_element_by_name('i_pass').clear()
 # time.sleep(30)
-driver.find_element_by_name('i_user').send_keys('2014210135')  # 键入用户名
-driver.find_element_by_name('i_pass').send_keys('123')  # 键入密码
+driver.find_element_by_name('i_user').send_keys('')  # 键入用户名
+driver.find_element_by_name('i_pass').send_keys('')  # 键入密码
 driver.find_element_by_id('loginButtonId').send_keys(Keys.ENTER)
 time.sleep(1)
 # 进入课程【第二个窗口】

@@ -5,23 +5,30 @@
     <title>textarea</title>
 </head>
 <body>
+<div id="scrollView">
+    <ul class="nav">
+        <li>导航1</li>
+        <li>导航2</li>
+        <li>导航3</li>
+        <button>滚动到顶部</button>
+        <button>滚动到下面</button>
+    </ul>
+</div>
 <textarea name="nrStr" id="nrStr" placeholder="限5000字符以内" rows="30" cols="80">
-
 </textarea>
 <iframe allow="20" id="ifr">
-    <html>
-    <body>
-    iframe
-    </body>
-    </html>
+
 </iframe>
 <script type="text/javascript">
+    document.documentElement.scrollTop = 10000;  //将滚动条移动到页面的底部
+    // document.documentElement.scrollTop=0  //将滚动条移动到页面的顶部
     document.getElementById('nrStr').value = new Date().toLocaleString();
     // document.getElementById('nrStr').value = ('11233');
     // document.getElementsByTagName("p").value = ('11233');
     setTimeout(function () {
         alert("Hello");
     }, 3000);
+
 </script>
 </body>
 </html>
