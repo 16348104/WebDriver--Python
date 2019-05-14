@@ -31,8 +31,8 @@ print('登录后句柄:' + driver.current_window_handle)  # 登录网络学堂�
 driver.find_element_by_name('i_user').clear()
 driver.find_element_by_name('i_pass').clear()
 # time.sleep(30)
-driver.find_element_by_name('i_user').send_keys('')  # 键入用户名
-driver.find_element_by_name('i_pass').send_keys('')  # 键入密码
+driver.find_element_by_name('i_user').send_keys('2014310301')  # 键入用户名
+driver.find_element_by_name('i_pass').send_keys('123')  # 键入密码
 driver.find_element_by_id('loginButtonId').send_keys(Keys.ENTER)
 time.sleep(1)
 # 进入课程【第二个窗口】
@@ -85,7 +85,7 @@ driver.find_element_by_xpath("//a[@id='wlxt_kj_wlkc_kjxxb']").click()
 li = driver.find_elements_by_xpath("//i[contains(@class,'webicon-download downLoadFile')]")
 ran = random.randint(1, 10) - 1  # 随机数
 print('随机数', ran)
-# li.pop(ran).click()  # Download
+li.pop(ran).click()  # Download
 print('下载课件')
 # element = driver.find_element_by_xpath("//div[@id='content']")
 # target = driver.find_element_by_xpath("//iframe[@id='playFrame']")
@@ -123,10 +123,10 @@ except NoSuchElementException as msg:
     print('暂无文本文件', msg)
 else:
     Word.click()
-    # js = "document.documentElement.scrollTop=parseInt(document.body.offsetHeight)-parseInt(document.documentElement.offsetHeight)+1000;"
+    js = "document.documentElement.scrollTop = 10000;"
     # driver.execute_script("document.documentElement.scrollTop=100000")
     # driver.execute_script('window.scrollTo(0, 0)')
-    # driver.execute_script(js)
+    driver.execute_script(js)
     time.sleep(2)
     print('预览文本文件')
     # js = "document.getElementsByClassName('textLayer').scrollTop=700;console.log(document.getElementsByClassName('textLayer').scrollTop);"
@@ -136,22 +136,22 @@ time.sleep(5)
 print('=====课件测试完毕=====')
 
 ####################################################课程作业############################################################
-# print('=====测试课程作业=====')
-# driver.find_element_by_xpath("//a[@id='wlxt_kczy_zy']").click()
-# time.sleep(3)
-# driver.find_element_by_xpath('//*[@id="wtj"]/tbody/tr[1]/td[2]/a').click()
-# time.sleep(1)
-# driver.find_element_by_xpath('//input[@id="saveBtn"]').click()
-# driver.find_element_by_xpath('//textarea[@id="s_documention"]')
-# js = "document.getElementById('s_documention').value= new Date().toLocaleDateString()"
-# driver.execute_script(js)
-# driver.find_element_by_id('fileupload').send_keys(r'D:\listening.pdf')  # 上传文件modify
-# # driver.find_element_by_id('fileupload').send_keys(r'/Users/xiaodaxing/Desktop/1.jpg')  # Mac上传文件
-# driver.find_element_by_xpath("//input[@onclick='daijiao()']").click()
-# result = driver.find_element_by_class_name('zeromodal-title1').text
-# print(result)
-# time.sleep(5)
-# print('=====作业测试完毕=====')
+print('=====测试课程作业=====')
+driver.find_element_by_xpath("//a[@id='wlxt_kczy_zy']").click()
+time.sleep(3)
+driver.find_element_by_xpath('//*[@id="wtj"]/tbody/tr[1]/td[2]/a').click()
+time.sleep(1)
+driver.find_element_by_xpath('//input[@id="saveBtn"]').click()
+driver.find_element_by_xpath('//textarea[@id="s_documention"]')
+js = "document.getElementById('s_documention').value= new Date().toLocaleDateString()"
+driver.execute_script(js)
+driver.find_element_by_id('fileupload').send_keys(r'D:\listening.pdf')  # 上传文件modify
+# driver.find_element_by_id('fileupload').send_keys(r'/Users/xiaodaxing/Desktop/1.jpg')  # Mac上传文件
+driver.find_element_by_xpath("//input[@onclick='daijiao()']").click()
+result = driver.find_element_by_css_selector("body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text
+print(result)
+time.sleep(5)
+print('=====作业测试完毕=====')
 
 ########################################################我的分组#########################################################
 print('测试我的分组')

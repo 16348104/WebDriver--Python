@@ -7,6 +7,8 @@ import time
 driver = webdriver.Chrome()
 driver.get("http://www.baidu.com")
 time.sleep(3)
+data = driver.find_element_by_id("cp").text
+print(data)  # 打印信息
 
 driver.find_element_by_id('kw').send_keys('selenium')  # 在搜索框中输入"selenium"
 driver.find_element_by_id('kw').send_keys(Keys.SPACE)  # 输入空格键
@@ -21,11 +23,16 @@ driver.find_element_by_id('kw').send_keys(Keys.ENTER)  # 输入回车代替点�
 # driver.find_element_by_name('file').send_keys(r'E:/map.png')  # 上传文件
 # driver.find_element_by_name('file').send_keys(r'/Users/xiaodaxing/Downloads/bear.jpg')  # mac上传文件
 # print('文件上传完毕')
+
 js = "alert('这是一个测试Alert弹窗')"
 driver.execute_script(js)
 time.sleep(2)
-t = driver.switch_to.alert.text    #返回alert中文字信息
+t = driver.switch_to.alert.text  # 返回alert中文字信息
 print(t)
 time.sleep(2)
 # driver.switch_to_alert().accept()  # 点击弹出里面的确定按钮
 # driver.switch_to_alert().dismiss() # 点击弹出上面的X按钮
+
+
+time.sleep(3)
+driver.quit()

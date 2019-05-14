@@ -86,7 +86,7 @@ try:
     driver.find_element_by_xpath("//span[@class='laydate-btns-confirm']")
 except NoSuchElementException as msg:
     print(msg)
-    driver.get_screenshot_as_file("C:/Users/zb/Downloads/" + time_format() + ".png")
+    driver.get_screenshot_as_file("C:/Users/zb/Downloads/" + time_format() + ".png") # modify
 else:
     time.sleep(1)
     driver.find_element_by_xpath("//span[@class='laydate-btns-confirm']").click()
@@ -109,9 +109,9 @@ print('作业测试完毕')
 # print('邮件测试完毕')
 # time.sleep(3)
 ##################################################退出网络学堂##########################################################
-# driver.find_element_by_xpath("//a[contains(text(),'退出登录')]").click()
-# driver.find_element_by_xpath("//div[contains(@class,'zeromodal-footer')]//button[contains(text(),'确定')]").send_keys(
-#     Keys.ENTER)
-# time.sleep(2)
-# print('退出网络学堂')
-# driver.quit()
+driver.find_element_by_xpath("//i[@class='webicon-out']").click()
+time.sleep(2)
+driver.find_element_by_xpath("//div[contains(@class,'zeromodal-footer')]//button[contains(text(),'确定')]").send_keys(
+    Keys.ENTER)
+print('退出网络学堂')
+driver.quit()
