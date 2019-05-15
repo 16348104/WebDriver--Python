@@ -47,8 +47,7 @@ for current_window in windows:
     if current_window != window_1:
         driver.switch_to.window(current_window)
 time.sleep(3)
-print('新窗口句柄:')
-print(current_window)
+print('新窗口句柄:' + current_window)
 print('=====登录成功=====')
 
 ####################################################课程公告############################################################
@@ -147,9 +146,10 @@ time.sleep(5)
 # driver.find_element_by_id('fileupload').send_keys(r'D:\listening.pdf')  # 上传文件modify
 # # driver.find_element_by_id('fileupload').send_keys(r'/Users/xiaodaxing/Desktop/1.jpg')  # Mac上传文件
 # driver.find_element_by_xpath("//input[@onclick='daijiao()']").click()
+# time.seelp(1)
 # result = driver.find_element_by_css_selector(
 #     "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text
-# print('提交结果:' + result)
+# print('弹框结果:' + result)
 # print('=====作业测试完毕=====')
 # time.sleep(5)
 
@@ -191,16 +191,18 @@ driver.switch_to.frame(iframe)
 driver.find_element_by_xpath("//body[starts-with(@class,'cke')]").send_keys('学生端功能正常')
 driver.switch_to.default_content()
 driver.find_element_by_xpath('//input[@id="submitButton"]').click()
+time.sleep(1)
 result = driver.find_element_by_css_selector(
     "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text
-print('邮件结果:' + result)
+print('弹框结果:' + result)
 print('=====邮件测试完毕=====')
 time.sleep(5)
 
 ##################################################退出网络学堂############################################################
 driver.find_element_by_xpath("//i[@class='webicon-out']").click()
 time.sleep(2)
-driver.find_element_by_xpath("//div[contains(@class,'zeromodal-footer')]//button[contains(text(),'确定')]").click()
+driver.find_element_by_xpath("//div[contains(@class,'zeromodal-footer')]//button[contains(text(),'确定')]").send_keys(
+    Keys.ENTER)
 # js = "alert('12345')"
 # driver.execute_script(js)
 # driver.switch_to_alert().accept()
