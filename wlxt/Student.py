@@ -70,14 +70,13 @@ print('=====登录成功=====')
 # else:
 #     print('无公告附件！')
 #     driver.find_element_by_id('backBtn').click()
-#
 # print('=====公告测试完毕=====')
-
+# time.sleep(3)
 ####################################################课程信息#############################################################
 # print('测试课程信息')
 # driver.find_element_by_css_selector('#wlxt_kc_v_kcxx_jskcxx').click()
-# time.sleep(3)
 # print('=======课程信息测试完毕=====')
+# time.sleep(3)
 
 ####################################################课程文件#############################################################
 print("=====测试课程文件=====")
@@ -132,8 +131,8 @@ else:
     # js = "document.getElementsByClassName('textLayer').scrollTop=700;console.log(document.getElementsByClassName('textLayer').scrollTop);"
     time.sleep(1)
 driver.switch_to.parent_frame()
-time.sleep(5)
 print('=====课件测试完毕=====')
+time.sleep(5)
 
 ####################################################课程作业############################################################
 # print('=====测试课程作业=====')
@@ -151,14 +150,14 @@ print('=====课件测试完毕=====')
 # result = driver.find_element_by_css_selector(
 #     "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text
 # print('提交结果:' + result)
-# time.sleep(5)
 # print('=====作业测试完毕=====')
+# time.sleep(5)
 
 ########################################################我的分组#########################################################
 print('测试我的分组')
 driver.find_element_by_css_selector('#wlxt_qz_v_wlkc_qzcyb').click()
-time.sleep(3)
 print('=====我的分组测试完毕=====')
+time.sleep(3)
 
 ####################################################课程邮件#############################################################
 print('=====测试课程邮件=====')
@@ -195,8 +194,8 @@ driver.find_element_by_xpath('//input[@id="submitButton"]').click()
 result = driver.find_element_by_css_selector(
     "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text
 print('邮件结果:' + result)
-time.sleep(5)
 print('=====邮件测试完毕=====')
+time.sleep(5)
 
 ##################################################退出网络学堂############################################################
 driver.find_element_by_xpath("//i[@class='webicon-out']").click()
@@ -206,5 +205,5 @@ driver.find_element_by_xpath("//div[contains(@class,'zeromodal-footer')]//button
 # driver.execute_script(js)
 # driver.switch_to_alert().accept()
 # driver.switch_to.alert.accept()
-print('退出网络学堂')
+print('=====退出网络学堂=====')
 driver.quit()
