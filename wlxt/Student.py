@@ -12,9 +12,12 @@ import random
 
 # driver = webdriver.Firefox()
 # driver = webdriver.Ie()
-driver = webdriver.Firefox(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/wlxt/geckodriver')  # mac firefox
+# driver = webdriver.Firefox(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/wlxt/geckodriver')  # mac firefox
 
-# driver = webdriver.Chrome(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/wlxt/chromedriver')  # mac  chrome
+driver = webdriver.Chrome(
+    executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/wlxt/chromedriver')  # mac  chrome
+
+
 # driver = webdriver.Safari() #Mac os
 
 def time_format():
@@ -81,6 +84,7 @@ print('=====登录成功=====')
 ####################################################课程文件#############################################################
 print("=====测试课程文件=====")
 driver.find_element_by_xpath("//a[@id='wlxt_kj_wlkc_kjxxb']").click()
+driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[1]/p').click()  # 电子教案类
 li = driver.find_elements_by_xpath("//i[contains(@class,'webicon-download downLoadFile')]")
 ran = random.randint(1, 10) - 1  # 随机数
 print('随机数', ran)
