@@ -104,11 +104,31 @@ result = driver.find_element_by_css_selector(
     "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text
 print('弹框结果:' + result)
 # 批阅个人作业:
-driver.find_element_by_xpath("//*[@id='zyTable']/tbody/tr[2]/td[8]/a[1]").click()
-driver.find_element_by_xpath('//*[@id="done"]/tbody/tr/td[11]/a').click()
-driver.find_element_by_xpath("//a[@class='ml-10']").click()  # 下载学生的作业附件，可以无附件
-driver.find_element_by_xpath("//*[@id='cj']").send_keys('100')
-driver.find_element_by_xpath("//*[@id='documention']").send_keys('已阅')
+# INDV_GRP = driver.find_element_by_xpath('//tr[2]//td[5]').text
+print('完成方式' + driver.find_element_by_xpath('//tr[2]//td[5]').text)
+driver.find_element_by_xpath("//tr[2]//td[8]//a[1]").click()
+try:
+    driver.find_element_by_xpath('//*[@id="done"]/tbody/tr/td[11]/a')
+except NoSuchElementException as msg:
+    print(msg)
+    print('作业未提交')
+else:
+    driver.find_element_by_xpath('//*[@id="done"]/tbody/tr/td[11]/a').click()
+    driver.find_element_by_xpath("//*[@id='cj']").send_keys('100')  # 打分
+    driver.find_element_by_xpath("//*[@id='documention']").send_keys('已阅')  # 填评语
+    # 传评语附件
+    try:
+        driver.find_element_by_xpath("//a[@class='ml-10']")
+    except NoSuchElementException:
+        print(msg)
+        print('无上交作业附件')
+    else:
+        driver.find_element_by_xpath("//a[@class='ml-10']").click()  # 下载学生的作业附件，可以无附件
+
+    time.sleep(1)
+    result = driver.find_element_by_css_selector(
+        'body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1').text
+    print('批阅' + result)
 print('=====作业测试完毕=====')
 time.sleep(5)
 ######################################################课程邮件##########################################################
