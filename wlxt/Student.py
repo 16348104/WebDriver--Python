@@ -7,14 +7,14 @@ import time
 import random
 
 # driver = webdriver.Chrome(executable_path='C:/Users/zb/Desktop/test/python/chromedriver.exe')  # modify
-driver = webdriver.Chrome()
+# driver = webdriver.Chrome()
 
 
 # driver = webdriver.Firefox()
 # driver = webdriver.Ie()
 # driver = webdriver.Firefox(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/wlxt/geckodriver')  # mac firefox
 # driver = webdriver.Chrome(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/wlxt/chromedriver')  # mac  chrome
-# driver = webdriver.Safari() #Mac os
+driver = webdriver.Safari() #Mac os
 
 def time_format():
     current_time = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
@@ -144,7 +144,7 @@ time.sleep(5)
 # js = "document.getElementById('s_documention').value= new Date().toLocaleDateString()"
 # driver.execute_script(js)
 # driver.find_element_by_id('fileupload').send_keys(r'D:/listening.pdf')  # 上传文件modify
-# # driver.find_element_by_id('fileupload').send_keys(r'/Users/xiaodaxing/Desktop/1.jpg')  # Mac上传文件
+# driver.find_element_by_id('fileupload').send_keys(r'/Users/xiaodaxing/Desktop/1.jpg')  # Mac上传文件
 # driver.find_element_by_xpath("//input[@onclick='daijiao()']").click()
 # time.seelp(1)
 # result = driver.find_element_by_css_selector(
@@ -190,6 +190,8 @@ iframe = driver.find_element_by_xpath("//iframe[contains(@title,'nrStr')]")
 driver.switch_to.frame(iframe)
 driver.find_element_by_xpath("//body[starts-with(@class,'cke')]").send_keys('学生端功能正常')
 driver.switch_to.default_content()
+driver.find_element_by_id('fileupload').send_keys(r'/Users/xiaodaxing/Desktop/1.jpg')  # Mac上传文件
+time.sleep(1)
 driver.find_element_by_xpath('//input[@id="submitButton"]').click()
 time.sleep(1)
 result = driver.find_element_by_css_selector(
