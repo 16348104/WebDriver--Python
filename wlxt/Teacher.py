@@ -148,7 +148,7 @@ if INDV_GRP == "个人":
                 "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
         except NoSuchElementException as msg:
             print('截图' + msg)
-            driver.get_screenshot_as_file("C:/Users/zb/Downloads/" + 'ZJ' + time_format() + ".png")
+            driver.get_screenshot_as_file("C:/Users/zb/Downloads/" + 'PZJ' + time_format() + ".png")  # modify
         else:
             print('弹框结果:' + driver.find_element_by_css_selector(
                 "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
@@ -182,7 +182,7 @@ else:  # 组作业
                 "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
         except NoSuchElementException as msg:
             print("截图" + msg)
-            driver.get_screenshot_as_file("C:/Users/zb/Downloads/" + 'ZY' + time_format() + ".png")
+            driver.get_screenshot_as_file("C:/Users/zb/Downloads/" + 'PZY' + time_format() + ".png") # modify
         else:
             print('弹框结果:' + driver.find_element_by_css_selector(
                 "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
