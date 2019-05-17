@@ -7,15 +7,14 @@ import time
 import random
 
 # driver = webdriver.Chrome(executable_path='C:/Users/zb/Desktop/test/python/chromedriver.exe')  # modify
-# driver = webdriver.Chrome()
+driver = webdriver.Chrome()
 
 
 # driver = webdriver.Firefox()
 # driver = webdriver.Ie()
 # driver = webdriver.Firefox(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/wlxt/geckodriver')  # mac firefox
 
-driver = webdriver.Chrome(
-    executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/wlxt/chromedriver')  # mac  chrome
+# driver = webdriver.Chrome(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/wlxt/chromedriver')  # mac  chrome
 
 
 # driver = webdriver.Safari() #Mac os
@@ -152,9 +151,7 @@ time.sleep(5)
 # driver.find_element_by_id('fileupload').send_keys(r'/Users/xiaodaxing/Desktop/1.jpg')  # Mac上传文件
 # driver.find_element_by_xpath("//input[@onclick='daijiao()']").click()
 # time.seelp(1)
-# result = driver.find_element_by_css_selector(
-#     "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text
-# print('弹框结果:' + result)
+# print('弹框结果:' + driver.find_element_by_css_selector("body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
 # print('=====作业测试完毕=====')
 # time.sleep(5)
 
@@ -195,13 +192,13 @@ iframe = driver.find_element_by_xpath("//iframe[contains(@title,'nrStr')]")
 driver.switch_to.frame(iframe)
 driver.find_element_by_xpath("//body[starts-with(@class,'cke')]").send_keys('学生端功能正常')
 driver.switch_to.default_content()
-driver.find_element_by_id('fileupload').send_keys(r'/Users/xiaodaxing/Desktop/1.jpg')  # Mac上传文件
+# driver.find_element_by_id('fileupload').send_keys(r'/Users/xiaodaxing/Desktop/1.jpg')  # Mac上传文件
+driver.find_element_by_id('fileupload').send_keys(r'C:/Users/zb/Desktop/test/python/review.docx')  # modify
 time.sleep(1)
 driver.find_element_by_xpath('//input[@id="submitButton"]').click()
 time.sleep(1)
-result = driver.find_element_by_css_selector(
-    "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text
-print('弹框结果:' + result)
+print('弹框结果:' + driver.find_element_by_css_selector(
+    "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
 print('=====邮件测试完毕=====')
 time.sleep(5)
 
