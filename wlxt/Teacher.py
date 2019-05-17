@@ -65,7 +65,7 @@ driver.find_element_by_xpath("//div[@class='list']//label[1]").click()  # 重要
 driver.find_element_by_name("fileupload").send_keys("D:/Global .mp4")  # modify
 time.sleep(5)
 driver.find_element_by_id("sub").click()
-time.sleep(2)
+time.sleep(1.5)
 try:
     driver.find_element_by_css_selector(
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
