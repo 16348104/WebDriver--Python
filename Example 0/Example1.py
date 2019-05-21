@@ -9,7 +9,8 @@ driver.get("http://www.baidu.com")
 time.sleep(3)
 data = driver.find_element_by_id("cp").text
 print(data)  # 打印信息
-
+print(driver.find_element_by_id('kw').get_property('maxlength'))
+print(driver.find_element_by_id('kw').get_attribute('autocomplete'))
 driver.find_element_by_id('kw').send_keys('selenium')  # 在搜索框中输入"selenium"
 driver.find_element_by_id('kw').send_keys(Keys.SPACE)  # 输入空格键
 driver.find_element_by_id('kw').send_keys('python')  # 在搜索框中输入"python"
