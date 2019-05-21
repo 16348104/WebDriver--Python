@@ -4,9 +4,11 @@ import time
 
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import Select
 
 # driver = webdriver.Chrome(executable_path='C:/Users/zb/Desktop/test/python/chromedriver.exe')  # modify
 # driver = webdriver.Firefox()
+
 driver = webdriver.Chrome()
 
 
@@ -54,83 +56,86 @@ time.sleep(1)
 # time.sleep(5)
 ######################################################课程文件##########################################################
 # 打开课程文件
-driver.get(
-    "http://learn.tsinghua.edu.cn/f/wlxt/kj/wlkc_kjxxb/teacher/beforeAdd?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
-# 定位上传按钮，添加本地文件
-print('=====测试课程文件=====')
-js = "document.getElementById('fileupload').style.display=\'block\'"
-driver.execute_script(js)
-driver.find_element_by_name("bt").send_keys("测试课件" + ticks)
-driver.find_element_by_xpath("//div[@class='list']//label[1]").click()  # 重要标记
-driver.find_element_by_name("fileupload").send_keys("D:/Global .mp4")  # modify
-time.sleep(5)
-driver.find_element_by_id("sub").click()
-time.sleep(1)
-try:
-    driver.find_element_by_css_selector(
-        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
-except NoSuchElementException as msg:
-    print(msg)
-    print('截图')
-    driver.get_screenshot_as_file("C:/Users/zb/Downloads/" + 'KJ' + time_format() + ".png")
-else:
-    print('弹框结果:' + driver.find_element_by_css_selector(
-        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
-
-print('=====文件测试完毕=====')
-time.sleep(5)
+# driver.get(
+#     "http://learn.tsinghua.edu.cn/f/wlxt/kj/wlkc_kjxxb/teacher/beforeAdd?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
+# # 定位上传按钮，添加本地文件
+# print('=====测试课程文件=====')
+# js = "document.getElementById('fileupload').style.display=\'block\'"
+# driver.execute_script(js)
+# driver.find_element_by_name("bt").send_keys("测试课件" + ticks)
+# driver.find_element_by_xpath("//div[@class='list']//label[1]").click()  # 重要标记
+# driver.find_element_by_name("fileupload").send_keys("D:/Global .mp4")  # modify
+# time.sleep(5)
+# driver.find_element_by_id("sub").click()
+# time.sleep(1)
+# try:
+#     driver.find_element_by_css_selector(
+#         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
+# except NoSuchElementException as msg:
+#     print('截图', msg)
+#     driver.get_screenshot_as_file("C:/Users/zb/Downloads/" + 'KJ' + time_format() + ".png")
+# else:
+#     print('弹框结果:' + driver.find_element_by_css_selector(
+#         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+#
+# print('=====文件测试完毕=====')
+# time.sleep(5)
 ######################################################课程作业##########################################################
 # 布置作业
 print('=====测试课程作业=====')
 print('=====布置作业=====')
 driver.get(
     "http://learn.tsinghua.edu.cn/f/wlxt/kczy/zy/teacher/bzzy?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
-driver.find_element_by_name("bt").send_keys("测试全体作业" + ticks)
-# 定位上传按钮，添加本地文件
-js = "document.getElementById('fileupload').style.display=\'block\'"
-driver.execute_script(js)
-driver.find_element_by_name("fileupload").send_keys("D:/listening.pdf")  # modify
-zy_geren = driver.find_element_by_xpath('//*[@id="r1"]').get_property('checked')  # 选作业完成方式:个人
-print('get_property是否个人作业：', zy_geren)
+# driver.find_element_by_name("bt").send_keys("测试全体作业" + ticks)
+# # 定位上传按钮，添加本地文件
+# js = "document.getElementById('fileupload').style.display=\'block\'"
+# driver.execute_script(js)
+# driver.find_element_by_name("fileupload").send_keys("D:/listening.pdf")  # modify
+# # 设置截止时间
+# # driver.find_element_by_name("jzsj").send_keys(tomorrow)
+# scroll = "document.documentElement.scrollTop = 10000;"
+# driver.execute_script(scroll)
+# time.sleep(1)
+# driver.find_element_by_id('endtime').click()
+# time.sleep(2)
+# driver.find_element_by_xpath("//span[@class='laydate-btns-confirm']").click()
+# time.sleep(1)
+# driver.find_element_by_id("goBtn").click()  # 发布作业
+# time.sleep(2)
+# try:
+#     driver.find_element_by_css_selector(
+#         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
+# except NoSuchElementException as msg:
+#     print(msg, '截图')
+#     driver.get_screenshot_as_file("C:/Users/zb/Downloads/" + 'ZY' + time_format() + ".png")
+# else:
+#     print('弹框结果:' + driver.find_element_by_css_selector(
+#         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+time.sleep(3)
+print('=====编辑作业=====')
+driver.find_element_by_xpath("//a[@id='wlxt_kczy_zy']").click()
+time.sleep(2)
+driver.find_element_by_xpath("//tr[2]//td[8]//a[3]").click()
+# zy_geren = driver.find_element_by_xpath('//*[@id="r1"]').get_property('checked')  # 选作业完成方式:个人
+# print('get_property是否个人作业：', zy_geren)
 zy_geren = driver.find_element_by_xpath('//*[@id="r1"]').get_attribute('checked')  # 选作业完成方式:个人
 print('get_attribute是否个人作业：', zy_geren)
-zy_zu = driver.find_element_by_xpath('//*[@id="r2"]').get_property('checked')  # 选作业完成方式:组
+zy_zu = driver.find_element_by_xpath('//*[@id="r2"]').get_attribute('checked')  # 选作业完成方式:组
 print('是否组作业：', zy_zu)
-jf_fz = driver.find_element_by_xpath('//*[@id="r7"]').get_property('checked')  # 成绩计分方式:分值成绩
+jf_fz = driver.find_element_by_xpath('//*[@id="r7"]').get_attribute('checked')  # 成绩计分方式:分值成绩
 print('是否分值:', jf_fz)
-jf_ffz = driver.find_element_by_xpath('//*[@id="r8"]').get_property('checked')  # 成绩计分方式:非分值成绩
+jf_ffz = driver.find_element_by_xpath('//*[@id="r8"]').get_attribute('checked')  # 成绩计分方式:非分值成绩
 print('是否非分值:', jf_ffz)
-# 设置截止时间
-# driver.find_element_by_name("jzsj").send_keys(tomorrow)
-scroll = "document.documentElement.scrollTop = 10000;"
-driver.execute_script(scroll)
-time.sleep(1)
-driver.find_element_by_id('endtime').click()
-time.sleep(2)
-driver.find_element_by_xpath("//span[@class='laydate-btns-confirm']").click()
-time.sleep(1)
-driver.find_element_by_id("goBtn").click()  # 发布作业
-time.sleep(2)
-try:
-    driver.find_element_by_css_selector(
-        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
-except NoSuchElementException as msg:
-    print(msg)
-    print('截图')
-    driver.get_screenshot_as_file("C:/Users/zb/Downloads/" + 'ZY' + time_format() + ".png")
-else:
-    print('弹框结果:' + driver.find_element_by_css_selector(
-        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
 time.sleep(3)
-# 批阅作业列表beforePageList:
 print('=====批阅作业=====')
 driver.find_element_by_xpath("//a[@id='wlxt_kczy_zy']").click()
 time.sleep(2)
 # INDV_GRP = driver.find_element_by_xpath("//tr[2]//td[5]").text
 # print('作业完成方式:' + INDV_GRP)
+# 批阅作业列表beforePageList:
 driver.find_element_by_xpath('//tr[2]//td[8]//a[1]').click()  # 去批阅作业
-driver.find_element_by_xpath("//*[@class='zhan']").click()
-if zy_geren == True and jf_fz == True:  # 个人分值作业
+driver.find_element_by_xpath("//*[@class='zhan']").click()  # 展开
+if zy_geren == 'true' and jf_fz == 'true':  # 个人分值作业
     try:
         driver.find_element_by_xpath('//*[@id="done"]/tbody/tr/td[11]/a')  # 已交作业名单beforePiYue
     except NoSuchElementException as msg:
@@ -159,15 +164,14 @@ if zy_geren == True and jf_fz == True:  # 个人分值作业
             driver.find_element_by_css_selector(
                 "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
         except NoSuchElementException as msg:
-            print(msg)
-            print('截图')
+            print('截图',msg)
             driver.get_screenshot_as_file("C:/Users/zb/Downloads/" + 'PZJ' + time_format() + ".png")  # modify
         else:
             print('弹框结果:' + driver.find_element_by_css_selector(
                 "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
-elif zy_geren == True and jf_ffz == True:  # 个人非分值作业
+elif zy_geren == 'true' and jf_ffz == 'true':  # 个人非分值作业
     pass
-elif zy_zu == True and jf_fz == True:  # 分值组作业
+elif zy_zu == 'true' and jf_fz == 'true':  # 分值组作业
     try:
         driver.find_element_by_xpath('//*[@id="done"]/tbody/tr/td[8]/a')  # 已交作业名单beforePiYue
     except NoSuchElementException as msg:
@@ -202,8 +206,44 @@ elif zy_zu == True and jf_fz == True:  # 分值组作业
         else:
             print('弹框结果:' + driver.find_element_by_css_selector(
                 "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
-elif zy_zu == True and jf_ffz == True:  # 非分值组作业
-    pass
+elif zy_zu == 'true' and jf_ffz == 'true':  # 非分值组作业
+    try:
+        driver.find_element_by_xpath('//*[@id="done"]/tbody/tr/td[8]/a')  # 已交作业名单beforePiYue
+    except NoSuchElementException as msg:
+        print(msg, '表中数据为空,作业未提交')
+    else:
+        driver.find_element_by_xpath('//*[@id="done"]/tbody/tr/td[8]/a').click()  # 批阅作业
+        time.sleep(1)
+        try:
+            driver.find_element_by_xpath('//*[@id="attachment2"]/div[2]/a[2]')  # 无学生作业附件
+        except NoSuchElementException as msg:
+            print(msg, '无上交作业附件')
+        else:
+            driver.find_element_by_xpath('//*[@id="attachment2"]/div[2]/a[2]').click()  # 下载学生作业附件
+        driver.find_element_by_id('resetPL').click()  # 重置
+        # sel = driver.find_element_by_id('//*[@id="selectPL"]')
+        # Select(sel).select_by_value('-98')
+        driver.find_element_by_xpath('//*[@id="select2-selectPL-container"]').click()
+        driver.find_element_by_xpath('//*[@id="select2-selectPL-results"]')
+        driver.find_element_by_xpath('//*[@id="select2-selectPL-result-gyb5--99"]/text()').click()
+        driver.find_element_by_id('recommandPL').send_keys('已阅')  # 填评语
+        driver.find_element_by_id('setPL').click()  # 设定成绩
+        driver.find_element_by_id('fileupload').send_keys(
+            r'C:/Users/zb/Desktop/test/python/review.docx')  # modify      # 传评语附件
+        time.sleep(1)
+        driver.find_element_by_xpath("//div[@class='sub-back absolute sub-back-3']//input[1]").click()
+        time.sleep(1)
+        try:
+            driver.find_element_by_css_selector(
+                "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
+        except NoSuchElementException as msg:
+            print(msg)
+            print('截图')
+            driver.get_screenshot_as_file("C:/Users/zb/Downloads/" + 'PZY' + time_format() + ".png")  # modify
+        else:
+            print('弹框结果:' + driver.find_element_by_css_selector(
+                "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+
 print('=====作业测试完毕=====')
 time.sleep(5)
 ######################################################课程邮件##########################################################
@@ -223,9 +263,9 @@ time.sleep(5)
 # print('=====邮件测试完毕=====')
 # time.sleep(5)
 ##################################################退出网络学堂##########################################################
-driver.find_element_by_xpath("//i[@class='webicon-out']").click()
-time.sleep(2)
-driver.find_element_by_xpath("//div[contains(@class,'zeromodal-footer')]//button[contains(text(),'确定')]").send_keys(
-    Keys.ENTER)
-print('=====退出网络学堂=====')
-driver.quit()
+# driver.find_element_by_xpath("//i[@class='webicon-out']").click()
+# time.sleep(2)
+# driver.find_element_by_xpath("//div[contains(@class,'zeromodal-footer')]//button[contains(text(),'确定')]").send_keys(
+#     Keys.ENTER)
+# print('=====退出网络学堂=====')
+# driver.quit()
