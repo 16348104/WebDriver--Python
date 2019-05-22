@@ -119,7 +119,7 @@ driver.find_element_by_xpath("//tr[2]//td[8]//a[3]").click()
 # zy_geren = driver.find_element_by_xpath('//*[@id="r1"]').get_property('checked')  # 选作业完成方式:个人
 # print('get_property是否个人作业：', zy_geren)
 zy_geren = driver.find_element_by_xpath('//*[@id="r1"]').get_attribute('checked')  # 选作业完成方式:个人
-print('get_attribute是否个人作业：', zy_geren)
+print('是否个人作业：', zy_geren)
 zy_zu = driver.find_element_by_xpath('//*[@id="r2"]').get_attribute('checked')  # 选作业完成方式:组
 print('是否组作业：', zy_zu)
 jf_fz = driver.find_element_by_xpath('//*[@id="r7"]').get_attribute('checked')  # 成绩计分方式:分值成绩
@@ -145,7 +145,7 @@ if zy_geren == 'true' and jf_fz == 'true':  # 个人分值作业
         driver.find_element_by_xpath('//*[@id="done"]/tbody/tr/td[11]/a').click()  # 批阅作业
         time.sleep(1)
         try:
-            driver.find_element_by_xpath('//*[@id="attachment222"]/div[2]/a[2]')  # 无学生作业附件
+            driver.find_element_by_xpath('//*[@id="attachment222"]/div[2]/a[2]')  # 学生作业附件
         except NoSuchElementException as msg:
             print(msg)
             print('无上交作业附件')
@@ -164,13 +164,44 @@ if zy_geren == 'true' and jf_fz == 'true':  # 个人分值作业
             driver.find_element_by_css_selector(
                 "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
         except NoSuchElementException as msg:
-            print('截图',msg)
+            print('批阅截图', msg)
             driver.get_screenshot_as_file("C:/Users/zb/Downloads/" + 'PZJ' + time_format() + ".png")  # modify
         else:
             print('弹框结果:' + driver.find_element_by_css_selector(
                 "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
 elif zy_geren == 'true' and jf_ffz == 'true':  # 个人非分值作业
-    pass
+    try:
+        driver.find_element_by_xpath('//*[@id="done"]/tbody/tr/td[11]/a')  # 已交作业名单beforePiYue
+    except NoSuchElementException as msg:
+        print('表中数据为空,作业未提交', msg)
+    else:
+        driver.find_element_by_xpath('//*[@id="done"]/tbody/tr/td[11]/a').click()  # 批阅作业
+        time.sleep(1)
+        try:
+            driver.find_element_by_xpath("//a[@class='ml-10']")  # 学生作业附件
+        except NoSuchElementException as msg:
+            print('无上交作业附件', msg)
+        else:
+            driver.find_element_by_xpath("//a[@class='ml-10']").click()  # 下载学生的作业附件
+        driver.find_element_by_xpath('//*[@id="select2-cj-container"]').click()
+        driver.find_element_by_xpath('//*[@id="select2-cj-results"]')
+        driver.find_element_by_xpath("//*[@id='select2-cj-result-w7x1--99']")     #选成绩
+        driver.find_element_by_xpath("//*[@id='documention']").clear()
+        driver.find_element_by_xpath("//*[@id='documention']").send_keys('已阅')  # 填评语
+        driver.find_element_by_id('fileupload').send_keys(
+            r'C:/Users/zb/Desktop/test/python/review.docx')  # modify      # 传评语附件
+        time.sleep(1)
+        driver.find_element_by_xpath("//div[@class='sub-back sub-back-3 absolute']//input[1]").click()
+        time.sleep(2)
+        try:
+            driver.find_element_by_css_selector(
+                "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
+        except NoSuchElementException as msg:
+            print('批阅截图', msg)
+            driver.get_screenshot_as_file("C:/Users/zb/Downloads/" + 'PZJ' + time_format() + ".png")  # modify
+        else:
+            print('弹框结果:' + driver.find_element_by_css_selector(
+                "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
 elif zy_zu == 'true' and jf_fz == 'true':  # 分值组作业
     try:
         driver.find_element_by_xpath('//*[@id="done"]/tbody/tr/td[8]/a')  # 已交作业名单beforePiYue
@@ -200,8 +231,7 @@ elif zy_zu == 'true' and jf_fz == 'true':  # 分值组作业
             driver.find_element_by_css_selector(
                 "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
         except NoSuchElementException as msg:
-            print(msg)
-            print('截图')
+            print('截图', msg)
             driver.get_screenshot_as_file("C:/Users/zb/Downloads/" + 'PZY' + time_format() + ".png")  # modify
         else:
             print('弹框结果:' + driver.find_element_by_css_selector(
@@ -210,7 +240,7 @@ elif zy_zu == 'true' and jf_ffz == 'true':  # 非分值组作业
     try:
         driver.find_element_by_xpath('//*[@id="done"]/tbody/tr/td[8]/a')  # 已交作业名单beforePiYue
     except NoSuchElementException as msg:
-        print(msg, '表中数据为空,作业未提交')
+        print('表中数据为空,作业未提交', msg)
     else:
         driver.find_element_by_xpath('//*[@id="done"]/tbody/tr/td[8]/a').click()  # 批阅作业
         time.sleep(1)
@@ -225,20 +255,20 @@ elif zy_zu == 'true' and jf_ffz == 'true':  # 非分值组作业
         # Select(sel).select_by_value('-98')
         driver.find_element_by_xpath('//*[@id="select2-selectPL-container"]').click()
         driver.find_element_by_xpath('//*[@id="select2-selectPL-results"]')
-        driver.find_element_by_xpath('//*[@id="select2-selectPL-result-gyb5--99"]/text()').click()
+        li = len(driver.find_elements_by_xpath('//*[@id="select2-selectPL-result-n3oe--98"]'))
+        print('等级值', li)
         driver.find_element_by_id('recommandPL').send_keys('已阅')  # 填评语
         driver.find_element_by_id('setPL').click()  # 设定成绩
         driver.find_element_by_id('fileupload').send_keys(
             r'C:/Users/zb/Desktop/test/python/review.docx')  # modify      # 传评语附件
         time.sleep(1)
         driver.find_element_by_xpath("//div[@class='sub-back absolute sub-back-3']//input[1]").click()
-        time.sleep(1)
+        time.sleep(2)
         try:
             driver.find_element_by_css_selector(
                 "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
         except NoSuchElementException as msg:
-            print(msg)
-            print('截图')
+            print('截图', msg)
             driver.get_screenshot_as_file("C:/Users/zb/Downloads/" + 'PZY' + time_format() + ".png")  # modify
         else:
             print('弹框结果:' + driver.find_element_by_css_selector(
