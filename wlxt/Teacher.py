@@ -1,7 +1,7 @@
 # coding=utf-8
-from selenium import webdriver
 import time
-
+import random
+from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
@@ -183,15 +183,24 @@ elif zy_geren == 'true' and jf_ffz == 'true':  # 个人非分值作业
             print('无上交作业附件', msg)
         else:
             driver.find_element_by_xpath("//a[@class='ml-10']").click()  # 下载学生的作业附件
-        driver.find_element_by_xpath('//*[@id="select2-cj-container"]').click()
-        driver.find_element_by_xpath('//*[@id="select2-cj-results"]')
-        driver.find_element_by_xpath("//*[@id='select2-cj-result-w7x1--99']")     #选成绩
+        driver.find_element_by_xpath('//*[@id="select2-cj-container"]').click()  # 定位下拉菜单
+        time.sleep(1)
+        driver.find_element_by_xpath('//ul[@id="select2-cj-results"]')
+        time.sleep(1)
+        # driver.find_element_by_xpath('//ul[@id="select2-cj-results"]/li[2]').click()
+        key = len(driver.find_elements_by_xpath("//li[@class='select2-results__option']"))
+        print("等级成绩个数", key)
+        li = random.randrange(1, key)
+        # cj = driver.find_elements_by_xpath("//li[@class='select2-results__option']").pop(li).text
+        print('成绩:', driver.find_elements_by_xpath("//li[@class='select2-results__option']").pop(li).text)
+        driver.find_elements_by_xpath("//li[@class='select2-results__option']").pop(li).click()  # 选成绩
         driver.find_element_by_xpath("//*[@id='documention']").clear()
         driver.find_element_by_xpath("//*[@id='documention']").send_keys('已阅')  # 填评语
+        time.sleep(1)
         driver.find_element_by_id('fileupload').send_keys(
             r'C:/Users/zb/Desktop/test/python/review.docx')  # modify      # 传评语附件
         time.sleep(1)
-        driver.find_element_by_xpath("//div[@class='sub-back sub-back-3 absolute']//input[1]").click()
+        driver.find_element_by_xpath("//*[@class='sub-back sub-back-3 absolute']//input[1]").click()
         time.sleep(2)
         try:
             driver.find_element_by_css_selector(
@@ -293,9 +302,9 @@ time.sleep(5)
 # print('=====邮件测试完毕=====')
 # time.sleep(5)
 ##################################################退出网络学堂##########################################################
-# driver.find_element_by_xpath("//i[@class='webicon-out']").click()
-# time.sleep(2)
-# driver.find_element_by_xpath("//div[contains(@class,'zeromodal-footer')]//button[contains(text(),'确定')]").send_keys(
-#     Keys.ENTER)
-# print('=====退出网络学堂=====')
-# driver.quit()
+driver.find_element_by_xpath("//i[@class='webicon-out']").click()
+time.sleep(2)
+driver.find_element_by_xpath("//div[contains(@class,'zeromodal-footer')]//button[contains(text(),'确定')]").send_keys(
+    Keys.ENTER)
+print('=====退出网络学堂=====')
+driver.quit()
