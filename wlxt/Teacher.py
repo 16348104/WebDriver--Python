@@ -154,7 +154,7 @@ if zy_geren == 'true' and jf_fz == 'true':  # 个人分值作业
         driver.find_element_by_xpath("//*[@id='cj']").clear()
         driver.find_element_by_xpath("//*[@id='cj']").send_keys('100')  # 打分
         driver.find_element_by_xpath("//*[@id='documention']").clear()
-        driver.find_element_by_xpath("//*[@id='documention']").send_keys('已阅')  # 填评语
+        driver.find_element_by_xpath("//*[@id='documention']").send_keys('个人作业已阅')  # 填评语
         driver.find_element_by_id('fileupload').send_keys(
             r'C:/Users/zb/Desktop/test/python/review.docx')  # modify      # 传评语附件
         time.sleep(1)
@@ -195,7 +195,7 @@ elif zy_geren == 'true' and jf_ffz == 'true':  # 个人非分值作业
         print('成绩:', driver.find_elements_by_xpath("//li[@class='select2-results__option']").pop(li).text)
         driver.find_elements_by_xpath("//li[@class='select2-results__option']").pop(li).click()  # 选成绩
         driver.find_element_by_xpath("//*[@id='documention']").clear()
-        driver.find_element_by_xpath("//*[@id='documention']").send_keys('已阅')  # 填评语
+        driver.find_element_by_xpath("//*[@id='documention']").send_keys('个人作业已阅')  # 填评语
         time.sleep(1)
         driver.find_element_by_id('fileupload').send_keys(
             r'C:/Users/zb/Desktop/test/python/review.docx')  # modify      # 传评语附件
@@ -229,7 +229,7 @@ elif zy_zu == 'true' and jf_fz == 'true':  # 分值组作业
             driver.find_element_by_xpath('//*[@id="attachment2"]/div[2]/a[2]').click()  # 下载学生作业附件
         driver.find_element_by_id('resetPL').click()  # 重置
         driver.find_element_by_id('inputPL').send_keys('100')  # 打分
-        driver.find_element_by_id('recommandPL').send_keys('已阅')  # 填评语
+        driver.find_element_by_id('recommandPL').send_keys('组作业已阅')  # 填评语
         driver.find_element_by_id('setPL').click()  # 设定成绩
         driver.find_element_by_id('fileupload').send_keys(
             r'C:/Users/zb/Desktop/test/python/review.docx')  # modify      # 传评语附件
@@ -271,7 +271,7 @@ elif zy_zu == 'true' and jf_ffz == 'true':  # 非分值组作业
         # cj = driver.find_elements_by_xpath("//li[@class='select2-results__option']").pop(li).text
         print('成绩:', driver.find_elements_by_xpath("//li[@class='select2-results__option']").pop(li).text)
         driver.find_elements_by_xpath("//li[@class='select2-results__option']").pop(li).click()  # 选成绩
-        driver.find_element_by_id('recommandPL').send_keys('已阅')  # 填评语
+        driver.find_element_by_id('recommandPL').send_keys('组作业已阅')  # 填评语
         driver.find_element_by_id('setPL').click()  # 设定成绩
         driver.find_element_by_id('fileupload').send_keys(
             r'C:/Users/zb/Desktop/test/python/review.docx')  # modify      # 传评语附件
