@@ -260,12 +260,17 @@ elif zy_zu == 'true' and jf_ffz == 'true':  # 非分值组作业
         else:
             driver.find_element_by_xpath('//*[@id="attachment2"]/div[2]/a[2]').click()  # 下载学生作业附件
         driver.find_element_by_id('resetPL').click()  # 重置
+        time.sleep(1)
         # sel = driver.find_element_by_id('//*[@id="selectPL"]')
         # Select(sel).select_by_value('-98')
         driver.find_element_by_xpath('//*[@id="select2-selectPL-container"]').click()
         driver.find_element_by_xpath('//*[@id="select2-selectPL-results"]')
-        li = len(driver.find_elements_by_xpath('//*[@id="select2-selectPL-result-n3oe--98"]'))
-        print('等级值', li)
+        key = len(driver.find_elements_by_xpath("//li[@class='select2-results__option']"))      # 定位下拉菜单
+        print("等级成绩个数", key)
+        li = random.randrange(1, key)
+        # cj = driver.find_elements_by_xpath("//li[@class='select2-results__option']").pop(li).text
+        print('成绩:', driver.find_elements_by_xpath("//li[@class='select2-results__option']").pop(li).text)
+        driver.find_elements_by_xpath("//li[@class='select2-results__option']").pop(li).click()  # 选成绩
         driver.find_element_by_id('recommandPL').send_keys('已阅')  # 填评语
         driver.find_element_by_id('setPL').click()  # 设定成绩
         driver.find_element_by_id('fileupload').send_keys(
