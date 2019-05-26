@@ -12,7 +12,7 @@ from selenium.webdriver.support.ui import Select
 driver = webdriver.Chrome()
 
 
-# driver = webdriver.Firefox(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/wlxt/geckodriver')  # mac firefox
+# driver = webdriver.Firefox(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/geckodriver')  # mac firefox
 # driver = webdriver.Chrome(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/wlxt/chromedriver')  # mac  chrome
 # driver = webdriver.Safari() #Mac os
 
@@ -129,9 +129,7 @@ time.sleep(3)
 print('=====批阅作业=====')
 driver.find_element_by_xpath("//a[@id='wlxt_kczy_zy']").click()
 time.sleep(2)
-# INDV_GRP = driver.find_element_by_xpath("//tr[2]//td[5]").text
-# print('作业完成方式:' + INDV_GRP)
-# 批阅作业列表beforePageList:
+# 批阅作业列表beforePageList
 driver.find_element_by_xpath('//tr[2]//td[8]//a[1]').click()  # 去批阅作业
 driver.find_element_by_xpath("//*[@class='zhan']").click()  # 展开
 if zy_geren == 'true' and jf_fz == 'true':  # 个人分值作业
@@ -231,7 +229,7 @@ elif zy_zu == 'true' and jf_fz == 'true':  # 分值组作业
         driver.find_element_by_id('recommandPL').send_keys('组作业已阅')  # 填评语
         driver.find_element_by_id('setPL').click()  # 设定成绩
         driver.find_element_by_id('fileupload').send_keys(
-            r'C:/Users/zb/Desktop/test/python/review.docx')  # modify      # 传评语附件
+            r'C:/Users/zb/Desktop/test/python/review.docx')  # modify # 传评语附件
         time.sleep(1)
         driver.find_element_by_xpath("//div[@class='sub-back sub-back-3 absolute']//input[1]").click()
         time.sleep(1)

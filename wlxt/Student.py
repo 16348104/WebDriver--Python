@@ -13,9 +13,8 @@ import random
 # driver = webdriver.Firefox()
 # driver = webdriver.Ie()
 driver = webdriver.Firefox(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/geckodriver')  # mac firefox
-# /Users/xdx/PycharmProjects/WebDriver--Python/wlxt/geckodriver
 # driver = webdriver.Chrome(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/wlxt/chromedriver')  # mac  chrome
-# /Users/xdx/PycharmProjects/WebDriver--Python/wlxt/geckodriver
+
 
 # driver = webdriver.Safari() #Mac os
 
