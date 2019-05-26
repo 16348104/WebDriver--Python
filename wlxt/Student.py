@@ -7,15 +7,15 @@ import time
 import random
 
 # driver = webdriver.Chrome(executable_path='C:/Users/zb/Desktop/test/python/chromedriver.exe')  # modify
-driver = webdriver.Chrome()
+# driver = webdriver.Chrome()
 
 
 # driver = webdriver.Firefox()
 # driver = webdriver.Ie()
-# driver = webdriver.Firefox(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/wlxt/geckodriver')  # mac firefox
-
+driver = webdriver.Firefox(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/geckodriver')  # mac firefox
+# /Users/xdx/PycharmProjects/WebDriver--Python/wlxt/geckodriver
 # driver = webdriver.Chrome(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/wlxt/chromedriver')  # mac  chrome
-
+# /Users/xdx/PycharmProjects/WebDriver--Python/wlxt/geckodriver
 
 # driver = webdriver.Safari() #Mac os
 
@@ -192,7 +192,7 @@ iframe = driver.find_element_by_xpath("//iframe[contains(@title,'nrStr')]")
 driver.switch_to.frame(iframe)
 driver.find_element_by_xpath("//body[starts-with(@class,'cke')]").send_keys('学生端功能正常')
 driver.switch_to.default_content()
-# driver.find_element_by_id('fileupload').send_keys(r'/Users/xiaodaxing/Desktop/1.jpg')  # Mac上传文件
+# driver.find_element_by_id('fileupload').send_keys(r'/Users/xiaodaxing/Desktop/Race.pdf')  # Mac上传文件
 driver.find_element_by_id('fileupload').send_keys(r'C:/Users/zb/Desktop/test/python/review.docx')  # modify
 time.sleep(1)
 driver.find_element_by_xpath('//input[@id="submitButton"]').click()
