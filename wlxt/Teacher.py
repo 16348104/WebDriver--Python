@@ -38,21 +38,23 @@ driver.find_element_by_name("i_pass").send_keys("")
 driver.find_element_by_id("loginButtonId").click()
 time.sleep(1)
 ######################################################课程公告##########################################################
-# print('=====测试课程公告=====')
-# driver.get(
-#     "http://learn.tsinghua.edu.cn/f/wlxt/kcgg/wlkc_ggb/teacher/beforeAdd?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
-# # driver.find_element_by_xpath("//dd[1]//div[1]//div[1]//a[1]").click()
-# # 发布公告
-# time.sleep(2)
-# driver.find_element_by_name("bt").send_keys("测试公告" + ticks)
-# driver.find_element_by_xpath("//div[@class='list title notext']//label[1]").click()  # 标记重要公告
-# driver.find_element_by_xpath("//div[@class='list order clearfix']//label[1]").click()  # 不推送邮件、微信
-# time.sleep(1)
-# driver.find_element_by_id("saveBtn").click()
-# time.sleep(1)
-# print('弹框结果:' + driver.find_element_by_css_selector("body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
-# print('=====公告测试完毕=====')
-# time.sleep(5)
+print('=====测试课程公告=====')
+driver.get(
+    "http://learn.tsinghua.edu.cn/f/wlxt/kcgg/wlkc_ggb/teacher/beforeAdd?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
+# 发布公告
+time.sleep(2)
+driver.find_element_by_name("bt").send_keys("测试公告" + ticks)
+driver.find_element_by_xpath("//div[@class='list title notext']//label[1]").click()  # 标记重要公告
+driver.find_element_by_xpath("//div[@class='list order clearfix']//label[1]").click()  # 不推送邮件、微信
+time.sleep(1)
+driver.find_element_by_id("saveBtn").click()
+time.sleep(1)
+print('弹框结果:' + driver.find_element_by_css_selector(
+    "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+# 预览公告
+
+print('=====公告测试完毕=====')
+time.sleep(5)
 ######################################################课程文件##########################################################
 # 打开课程文件
 # driver.get(
@@ -136,16 +138,14 @@ if zy_geren == 'true' and jf_fz == 'true':  # 个人分值作业
     try:
         driver.find_element_by_xpath('//*[@id="done"]/tbody/tr/td[11]/a')  # 已交作业名单beforePiYue
     except NoSuchElementException as msg:
-        print(msg)
-        print('表中数据为空,作业未提交')
+        print('表中数据为空,作业未提交', msg)
     else:
         driver.find_element_by_xpath('//*[@id="done"]/tbody/tr/td[11]/a').click()  # 批阅作业
         time.sleep(1)
         try:
             driver.find_element_by_xpath('//*[@id="attachment222"]/div[2]/a[2]')  # 学生作业附件
         except NoSuchElementException as msg:
-            print(msg)
-            print('无上交作业附件')
+            print('无上交作业附件', msg)
         else:
             driver.find_element_by_xpath('//*[@id="attachment222"]/div[2]/a[2]').click()  # 下载学生的作业附件
         driver.find_element_by_xpath("//*[@id='cj']").clear()
@@ -212,16 +212,14 @@ elif zy_zu == 'true' and jf_fz == 'true':  # 分值组作业
     try:
         driver.find_element_by_xpath('//*[@id="done"]/tbody/tr/td[8]/a')  # 已交作业名单beforePiYue
     except NoSuchElementException as msg:
-        print(msg)
-        print('表中数据为空,作业未提交')
+        print('表中数据为空,作业未提交', msg)
     else:
         driver.find_element_by_xpath('//*[@id="done"]/tbody/tr/td[8]/a').click()  # 批阅作业
         time.sleep(1)
         try:
             driver.find_element_by_xpath('//*[@id="attachment2"]/div[2]/a[2]')  # 无学生作业附件
         except NoSuchElementException as msg:
-            print(msg)
-            print('无上交作业附件')
+            print('无上交作业附件', msg)
         else:
             driver.find_element_by_xpath('//*[@id="attachment2"]/div[2]/a[2]').click()  # 下载学生作业附件
         driver.find_element_by_id('resetPL').click()  # 重置
@@ -253,7 +251,7 @@ elif zy_zu == 'true' and jf_ffz == 'true':  # 非分值组作业
         try:
             driver.find_element_by_xpath('//*[@id="attachment2"]/div[2]/a[2]')  # 无学生作业附件
         except NoSuchElementException as msg:
-            print(msg, '无上交作业附件')
+            print('无上交作业附件', msg)
         else:
             driver.find_element_by_xpath('//*[@id="attachment2"]/div[2]/a[2]').click()  # 下载学生作业附件
         driver.find_element_by_id('resetPL').click()  # 重置
@@ -262,7 +260,7 @@ elif zy_zu == 'true' and jf_ffz == 'true':  # 非分值组作业
         # Select(sel).select_by_value('-98')
         driver.find_element_by_xpath('//*[@id="select2-selectPL-container"]').click()
         driver.find_element_by_xpath('//*[@id="select2-selectPL-results"]')
-        key = len(driver.find_elements_by_xpath("//li[@class='select2-results__option']"))      # 定位下拉菜单
+        key = len(driver.find_elements_by_xpath("//li[@class='select2-results__option']"))  # 定位下拉菜单
         print("等级成绩个数", key)
         li = random.randrange(1, key)
         # cj = driver.find_elements_by_xpath("//li[@class='select2-results__option']").pop(li).text
@@ -271,7 +269,7 @@ elif zy_zu == 'true' and jf_ffz == 'true':  # 非分值组作业
         driver.find_element_by_id('recommandPL').send_keys('组作业已阅')  # 填评语
         driver.find_element_by_id('setPL').click()  # 设定成绩
         driver.find_element_by_id('fileupload').send_keys(
-            r'C:/Users/zb/Desktop/test/python/review.docx')  # modify      # 传评语附件
+            r'C:/Users/zb/Desktop/test/python/review.docx')  # modify # 传评语附件
         time.sleep(1)
         driver.find_element_by_xpath("//div[@class='sub-back absolute sub-back-3']//input[1]").click()
         time.sleep(2)
