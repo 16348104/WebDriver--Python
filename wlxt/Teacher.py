@@ -9,10 +9,13 @@ from selenium.webdriver.support.ui import Select
 # driver = webdriver.Chrome(executable_path='C:/Users/zb/Desktop/test/python/chromedriver.exe')  # modify
 # driver = webdriver.Firefox()
 
-driver = webdriver.Chrome()
+# driver = webdriver.Chrome()
 
 
-# driver = webdriver.Firefox(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/geckodriver')  # mac firefox
+driver = webdriver.Firefox(
+    executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/geckodriver')  # mac firefox
+
+
 # driver = webdriver.Chrome(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/wlxt/chromedriver')  # mac  chrome
 # driver = webdriver.Safari() #Mac os
 
@@ -38,49 +41,63 @@ driver.find_element_by_name("i_pass").send_keys("")
 driver.find_element_by_id("loginButtonId").click()
 time.sleep(1)
 ######################################################课程公告##########################################################
-print('=====测试课程公告=====')
-driver.get(
-    "http://learn.tsinghua.edu.cn/f/wlxt/kcgg/wlkc_ggb/teacher/beforeAdd?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
-# 发布公告
-time.sleep(2)
-driver.find_element_by_name("bt").send_keys("测试公告" + ticks)
-driver.find_element_by_xpath("//div[@class='list title notext']//label[1]").click()  # 标记重要公告
-driver.find_element_by_xpath("//div[@class='list order clearfix']//label[1]").click()  # 不推送邮件、微信
-time.sleep(1)
-driver.find_element_by_id("saveBtn").click()
-time.sleep(1)
-print('弹框结果:' + driver.find_element_by_css_selector(
-    "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
-# 预览公告
-
-print('=====公告测试完毕=====')
-time.sleep(5)
+# print('=====测试课程公告=====')
+# driver.get(
+#     "http://learn.tsinghua.edu.cn/f/wlxt/kcgg/wlkc_ggb/teacher/beforeAdd?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
+# print('发布公告')
+# time.sleep(2)
+# driver.find_element_by_name("bt").send_keys("测试公告" + ticks)
+# driver.find_element_by_xpath("//div[@class='list title notext']//label[1]").click()  # 标记重要公告
+# driver.find_element_by_xpath("//div[@class='list order clearfix']//label[1]").click()  # 不推送邮件、微信
+# time.sleep(1)
+# driver.find_element_by_id("saveBtn").click()
+# time.sleep(1)
+# print('弹框结果:' + driver.find_element_by_css_selector(
+#     "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+# print('预览公告')
+# driver.find_element_by_xpath("//a[@id='wlxt_kcgg_wlkc_ggb']").click()
+# time.sleep(2)
+# driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[1]/a').click()
+# driver.execute_script("document.documentElement.scrollTop = 10000;")  # 滚动条
+# time.sleep(1)
+# print('=====公告测试完毕=====')
+# time.sleep(4)
 ######################################################课程文件##########################################################
 # 打开课程文件
-# driver.get(
-#     "http://learn.tsinghua.edu.cn/f/wlxt/kj/wlkc_kjxxb/teacher/beforeAdd?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
-# # 定位上传按钮，添加本地文件
-# print('=====测试课程文件=====')
-# js = "document.getElementById('fileupload').style.display=\'block\'"
-# driver.execute_script(js)
-# driver.find_element_by_name("bt").send_keys("测试课件" + ticks)
-# driver.find_element_by_xpath("//div[@class='list']//label[1]").click()  # 重要标记
+driver.get(
+    "http://learn.tsinghua.edu.cn/f/wlxt/kj/wlkc_kjxxb/teacher/beforeAdd?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
+# 定位上传按钮，添加本地文件
+print('=====测试课程文件=====')
+js = "document.getElementById('fileupload').style.display=\'block\'"
+driver.execute_script(js)
+driver.find_element_by_name("bt").send_keys("测试课件" + ticks)
+driver.find_element_by_xpath("//div[@class='list']//label[1]").click()  # 重要标记
 # driver.find_element_by_name("fileupload").send_keys("D:/Global .mp4")  # modify
-# time.sleep(5)
-# driver.find_element_by_id("sub").click()
-# time.sleep(1)
-# try:
-#     driver.find_element_by_css_selector(
-#         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
-# except NoSuchElementException as msg:
-#     print('截图', msg)
-#     driver.get_screenshot_as_file("C:/Users/zb/Downloads/" + 'KJ' + time_format() + ".png")
-# else:
-#     print('弹框结果:' + driver.find_element_by_css_selector(
-#         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
-#
-# print('=====文件测试完毕=====')
-# time.sleep(5)
+driver.find_element_by_id('fileupload').send_keys(
+    r'/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/readme.txt')  # mac上传文件
+time.sleep(5)
+driver.find_element_by_id("sub").click()
+time.sleep(1)
+try:
+    driver.find_element_by_css_selector(
+        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
+except NoSuchElementException as msg:
+    print('截图', msg)
+    driver.get_screenshot_as_file("C:/Users/zb/Downloads/" + 'KJ' + time_format() + ".png")
+else:
+    print('弹框结果:' + driver.find_element_by_css_selector(
+        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+print('查看课件')
+driver.find_element_by_xpath("//a[@id='wlxt_kj_wlkc_kjxxb']").click()
+time.sleep(2)
+driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[2]/a').click()
+driver.execute_script("document.documentElement.scrollTop = 10000;")  # 滚动条
+time.sleep(2)
+# print('下载课件')
+
+
+print('=====文件测试完毕=====')
+time.sleep(5)
 ######################################################课程作业##########################################################
 # 布置作业
 print('=====测试课程作业=====')

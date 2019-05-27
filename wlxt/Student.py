@@ -143,7 +143,7 @@ time.sleep(5)
 # js = "document.getElementById('s_documention').value= new Date().toLocaleDateString()"
 # driver.execute_script(js)
 # driver.find_element_by_id('fileupload').send_keys(r'D:/listening.pdf')  # 上传文件modify
-# driver.find_element_by_id('fileupload').send_keys(r'/Users/xiaodaxing/Desktop/1.jpg')  # Mac上传文件
+# driver.find_element_by_id('fileupload').send_keys(r'/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/readme.txt')  # Mac上传文件
 # driver.find_element_by_xpath("//input[@onclick='daijiao()']").click()
 # time.seelp(1)
 # print('弹框结果:' + driver.find_element_by_css_selector("body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
