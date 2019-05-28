@@ -8,10 +8,12 @@ import random
 
 # driver = webdriver.Chrome(executable_path='C:/Users/zb/Desktop/test/python/chromedriver.exe')  # modify
 driver = webdriver.Chrome()
+
+
 # driver = webdriver.Firefox()
 # driver = webdriver.Ie()
 # driver = webdriver.Firefox(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/geckodriver')  # mac firefox
-# driver = webdriver.Chrome(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/wlxt/chromedriver')  # mac  chrome
+# driver = webdriver.Chrome(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/chromedriver')  # mac  chrome
 # driver = webdriver.Safari() #Mac os
 
 def time_format():
@@ -183,10 +185,10 @@ time.sleep(1)
 js = "document.getElementById('bt').value = new Date().toLocaleString();"
 val = driver.execute_script(js)
 driver.find_element_by_xpath('//input[@id="bt"]').send_keys('网络学堂自动化测试结果—学生端功能正常')
-iframe = driver.find_element_by_xpath("//iframe[contains(@title,'nrStr')]")
-driver.switch_to.frame(iframe)
+iframe = driver.find_element_by_xpath("//iframe[contains(@title,'nrStr')]")# 定位iframe
+driver.switch_to.frame(iframe)  # 切入iframe
 driver.find_element_by_xpath("//body[starts-with(@class,'cke')]").send_keys('学生端功能正常')
-driver.switch_to.default_content()
+driver.switch_to.default_content()  # 跳出iframe
 # driver.find_element_by_id('fileupload').send_keys(r'/Users/xiaodaxing/Desktop/Race.pdf')  # Mac上传文件
 driver.find_element_by_id('fileupload').send_keys(r'C:/Users/zb/Desktop/test/python/review.docx')  # modify
 time.sleep(1)
