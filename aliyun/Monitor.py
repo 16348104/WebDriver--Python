@@ -1,10 +1,9 @@
 # coding=utf-8
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 import time
 
-# driver = webdriver.chrome()
-driver = webdriver.Firefox()
+driver = webdriver.Firefox(executable_path='C:/Users/zb/Desktop/test/python/geckodriver.exe')
+# driver = webdriver.Chrome()
 # driver = webdriver.Chrome(
 #     executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/chromedriver')  # mac  chrome
 # driver = webdriver.Firefox(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/geckodriver')# mac  firefox
@@ -23,22 +22,24 @@ driver.find_element_by_xpath('//*[@id="login"]/div[1]/i').click()
 #     Keys.ENTER)
 date = driver.find_element_by_xpath('//*[@id="login"]/div[2]/div/div[1]/div[2]/p').text
 print(date)
-time.sleep(15)
+time.sleep(20)
 driver.switch_to.default_content()
 driver.find_element_by_css_selector(
     '#console-base > div > div.aliyun-console-help-guide > div.help-guide-step.help-guide-step-1 > div.help-guide-step-header > i.topbar-sidebar-no').click()
-time.sleep(1)
+time.sleep(2)
 # driver.find_element_by_xpath('//*[@id="consoleBaseTopbarRoot"]/div[1]').click()
-driver.get('https://cloudmonitor.console.aliyun.com')
+# driver.get('https://cloudmonitor.console.aliyun.com')
 # 站点监控
 driver.get(
     'https://cloudmonitor.console.aliyun.com/?spm=5176.2020520111.aliyun_sidebar.aliyun_sidebar_cms.6ff9d103iaAGn8#/home/ecs')
+time.sleep(2)
 # 站点管理
 driver.get(
     'https://cloudmonitor.console.aliyun.com/?spm=5176.12818093.aliyun_sidebar.aliyun_sidebar_cms.488716d0VtQA3i#/newSite/list/')
-driver.find_element_by_xpath('//*[@id="site_list"]/div/div/div[2]/table[1]/tbody/tr[2]/td[2]').click()
+time.sleep(2)
+driver.find_element_by_xpath("//span[contains(text(),'网络学堂应用服务监控2')]").click()
 # 截图
 # driver.save_screenshot('/Users/xdx/Desktop/Monitor.png')  # mac
-driver.save_screenshot('C:/Users/zb/Downloads/FireShot/Monitor.jpg')  # mac
+driver.save_screenshot('C:/Users/zb/Downloads/FireShot/Monitor.png')
 time.sleep(3)
 driver.close()
