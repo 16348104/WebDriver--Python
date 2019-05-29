@@ -3,9 +3,11 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
 
-driver = webdriver.Chrome(
-    executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/chromedriver')  # mac  chrome
-# driver = webdriver.Firefox(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/geckodriver')
+# driver = webdriver.chrome()
+driver = webdriver.Firefox()
+# driver = webdriver.Chrome(
+#     executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/chromedriver')  # mac  chrome
+# driver = webdriver.Firefox(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/geckodriver')# mac  firefox
 print("======登录阿里云监控=====")
 print('测试浏览器:' + driver.name)
 driver.get(
@@ -36,6 +38,7 @@ driver.get(
     'https://cloudmonitor.console.aliyun.com/?spm=5176.12818093.aliyun_sidebar.aliyun_sidebar_cms.488716d0VtQA3i#/newSite/list/')
 driver.find_element_by_xpath('//*[@id="site_list"]/div/div/div[2]/table[1]/tbody/tr[2]/td[2]').click()
 # 截图
-driver.save_screenshot('/Users/xdx/Desktop/Monitor.png')
-time.sleep(1)
+# driver.save_screenshot('/Users/xdx/Desktop/Monitor.png')  # mac
+driver.save_screenshot('C:/Users/zb/Downloads/FireShot/Monitor.jpg')  # mac
+time.sleep(3)
 driver.close()
