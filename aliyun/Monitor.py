@@ -1,8 +1,6 @@
 # coding=utf-8
 from selenium import webdriver
 import time
-#firfoxdriver = 'E:\Program Files (x86)\Mozilla Firefox\firefox.exe'
-
 driver = webdriver.Firefox()
 #driver = webdriver.Chrome(executable_path='C:\Program Files (x86)\Google\Chrome\Application\chrome.exe')
 # driver = webdriver.Chrome(
@@ -10,8 +8,7 @@ driver = webdriver.Firefox()
 # driver = webdriver.Firefox(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/geckodriver')# mac  firefox
 print("======登录阿里云监控=====")
 print('测试浏览器:' + driver.name)
-driver.get(
-    'https://account.aliyun.com/login/login.htm?oauth_callback=https%3A%2F%2Fhome.console.aliyun.com%2F%3Fspm%3D5176.8142029.388261.3.e9396d3eVocMar')
+driver.get('https://cloudmonitor.console.aliyun.com')
 driver.maximize_window()
 driver.implicitly_wait(1)
 driver.switch_to.frame('alibaba-login-box')  # 切入框架
@@ -29,7 +26,6 @@ driver.find_element_by_css_selector(
     '#console-base > div > div.aliyun-console-help-guide > div.help-guide-step.help-guide-step-1 > div.help-guide-step-header > i.topbar-sidebar-no').click()
 time.sleep(2)
 # driver.find_element_by_xpath('//*[@id="consoleBaseTopbarRoot"]/div[1]').click()
-# driver.get('https://cloudmonitor.console.aliyun.com')
 # 站点监控
 driver.get(
     'https://cloudmonitor.console.aliyun.com/?spm=5176.2020520111.aliyun_sidebar.aliyun_sidebar_cms.6ff9d103iaAGn8#/home/ecs')
