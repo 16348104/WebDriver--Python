@@ -1,9 +1,10 @@
 # coding=utf-8
 from selenium import webdriver
 import time
+#firfoxdriver = 'E:\Program Files (x86)\Mozilla Firefox\firefox.exe'
 
-driver = webdriver.Firefox(executable_path='C:/Users/zb/Desktop/test/python/geckodriver.exe')
-# driver = webdriver.Chrome()
+driver = webdriver.Firefox()
+#driver = webdriver.Chrome(executable_path='C:\Program Files (x86)\Google\Chrome\Application\chrome.exe')
 # driver = webdriver.Chrome(
 #     executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/chromedriver')  # mac  chrome
 # driver = webdriver.Firefox(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/geckodriver')# mac  firefox
