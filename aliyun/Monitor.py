@@ -1,6 +1,9 @@
 # coding=utf-8
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 import time
+
+
 driver = webdriver.Firefox()
 #driver = webdriver.Chrome(executable_path='C:\Program Files (x86)\Google\Chrome\Application\chrome.exe')
 # driver = webdriver.Chrome(
@@ -13,9 +16,9 @@ driver.maximize_window()
 driver.implicitly_wait(1)
 driver.switch_to.frame('alibaba-login-box')  # 切入框架
 driver.find_element_by_xpath('//*[@id="login"]/div[1]/i').click()
-# driver.find_element_by_xpath('//input[@id="fm-login-id"]').send_keys('2019xdx')
+# driver.find_element_by_xpath('//input[@id="fm-login-id"]').send_keys('')
 # time.sleep(1)
-# driver.find_element_by_xpath('//*[@id="fm-login-password"]').send_keys('ustb55aliyun')
+# driver.find_element_by_xpath('//*[@id="fm-login-password"]').send_keys('')
 # driver.find_element_by_xpath('//*[@id="login-form"]/div[4]/button').send_keys(
 #     Keys.ENTER)
 date = driver.find_element_by_xpath('//*[@id="login"]/div[2]/div/div[1]/div[2]/p').text
