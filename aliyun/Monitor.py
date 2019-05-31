@@ -3,9 +3,8 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
 
-
 driver = webdriver.Firefox()
-#driver = webdriver.Chrome(executable_path='C:\Program Files (x86)\Google\Chrome\Application\chrome.exe')
+# driver = webdriver.Chrome()
 # driver = webdriver.Chrome(
 #     executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/chromedriver')  # mac  chrome
 # driver = webdriver.Firefox(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/geckodriver')# mac  firefox
@@ -25,8 +24,9 @@ date = driver.find_element_by_xpath('//*[@id="login"]/div[2]/div/div[1]/div[2]/p
 print(date)
 time.sleep(20)
 driver.switch_to.default_content()
+time.sleep(2)
 driver.find_element_by_css_selector(
-    '#console-base > div > div.aliyun-console-help-guide > div.help-guide-step.help-guide-step-1 > div.help-guide-step-header > i.topbar-sidebar-no').click()
+    'body > div.viewframeContainer > div > div.aliyun-console-help-guide > div.help-guide-step.help-guide-step-1 > div.help-guide-step-header > i.topbar-sidebar-no').click()
 time.sleep(2)
 # driver.find_element_by_xpath('//*[@id="consoleBaseTopbarRoot"]/div[1]').click()
 # 站点监控
@@ -42,4 +42,6 @@ driver.find_element_by_xpath("//span[contains(text(),'网络学堂应用服务�
 # driver.save_screenshot('/Users/xdx/Desktop/Monitor.png')  # mac
 driver.save_screenshot('C:/Users/zb/Downloads/FireShot/Monitor.png')
 time.sleep(3)
+current_time = time.strftime("%y-%m-%d %H:%M:%S", time.localtime())
+print('在', current_time, '退出cloudmonitor')
 driver.close()
