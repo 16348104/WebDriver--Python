@@ -7,6 +7,7 @@ import time
 import random
 
 # driver = webdriver.Chrome(executable_path='C:/Users/zb/Desktop/test/python/chromedriver.exe')  # modify
+S = "【第一个窗口】"
 driver = webdriver.Chrome()
 
 
@@ -34,11 +35,11 @@ driver.find_element_by_name('i_pass').clear()
 driver.find_element_by_name('i_user').send_keys('2014310301')  # 键入用户名
 driver.find_element_by_name('i_pass').send_keys('123')  # 键入密码
 driver.find_element_by_id('loginButtonId').send_keys(Keys.ENTER)
+print(driver.title, "【第一个窗口】")
 time.sleep(1)
 # 进入课程【第二个窗口】
 # driver.find_element_by_link_text('基于Linux的C++(20740084-998)').click()
 driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  ##正式20740084-998
-print(driver.title)
 # 【切换到第二个窗口】
 window_1 = driver.current_window_handle  # 当前窗口句柄
 print('课程句柄:' + window_1)
@@ -48,6 +49,7 @@ for current_window in windows:
         driver.switch_to.window(current_window)
 time.sleep(3)
 print('新窗口句柄:' + current_window)
+print(driver.title, "【第二个窗口】")
 print('=====登录成功=====')
 
 ####################################################课程公告############################################################
@@ -185,7 +187,7 @@ time.sleep(1)
 js = "document.getElementById('bt').value = new Date().toLocaleString();"
 val = driver.execute_script(js)
 driver.find_element_by_xpath('//input[@id="bt"]').send_keys('网络学堂自动化测试结果—学生端功能正常')
-iframe = driver.find_element_by_xpath("//iframe[contains(@title,'nrStr')]")# 定位iframe
+iframe = driver.find_element_by_xpath("//iframe[contains(@title,'nrStr')]")  # 定位iframe
 driver.switch_to.frame(iframe)  # 切入iframe
 driver.find_element_by_xpath("//body[starts-with(@class,'cke')]").send_keys('学生端功能正常')
 driver.switch_to.default_content()  # 跳出iframe

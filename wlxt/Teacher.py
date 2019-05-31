@@ -8,7 +8,6 @@ from selenium.webdriver.support.ui import Select
 
 # driver = webdriver.Chrome(executable_path='C:/Users/zb/Desktop/test/python/chromedriver.exe')  # modify
 # driver = webdriver.Firefox()
-
 driver = webdriver.Chrome()
 
 
@@ -16,7 +15,6 @@ driver = webdriver.Chrome()
 #     executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/geckodriver')  # mac firefox
 # driver = webdriver.Chrome(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/wlxt/chromedriver')  # mac  chrome
 # driver = webdriver.Safari() #Mac os
-
 def time_format():
     current_time = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
     return current_time
@@ -24,7 +22,7 @@ def time_format():
 
 ######################################################登录网络学堂######################################################
 # 打开网络学堂
-driver.get("http://learn.tsinghua.edu.cn")
+driver.get("http://wlxt160.thitc.cn")
 driver.maximize_window()
 print("======登录网络学堂=====")
 print(driver.title)
@@ -34,15 +32,32 @@ ticks = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 tomorrow = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time() + 3600))
 print("当前时间戳为:", ticks)
 # print ("当前时间戳为:", tomorrow)
-driver.find_element_by_name("i_user").send_keys("")
-driver.find_element_by_name("i_pass").send_keys("")
+driver.find_element_by_name("i_user").send_keys("2004980847")
+driver.find_element_by_name("i_pass").send_keys("123")
 driver.find_element_by_id("loginButtonId").click()
+print(driver.title, "【第1个窗口】")
 time.sleep(1)
+driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  ##正式20740084-998
+print(driver.title)
+# 【切换到第二个窗口】
+window_1 = driver.current_window_handle  # 当前窗口句柄
+print('课程句柄:' + window_1)
+windows = driver.window_handles  # 窗口总数
+for current_window in windows:
+    if current_window != window_1:
+        driver.switch_to.window(current_window)
+time.sleep(3)
+print('新窗口句柄:' + current_window)
+print(driver.title, "【第2个窗口】")
+print('=====登录成功=====')
 ######################################################课程公告##########################################################
 print('=====测试课程公告=====')
-driver.get(
-    "http://learn.tsinghua.edu.cn/f/wlxt/kcgg/wlkc_ggb/teacher/beforeAdd?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
+driver.find_element_by_xpath("//a[@id='wlxt_kcgg_wlkc_ggb']").click()
+time.sleep(3)
+driver.find_element_by_xpath('//*[@id="content"]//span[2]/a').click()
 print('发布公告')
+
+# driver.get("http://learn.tsinghua.edu.cn/f/wlxt/kcgg/wlkc_ggb/teacher/beforeAdd?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
 time.sleep(2)
 driver.find_element_by_name("bt").send_keys("测试公告" + ticks)
 driver.find_element_by_xpath("//div[@class='list title notext']//label[1]").click()  # 标记重要公告
@@ -62,17 +77,22 @@ print('=====公告测试完毕=====')
 time.sleep(4)
 ######################################################课程文件##########################################################
 # 打开课程文件
-driver.get(
-    "http://learn.tsinghua.edu.cn/f/wlxt/kj/wlkc_kjxxb/teacher/beforeAdd?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
+# driver.get(
+#     "http://learn.tsinghua.edu.cn/f/wlxt/kj/wlkc_kjxxb/teacher/beforeAdd?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
 # 定位上传按钮，添加本地文件
 print('=====测试课程文件=====')
+driver.find_element_by_xpath("//a[@id='wlxt_kj_wlkc_kjxxb']").click()
+time.sleep(2)
+print('=====发课件=====')
+driver.find_element_by_xpath('//span[@class="rt right"]/child::a').click()  # 上课件
+time.sleep(1)
 js = "document.getElementById('fileupload').style.display=\'block\'"
 driver.execute_script(js)
 driver.find_element_by_name("bt").send_keys("测试课件" + ticks)
 driver.find_element_by_xpath("//div[@class='list']//label[1]").click()  # 重要标记
-# driver.find_element_by_name("fileupload").send_keys("D:/Global .mp4")  # modify
-driver.find_element_by_id('fileupload').send_keys(
-    r'/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/readme.txt')  # mac上传文件
+driver.find_element_by_name("fileupload").send_keys("D:/Global .mp4")  # modify
+# driver.find_element_by_id('fileupload').send_keys(
+#     r'/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/readme.txt')  # mac上传文件
 time.sleep(5)
 driver.find_element_by_id("sub").click()
 time.sleep(1)
@@ -99,34 +119,38 @@ time.sleep(5)
 ######################################################课程作业##########################################################
 # 布置作业
 print('=====测试课程作业=====')
+driver.find_element_by_xpath("//a[@id='wlxt_kczy_zy']").click()
+time.sleep(3)
 print('=====布置作业=====')
-driver.get(
-    "http://learn.tsinghua.edu.cn/f/wlxt/kczy/zy/teacher/bzzy?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
-# driver.find_element_by_name("bt").send_keys("测试全体作业" + ticks)
-# # 定位上传按钮，添加本地文件
-# js = "document.getElementById('fileupload').style.display=\'block\'"
-# driver.execute_script(js)
-# driver.find_element_by_name("fileupload").send_keys("D:/listening.pdf")  # modify
-# # 设置截止时间
-# # driver.find_element_by_name("jzsj").send_keys(tomorrow)
-# scroll = "document.documentElement.scrollTop = 10000;"
-# driver.execute_script(scroll)
-# time.sleep(1)
-# driver.find_element_by_id('endtime').click()
-# time.sleep(2)
-# driver.find_element_by_xpath("//span[@class='laydate-btns-confirm']").click()
-# time.sleep(1)
-# driver.find_element_by_id("goBtn").click()  # 发布作业
-# time.sleep(2)
-# try:
-#     driver.find_element_by_css_selector(
-#         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
-# except NoSuchElementException as msg:
-#     print(msg, '截图')
-#     driver.get_screenshot_as_file("C:/Users/zb/Downloads/" + 'ZY' + time_format() + ".png")
-# else:
-#     print('弹框结果:' + driver.find_element_by_css_selector(
-#         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+driver.find_element_by_xpath('//*[@id="content"]//span[2]/a').click()
+# driver.get(
+#     "http://learn.tsinghua.edu.cn/f/wlxt/kczy/zy/teacher/bzzy?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
+
+driver.find_element_by_name("bt").send_keys("测试全体作业" + ticks)
+# 定位上传按钮，添加本地文件
+js = "document.getElementById('fileupload').style.display=\'block\'"
+driver.execute_script(js)
+driver.find_element_by_name("fileupload").send_keys("D:/listening.pdf")  # modify
+# 设置截止时间
+# driver.find_element_by_name("jzsj").send_keys(tomorrow)
+scroll = "document.documentElement.scrollTop = 10000;"
+driver.execute_script(scroll)
+time.sleep(1)
+driver.find_element_by_id('endtime').click()
+time.sleep(2)
+driver.find_element_by_xpath("//span[@class='laydate-btns-confirm']").click()
+time.sleep(1)
+driver.find_element_by_id("goBtn").click()  # 发布作业
+time.sleep(2)
+try:
+    driver.find_element_by_css_selector(
+        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
+except NoSuchElementException as msg:
+    print(msg, '截图')
+    driver.get_screenshot_as_file("C:/Users/zb/Downloads/" + 'ZY' + time_format() + ".png")
+else:
+    print('弹框结果:' + driver.find_element_by_css_selector(
+        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
 time.sleep(3)
 print('=====编辑作业=====')
 driver.find_element_by_xpath("//a[@id='wlxt_kczy_zy']").click()
@@ -149,6 +173,7 @@ time.sleep(2)
 # 批阅作业列表beforePageList
 driver.find_element_by_xpath('//tr[2]//td[8]//a[1]').click()  # 去批阅作业
 driver.find_element_by_xpath("//*[@class='zhan']").click()  # 展开
+time.sleep(1)
 if zy_geren == 'true' and jf_fz == 'true':  # 个人分值作业
     try:
         driver.find_element_by_xpath('//*[@id="done"]/tbody/tr/td[11]/a')  # 已交作业名单beforePiYue
@@ -301,21 +326,28 @@ elif zy_zu == 'true' and jf_ffz == 'true':  # 非分值组作业
 print('=====作业测试完毕=====')
 time.sleep(5)
 ######################################################课程邮件##########################################################
-# print('=====测试课程邮件=====')
+print('=====测试课程邮件=====')
+driver.find_element_by_xpath("//a[@id='wlxt_mail_yj_yjxxb']").click()
+time.sleep(2)
+print("=====浏览邮件=====")
+driver.find_element_by_xpath('//*[@id="list"]/tbody/tr[1]/td[2]/a').click()  # 浏览邮件
+driver.find_element_by_xpath('//*[@id="returnButton"]').click()
 # driver.get(
 #     "http://learn.tsinghua.edu.cn/f/wlxt/mail/yj_yjxxb/teacher/beforePageList?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
-# # 新邮件
+print('=====发邮件=====')
 # # driver.get("http://learn.tsinghua.edu.cn/f/wlxt/mail/yj_yjxxb/teacher/beforeAdd?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
-# driver.find_element_by_xpath("//a[contains(text(),'新邮件')]").click()
+driver.find_element_by_xpath("//a[@id='sendmail']").click()
 # driver.find_element_by_class_name("ui-autocomplete-input").send_keys(
-#     "xiesp@tsinghua.edu.cn,chc@tsinghua.edu.cn,xdx2016@tsinghua.edu.cn,dj1005@tsinghua.edu.cn,zhongwenfeng@tsinghua.edu.cn")
-# driver.find_element_by_id("bt").send_keys("网络学堂自动测试:教师端系统正常" + ticks)
-# driver.find_element_by_id("submitButton").click()
-# time.sleep(1)
-# print('弹框结果:' + driver.find_element_by_css_selector(
-#     "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
-# print('=====邮件测试完毕=====')
-# time.sleep(5)
+# #     "xiesp@tsinghua.edu.cn,chc@tsinghua.edu.cn,wlxt@tsinghua.edu.cn,dj1005@tsinghua.edu.cn,zhongwenfeng@tsinghua.edu.cn")
+driver.find_element_by_xpath('//*[@id="myTags"]/li/input').send_keys('wlxt@tsinghua.edu.cn')
+time.sleep(1)
+driver.find_element_by_id("bt").send_keys(ticks + "网络学堂自动测试:教师端系统正常")
+driver.find_element_by_id("submitButton").click()
+time.sleep(1)
+print('弹框结果:' + driver.find_element_by_css_selector(
+    "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+print('=====邮件测试完毕=====')
+time.sleep(5)
 ##################################################退出网络学堂##########################################################
 driver.find_element_by_xpath("//i[@class='webicon-out']").click()
 time.sleep(2)
