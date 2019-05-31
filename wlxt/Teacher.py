@@ -16,7 +16,7 @@ driver = webdriver.Chrome()
 # driver = webdriver.Chrome(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/wlxt/chromedriver')  # mac  chrome
 # driver = webdriver.Safari() #Mac os
 def time_format():
-    current_time = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
+    current_time = time.strftime("%y-%m-%d %H:%M:%S", time.localtime(time.time()))
     return current_time
 
 
