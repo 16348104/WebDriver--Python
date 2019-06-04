@@ -8,6 +8,8 @@ import random
 
 # driver = webdriver.Chrome(executable_path='C:/Users/zb/Desktop/test/python/chromedriver.exe')  # modify
 driver = webdriver.Chrome()
+
+
 # driver = webdriver.Firefox()
 # driver = webdriver.Ie()
 # driver = webdriver.Firefox(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/geckodriver')  # mac firefox
@@ -163,10 +165,10 @@ time.sleep(1)
 print('=====提问=====')
 driver.find_element_by_xpath('//*[@id="content"]//span[2]/a').click()
 time.sleep(1)
-driver.find_element_by_xpath('//*[@id="addFormId"]//div[2]/input[1]').send_keys(time_format()+'测试课程答疑')
+driver.find_element_by_xpath('//*[@id="addFormId"]//div[2]/input[1]').send_keys(time_format() + '测试课程答疑')
 driver.find_element_by_xpath("//a[@id='cke_39']").click()
 time.sleep(2)
-driver.find_element_by_xpath("//table[@class='cke_dialog cke_browser_webkit cke_ltr cke_single_page']")
+driver.find_element_by_xpath("//table[@class='cke_dialog cke_browser_webkit cke_ltr cke_single_page']")  # 弹框
 ####################################################课程邮件#############################################################
 # print('=====测试课程邮件=====')
 # driver.find_element_by_xpath("//a[@id='wlxt_mail_yj_yjxxb']").click()
