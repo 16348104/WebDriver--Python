@@ -32,13 +32,12 @@ ticks = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 tomorrow = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time() + 3600))
 print("当前时间戳为:", ticks)
 # print ("当前时间戳为:", tomorrow)
-driver.find_element_by_name("i_user").send_keys("")
-driver.find_element_by_name("i_pass").send_keys("")
+driver.find_element_by_name("i_user").send_keys("2004980847")
+driver.find_element_by_name("i_pass").send_keys("123")
 driver.find_element_by_id("loginButtonId").click()
 print(driver.title, "【第1个窗口】")
 time.sleep(1)
 driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  ##正式20740084-998
-print(driver.title)
 # 【切换到第二个窗口】
 window_1 = driver.current_window_handle  # 当前窗口句柄
 print('课程句柄:' + window_1)
@@ -331,18 +330,19 @@ time.sleep(2)
 print("=====浏览邮件=====")
 driver.find_element_by_xpath('//*[@id="list"]/tbody/tr[1]/td[2]/a').click()  # 浏览邮件
 driver.find_element_by_xpath('//*[@id="returnButton"]').click()
+time.sleep(2)
 # driver.get(
 #     "http://learn.tsinghua.edu.cn/f/wlxt/mail/yj_yjxxb/teacher/beforePageList?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
 print('=====发邮件=====')
 # # driver.get("http://learn.tsinghua.edu.cn/f/wlxt/mail/yj_yjxxb/teacher/beforeAdd?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
-driver.find_element_by_xpath("//a[@id='sendmail']").click()
+driver.find_element_by_xpath('//span[@class="rt right"]/child::a').click()
 # driver.find_element_by_class_name("ui-autocomplete-input").send_keys(
 # #     "xiesp@tsinghua.edu.cn,chc@tsinghua.edu.cn,wlxt@tsinghua.edu.cn,dj1005@tsinghua.edu.cn,zhongwenfeng@tsinghua.edu.cn")
 driver.find_element_by_xpath('//*[@id="myTags"]/li/input').send_keys('wlxt@tsinghua.edu.cn')
 time.sleep(1)
 driver.find_element_by_id("bt").send_keys(ticks + "网络学堂自动测试:教师端系统正常")
 driver.find_element_by_id("submitButton").click()
-time.sleep(1)
+time.sleep(2)
 print('弹框结果:' + driver.find_element_by_css_selector(
     "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
 print('=====邮件测试完毕=====')
