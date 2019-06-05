@@ -50,7 +50,7 @@ time.sleep(3)
 print(driver.title, "【第二个窗口】")
 print('新窗口句柄:' + current_window)
 print('=====登录成功=====')
-driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + 'dl' + time_format() + ".png")  # modify截图
+driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + 'dl/' + time_format() + ".png")  # modify截图
 ####################################################课程公告############################################################
 # print("=====测试课程公告=====")
 # driver.find_element_by_xpath("//a[@id='wlxt_kcgg_wlkc_ggb']").click()
