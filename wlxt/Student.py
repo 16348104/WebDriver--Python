@@ -17,28 +17,28 @@ driver = webdriver.Chrome()
 # driver = webdriver.Safari() #Mac os
 
 def time_format():
-    current_time = time.strftime("%y-%m-%d %H:%M:%S", time.localtime(time.time()))
+    current_time = time.strftime("%y-%m-%d %H-%M-%S", time.localtime(time.time()))
     return current_time
 
 
 ##################################################登录网络学堂###########################################################
 print("======登录网络学堂=====")
 print('测试浏览器:' + driver.name)
-driver.get('http://learn.tsinghua.edu.cn')
+driver.get('http://wlxt160.thitc.cn')
 driver.maximize_window()
 driver.implicitly_wait(2)
 print('登录后句柄:' + driver.current_window_handle)  # 登录网络学堂，【第一个窗口】
 driver.find_element_by_name('i_user').clear()
 driver.find_element_by_name('i_pass').clear()
 # time.sleep(30)
-driver.find_element_by_name('i_user').send_keys('')  # 键入用户名
-driver.find_element_by_name('i_pass').send_keys('')  # 键入密码
+driver.find_element_by_name('i_user').send_keys('2014013037')  # 键入用户名
+driver.find_element_by_name('i_pass').send_keys('123')  # 键入密码
 driver.find_element_by_id('loginButtonId').send_keys(Keys.ENTER)
 print(driver.title, "【第一个窗口】")
 time.sleep(1)
 # 进入课程【第二个窗口】
 # driver.find_element_by_link_text('基于Linux的C++(20740084-998)').click()
-driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  ##正式60240202-0
+driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  ##正式60240202-0
 # 【切换到第二个窗口】
 window_1 = driver.current_window_handle  # 当前窗口句柄
 print('课程句柄:' + window_1)
@@ -47,10 +47,10 @@ for current_window in windows:
     if current_window != window_1:
         driver.switch_to.window(current_window)
 time.sleep(3)
-print('新窗口句柄:' + current_window)
 print(driver.title, "【第二个窗口】")
+print('新窗口句柄:' + current_window)
 print('=====登录成功=====')
-
+driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + 'dl' + time_format() + ".png")  # modify截图
 ####################################################课程公告############################################################
 # print("=====测试课程公告=====")
 # driver.find_element_by_xpath("//a[@id='wlxt_kcgg_wlkc_ggb']").click()
@@ -145,13 +145,21 @@ print('=====登录成功=====')
 # driver.find_element_by_xpath('//textarea[@id="s_documention"]')
 # js = "document.getElementById('s_documention').value= new Date().toLocaleDateString()"
 # driver.execute_script(js)
-# driver.find_element_by_id('fileupload').send_keys(r'D:/listening.pdf')  # 上传文件modify
-# driver.find_element_by_id('fileupload').send_keys(r'/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/readme.txt')  # Mac上传文件
+# driver.find_element_by_id('fileupload').send_keys(r'D:/Homework.pdf')  # 上传文件modify
+# # driver.find_element_by_id('fileupload').send_keys(r'/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/readme.txt')  # Mac上传文件
 # driver.find_element_by_xpath("//input[@onclick='daijiao()']").click()
-# time.seelp(1)
-# print('弹框结果:' + driver.find_element_by_css_selector("body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+# time.sleep(1)
+# try:
+#     driver.find_element_by_css_selector(
+#         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
+# except NoSuchElementException as msg:
+#     print('截图', msg)
+#     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + 'TJZY' + time_format() + ".png")  # modify截图
+# else:
+#     print('弹框结果:' + driver.find_element_by_css_selector(
+#         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
 # print('=====作业测试完毕=====')
-# time.sleep(5)
+# time.sleep(4)
 
 ########################################################我的分组#########################################################
 print('测试我的分组')
@@ -162,13 +170,52 @@ time.sleep(3)
 print('=====测试课程答疑=====')
 driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_kcdy"]').click()
 time.sleep(1)
+driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[2]').click()
+time.sleep(1)
+print('=====查看已回答的问题=====')
+driver.find_element_by_xpath('//*[@id="table"]/tbody/tr/td[6]/a').click()
+scroll = "document.documentElement.scrollTop = 10000;"
+driver.execute_script(scroll)
+time.sleep(1)
+# 随机下载答疑附件
+try:
+    driver.find_element_by_id('removeFile')
+except NoSuchElementException as msg:
+    print('无答疑附件', +msg)
+else:
+    key = len(driver.find_elements_by_xpath('//*[@id="removeFile"]'))
+    print("答疑附件个数", key)
+    ran = random.randrange(0, key)
+    print(ran)
+    driver.find_elements_by_xpath('//*[@id="removeFile"]').pop(ran).click()
 print('=====提问=====')
+driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_kcdy"]').click()
+time.sleep(1)
 driver.find_element_by_xpath('//*[@id="content"]//span[2]/a').click()
 time.sleep(1)
 driver.find_element_by_xpath('//*[@id="addFormId"]//div[2]/input[1]').send_keys(time_format() + '测试课程答疑')
 driver.find_element_by_xpath("//a[@id='cke_39']").click()
+js = "document.getElementsByClassName('cke_dialog_background_cover')[0].style.display = 'none'"
+driver.execute_script(js)
 time.sleep(2)
 driver.find_element_by_xpath("//table[@class='cke_dialog cke_browser_webkit cke_ltr cke_single_page']")  # 弹框
+driver.find_element_by_xpath('//*[@id="cke_87_uiElement"]').click()
+time.sleep(1)
+driver.find_element_by_id('fileupload').send_keys(r'D:/英语.docx')  # 上传文件modify
+# driver.find_element_by_xpath("//input[@id='saveBtn']").click()
+time.sleep(1)
+try:
+    driver.find_element_by_css_selector(
+        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
+except NoSuchElementException as msg:
+    print('截图', msg)
+    driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + 'KCDY' + time_format() + ".png")  # modify截图
+else:
+    print('弹框结果:' + driver.find_element_by_css_selector(
+        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+
+print('=====答疑测试完毕=====')
+time.sleep(4)
 ####################################################课程邮件#############################################################
 # print('=====测试课程邮件=====')
 # driver.find_element_by_xpath("//a[@id='wlxt_mail_yj_yjxxb']").click()
@@ -220,4 +267,4 @@ driver.find_element_by_xpath("//div[contains(@class,'zeromodal-footer')]//button
 # driver.switch_to_alert().accept()
 # driver.switch_to.alert.accept()
 print('=====退出网络学堂=====')
-# driver.quit()
+driver.quit()
