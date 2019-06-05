@@ -181,7 +181,7 @@ time.sleep(1)
 try:
     driver.find_element_by_id('removeFile')
 except NoSuchElementException as msg:
-    print('无答疑附件', +msg)
+    print('无答疑附件', msg)
 else:
     key = len(driver.find_elements_by_xpath('//*[@id="removeFile"]'))
     print("答疑附件个数", key)
