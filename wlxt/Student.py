@@ -83,7 +83,7 @@ driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + 'dl' + time_fo
 # driver.find_element_by_xpath("//a[@id='wlxt_kj_wlkc_kjxxb']").click()
 # driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[1]/p').click()  # 电子教案类
 # li = driver.find_elements_by_xpath("//i[contains(@class,'webicon-download downLoadFile')]")
-# ran = random.randint(1, 10) - 1  # 随机数
+# ran = random.randrange(0, 10)  # 随机数
 # print('随机数', ran)
 # li.pop(ran).click()  # Download
 # print('下载课件')
@@ -186,7 +186,7 @@ else:
     key = len(driver.find_elements_by_xpath('//*[@id="removeFile"]'))
     print("答疑附件个数", key)
     ran = random.randrange(0, key)
-    print(ran)
+    print('随机数', ran)
     driver.find_elements_by_xpath('//*[@id="removeFile"]').pop(ran).click()
 print('=====提问=====')
 driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_kcdy"]').click()
