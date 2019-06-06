@@ -170,33 +170,32 @@ time.sleep(3)
 print('=====测试课程答疑=====')
 driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_kcdy"]').click()
 time.sleep(1)
-driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[2]').click()
-time.sleep(1)
 print('=====查看已回答的问题=====')
+driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[2]').click()
+driver.find_element_by_xpath('//*[@id="hdsj"]').click()  # 按时间排序
+time.sleep(1)
 driver.find_element_by_xpath('//*[@id="table"]/tbody/tr/td[6]/a').click()
-time.sleep(2)
+time.sleep(1)
 scroll = "document.documentElement.scrollTop = 10000;"
 driver.execute_script(scroll)
 time.sleep(1)
 # Play Audio
-print('预览音频文件')
 try:
-    driver.find_elements_by_xpath("//div[@class='ckeditor-html5-img']//audio")
-except NoSuchElementException as msg:
-    print('无音频文件', msg)
+    driver.find_element_by_xpath("//div[@class='ckeditor-html5-img']//audio")
+except NoSuchElementException as msg_MP3:
+    print('无音频文件', msg_MP3)
 else:
-    driver.find_elements_by_xpath("//div[@class='ckeditor-html5-img']//audio")
+    print('预览音频文件')
     js_audio = "var audio = document.getElementsByTagName('audio')[0];audio.play();"
     driver.execute_script(js_audio)
     time.sleep(3)
 # Play Video
-print('预览视频文件')
 try:
-    driver.find_elements_by_xpath("//div[@class='ckeditor-html5-img']//video")
-except NoSuchElementException as msg:
-    print('无视频文件', msg)
+    driver.find_element_by_xpath("//div[@class='ckeditor-html5-img']//video")
+except NoSuchElementException as msg_MP4:
+    print('无视频文件', msg_MP4)
 else:
-    driver.find_elements_by_xpath("//div[@class='ckeditor-html5-img']//video")
+    print('预览视频文件')
     js_video = "var video = document.getElementsByTagName('video')[0];video.play();"
     driver.execute_script(js_video)
     time.sleep(3)
