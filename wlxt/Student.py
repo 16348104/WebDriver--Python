@@ -50,7 +50,7 @@ time.sleep(3)
 print(driver.title, "【第二个窗口】")
 print('新窗口句柄:' + current_window)
 print('=====登录成功=====')
-driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + 'dl-' + time_format() + ".png")  # modify截图
+# driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + 'dl-' + time_format() + ".png")  # modify截图
 ####################################################课程公告############################################################
 # print("=====测试课程公告=====")
 # driver.find_element_by_xpath("//a[@id='wlxt_kcgg_wlkc_ggb']").click()
@@ -174,18 +174,34 @@ driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[2]').click()
 time.sleep(1)
 print('=====查看已回答的问题=====')
 driver.find_element_by_xpath('//*[@id="table"]/tbody/tr/td[6]/a').click()
+time.sleep(2)
 scroll = "document.documentElement.scrollTop = 10000;"
 driver.execute_script(scroll)
 time.sleep(1)
 # Play Audio
-driver.find_elements_by_xpath("//div[@class='ckeditor-html5-img']//audio")
-js_audio = "var audio = document.getElementsByTagName('audio');audio.play();"
-driver.execute_script(js_audio)
 print('预览音频文件')
+try:
+    driver.find_elements_by_xpath("//div[@class='ckeditor-html5-img']//audio")
+except NoSuchElementException as msg:
+    print('无音频文件', msg)
+else:
+    driver.find_elements_by_xpath("//div[@class='ckeditor-html5-img']//audio")
+    js_audio = "var audio = document.getElementsByTagName('audio')[0];audio.play();"
+    driver.execute_script(js_audio)
+    time.sleep(3)
 # Play Video
-
-time.sleep(3)
+print('预览视频文件')
+try:
+    driver.find_elements_by_xpath("//div[@class='ckeditor-html5-img']//video")
+except NoSuchElementException as msg:
+    print('无视频文件', msg)
+else:
+    driver.find_elements_by_xpath("//div[@class='ckeditor-html5-img']//video")
+    js_video = "var video = document.getElementsByTagName('video')[0];video.play();"
+    driver.execute_script(js_video)
+    time.sleep(3)
 # 随机下载答疑附件
+print('下载答疑文件')
 try:
     driver.find_element_by_id('removeFile')
 except NoSuchElementException as msg:
