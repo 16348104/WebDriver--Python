@@ -182,6 +182,8 @@ driver.find_elements_by_xpath("//div[@class='ckeditor-html5-img']//audio")
 js_audio = "var audio = document.getElementsByTagName('audio');audio.play();"
 driver.execute_script(js_audio)
 print('预览音频文件')
+# Play Video
+
 time.sleep(3)
 # 随机下载答疑附件
 try:
