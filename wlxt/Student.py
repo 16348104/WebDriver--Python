@@ -177,6 +177,12 @@ driver.find_element_by_xpath('//*[@id="table"]/tbody/tr/td[6]/a').click()
 scroll = "document.documentElement.scrollTop = 10000;"
 driver.execute_script(scroll)
 time.sleep(1)
+# Play Audio
+driver.find_elements_by_xpath("//div[@class='ckeditor-html5-img']//audio")
+js_audio = "var audio = document.getElementsByTagName('audio');audio.play();"
+driver.execute_script(js_audio)
+print('预览音频文件')
+time.sleep(3)
 # 随机下载答疑附件
 try:
     driver.find_element_by_id('removeFile')
@@ -202,7 +208,7 @@ driver.find_element_by_xpath("//table[@class='cke_dialog cke_browser_webkit cke_
 driver.find_element_by_xpath('//*[@id="cke_87_uiElement"]').click()
 time.sleep(1)
 driver.find_element_by_id('fileupload').send_keys(r'D:/英语.docx')  # 上传文件modify
-# driver.find_element_by_xpath("//input[@id='saveBtn']").click()
+driver.find_element_by_xpath("//input[@id='saveBtn']").click()
 time.sleep(1)
 try:
     driver.find_element_by_css_selector(

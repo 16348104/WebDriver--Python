@@ -19,6 +19,9 @@
 <iframe allow="20" id="ifr">
 
 </iframe>
+<audio src="Various Artists.mp3" controls="controls">
+
+</audio>
 <script type="text/javascript">
     document.documentElement.scrollTop = 10000;  //将滚动条移动到页面的底部
     // document.documentElement.scrollTop=0  //将滚动条移动到页面的顶部
@@ -28,7 +31,8 @@
     setTimeout(function () {
         alert("Hello");
     }, 3000);
-
+    var audio = document.getElementsByTagName('audio');
+    audio.play();
 </script>
 </body>
 </html>
