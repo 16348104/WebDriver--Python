@@ -174,7 +174,8 @@ print('=====查看已回答的问题=====')
 driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[2]').click()
 # driver.find_element_by_xpath('//*[@id="hdsj"]').click()  # 按时间排序
 time.sleep(2)
-driver.find_element_by_xpath('//*[@id="table"]/tbody/tr/td[6]/a').click()  #//tr[@class='odd']//td[2]/a
+# driver.find_element_by_xpath('//*[@id="table"]/tbody/tr/td[6]/a').click()
+driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[2]/td[2]/a').click()
 time.sleep(2)
 scroll = "document.documentElement.scrollTop = 10000;"
 driver.execute_script(scroll)
@@ -203,7 +204,7 @@ else:
 # 下载全部答疑附件
 print('下载全部教师的答疑文件')
 try:
-    driver.find_elements_by_xpath('//*[@id="hfjg"]//a[@id="removeFile"]')  # 全部教师的答疑文件
+    driver.find_element_by_xpath('//*[@id="hfjg"]//a[@id="removeFile"]')  # 全部教师的答疑文件
 except NoSuchElementException as msg:
     print('无答疑附件', msg)
 else:
@@ -216,8 +217,8 @@ driver.back()
 time.sleep(2)
 driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[3]').click()
 time.sleep(2)
-# driver.find_element_by_xpath('//tr[1]//td[2]/a').click()
-driver.find_element_by_xpath('//tr[4]//td[2]/a').click()
+driver.find_element_by_xpath('//tr[1]//td[2]/a').click()
+# driver.find_element_by_xpath('//tr[4]//td[2]/a').click()
 time.sleep(2)
 scroll = "document.documentElement.scrollTop = 10000;"
 driver.execute_script(scroll)
@@ -245,7 +246,7 @@ else:
 # 随机下载答疑附件
 print('下载问题集锦文件')
 try:
-    driver.find_elements_by_xpath('//*[@id="removeFile"]')
+    driver.find_element_by_xpath('//*[@id="removeFile"]')
 except NoSuchElementException as msg:
     print('无答疑附件', msg)
 else:
