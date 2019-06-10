@@ -169,13 +169,13 @@ time.sleep(3)
 ######################################################课程答疑##########################################################
 print('=====测试课程答疑=====')
 driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_kcdy"]').click()
-time.sleep(1)
+time.sleep(2)
 print('=====查看已回答的问题=====')
 driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[2]').click()
-driver.find_element_by_xpath('//*[@id="hdsj"]').click()  # 按时间排序
-time.sleep(1)
+# driver.find_element_by_xpath('//*[@id="hdsj"]').click()  # 按时间排序
+time.sleep(2)
 driver.find_element_by_xpath('//*[@id="table"]/tbody/tr/td[6]/a').click()
-time.sleep(1)
+time.sleep(2)
 scroll = "document.documentElement.scrollTop = 10000;"
 driver.execute_script(scroll)
 time.sleep(1)
@@ -200,17 +200,27 @@ else:
     driver.execute_script(js_video)
     time.sleep(3)
 # 随机下载答疑附件
-print('下载答疑文件')
+# print('下载答疑文件')
+# try:
+#     driver.find_elements_by_xpath('//*[@id="removeFile"]')
+# except NoSuchElementException as msg:
+#     print('无答疑附件', msg)
+# else:
+#     key = len(driver.find_elements_by_xpath('//*[@id="removeFile"]'))
+#     print("答疑附件个数", key)
+#     ran = random.randrange(0, key)
+#     print('随机数', ran)
+#     driver.find_elements_by_xpath('//*[@id="removeFile"]').pop(ran).click()
+# 下载全部答疑附件
+print('下载全部教师的答疑文件')
 try:
-    driver.find_element_by_id('removeFile')
+    driver.find_elements_by_xpath('//*[@id="hfjg"]//a[@id="removeFile"]')
 except NoSuchElementException as msg:
     print('无答疑附件', msg)
 else:
-    key = len(driver.find_elements_by_xpath('//*[@id="removeFile"]'))
-    print("答疑附件个数", key)
-    ran = random.randrange(0, key)
-    print('随机数', ran)
-    driver.find_elements_by_xpath('//*[@id="removeFile"]').pop(ran).click()
+    Download = driver.find_elements_by_xpath('//*[@id="hfjg"]//a[@id="removeFile"]')
+    for i in Download:
+        i.click()
 print('=====提问=====')
 driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_kcdy"]').click()
 time.sleep(1)
@@ -290,4 +300,5 @@ driver.find_element_by_xpath("//div[contains(@class,'zeromodal-footer')]//button
 # driver.switch_to_alert().accept()
 # driver.switch_to.alert.accept()
 print('=====退出网络学堂=====')
+time.sleep(1)
 driver.quit()
