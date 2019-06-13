@@ -224,10 +224,8 @@ print('=====查看已回答的问题=====')
 driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_kcdy"]').click()
 time.sleep(2)
 driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[2]').click()
-# driver.find_element_by_xpath('//*[@id="hdsj"]').click()  # 按时间排序
 time.sleep(2)
-# driver.find_element_by_xpath('//*[@id="table"]/tbody/tr/td[6]/a').click()
-driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[2]/td[2]/a').click()
+driver.find_element_by_xpath('//tr[1]//td[6]//a[1]').click()
 time.sleep(2)
 scroll = "document.documentElement.scrollTop = 10000;"
 driver.execute_script(scroll)
