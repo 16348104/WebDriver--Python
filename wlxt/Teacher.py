@@ -111,9 +111,35 @@ time.sleep(2)
 driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[2]/a').click()
 driver.execute_script("document.documentElement.scrollTop = 10000;")  # 滚动条
 time.sleep(1)
-# print('下载课件')
-
-
+print('=====下载课件=====')
+driver.back()
+time.sleep(1)
+driver.find_element_by_xpath("//tbody//tr[1]//td[8]//a[1]").click()
+print('=====预览课件=====')
+driver.find_element_by_xpath("//tbody//tr[1]//td[8]//a[2]").click()
+# Play Video
+try:
+    driver.find_element_by_xpath("//button[@class='vjs-big-play-button']")
+except NoSuchElementException as msg:
+    print('暂无视频文件', msg)
+else:
+    js_audio = "var audio = document.getElementById('mp3');audio.play();"
+    driver.execute_script(js_audio)
+    print('预览视频文件')
+    time.sleep(5)
+# Play Audio
+try:
+    Audio = driver.find_element_by_css_selector("#mp3")
+except NoSuchElementException as msg:
+    print('暂无音频文件', msg)
+else:
+    js_audio = "var audio = document.getElementById('mp3');audio.play();"
+    driver.execute_script(js_audio)
+    print('预览音频文件')
+    time.sleep(5)
+windows = driver.window_handles  # 窗口总数
+print('所有句柄:%s', windows)
+driver.switch_to.window(windows[1])  # 切换到第2个窗口
 print('=====文件测试完毕=====')
 time.sleep(4)
 ######################################################课程作业##########################################################

@@ -178,10 +178,6 @@ print('=====提问=====')
 driver.find_element_by_xpath('//*[@id="content"]//span[2]/a').click()
 time.sleep(1)
 driver.find_element_by_xpath('//*[@id="addFormId"]//div[2]/input[1]').send_keys(time_format() + '测试课程答疑')
-# 富文本图片
-driver.find_element_by_xpath("//a[@id='cke_40']").click()
-os.system("D:/image.exe")
-time.sleep(3)
 # 富文本音频
 driver.find_element_by_xpath('//*[@id="cke_41"]').click()
 os.system("D:/Audio.exe")
@@ -190,6 +186,8 @@ time.sleep(3)
 driver.find_element_by_xpath('//*[@id="cke_41"]').click()
 os.system("D:/Video.exe")
 time.sleep(5)
+driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
+time.sleep(1)
 try:
     driver.find_element_by_css_selector(
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
@@ -214,7 +212,6 @@ driver.find_element_by_xpath('//*[@id="cke_87_uiElement"]').click()
 time.sleep(2)
 # 上传答疑文件
 driver.find_element_by_id('fileupload').send_keys(r'D:/英语.docx')  # modify
-driver.find_element_by_xpath("//input[@id='saveBtn']").click()
 time.sleep(1)
 driver.find_element_by_xpath('//*[@id="saveTltBtn"]').click()
 time.sleep(1)
@@ -232,26 +229,26 @@ driver.execute_script(scroll)
 time.sleep(1)
 # Play Audio
 try:
-    driver.find_element_by_xpath("//div[@class='ckeditor-html5-img']//audio")
+    driver.find_element_by_xpath("//p[@id='wtnr']//p//audio")
 except NoSuchElementException as msg_MP3:
     print('无音频文件', msg_MP3)
 else:
     print('预览音频文件')
     js_audio = "var audio = document.getElementsByTagName('audio')[0];audio.play();"
     driver.execute_script(js_audio)
-    time.sleep(3)
+    time.sleep(5)
 # Play Video
 try:
-    driver.find_element_by_xpath("//div[@class='ckeditor-html5-img']//video")
+    driver.find_element_by_xpath("//p[@id='wtnr']//p//video")
 except NoSuchElementException as msg_MP4:
     print('无视频文件', msg_MP4)
 else:
     print('预览视频文件')
     js_video = "var video = document.getElementsByTagName('video')[0];video.play();"
     driver.execute_script(js_video)
-    time.sleep(3)
+    time.sleep(5)
 # 下载全部答疑附件
-print('下载全部教师的答疑文件')
+print('下载全部回复答疑文件')
 try:
     driver.find_element_by_xpath('//*[@id="hfjg"]//a[@id="removeFile"]')  # 全部教师的答疑文件
 except NoSuchElementException as msg:
@@ -260,38 +257,56 @@ else:
     Download = driver.find_elements_by_xpath('//*[@id="hfjg"]//a[@id="removeFile"]')
     for i in Download:
         i.click()
+driver.execute_script(scroll)
+print('=====继续提问=====')
+driver.find_element_by_xpath('//a[@class="ml-10 show-textar"]').click()
+# 富文本图片
+driver.find_element_by_xpath("//a[@id='cke_40']").click()
+os.system("D:/image.exe")
+time.sleep(3)
+driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
+time.sleep(2)
+try:
+    driver.find_element_by_css_selector(
+        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
+except NoSuchElementException as msg:
+    print('截图', msg)
+    driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + 'KCDY' + time_format() + ".png")  # modify截图
+else:
+    print('弹框结果:' + driver.find_element_by_css_selector(
+        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+time.sleep(3)
 print('=====查看问题集锦=====')
-# driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_kcdy"]').click()
-driver.back()
+driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_kcdy"]').click()
+# driver.back()
 time.sleep(2)
 driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[3]').click()
 time.sleep(2)
 driver.find_element_by_xpath('//tr[1]//td[2]/a').click()
-# driver.find_element_by_xpath('//tr[4]//td[2]/a').click()
-time.sleep(2)
+time.sleep(3)
 scroll = "document.documentElement.scrollTop = 10000;"
 driver.execute_script(scroll)
 time.sleep(1)
 # Play Audio
 try:
-    driver.find_element_by_xpath("//div[@class='ckeditor-html5-img']//audio")
+    driver.find_element_by_xpath("//p[@id='wtnr']//p//audio")
 except NoSuchElementException as msg_MP3:
     print('无音频文件', msg_MP3)
 else:
     print('预览音频文件')
     js_audio = "var audio = document.getElementsByTagName('audio')[0];audio.play();"
     driver.execute_script(js_audio)
-    time.sleep(3)
+    time.sleep(5)
 # Play Video
 try:
-    driver.find_element_by_xpath("//div[@class='ckeditor-html5-img']//video")
+    driver.find_element_by_xpath("//p[@id='wtnr']//p//video")
 except NoSuchElementException as msg_MP4:
     print('无视频文件', msg_MP4)
 else:
     print('预览视频文件')
     js_video = "var video = document.getElementsByTagName('video')[0];video.play();"
     driver.execute_script(js_video)
-    time.sleep(3)
+    time.sleep(5)
 # 随机下载答疑附件
 print('下载问题集锦文件')
 try:
