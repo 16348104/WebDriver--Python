@@ -68,7 +68,7 @@ print('=====登录成功=====')
 #     driver.find_element_by_xpath("//div[@id='ggfj']//a[@id='wjid']").click()  # 浏览公告附件
 #     # 【第3个窗口】
 #     windows = driver.window_handles  # 窗口总数
-#     print('所有句柄:%s',windows)
+#     print('所有句柄:',windows)
 #     driver.switch_to.window(windows[1])  # 切换到第2个窗口
 #     time.sleep(3)
 # else:
@@ -113,7 +113,7 @@ print('=====登录成功=====')
 #     print('预览视频文件')
 #     time.sleep(2)
 # try:
-#     Audio = driver.find_element_by_css_selector("#mp3")
+#     driver.find_element_by_css_selector("#mp3")
 # except NoSuchElementException as msg:
 #     print('暂无音频文件', msg)
 # else:
@@ -158,7 +158,7 @@ print('=====登录成功=====')
 #         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
 # except NoSuchElementException as msg:
 #     print('截图', msg)
-#     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + 'TJZY' + time_format() + ".png")  # modify截图
+#     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format()+ 'TJZY' + ".png")  # modify截图
 # else:
 #     print('弹框结果:' + driver.find_element_by_css_selector(
 #         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
@@ -193,7 +193,7 @@ try:
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
 except NoSuchElementException as msg:
     print('截图', msg)
-    driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + 'KCDY' + time_format() + ".png")  # modify截图
+    driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'KCDY' + ".png")  # modify截图
 else:
     print('弹框结果:' + driver.find_element_by_css_selector(
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
@@ -271,7 +271,7 @@ try:
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
 except NoSuchElementException as msg:
     print('截图', msg)
-    driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + 'KCDY' + time_format() + ".png")  # modify截图
+    driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'KCDY' + ".png")  # modify截图
 else:
     print('弹框结果:' + driver.find_element_by_css_selector(
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
