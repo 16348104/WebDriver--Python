@@ -38,8 +38,8 @@ driver.find_element_by_name('i_pass').clear()
 driver.find_element_by_name('i_user').send_keys('2014013037')  # 键入用户名
 driver.find_element_by_name('i_pass').send_keys('123')  # 键入密码
 driver.find_element_by_id('loginButtonId').send_keys(Keys.ENTER)
+time.sleep(2)
 print(driver.title, "【第一个窗口】")
-time.sleep(1)
 # 进入课程【第二个窗口】
 # driver.find_element_by_link_text('基于Linux的C++(20740084-998)').click()
 driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  ##正式60240202-0
@@ -56,89 +56,98 @@ print('新窗口句柄:' + current_window)
 print('=====登录成功=====')
 # driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + 'dl-' + time_format() + ".png")  # modify截图
 ####################################################课程公告############################################################
-# print("=====测试课程公告=====")
-# driver.find_element_by_xpath("//a[@id='wlxt_kcgg_wlkc_ggb']").click()
-# time.sleep(3)  # 休眠
-# driver.find_element_by_xpath("//*[@id='table']/tbody/tr[1]/td[1]/a").click()
-# time.sleep(2)
-# ggfj = driver.find_element_by_xpath("//div[@id='ggfj']").is_displayed()
-# print(ggfj)
-# if ggfj:
-#     print('预览公告附件!')
-#     driver.find_element_by_xpath("//div[@id='ggfj']//a[@id='wjid']").click()  # 浏览公告附件
-#     # 【第3个窗口】
-#     windows = driver.window_handles  # 窗口总数
-#     print('所有句柄:',windows)
-#     driver.switch_to.window(windows[1])  # 切换到第2个窗口
-#     time.sleep(3)
-# else:
-#     print('无公告附件！')
-#     driver.find_element_by_id('backBtn').click()
-# print('=====公告测试完毕=====')
-# time.sleep(3)
+print("=====测试课程公告=====")
+driver.find_element_by_xpath("//a[@id='wlxt_kcgg_wlkc_ggb']").click()
+time.sleep(3)  # 休眠
+driver.find_element_by_xpath("//*[@id='table']/tbody/tr[1]/td[1]/a").click()
+time.sleep(2)
+ggfj = driver.find_element_by_xpath("//div[@id='ggfj']").is_displayed()
+print(ggfj)
+if ggfj:
+    print('预览公告附件!')
+    driver.find_element_by_xpath("//div[@id='ggfj']//a[@id='wjid']").click()  # 浏览公告附件
+    time.sleep(3)
+    # 切换【第3个窗口】
+    windows = driver.window_handles  # 窗口总数
+    driver.switch_to.window(windows[2])  # 切换到第3个窗口
+    window_2 = driver.current_window_handle
+    print('所有句柄:', windows)
+    print("当前窗口：", window_2)
+    time.sleep(3)
+    driver.switch_to.window(windows[1])  # 切换到第2个窗口
+    window_2 = driver.current_window_handle
+    print('所有句柄:', windows)
+    print("当前窗口：", window_2)
+else:
+    print('无公告附件！')
+    driver.find_element_by_id('backBtn').click()
+print('=====公告测试完毕=====')
+time.sleep(3)
 ####################################################课程信息#############################################################
-# print('测试课程信息')
-# driver.find_element_by_css_selector('#wlxt_kc_v_kcxx_jskcxx').click()
-# print('=======课程信息测试完毕=====')
-# time.sleep(3)
-
+print('测试课程信息')
+driver.find_element_by_css_selector('#wlxt_kc_v_kcxx_jskcxx').click()
+print('=======课程信息测试完毕=====')
+time.sleep(3)
 ####################################################课程文件#############################################################
-# print("=====测试课程文件=====")
-# driver.find_element_by_xpath("//a[@id='wlxt_kj_wlkc_kjxxb']").click()
-# driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[1]/p').click()  # 电子教案类
-# li = driver.find_elements_by_xpath("//i[contains(@class,'webicon-download downLoadFile')]")
-# ran = random.randrange(0, 10)  # 随机数
-# print('随机数', ran)
-# li.pop(ran).click()  # Download
-# print('下载课件')
-# # element = driver.find_element_by_xpath("//div[@id='content']")
-# # target = driver.find_element_by_xpath("//iframe[@id='playFrame']")
-# # ActionChains(driver).drag_and_drop(element, target).perform()
-# driver.switch_to.frame('playFrame')
-# print('开始预览课件')
-# try:
-#     Unable_preview = driver.find_element_by_xpath("//a[@class='downLoadFile']")
-# except NoSuchElementException as msg:
-#     print('此文件暂时无法预览', msg)
-# else:
-#     Unable_preview.click()
-#     print('下载无法预览的文件')
-#     time.sleep(3)
-# try:
-#     Video = driver.find_element_by_xpath("//button[@class='vjs-big-play-button']")
-# except NoSuchElementException as msg:
-#     print('暂无视频文件', msg)
-# else:
-#     Video.click()
-#     print('预览视频文件')
-#     time.sleep(2)
-# try:
-#     driver.find_element_by_css_selector("#mp3")
-# except NoSuchElementException as msg:
-#     print('暂无音频文件', msg)
-# else:
-#     js_audio = "var audio = document.getElementById('mp3');audio.play();"
-#     driver.execute_script(js_audio)
-#     print('预览音频文件')
-#     time.sleep(2)
-# try:
-#     Word = driver.find_element_by_xpath("//body/a")
-# except NoSuchElementException as msg:
-#     print('暂无文本文件', msg)
-# else:
-#     Word.click()
-#     js = "document.documentElement.scrollTop = 10000;"
-#     # driver.execute_script("document.documentElement.scrollTop=100000")
-#     # driver.execute_script('window.scrollTo(0, 0)')
-#     driver.execute_script(js)
-#     time.sleep(2)
-#     print('预览文本文件')
-#     # js = "document.getElementsByClassName('textLayer').scrollTop=700;console.log(document.getElementsByClassName('textLayer').scrollTop);"
-#     time.sleep(1)
-# driver.switch_to.parent_frame()
-# print('=====课件测试完毕=====')
-# time.sleep(5)
-
+print("=====测试课程文件=====")
+driver.find_element_by_xpath("//a[@id='wlxt_kj_wlkc_kjxxb']").click()
+driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[1]/p').click()  # 电子教案类
+kjs = len(driver.find_elements_by_xpath("//i[contains(@class,'webicon-download downLoadFile')]"))
+li = driver.find_elements_by_xpath("//i[contains(@class,'webicon-download downLoadFile')]")
+driver.find_element_by_xpath("//div[@class='playli']")
+js_down = "document.getElementsByClassName('playli')[0].scrollTop = 1000;"
+js_up = "document.getElementsByClassName('playli')[0].scrollTop = 0;"
+driver.execute_script(js_down)
+time.sleep(1)
+driver.execute_script(js_up)
+print('课件数', kjs)
+ran = random.randrange(0, kjs)  # 随机数
+print('随机数', ran)
+li.pop(0).click()  # Download
+print('下载课件')
+# element = driver.find_element_by_xpath("//div[@id='content']")
+# target = driver.find_element_by_xpath("//iframe[@id='playFrame']")
+# ActionChains(driver).drag_and_drop(element, target).perform()
+driver.switch_to.frame('playFrame')
+print('开始预览课件')
+try:
+    Unable_preview = driver.find_element_by_xpath("//a[@class='downLoadFile']")
+except NoSuchElementException as msg:
+    print('此文件暂时无法预览', msg)
+else:
+    Unable_preview.click()
+    print('下载无法预览的文件')
+    time.sleep(3)
+try:
+    Video = driver.find_element_by_xpath("//button[@class='vjs-big-play-button']")
+except NoSuchElementException as msg:
+    print('暂无视频文件', msg)
+else:
+    Video.click()
+    print('预览视频文件')
+    time.sleep(5)
+try:
+    driver.find_element_by_css_selector("#mp3")
+except NoSuchElementException as msg:
+    print('暂无音频文件', msg)
+else:
+    js_audio = "var audio = document.getElementById('mp3');audio.play();"
+    driver.execute_script(js_audio)
+    print('预览音频文件')
+    time.sleep(2)
+try:
+    Word = driver.find_element_by_xpath("//body/a")
+except NoSuchElementException as msg:
+    print('暂无文本文件', msg)
+else:
+    Word.click()
+    js = "document.documentElement.scrollTop = 10000;"
+    driver.execute_script(js)
+    time.sleep(2)
+    print('预览文本文件')
+driver.switch_to.parent_frame()
+print('=====课件测试完毕=====')
+time.sleep(5)
 ####################################################课程作业############################################################
 # print('=====测试课程作业=====')
 # driver.find_element_by_xpath("//a[@id='wlxt_kczy_zy']").click()
@@ -170,7 +179,7 @@ print('测试我的分组')
 driver.find_element_by_css_selector('#wlxt_qz_v_wlkc_qzcyb').click()
 print('=====我的分组测试完毕=====')
 time.sleep(3)
-######################################################课程答疑##########################################################
+######################################################课程答疑###########################################################
 print('=====测试课程答疑=====')
 driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_kcdy"]').click()
 time.sleep(2)
