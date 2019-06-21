@@ -58,19 +58,28 @@ driver.find_element_by_xpath('//*[@id="content"]//span[2]/a').click()
 print('=====发布公告=====')
 time.sleep(2)
 driver.find_element_by_name("bt").send_keys("测试公告" + ticks)
-driver.find_element_by_xpath("//div[@class='list title notext']//label[1]").click()  # 标记重要公告
+driver.find_element_by_xpath("//div[@class='list title notext']//label[1]").click()  # 选标记重要公告
 driver.find_element_by_xpath("//div[@class='list order clearfix']//label[1]").click()  # 不推送邮件、微信
 time.sleep(1)
+
+##新增上传公告附件
+driver.find_element_by_xpath("//input[@id='fileupload']").send_keys(r"D:/Artists.mp3")  # modify
+time.sleep(1)
+print('上传公告附件')
+
+##新增CKeditor表情图标
 driver.find_element_by_xpath('//a[@id="cke_37"]').click()
 js = "document.getElementsByClassName('cke_dialog_background_cover')[0].style.display = 'none'"
 driver.execute_script(js)
 time.sleep(1)
-driver.find_element_by_xpath('//*[@id="cke_94_uiElement"]/table/tbody/tr[1]/td[1]/a/img').click()
+driver.find_element_by_xpath('//*/table/tbody/tr[1]/td[1]/a/img').click()
 driver.find_element_by_id("saveBtn").click()
 time.sleep(1)
+
+
 print('弹框结果:' + driver.find_element_by_css_selector(
     "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
-print('=====预览公告=====')
+print('=====预览公告详情=====')
 driver.find_element_by_xpath("//a[@id='wlxt_kcgg_wlkc_ggb']").click()
 time.sleep(2)
 driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[1]/a').click()
@@ -91,7 +100,6 @@ js = "document.getElementById('fileupload').style.display=\'block\'"
 driver.execute_script(js)
 driver.find_element_by_name("bt").send_keys("测试课件" + ticks)
 driver.find_element_by_xpath("//div[@class='list']//label[1]").click()  # 重要标记
-# driver.find_element_by_name("fileupload").send_keys("D:/mov.mp4")  # modify
 driver.find_element_by_name("fileupload").send_keys("D:/Artists.mp3")  # modify
 # driver.find_element_by_id('fileupload').send_keys(
 #     r'/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/readme.txt')  # mac上传文件
@@ -118,7 +126,7 @@ driver.back()
 time.sleep(1)
 driver.find_element_by_xpath("//tbody//tr[1]//td[8]//a[1]").click()
 
-
+###新增
 print('=====预览课件=====')
 time.sleep(10)
 try:
