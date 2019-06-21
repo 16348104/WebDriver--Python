@@ -4,7 +4,7 @@ import win32gui
 import win32con
 
 from selenium import webdriver
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException, UnexpectedAlertPresentException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys
 import time
@@ -40,8 +40,10 @@ driver.find_element_by_name('i_pass').send_keys('123')  # 键入密码
 driver.find_element_by_id('loginButtonId').send_keys(Keys.ENTER)
 time.sleep(2)
 print(driver.title, "【第一个窗口】")
-# 进入课程【第二个窗口】
-# driver.find_element_by_link_text('基于Linux的C++(20740084-998)').click()
+# try:
+#     driver.switch_to.alert.accept('日历服务漫游失败')
+# except UnexpectedAlertPresentException as msg:
+#     pass
 driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  ##正式60240202-0
 # 【切换到第二个窗口】
 window_1 = driver.current_window_handle  # 当前窗口句柄
@@ -76,7 +78,6 @@ if ggfj:
     time.sleep(3)
     driver.switch_to.window(windows[1])  # 切换到第2个窗口
     window_2 = driver.current_window_handle
-    print('所有句柄:', windows)
     print("当前窗口：", window_2)
 else:
     print('无公告附件！')
@@ -94,22 +95,20 @@ driver.find_element_by_xpath("//a[@id='wlxt_kj_wlkc_kjxxb']").click()
 driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[1]/p').click()  # 电子教案类
 kjs = len(driver.find_elements_by_xpath("//i[contains(@class,'webicon-download downLoadFile')]"))
 li = driver.find_elements_by_xpath("//i[contains(@class,'webicon-download downLoadFile')]")
-driver.find_element_by_xpath("//div[@class='playli']")
-js_down = "document.getElementsByClassName('playli')[0].scrollTop = 1000;"
-js_up = "document.getElementsByClassName('playli')[0].scrollTop = 0;"
-driver.execute_script(js_down)
-time.sleep(1)
-driver.execute_script(js_up)
-print('课件数', kjs)
-ran = random.randrange(0, kjs)  # 随机数
+print('课件总数', kjs)
+ran = random.randrange(0, 14)  # 随机数
 print('随机数', ran)
-li.pop(0).click()  # Download
-print('下载课件')
+li.pop(ran).click()  # Download
+print('下载课件!')
 # element = driver.find_element_by_xpath("//div[@id='content']")
 # target = driver.find_element_by_xpath("//iframe[@id='playFrame']")
 # ActionChains(driver).drag_and_drop(element, target).perform()
+driver.find_element_by_xpath("//div[@class='playli']")
+js = "document.getElementsByClassName('playli')[0].scrollTop = 1000;"
+driver.execute_script(js)
+time.sleep(1)
 driver.switch_to.frame('playFrame')
-print('开始预览课件')
+print('开始预览课件!')
 try:
     Unable_preview = driver.find_element_by_xpath("//a[@class='downLoadFile']")
 except NoSuchElementException as msg:
@@ -175,10 +174,10 @@ time.sleep(5)
 # time.sleep(4)
 
 ########################################################我的分组#########################################################
-print('测试我的分组')
-driver.find_element_by_css_selector('#wlxt_qz_v_wlkc_qzcyb').click()
-print('=====我的分组测试完毕=====')
-time.sleep(3)
+# print('测试我的分组')
+# driver.find_element_by_css_selector('#wlxt_qz_v_wlkc_qzcyb').click()
+# print('=====我的分组测试完毕=====')
+# time.sleep(3)
 ######################################################课程答疑###########################################################
 print('=====测试课程答疑=====')
 driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_kcdy"]').click()
@@ -212,7 +211,7 @@ driver.find_element_by_xpath('//tr[1]//td[4]//a[1]').click()
 time.sleep(1)
 driver.find_element_by_xpath("//a[@class='ml-10 show-textar']").click()
 time.sleep(1)
-# CKeditor传公式
+# CKeditor数学公式
 driver.find_element_by_xpath("//a[@id='cke_39']").click()
 js = "document.getElementsByClassName('cke_dialog_background_cover')[0].style.display = 'none'"
 driver.execute_script(js)
@@ -269,7 +268,7 @@ else:
 driver.execute_script(scroll)
 print('=====继续提问=====')
 driver.find_element_by_xpath('//a[@class="ml-10 show-textar"]').click()
-# 富文本图片
+# CKeditor上传图片
 driver.find_element_by_xpath("//a[@id='cke_40']").click()
 os.system("D:/image.exe")
 time.sleep(3)

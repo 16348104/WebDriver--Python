@@ -51,28 +51,33 @@ print('新窗口句柄:' + current_window)
 print('=====登录成功=====')
 time.sleep(2)
 ######################################################课程公告##########################################################
-# print('=====测试课程公告=====')
-# driver.find_element_by_xpath("//a[@id='wlxt_kcgg_wlkc_ggb']").click()
-# time.sleep(3)
-# driver.find_element_by_xpath('//*[@id="content"]//span[2]/a').click()
-# print('=====发布公告=====')
-# time.sleep(2)
-# driver.find_element_by_name("bt").send_keys("测试公告" + ticks)
-# driver.find_element_by_xpath("//div[@class='list title notext']//label[1]").click()  # 标记重要公告
-# driver.find_element_by_xpath("//div[@class='list order clearfix']//label[1]").click()  # 不推送邮件、微信
-# time.sleep(1)
-# driver.find_element_by_id("saveBtn").click()
-# time.sleep(1)
-# print('弹框结果:' + driver.find_element_by_css_selector(
-#     "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
-# print('=====预览公告=====')
-# driver.find_element_by_xpath("//a[@id='wlxt_kcgg_wlkc_ggb']").click()
-# time.sleep(2)
-# driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[1]/a').click()
-# driver.execute_script("document.documentElement.scrollTop = 10000;")  # 滚动条
-# time.sleep(1)
-# print('=====公告测试完毕=====')
-# time.sleep(4)
+print('=====测试课程公告=====')
+driver.find_element_by_xpath("//a[@id='wlxt_kcgg_wlkc_ggb']").click()
+time.sleep(3)
+driver.find_element_by_xpath('//*[@id="content"]//span[2]/a').click()
+print('=====发布公告=====')
+time.sleep(2)
+driver.find_element_by_name("bt").send_keys("测试公告" + ticks)
+driver.find_element_by_xpath("//div[@class='list title notext']//label[1]").click()  # 标记重要公告
+driver.find_element_by_xpath("//div[@class='list order clearfix']//label[1]").click()  # 不推送邮件、微信
+time.sleep(1)
+driver.find_element_by_xpath('//a[@id="cke_37"]').click()
+js = "document.getElementsByClassName('cke_dialog_background_cover')[0].style.display = 'none'"
+driver.execute_script(js)
+time.sleep(1)
+driver.find_element_by_xpath('//*[@id="cke_94_uiElement"]/table/tbody/tr[1]/td[1]/a/img').click()
+driver.find_element_by_id("saveBtn").click()
+time.sleep(1)
+print('弹框结果:' + driver.find_element_by_css_selector(
+    "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+print('=====预览公告=====')
+driver.find_element_by_xpath("//a[@id='wlxt_kcgg_wlkc_ggb']").click()
+time.sleep(2)
+driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[1]/a').click()
+driver.execute_script("document.documentElement.scrollTop = 10000;")  # 滚动条
+time.sleep(1)
+print('=====公告测试完毕=====')
+time.sleep(4)
 ######################################################课程文件##########################################################
 # 打开课程文件
 # 定位上传按钮，添加本地文件
