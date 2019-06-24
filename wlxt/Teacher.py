@@ -133,8 +133,6 @@ str1 = driver.find_element_by_xpath("//tbody//tr[1]//td[8]//a[2]").get_attribute
 print(str1)
 searchObj = re.search(r'disabled', str1, re.I)
 if searchObj is None:
-    print('文件不支持预览', searchObj)
-else:
     print('课件可以预览!')
     driver.find_element_by_xpath("//tbody//tr[1]//td[8]//a[2]").click()
     windows = driver.window_handles  # 显示所有句柄
@@ -167,6 +165,8 @@ else:
     driver.switch_to.window(windows[1])  # 切换到第2个窗口
     print('所有句柄:', windows)
     print("当前窗口：", window_1)
+else:
+    print('文件不支持预览', searchObj)
 print('=====文件测试完毕=====')
 time.sleep(4)
 ######################################################课程作业##########################################################
