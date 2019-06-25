@@ -23,7 +23,8 @@ def time_format():
 
 ######################################################登录网络学堂######################################################
 # 打开网络学堂
-driver.get("http://wlxt160.thitc.cn")
+# driver.get("http://wlxt160.thitc.cn")
+driver.get("http://learn.tsinghua.edu.cn")
 driver.maximize_window()
 print("======登录网络学堂=====")
 print(driver.title)
@@ -33,12 +34,12 @@ ticks = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 tomorrow = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time() + 3600))
 print("当前时间戳为:", ticks)
 # print ("当前时间戳为:", tomorrow)
-driver.find_element_by_name("i_user").send_keys("2004980847")
-driver.find_element_by_name("i_pass").send_keys("123")
+driver.find_element_by_name("i_user").send_keys("xdx2016")
+driver.find_element_by_name("i_pass").send_keys("ustb55aliyun")
 driver.find_element_by_id("loginButtonId").click()
 print(driver.title, "【第1个窗口】")
 time.sleep(1)
-driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  ##正式20740084-998
+driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  ##正式20740084-998,开发环境60240202-0
 # 【切换到第二个窗口】
 window_1 = driver.current_window_handle  # 当前窗口句柄
 print('课程句柄:' + window_1)
@@ -75,10 +76,16 @@ driver.execute_script(js)
 time.sleep(2)
 driver.find_element_by_xpath('//*/table/tbody/tr[1]/td[1]/a/img').click()
 driver.find_element_by_id("saveBtn").click()
-time.sleep(2)
-
-print('弹框结果:' + driver.find_element_by_css_selector(
-    "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+time.sleep(23)
+try:
+    driver.find_element_by_css_selector(
+        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
+except NoSuchElementException as msg:
+    print('截图', msg)
+    driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'gg' + ".png")  # 截图modify
+else:
+    print('弹框结果:' + driver.find_element_by_css_selector(
+        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
 print('=====预览公告详情=====')
 driver.find_element_by_xpath("//a[@id='wlxt_kcgg_wlkc_ggb']").click()
 time.sleep(2)
@@ -93,28 +100,28 @@ time.sleep(4)
 print('=====测试课程文件=====')
 driver.find_element_by_xpath("//a[@id='wlxt_kj_wlkc_kjxxb']").click()
 time.sleep(2)
-# print('=====发课件=====')
-# driver.find_element_by_xpath('//span[@class="rt right"]/child::a').click()  # 上课件
-# time.sleep(1)
-# js = "document.getElementById('fileupload').style.display=\'block\'"
-# driver.execute_script(js)
-# driver.find_element_by_name("bt").send_keys("测试课件" + ticks)
-# driver.find_element_by_xpath("//div[@class='list']//label[1]").click()  # 重要标记
-# driver.find_element_by_name("fileupload").send_keys("D:/Artists.mp3")  # modify
-# # driver.find_element_by_id('fileupload').send_keys(
-# #     r'/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/readme.txt')  # mac上传文件
-# time.sleep(5)
-# driver.find_element_by_id("sub").click()
-# time.sleep(1)
-# try:
-#     driver.find_element_by_css_selector(
-#         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
-# except NoSuchElementException as msg:
-#     print('截图', msg)
-#     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'KJ' + ".png")
-# else:
-#     print('弹框结果:' + driver.find_element_by_css_selector(
-#         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+print('=====发课件=====')
+driver.find_element_by_xpath('//span[@class="rt right"]/child::a').click()  # 上课件
+time.sleep(1)
+js = "document.getElementById('fileupload').style.display=\'block\'"
+driver.execute_script(js)
+driver.find_element_by_name("bt").send_keys("测试课件" + ticks)
+driver.find_element_by_xpath("//div[@class='list']//label[1]").click()  # 重要标记
+driver.find_element_by_name("fileupload").send_keys("D:/Artists.mp3")  # modify
+# driver.find_element_by_id('fileupload').send_keys(
+#     r'/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/readme.txt')  # mac上传文件
+time.sleep(5)
+driver.find_element_by_id("sub").click()
+time.sleep(1)
+try:
+    driver.find_element_by_css_selector(
+        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
+except NoSuchElementException as msg:
+    print('截图', msg)
+    driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'KJ' + ".png")  # 截图modify
+else:
+    print('弹框结果:' + driver.find_element_by_css_selector(
+        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
 print('=====查看课件详情=====')
 driver.find_element_by_xpath("//a[@id='wlxt_kj_wlkc_kjxxb']").click()
 time.sleep(2)
