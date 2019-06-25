@@ -34,8 +34,8 @@ ticks = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 tomorrow = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time() + 3600))
 print("当前时间戳为:", ticks)
 # print ("当前时间戳为:", tomorrow)
-driver.find_element_by_name("i_user").send_keys("xdx2016")
-driver.find_element_by_name("i_pass").send_keys("ustb55aliyun")
+driver.find_element_by_name("i_user").send_keys("")
+driver.find_element_by_name("i_pass").send_keys("")
 driver.find_element_by_id("loginButtonId").click()
 print(driver.title, "【第1个窗口】")
 time.sleep(1)
@@ -76,7 +76,7 @@ driver.execute_script(js)
 time.sleep(2)
 driver.find_element_by_xpath('//*/table/tbody/tr[1]/td[1]/a/img').click()
 driver.find_element_by_id("saveBtn").click()
-time.sleep(23)
+time.sleep(2)
 try:
     driver.find_element_by_css_selector(
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
@@ -244,7 +244,7 @@ if zy_geren == 'true' and jf_fz == 'true':  # 个人分值作业
         else:
             driver.find_element_by_xpath('//*[@id="attachment222"]/div[2]/a[2]').click()  # 下载学生的作业附件
         driver.find_element_by_xpath("//*[@id='cj']").clear()
-        geren_cj = random.randrange(0, 100)
+        geren_cj = random.randint(0, 100)
         driver.find_element_by_xpath("//*[@id='cj']").send_keys(geren_cj)  # 打分
         driver.find_element_by_xpath("//*[@id='documention']").clear()
         driver.find_element_by_xpath("//*[@id='documention']").send_keys('个人作业已阅')  # 填评语
@@ -282,7 +282,7 @@ elif zy_geren == 'true' and jf_ffz == 'true':  # 个人非分值作业
         time.sleep(1)
         key = len(driver.find_elements_by_xpath("//li[@class='select2-results__option']"))
         print("等级成绩个数", key)
-        li = random.randrange(1, key)
+        li = random.randrange(1, key, 1)
         print('成绩:', driver.find_elements_by_xpath("//li[@class='select2-results__option']").pop(li).text)
         driver.find_elements_by_xpath("//li[@class='select2-results__option']").pop(li).click()  # 选成绩
         driver.find_element_by_xpath("//*[@id='documention']").clear()
@@ -317,7 +317,7 @@ elif zy_zu == 'true' and jf_fz == 'true':  # 分值组作业
         else:
             driver.find_element_by_xpath('//*[@id="attachment2"]/div[2]/a[2]').click()  # 下载学生作业附件
         driver.find_element_by_id('resetPL').click()  # 重置
-        zu_cj = random.randrange(0, 100)
+        zu_cj = random.randint(0, 100)
         driver.find_element_by_id('inputPL').send_keys(zu_cj)  # 打分
         driver.find_element_by_id('recommandPL').send_keys('组作业已阅')  # 填评语
         driver.find_element_by_id('setPL').click()  # 设定成绩
@@ -357,7 +357,7 @@ elif zy_zu == 'true' and jf_ffz == 'true':  # 非分值组作业
         driver.find_element_by_xpath('//*[@id="select2-selectPL-results"]')
         key = len(driver.find_elements_by_xpath("//li[@class='select2-results__option']"))  # 定位下拉菜单
         print("等级成绩个数", key)
-        li = random.randrange(1, key)
+        li = random.randrange(1, key, 1)
         print('成绩:', driver.find_elements_by_xpath("//li[@class='select2-results__option']").pop(li).text)
         driver.find_elements_by_xpath("//li[@class='select2-results__option']").pop(li).click()  # 选成绩
         driver.find_element_by_id('recommandPL').send_keys('组作业已阅')  # 填评语

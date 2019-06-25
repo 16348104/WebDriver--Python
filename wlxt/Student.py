@@ -28,7 +28,7 @@ def time_format():
 ##################################################登录网络学堂###########################################################
 print("======登录网络学堂=====")
 print('测试浏览器:' + driver.name)
-driver.get('http://wlxt160.thitc.cn')
+driver.get('http://learn.tsinghua.edu.cn')
 driver.maximize_window()
 driver.implicitly_wait(2)
 print('登录后句柄:' + driver.current_window_handle)  # 登录网络学堂，【第一个窗口】
@@ -64,6 +64,7 @@ time.sleep(3)  # 休眠
 driver.find_element_by_xpath("//*[@id='table']/tbody/tr[1]/td[1]/a").click()
 time.sleep(2)
 ggfj = driver.find_element_by_xpath("//div[@id='ggfj']").is_displayed()
+
 print(ggfj)
 if ggfj:
     print('预览公告附件!')
@@ -83,7 +84,7 @@ else:
     print('无公告附件！')
     driver.find_element_by_id('backBtn').click()
 print('=====公告测试完毕=====')
-time.sleep(3)
+time.sleep(2)
 ####################################################课程信息#############################################################
 print('测试课程信息')
 driver.find_element_by_css_selector('#wlxt_kc_v_kcxx_jskcxx').click()
@@ -96,7 +97,7 @@ driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[1]/p').click()  # 电子�
 kjs = len(driver.find_elements_by_xpath("//i[contains(@class,'webicon-download downLoadFile')]"))
 li = driver.find_elements_by_xpath("//i[contains(@class,'webicon-download downLoadFile')]")
 print('课件总数', kjs)
-ran = random.randrange(0, 14)  # 随机数
+ran = random.randrange(15)  # 随机数
 print('随机数', ran)
 li.pop(ran).click()  # Download
 print('下载课件!')
@@ -146,7 +147,7 @@ else:
     print('预览文本文件')
 driver.switch_to.parent_frame()
 print('=====课件测试完毕=====')
-time.sleep(5)
+time.sleep(3)
 ####################################################课程作业############################################################
 # print('=====测试课程作业=====')
 # driver.find_element_by_xpath("//a[@id='wlxt_kczy_zy']").click()
@@ -324,7 +325,7 @@ except NoSuchElementException as msg:
 else:
     key = len(driver.find_elements_by_xpath('//*[@id="removeFile"]'))
     print("答疑附件个数", key)
-    ran = random.randrange(0, key)
+    ran = random.randint(0, key)
     print('随机数', ran)
     driver.find_elements_by_xpath('//*[@id="removeFile"]').pop(ran).click()
 time.sleep(1)
