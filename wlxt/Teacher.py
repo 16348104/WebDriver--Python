@@ -63,13 +63,9 @@ driver.find_element_by_name("bt").send_keys("测试公告" + ticks)
 driver.find_element_by_xpath("//div[@class='list title notext']//label[1]").click()  # 选标记重要公告
 driver.find_element_by_xpath("//div[@class='list order clearfix']//label[1]").click()  # 不推送邮件、微信
 time.sleep(1)
-
-##新增上传公告附件
 driver.find_element_by_xpath("//input[@id='fileupload']").send_keys(r"D:/Artists.mp3")  # modify
 time.sleep(1)
 print('上传公告附件')
-
-##新增CKeditor表情图标
 driver.find_element_by_xpath('//a[@id="cke_37"]').click()
 js = "document.getElementsByClassName('cke_dialog_background_cover')[0].style.display = 'none'"
 driver.execute_script(js)
@@ -96,7 +92,6 @@ print('=====公告测试完毕=====')
 time.sleep(4)
 ######################################################课程文件##########################################################
 # 打开课程文件
-# 定位上传按钮，添加本地文件
 print('=====测试课程文件=====')
 driver.find_element_by_xpath("//a[@id='wlxt_kj_wlkc_kjxxb']").click()
 time.sleep(2)
@@ -132,8 +127,6 @@ print('=====下载课件=====')
 driver.back()
 time.sleep(1)
 driver.find_element_by_xpath("//tbody//tr[1]//td[8]//a[1]").click()
-
-##新增
 print('=====预览课件=====')
 time.sleep(5)
 str1 = driver.find_element_by_xpath("//tbody//tr[1]//td[8]//a[2]").get_attribute('class')

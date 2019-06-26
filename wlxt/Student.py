@@ -97,7 +97,7 @@ driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[1]/p').click()  # 电子�
 kjs = len(driver.find_elements_by_xpath("//i[contains(@class,'webicon-download downLoadFile')]"))
 li = driver.find_elements_by_xpath("//i[contains(@class,'webicon-download downLoadFile')]")
 print('课件总数', kjs)
-ran = random.randrange(15)  # 随机数
+ran = random.randrange(15)  # 随机数,前15个文件
 print('随机数', ran)
 li.pop(ran).click()  # Download
 print('下载课件!')
@@ -325,7 +325,7 @@ except NoSuchElementException as msg:
 else:
     key = len(driver.find_elements_by_xpath('//*[@id="removeFile"]'))
     print("答疑附件个数", key)
-    ran = random.randrange(0, key)
+    ran = random.randrange(key)
     print('随机数', ran)
     driver.find_elements_by_xpath('//*[@id="removeFile"]').pop(ran).click()
 time.sleep(1)
