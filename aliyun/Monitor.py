@@ -1,4 +1,6 @@
 # coding=utf-8
+import random
+
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time

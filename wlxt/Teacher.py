@@ -138,7 +138,7 @@ print('=====预览课件=====')
 time.sleep(5)
 str1 = driver.find_element_by_xpath("//tbody//tr[1]//td[8]//a[2]").get_attribute('class')
 print(str1)
-searchObj = re.search(r'disabled', str1, re.I)
+searchObj = re.search(r'disabled', str1, re.I)  # 正则表达式
 if searchObj is None:
     print('课件可以预览!')
     driver.find_element_by_xpath("//tbody//tr[1]//td[8]//a[2]").click()
@@ -244,8 +244,9 @@ if zy_geren == 'true' and jf_fz == 'true':  # 个人分值作业
         else:
             driver.find_element_by_xpath('//*[@id="attachment222"]/div[2]/a[2]').click()  # 下载学生的作业附件
         driver.find_element_by_xpath("//*[@id='cj']").clear()
-        geren_cj = random.randint(0, 100)
-        driver.find_element_by_xpath("//*[@id='cj']").send_keys(geren_cj)  # 打分
+        gr_cj = random.randint(0, 100)
+        print('成绩:', gr_cj)
+        driver.find_element_by_xpath("//*[@id='cj']").send_keys(gr_cj)  # 打分
         driver.find_element_by_xpath("//*[@id='documention']").clear()
         driver.find_element_by_xpath("//*[@id='documention']").send_keys('个人作业已阅')  # 填评语
         driver.find_element_by_id('fileupload').send_keys(
@@ -318,6 +319,7 @@ elif zy_zu == 'true' and jf_fz == 'true':  # 分值组作业
             driver.find_element_by_xpath('//*[@id="attachment2"]/div[2]/a[2]').click()  # 下载学生作业附件
         driver.find_element_by_id('resetPL').click()  # 重置
         zu_cj = random.randint(0, 100)
+        print('成绩：', zu_cj)
         driver.find_element_by_id('inputPL').send_keys(zu_cj)  # 打分
         driver.find_element_by_id('recommandPL').send_keys('组作业已阅')  # 填评语
         driver.find_element_by_id('setPL').click()  # 设定成绩
@@ -378,6 +380,47 @@ elif zy_zu == 'true' and jf_ffz == 'true':  # 非分值组作业
                 "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
 print('=====作业测试完毕=====')
 time.sleep(4)
+######################################################课程答疑###########################################################
+print('=====测试课程答疑=====')
+driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_kcdy"]').click()
+time.sleep(2)
+print('=====回答=====')
+driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[5]/a[1]').click()
+time.sleep(2)
+# CKeditor数学公式
+driver.find_element_by_xpath("//a[@id='cke_39']").click()
+js = "document.getElementsByClassName('cke_dialog_background_cover')[0].style.display = 'none'"
+driver.execute_script(js)
+time.sleep(1)
+driver.find_element_by_xpath('//a[@id="cke_459_uiElement"]').click()
+time.sleep(2)
+# 随机下载答疑附件
+print('下载答疑文件')
+try:
+    driver.find_element_by_xpath('//*[@id="removeFile"]')
+except NoSuchElementException as msg:
+    print('无答疑附件', msg)
+else:
+    key = len(driver.find_elements_by_xpath('//*[@id="removeFile"]'))
+    print("答疑附件个数", key)
+    ran = random.randrange(key)
+    print('随机数', ran)
+    driver.find_elements_by_xpath('//*[@id="removeFile"]').pop(ran).click()
+time.sleep(1)
+# 上传附件
+driver.find_element_by_xpath('//*[@id="fileupload"]').send_keys(r'D:/listening.pdf')  # modify
+time.sleep(1)
+driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
+try:
+    driver.find_element_by_css_selector(
+        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
+except NoSuchElementException as msg:
+    print('截图', msg)
+    driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'HD' + ".png")  # modify截图
+else:
+    print('弹框结果:' + driver.find_element_by_css_selector(
+        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+print('=====课程答疑测试完毕=====')
 ######################################################课程邮件##########################################################
 print('=====测试课程邮件=====')
 driver.find_element_by_xpath("//a[@id='wlxt_mail_yj_yjxxb']").click()

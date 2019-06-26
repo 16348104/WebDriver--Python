@@ -267,24 +267,24 @@ else:
     for i in Download:
         i.click()
 driver.execute_script(scroll)
-print('=====继续提问=====')
-driver.find_element_by_xpath('//a[@class="ml-10 show-textar"]').click()
-# CKeditor上传图片
-driver.find_element_by_xpath("//a[@id='cke_40']").click()
-os.system("D:/image.exe")
-time.sleep(3)
-driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
-time.sleep(2)
-try:
-    driver.find_element_by_css_selector(
-        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
-except NoSuchElementException as msg:
-    print('截图', msg)
-    driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'KCDY' + ".png")  # modify截图
-else:
-    print('弹框结果:' + driver.find_element_by_css_selector(
-        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
-time.sleep(3)
+# print('=====继续提问=====')
+# driver.find_element_by_xpath('//a[@class="ml-10 show-textar"]').click()
+# # CKeditor上传图片
+# driver.find_element_by_xpath("//a[@id='cke_40']").click()
+# os.system("D:/image.exe")
+# time.sleep(3)
+# driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
+# time.sleep(2)
+# try:
+#     driver.find_element_by_css_selector(
+#         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
+# except NoSuchElementException as msg:
+#     print('截图', msg)
+#     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'KCDY' + ".png")  # modify截图
+# else:
+#     print('弹框结果:' + driver.find_element_by_css_selector(
+#         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+# time.sleep(3)
 print('=====查看问题集锦=====')
 driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_kcdy"]').click()
 # driver.back()
@@ -325,7 +325,7 @@ except NoSuchElementException as msg:
 else:
     key = len(driver.find_elements_by_xpath('//*[@id="removeFile"]'))
     print("答疑附件个数", key)
-    ran = random.randint(0, key)
+    ran = random.randrange(0, key)
     print('随机数', ran)
     driver.find_elements_by_xpath('//*[@id="removeFile"]').pop(ran).click()
 time.sleep(1)
