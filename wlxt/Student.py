@@ -202,7 +202,7 @@ try:
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
 except NoSuchElementException as msg:
     print('截图', msg)
-    driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'KCDY' + ".png")  # modify截图
+    driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'TWDY' + ".png")  # modify截图
 else:
     print('弹框结果:' + driver.find_element_by_css_selector(
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
@@ -238,7 +238,7 @@ driver.execute_script(scroll)
 time.sleep(1)
 # Play Audio
 try:
-    driver.find_element_by_xpath("//p[@id='wtnr']//p//audio")
+    driver.find_element_by_xpath("//audio")
 except NoSuchElementException as msg_MP3:
     print('无音频文件', msg_MP3)
 else:
@@ -248,7 +248,7 @@ else:
     time.sleep(5)
 # Play Video
 try:
-    driver.find_element_by_xpath("//p[@id='wtnr']//p//video")
+    driver.find_element_by_xpath("//video")
 except NoSuchElementException as msg_MP4:
     print('无视频文件', msg_MP4)
 else:

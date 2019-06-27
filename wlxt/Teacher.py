@@ -23,8 +23,8 @@ def time_format():
 
 ######################################################登录网络学堂######################################################
 # 打开网络学堂
-# driver.get("http://wlxt160.thitc.cn")
-driver.get("http://learn.tsinghua.edu.cn")
+driver.get("http://wlxt160.thitc.cn")
+# driver.get("http://learn.tsinghua.edu.cn")
 driver.maximize_window()
 print("======登录网络学堂=====")
 print(driver.title)
@@ -34,12 +34,13 @@ ticks = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 tomorrow = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time() + 3600))
 print("当前时间戳为:", ticks)
 # print ("当前时间戳为:", tomorrow)
-driver.find_element_by_name("i_user").send_keys("")
-driver.find_element_by_name("i_pass").send_keys("")
+driver.find_element_by_name("i_user").send_keys("2004980847")
+driver.find_element_by_name("i_pass").send_keys("123")
 driver.find_element_by_id("loginButtonId").click()
 print(driver.title, "【第1个窗口】")
 time.sleep(1)
-driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  ##正式20740084-998,开发环境60240202-0
+# driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
+driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  # 开发环境60240202-0
 # 【切换到第二个窗口】
 window_1 = driver.current_window_handle  # 当前窗口句柄
 print('课程句柄:' + window_1)
@@ -384,21 +385,21 @@ time.sleep(2)
 # time.sleep(1)
 # Play Audio
 try:
-    driver.find_element_by_xpath("//p[@id='wtnr']//p//audio")
+    driver.find_element_by_xpath('//audio')
 except NoSuchElementException as msg_MP3:
     print('无音频文件', msg_MP3)
 else:
-    print('预览音频文件')
+    print('预览音频文件!')
     js_audio = "var audio = document.getElementsByTagName('audio')[0];audio.play();"
     driver.execute_script(js_audio)
     time.sleep(5)
 # Play Video
 try:
-    driver.find_element_by_xpath("//p[@id='wtnr']//p//video")
+    driver.find_element_by_xpath("//video")
 except NoSuchElementException as msg_MP4:
     print('无视频文件', msg_MP4)
 else:
-    print('预览视频文件')
+    print('预览视频文件!')
     js_video = "var video = document.getElementsByTagName('video')[0];video.play();"
     driver.execute_script(js_video)
     time.sleep(5)
@@ -420,7 +421,7 @@ driver.find_element_by_xpath("//a[@id='cke_39']").click()
 js = "document.getElementsByClassName('cke_dialog_background_cover')[0].style.display = 'none'"
 driver.execute_script(js)
 time.sleep(1)
-driver.find_element_by_xpath('//a[@id="cke_459_uiElement"]').click()
+driver.find_element_by_xpath("//a[contains(@class,'ok')]").click()
 time.sleep(2)
 # 上传附件
 driver.find_element_by_xpath('//*[@id="fileupload"]').send_keys(r'D:/listening.pdf')  # modify
@@ -436,9 +437,11 @@ except NoSuchElementException as msg:
 else:
     print('弹框结果:' + driver.find_element_by_css_selector(
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+time.sleep(5)
 print('=====编辑已回答问题=====')
 driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[2]').click()
 driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[7]/a[1]').click()
+time.sleep(1)
 driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
 time.sleep(1)
 try:
@@ -456,6 +459,7 @@ print('=====测试课程邮件=====')
 driver.find_element_by_xpath("//a[@id='wlxt_mail_yj_yjxxb']").click()
 time.sleep(2)
 print("=====浏览邮件=====")
+time.sleep(1)
 driver.find_element_by_xpath('//*[@id="list"]/tbody/tr[1]/td[2]/a').click()  # 浏览邮件
 driver.find_element_by_xpath('//*[@id="returnButton"]').click()
 time.sleep(2)
