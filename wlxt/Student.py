@@ -231,7 +231,7 @@ driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_kcdy"]').click()
 time.sleep(2)
 driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[2]').click()
 time.sleep(2)
-driver.find_element_by_xpath('//tr[1]//td[6]//a[1]').click()
+driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]//td[6]//a[1]').click()
 time.sleep(2)
 scroll = "document.documentElement.scrollTop = 10000;"
 driver.execute_script(scroll)

@@ -40,7 +40,7 @@ driver.get(
 time.sleep(3)
 driver.find_element_by_xpath("//span[contains(text(),'网络学堂应用服务监控2')]").click()
 time.sleep(10)
-# 截图
+print('截图')
 # driver.save_screenshot('/Users/xdx/Desktop/Monitor.png')  # mac
 driver.save_screenshot('C:/Users/zb/Downloads/FireShot/Monitor.png')
 current_time = time.strftime("%y-%m-%d %H:%M:%S", time.localtime(time.time()))
