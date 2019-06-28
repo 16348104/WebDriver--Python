@@ -244,7 +244,7 @@ except NoSuchElementException as msg_MP3:
 else:
     print('预览音频文件')
     js_audio = "var audio = document.getElementsByTagName('audio')[0];audio.play();"
-    driver.execute_script(js_audio)
+    driver.execute_script()
     time.sleep(5)
 # Play Video
 try:
