@@ -1,11 +1,16 @@
+import random
 import time
-
 from selenium import webdriver
-from selenium.common.exceptions import NoSuchElementException
+
+from selenium.common.exceptions import NoSuchElementException, UnexpectedAlertPresentException, TimeoutException, \
+    ElementNotInteractableException
 
 # browser = webdriver.Firefox()
-browser = webdriver.Ie()
+# browser = webdriver.Ie()
 # browser = webdriver.Chrome()
+
+browser = webdriver.Chrome(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/chromedriver')
+
 # browser = webdriver.Safari()
 browser.maximize_window()
 browser.get('http://www.dmzshequ.com')
@@ -23,22 +28,49 @@ def login(user, password):
     browser.find_element_by_name("password").send_keys(password)
 
 
+## 登录
 login('zijing228', 'yu123456')
+# login('milometer', 'ustb55')
 browser.find_element_by_xpath('//button[@name="loginsubmit"]').click()
-print('登录成功')
 browser.implicitly_wait(5)
-print('开始摇一摇!')
+print('登录成功!')
+browser.refresh()  # 刷新
+browser.implicitly_wait(1)
+##### 签到
+print("Dmz社区>", browser.find_element_by_xpath("//*[@id='pt']//a[2]").text)
+try:
+    browser.find_element_by_xpath("//ul[@class='qdsmile']//following-sibling::li")
+except NoSuchElementException as msg:
+    print('今天已签到!')
+    print(msg)
+else:
+    qdbq = len(browser.find_elements_by_xpath("//ul[@class='qdsmile']//following-sibling::li"))
+    ran_bq = random.randrange(qdbq)
+    xq = random.choice(['开心', '难过', '郁闷', '无聊', '发怒', '擦汗', '奋斗', '慵懒', '悲哀'])
+    print('签到头像:', ran_bq)
+    browser.find_elements_by_xpath("//ul[@class='qdsmile']//following-sibling::li").pop(ran_bq).click()
+    browser.implicitly_wait(1)
+    print('签到心情:', xq)
+    browser.find_element_by_id('todaysay').send_keys('今天', xq, '!')
+    browser.find_element_by_xpath("//*[@id='qiandao']/table[1]/tbody/tr/td/div/a").click()
 
+##### 摇一摇
 try:
     browser.find_element_by_xpath("//*[@id='zzza_tixing']/div[1]/div[1]/a")
-except NoSuchElementException as msg:
-    # print('今天已经摇过了!', msg)
-    print('今天已经摇过了!')
+except BaseException as exeption:
+    print('今天摇过了!')
+    print(exeption)
 else:
-    print('可以摇奖!')
     browser.find_element_by_xpath("//*[@id='zzza_tixing']/div[1]/div[1]/a").click()
+    # browser.switch_to_alert()
     browser.implicitly_wait(5)
-    browser.find_element_by_xpath("//*[@id='zzza_go']").click()
+    try:
+        browser.find_element_by_xpath("//*[@id='zzza_go']").click()
+    except UnexpectedAlertPresentException as msg_alert:
+        print(msg_alert)
+        print(browser.switch_to.alert.text)
+        browser.switch_to.alert.accept()
+    browser.implicitly_wait(3)
     browser.find_element_by_xpath('//*[@id="yyl-random-box"]/div[1]').click()
 print('今天任务已完成!')
 current_time = time.strftime("%y-%m-%d %H:%M:%S", time.localtime(time.time()))
