@@ -9,9 +9,9 @@ from selenium.common.exceptions import NoSuchElementException, UnexpectedAlertPr
 # browser = webdriver.Ie()
 # browser = webdriver.Chrome()
 
-browser = webdriver.Chrome(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/chromedriver')
+# browser = webdriver.Chrome(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/chromedriver')
 
-# browser = webdriver.Safari()
+browser = webdriver.Safari()
 browser.maximize_window()
 browser.get('http://www.dmzshequ.com')
 # browser.get('http://www.dmzshequ.com/plugin.php?id=dsu_paulsign:sign')#直接登录
@@ -40,9 +40,10 @@ browser.implicitly_wait(1)
 print("Dmz社区>", browser.find_element_by_xpath("//*[@id='pt']//a[2]").text)
 try:
     browser.find_element_by_xpath("//ul[@class='qdsmile']//following-sibling::li")
-except NoSuchElementException as msg:
+    # except NoSuchElementException as msg:
+except BaseException :
     print('今天已签到!')
-    print(msg)
+    print(BaseException)
 else:
     qdbq = len(browser.find_elements_by_xpath("//ul[@class='qdsmile']//following-sibling::li"))
     ran_bq = random.randrange(qdbq)
@@ -57,17 +58,18 @@ else:
 ##### 摇一摇
 try:
     browser.find_element_by_xpath("//*[@id='zzza_tixing']/div[1]/div[1]/a")
-except BaseException as exeption:
+except BaseException:
     print('今天摇过了!')
-    print(exeption)
+    print(BaseException)
 else:
     browser.find_element_by_xpath("//*[@id='zzza_tixing']/div[1]/div[1]/a").click()
     # browser.switch_to_alert()
     browser.implicitly_wait(5)
     try:
         browser.find_element_by_xpath("//*[@id='zzza_go']").click()
-    except UnexpectedAlertPresentException as msg_alert:
-        print(msg_alert)
+    # except UnexpectedAlertPresentException as msg_alert:
+    except BaseException:
+        print(BaseException)
         print(browser.switch_to.alert.text)
         browser.switch_to.alert.accept()
     browser.implicitly_wait(3)
