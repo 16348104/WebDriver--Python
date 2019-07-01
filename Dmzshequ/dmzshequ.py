@@ -7,11 +7,11 @@ from selenium.common.exceptions import NoSuchElementException, UnexpectedAlertPr
 
 # browser = webdriver.Firefox()
 # browser = webdriver.Ie()
-# browser = webdriver.Chrome()
+browser = webdriver.Chrome()
 
 # browser = webdriver.Chrome(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/chromedriver')
 
-browser = webdriver.Safari()
+# browser = webdriver.Safari()
 browser.maximize_window()
 browser.get('http://www.dmzshequ.com')
 # browser.get('http://www.dmzshequ.com/plugin.php?id=dsu_paulsign:sign')#直接登录
@@ -19,7 +19,7 @@ browser.implicitly_wait(3)
 print('登录Dmz社区!')
 print(browser.title)
 print('浏览器:' + browser.name)
-time.sleep(2)
+time.sleep(1)
 browser.find_element_by_xpath("//a[@class='deandengluanniu']").click()
 
 
@@ -29,12 +29,13 @@ def login(user, password):
 
 
 ## 登录
-# login('zijing228', 'yu123456')
-login('milometer', 'ustb55')
+login('zijing228', 'yu123456')
+# login('milometer', 'ustb55')
 # browser.implicitly_wait(2)
 browser.find_element_by_xpath('//button[@name="loginsubmit"]').click()
-time.sleep(3)
-print('登录成功!')
+time.sleep(1)
+print(browser.find_element_by_xpath('//*[@id="fwin_dialog"]//p').text)
+# print('登录成功!')
 browser.refresh()  # 刷新
 ##### 签到
 time.sleep(3)
