@@ -7,11 +7,11 @@ from selenium.common.exceptions import NoSuchElementException, UnexpectedAlertPr
 
 # browser = webdriver.Firefox()
 # browser = webdriver.Ie()
-# browser = webdriver.Chrome()
+browser = webdriver.Chrome()
 
 # browser = webdriver.Chrome(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/chromedriver')
 
-browser = webdriver.Safari()
+# browser = webdriver.Safari()
 browser.maximize_window()
 browser.get('http://www.dmzshequ.com')
 # browser.get('http://www.dmzshequ.com/plugin.php?id=dsu_paulsign:sign')#直接登录
@@ -34,29 +34,30 @@ login('milometer', 'ustb55')
 browser.find_element_by_xpath('//button[@name="loginsubmit"]').click()
 time.sleep(1)
 print(browser.find_element_by_xpath('//*[@id="fwin_dialog"]//p').text)
-# print('登录成功!')
 browser.refresh()  # 刷新
-##### 签到
-time.sleep(3)
-print("Dmz社区>", browser.find_element_by_xpath("//*[@id='pt']//a[2]").text)
-try:
-    browser.find_element_by_xpath("//ul[@class='qdsmile']//following-sibling::li")
-    # except NoSuchElementException as msg:
-except BaseException:
-    print('今天已签到!')
-    print(BaseException)
-else:
-    qdbq = len(browser.find_elements_by_xpath("//ul[@class='qdsmile']//following-sibling::li"))
-    ran_bq = random.randrange(qdbq)
-    xq = random.choice(['开心', '难过', '郁闷', '无聊', '发怒', '擦汗', '奋斗', '慵懒', '悲哀'])
-    print('签到头像:', ran_bq)
-    browser.find_elements_by_xpath("//ul[@class='qdsmile']//following-sibling::li").pop(ran_bq).click()
-    browser.implicitly_wait(1)
-    print('签到心情:', xq)
-    browser.find_element_by_id('todaysay').send_keys('今天', xq, '!')
-    time.sleep(3)
-    browser.find_element_by_xpath("//*[@id='qiandao']/table[1]/tbody/tr/td/div/a").click()
+time.sleep(1)
+# ##### 签到
+# time.sleep(3)
+# print("Dmz社区>", browser.find_element_by_xpath("//*[@id='pt']//a[2]").text)
+# try:
+#     browser.find_element_by_xpath("//ul[@class='qdsmile']//following-sibling::li")
+#     # except NoSuchElementException as msg:
+# except BaseException:
+#     print('今天已签到!')
+#     print(BaseException)
+# else:
+#     qdbq = len(browser.find_elements_by_xpath("//ul[@class='qdsmile']//following-sibling::li"))
+#     ran_bq = random.randrange(qdbq)
+#     xq = random.choice(['开心', '难过', '郁闷', '无聊', '发怒', '擦汗', '奋斗', '慵懒', '悲哀'])
+#     print('签到头像:', ran_bq)
+#     browser.find_elements_by_xpath("//ul[@class='qdsmile']//following-sibling::li").pop(ran_bq).click()
+#     browser.implicitly_wait(1)
+#     print('签到心情:', xq)
+#     browser.find_element_by_id('todaysay').send_keys('今天', xq, '!')
+#     time.sleep(3)
+#     browser.find_element_by_xpath("//*[@id='qiandao']/table[1]/tbody/tr/td/div/a").click()
 ##### 摇一摇
+browser.find_element_by_xpath('//*[@id="mn_N63be_menu"]/li[1]/a').click()
 time.sleep(5)
 try:
     browser.find_element_by_xpath("//*[@id='zzza_tixing']/div[1]/div[1]/a")
