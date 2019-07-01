@@ -54,6 +54,7 @@ else:
     browser.implicitly_wait(1)
     print('签到心情:', xq)
     browser.find_element_by_id('todaysay').send_keys('今天', xq, '!')
+    time.sleep(1)
     browser.find_element_by_xpath("//*[@id='qiandao']/table[1]/tbody/tr/td/div/a").click()
 ##### 摇一摇
 time.sleep(5)
