@@ -1,7 +1,9 @@
 import random
 import time
+import smtplib
 from selenium import webdriver
-
+from email.header import Header
+from email.mime.text import MIMEText
 from selenium.common.exceptions import NoSuchElementException, UnexpectedAlertPresentException, TimeoutException, \
     ElementNotInteractableException
 
@@ -21,6 +23,7 @@ print(browser.title)
 print('浏览器:' + browser.name)
 time.sleep(1)
 browser.find_element_by_xpath("//a[@class='deandengluanniu']").click()
+time.sleep(1)
 
 
 def login(user, password):
@@ -29,61 +32,95 @@ def login(user, password):
 
 
 ## 登录
-# login('zijing228', 'yu123456')
-login('milometer', 'ustb55')
+login('zijing228', 'yu123456')
+# login('milometer', 'ustb55')
 browser.find_element_by_xpath('//button[@name="loginsubmit"]').click()
 time.sleep(1)
 print(browser.find_element_by_xpath('//*[@id="fwin_dialog"]//p').text)
 browser.refresh()  # 刷新
-time.sleep(1)
-# ##### 签到
-# time.sleep(3)
-# print("Dmz社区>", browser.find_element_by_xpath("//*[@id='pt']//a[2]").text)
-# try:
-#     browser.find_element_by_xpath("//ul[@class='qdsmile']//following-sibling::li")
-#     # except NoSuchElementException as msg:
-# except BaseException:
-#     print('今天已签到!')
-#     print(BaseException)
-# else:
-#     qdbq = len(browser.find_elements_by_xpath("//ul[@class='qdsmile']//following-sibling::li"))
-#     ran_bq = random.randrange(qdbq)
-#     xq = random.choice(['开心', '难过', '郁闷', '无聊', '发怒', '擦汗', '奋斗', '慵懒', '悲哀'])
-#     print('签到头像:', ran_bq)
-#     browser.find_elements_by_xpath("//ul[@class='qdsmile']//following-sibling::li").pop(ran_bq).click()
-#     browser.implicitly_wait(1)
-#     print('签到心情:', xq)
-#     browser.find_element_by_id('todaysay').send_keys('今天', xq, '!')
-#     time.sleep(3)
-#     browser.find_element_by_xpath("//*[@id='qiandao']/table[1]/tbody/tr/td/div/a").click()
-##### 摇一摇
-browser.find_element_by_xpath('//*[@id="mn_N63be_menu"]/li[1]/a').click()
-time.sleep(5)
+time.sleep(3)
+print("Dmz社区>", browser.find_element_by_xpath("//*[@id='pt']//a[2]").text)
 try:
-    browser.find_element_by_xpath("//*[@id='zzza_tixing']/div[1]/div[1]/a")
+    browser.find_element_by_xpath("//ul[@class='qdsmile']//following-sibling::li")
+    # except NoSuchElementException as msg:
 except BaseException:
-    print('今天摇过了!')
+    print('今天已签到!')
     print(BaseException)
 else:
-    print(browser.find_element_by_xpath("//*[@id='zzza_tixing']/div[1]/div[1]/a").text)
-    browser.find_element_by_xpath("//*[@id='zzza_tixing']/div[1]/div[1]/a").click()
-    # browser.switch_to_alert()
+    qdbq = len(browser.find_elements_by_xpath("//ul[@class='qdsmile']//following-sibling::li"))
+    ran_bq = random.randrange(qdbq)
+    xq = random.choice(['开心', '难过', '郁闷', '无聊', '发怒', '擦汗', '奋斗', '慵懒', '悲哀'])
+    print('签到头像:', ran_bq)
+    browser.find_elements_by_xpath("//ul[@class='qdsmile']//following-sibling::li").pop(ran_bq).click()
+    browser.implicitly_wait(1)
+    print('签到心情:', xq)
+    browser.find_element_by_id('todaysay').send_keys('今天', xq, '!')
+    time.sleep(3)
+    browser.find_element_by_xpath("//*[@id='qiandao']/table[1]/tbody/tr/td/div/a").click()
+
+##### 摇一摇
+# browser.find_element_by_xpath('//*[@id="mn_N63be_menu"]/li[1]/a').click()
+# try:
+#     browser.find_element_by_xpath("//*[@id='zzza_tixing']/div[1]/div[1]/a")
+# except BaseException:
+#     print('今天摇过了!')
+#     print(BaseException)
+# else:
+#     print(browser.find_element_by_xpath("//*[@id='zzza_tixing']/div[1]/div[1]/a").text)
+#     browser.find_element_by_xpath("//*[@id='zzza_tixing']/div[1]/div[1]/a").click()
+#     # browser.switch_to_alert()
+#     time.sleep(5)
+#     try:
+#         print(browser.find_element_by_xpath("//*[@id='zzza_go']").text)
+#         browser.find_element_by_xpath("//*[@id='zzza_go']").click()  # 摇金币
+#         time.sleep(1)
+#     # except UnexpectedAlertPresentException as msg_alert:
+#     except BaseException:
+#         print(BaseException)
+#         print(browser.switch_to.alert.text)  # 如果签到不成功，接受摇金币时弹出alter
+#         browser.switch_to.alert.accept()
+#     else:
+#         pass
+#         # time.sleep(5)
+#         # browser.find_element_by_xpath('//*[@id="yyl-random-box"]/div[1]').click()
+browser.get('http://www.dmzshequ.com/plugin.php?id=yinxingfei_zzza:yinxingfei_zzza_hall')
+date = browser.find_element_by_xpath("//a[@class='zzza_hall_bottom_right_yjan_btn11']").text
+# print(date)
+if (date == '已经摇过'):
+    browser.find_element_by_xpath("//a[@class='zzza_hall_bottom_right_yjan_btn11']").click()
+    print(browser.switch_to.alert.text)
+    browser.switch_to.alert.accept()
+else:
+    browser.find_element_by_xpath("//a[@class='zzza_hall_bottom_right_yjan_btn11']").click()
+    time.sleep(1)
+    print(browser.find_element_by_xpath("//*[@id='zzza_go']").text)
+    browser.find_element_by_xpath("//*[@id='zzza_go']").click()  # 摇金币
     time.sleep(5)
-    try:
-        print(browser.find_element_by_xpath("//*[@id='zzza_go']").text)
-        browser.find_element_by_xpath("//*[@id='zzza_go']").click()  # 摇金币
-        time.sleep(1)
-    # except UnexpectedAlertPresentException as msg_alert:
-    except BaseException:
-        print(BaseException)
-        print(browser.switch_to.alert.text)  # 如果签到不成功，接受摇金币时弹出alter
-        browser.switch_to.alert.accept()
-    else:
-        pass
-        # time.sleep(5)
-        # browser.find_element_by_xpath('//*[@id="yyl-random-box"]/div[1]').click()
+    browser.find_element_by_xpath('//*[@id="yyl-random-box"]/div[1]').click()
 time.sleep(5)
 print('今天任务已完成!')
 current_time = time.strftime("%y-%m-%d %H:%M:%S", time.localtime(time.time()))
 print('在', current_time, '退出Dmz社区')
 browser.close()
+##发邮件
+print('去发邮件!')
+smtpsever = 'smtp.126.com'
+password = 'xdx2019'
+user = 'xiaodaxing@126.com'
+sender = 'xiaodaxing@126.com'
+# receiver = 'pkucrjy2013@163.com'#modify
+receiver = 'zijing228@126.com'
+subject = 'Dmz'
+msg = MIMEText('<html><h3>Hello,<br>Our task is done.</h3></html>', 'html', 'utf-8')
+msg['Subject'] = Header(subject, 'utf-8')
+msg['From'] = user
+msg['To'] = receiver
+# msg['To'] = receiver2
+smtp = smtplib.SMTP()
+smtp.set_debuglevel(1)
+smtp.connect(smtpsever, 25)
+smtp.login(user, password)
+smtp.sendmail(sender, receiver, msg.as_string())
+smtp.quit()
+print('email has send out!')
+
