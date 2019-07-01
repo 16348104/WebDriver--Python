@@ -31,7 +31,6 @@ def login(user, password):
 ## 登录
 # login('zijing228', 'yu123456')
 login('milometer', 'ustb55')
-# browser.implicitly_wait(2)
 browser.find_element_by_xpath('//button[@name="loginsubmit"]').click()
 time.sleep(1)
 print(browser.find_element_by_xpath('//*[@id="fwin_dialog"]//p').text)
