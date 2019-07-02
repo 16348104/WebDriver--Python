@@ -335,8 +335,6 @@ time.sleep(3)
 # print('=====测试课程邮件=====')
 # driver.find_element_by_xpath("//a[@id='wlxt_mail_yj_yjxxb']").click()
 # time.sleep(2)
-# driver.find_element_by_xpath('//*[@id="list"]/tbody/tr[1]/td[2]/a').click()  # 浏览邮件
-# driver.find_element_by_id('returnButton').click()
 # driver.find_element_by_xpath('//span[@class="rt right"]/child::a').click()  # 去发邮件
 # addresses = driver.find_elements_by_xpath("//span[contains(@class,'text-icon')]")
 # for i in addresses:
@@ -369,9 +367,12 @@ time.sleep(3)
 # time.sleep(1)
 # print('弹框结果:' + driver.find_element_by_css_selector(
 #     "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+# time.sleep(4)
+# print('浏览邮件')
+# driver.find_element_by_xpath('//*[@id="list"]/tbody/tr[1]/td[2]/a').click()  # 浏览邮件
+# driver.find_element_by_id('returnButton').click()
 # print('=====邮件测试完毕=====')
 # time.sleep(5)
-
 ##################################################退出网络学堂############################################################
 driver.find_element_by_xpath("//i[@class='webicon-out']").click()
 time.sleep(2)
