@@ -470,12 +470,12 @@ driver.find_element_by_id("submitButton").click()
 time.sleep(1)
 print('弹框结果:' + driver.find_element_by_css_selector(
     "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
-print('=====邮件测试完毕=====')
 time.sleep(4)
 print("=====浏览邮件=====")
 driver.find_element_by_xpath('//*[@id="list"]/tbody/tr[1]/td[2]/a').click()  # 浏览邮件
 driver.find_element_by_xpath('//*[@id="returnButton"]').click()
 time.sleep(2)
+print('=====邮件测试完毕=====')
 ##################################################退出网络学堂##########################################################
 driver.find_element_by_xpath("//i[@class='webicon-out']").click()
 time.sleep(1)
