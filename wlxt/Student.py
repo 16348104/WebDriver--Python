@@ -158,7 +158,7 @@ time.sleep(1)
 try:
     driver.find_element_by_xpath('//input[@id="saveBtn"]')
 except NoSuchElementException:
-    print('作业过期了')
+    print('作业过期不能提交了')
     print(NoSuchElementException)
 else:
     driver.find_element_by_xpath('//input[@id="saveBtn"]').click()
