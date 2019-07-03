@@ -467,7 +467,7 @@ driver.find_element_by_xpath('//*[@id="myTags"]/li/input').send_keys('wlxt@tsing
 time.sleep(1)
 driver.find_element_by_id("bt").send_keys(ticks + "网络学堂自动测试:教师端系统正常")
 driver.find_element_by_id("submitButton").click()
-time.sleep(1)
+time.sleep(2)
 print('弹框结果:' + driver.find_element_by_css_selector(
     "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
 time.sleep(4)
