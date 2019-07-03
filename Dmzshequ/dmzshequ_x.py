@@ -4,8 +4,7 @@ import smtplib
 from selenium import webdriver
 from email.header import Header
 from email.mime.text import MIMEText
-from selenium.common.exceptions import NoSuchElementException, UnexpectedAlertPresentException, TimeoutException, \
-    ElementNotInteractableException
+from selenium.common.exceptions import NoSuchElementException, UnexpectedAlertPresentException, TimeoutException,ElementNotInteractableException
 
 # browser = webdriver.Firefox()
 # browser = webdriver.Ie()
@@ -14,8 +13,8 @@ browser = webdriver.Chrome()
 # browser = webdriver.Chrome(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/chromedriver')
 
 # browser = webdriver.Safari()
-browser.maximize_window()
 browser.get('http://www.dmzshequ.com')
+browser.maximize_window()
 # browser.get('http://www.dmzshequ.com/plugin.php?id=dsu_paulsign:sign')#直接登录
 browser.implicitly_wait(3)
 print('登录Dmz社区!')
