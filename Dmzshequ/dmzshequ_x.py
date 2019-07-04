@@ -107,8 +107,6 @@ else:
 time.sleep(5)
 score = browser.find_element_by_xpath('//*[@id="nv_plugin"]/div[8]//ul/li[2]/span[2]').text
 print('获得:', score)
-# print(type(score))
-# str1 = str(score)
 print('今天任务已完成!')
 current_time = time.strftime("%y-%m-%d %H:%M:%S", time.localtime(time.time()))
 print('在', current_time, '退出Dmz社区')
