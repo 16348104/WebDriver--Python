@@ -4,7 +4,8 @@ import smtplib
 from selenium import webdriver
 from email.header import Header
 from email.mime.text import MIMEText
-from selenium.common.exceptions import NoSuchElementException, UnexpectedAlertPresentException, TimeoutException,ElementNotInteractableException
+from selenium.common.exceptions import NoSuchElementException, UnexpectedAlertPresentException, TimeoutException, \
+    ElementNotInteractableException
 
 # browser = webdriver.Firefox()
 # browser = webdriver.Ie()
@@ -104,7 +105,10 @@ else:
     # 关闭对话框
     browser.find_element_by_xpath('//*[@id="yyl-random-box"]/div[1]').click()
 time.sleep(5)
-print(browser.find_element_by_xpath('//*[@class="zzza_hall_bottom_right_yjan_title"]//p').text)
+score = browser.find_element_by_xpath('//*[@id="nv_plugin"]/div[8]//ul/li[2]/span[2]').text
+print('获得:', score)
+# print(type(score))
+# str1 = str(score)
 print('今天任务已完成!')
 current_time = time.strftime("%y-%m-%d %H:%M:%S", time.localtime(time.time()))
 print('在', current_time, '退出Dmz社区')
@@ -115,10 +119,11 @@ smtpsever = 'smtp.126.com'
 password = 'xdx2019'
 user = 'xiaodaxing@126.com'
 sender = 'xiaodaxing@126.com'
-receiver = 'pkucrjy2013@163.com'  # modify
-# receiver = 'zijing228@126.com'
-subject = 'Dmz'
-msg = MIMEText('<html><h3>Hello,<br>Our task is done.</h3></html>', 'html', 'utf-8')
+# receiver = 'pkucrjy2013@163.com'  # modify
+receiver = 'xdx2016@tsinghua.edu.cn'
+subject = 'Dmz' + ":" + score
+mail_msg = '<html><h3>Hello,<br>Our task is done.</h3></html>'
+msg = MIMEText(mail_msg, 'html', 'utf-8')
 msg['Subject'] = Header(subject, 'utf-8')
 msg['From'] = user
 msg['To'] = receiver
@@ -129,4 +134,4 @@ smtp.connect(smtpsever, 25)
 smtp.login(user, password)
 smtp.sendmail(sender, receiver, msg.as_string())
 smtp.quit()
-print('email has send out!')
+print('Email has send out!')
