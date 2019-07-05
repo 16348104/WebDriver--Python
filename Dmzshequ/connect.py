@@ -31,6 +31,7 @@ time.sleep(2)
 date = browser.find_element_by_xpath('//*[@id="usage_flux"]').text
 print(date)
 os.system("python E:/163study/WebDriver--Python/Example/send_mail.py")
+print("连网中")
 time.sleep(120)
 # 断网
 time.sleep(1)
