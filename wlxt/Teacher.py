@@ -2,6 +2,9 @@
 import re
 import time
 import random
+import win32gui
+import win32con
+import win32api
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
@@ -19,6 +22,24 @@ driver = webdriver.Chrome()
 def time_format():
     current_time = time.strftime("%y-%m-%d %H-%M-%S", time.localtime(time.time()))
     return current_time
+
+
+class WinUpLoadFile:
+
+    def winUpLoadFile(self, file_path, title):
+        # 一级顶层窗口，此处title为上传窗口名称，浏览器不一样上传窗口名称不一样
+        dialog = win32gui.FindWindow("#32770", title)
+        # 二级窗口
+        ComboBoxEx32 = win32gui.FindWindowEx(dialog, 0, "ComboBoxEx32", None)
+        # 三级窗口
+        comboBox = win32gui.FindWindowEx(ComboBoxEx32, 0, "ComboBox", None)
+        # 四级窗口
+        edit = win32gui.FindWindowEx(comboBox, 0, 'Edit', None)
+        button = win32gui.FindWindowEx(dialog, 0, 'Button', None)
+        # 执行操作 输入文件路径
+        win32gui.SendMessage(edit, win32con.WM_SETTEXT, None, file_path)
+        # 点击打开上传文件
+        win32gui.SendMessage(dialog, win32con.WM_COMMAND, 1, button)
 
 
 ######################################################登录网络学堂######################################################
@@ -423,11 +444,29 @@ driver.execute_script(js)
 time.sleep(1)
 driver.find_element_by_xpath("//a[contains(@class,'ok')]").click()
 time.sleep(2)
+driver.execute_script("document.documentElement.scrollTop = 10000;")  # 滚动条
+# CKeditor音频文件
+driver.find_element_by_xpath("//a[@id='cke_41']").click()
+time.sleep(3)
+# # win32gui
+# dialog = win32gui.FindWindow('#32770', '打开')  # 对话框
+# ComboBoxEx32 = win32gui.FindWindowEx(dialog, 0, 'ComboBoxEx32', None)
+# ComboBox = win32gui.FindWindowEx(ComboBoxEx32, 0, 'ComboBox', None)
+# Edit = win32gui.FindWindowEx(ComboBox, 0, 'Edit', None)  # 上面三句依次寻找对象，直到找到输入框Edit对象的句柄
+# button = win32gui.FindWindowEx(dialog, 0, 'Button', None)  # 确定按钮Button
+# time.sleep(2)
+# win32gui.SendMessage(Edit, win32con.WM_SETTEXT, 0, "D:\Artists.mp3")  # 往输入框输入绝对地址D:\
+# time.sleep(2)
+# win32gui.SendMessage(dialog, win32con.WM_COMMAND, 1, button)  # 按button
+if __name__ == "__main__":
+    WinUpLoadFile().winUpLoadFile("D:\mov.mp4", "打开")
+time.sleep(5)
+
 # 上传附件
 driver.find_element_by_xpath('//*[@id="fileupload"]').send_keys(r'D:/listening.pdf')  # modify
 time.sleep(1)
-driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
-time.sleep(1)
+# driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
+time.sleep(2)
 try:
     driver.find_element_by_css_selector(
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
@@ -439,7 +478,10 @@ else:
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
 time.sleep(5)
 print('=====编辑已回答问题=====')
+# 切换标签
 driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[2]').click()
+time.sleep(1)
+# 点编辑
 driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[7]/a[1]').click()
 time.sleep(1)
 driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
@@ -455,27 +497,26 @@ else:
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
 print('=====课程答疑测试完毕=====')
 ######################################################课程邮件##########################################################
-print('=====测试课程邮件=====')
-driver.find_element_by_xpath("//a[@id='wlxt_mail_yj_yjxxb']").click()
-time.sleep(2)
-print('=====发邮件=====')
-# # driver.get("http://learn.tsinghua.edu.cn/f/wlxt/mail/yj_yjxxb/teacher/beforeAdd?wlkcid=2018-2019-226ef84e7689589e901689906e324686a")
-driver.find_element_by_xpath('//span[@class="rt right"]/child::a').click()
-# driver.find_element_by_class_name("ui-autocomplete-input").send_keys(
-# #     "xiesp@tsinghua.edu.cn,chc@tsinghua.edu.cn,wlxt@tsinghua.edu.cn,dj1005@tsinghua.edu.cn,zhongwenfeng@tsinghua.edu.cn")
-driver.find_element_by_xpath('//*[@id="myTags"]/li/input').send_keys('wlxt@tsinghua.edu.cn')
-time.sleep(1)
-driver.find_element_by_id("bt").send_keys(ticks + "网络学堂自动测试:教师端系统正常")
-driver.find_element_by_id("submitButton").click()
-time.sleep(2)
-print('弹框结果:' + driver.find_element_by_css_selector(
-    "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
-time.sleep(4)
-print("=====浏览邮件=====")
-driver.find_element_by_xpath('//*[@id="list"]/tbody/tr[1]/td[2]/a').click()  # 浏览邮件
-driver.find_element_by_xpath('//*[@id="returnButton"]').click()
-time.sleep(2)
-print('=====邮件测试完毕=====')
+# print('=====测试课程邮件=====')
+# driver.find_element_by_xpath("//a[@id='wlxt_mail_yj_yjxxb']").click()
+# time.sleep(2)
+# print('=====发邮件=====')
+# driver.find_element_by_xpath('//span[@class="rt right"]/child::a').click()
+# # driver.find_element_by_class_name("ui-autocomplete-input").send_keys(
+# #    "xiesp@tsinghua.edu.cn,chc@tsinghua.edu.cn,wlxt@tsinghua.edu.cn,dj1005@tsinghua.edu.cn,zhongwenfeng@tsinghua.edu.cn")
+# driver.find_element_by_xpath('//*[@id="myTags"]/li/input').send_keys('wlxt@tsinghua.edu.cn')
+# time.sleep(1)
+# driver.find_element_by_id("bt").send_keys(ticks + "网络学堂自动测试:教师端系统正常")
+# driver.find_element_by_id("submitButton").click()
+# time.sleep(2)
+# print('弹框结果:' + driver.find_element_by_css_selector(
+#     "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+# time.sleep(4)
+# print("=====浏览邮件=====")
+# driver.find_element_by_xpath('//*[@id="list"]/tbody/tr[1]/td[2]/a').click()  # 浏览邮件
+# driver.find_element_by_xpath('//*[@id="returnButton"]').click()
+# time.sleep(2)
+# print('=====邮件测试完毕=====')
 ##################################################退出网络学堂##########################################################
 driver.find_element_by_xpath("//i[@class='webicon-out']").click()
 time.sleep(1)

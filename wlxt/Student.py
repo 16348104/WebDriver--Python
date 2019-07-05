@@ -28,15 +28,16 @@ def time_format():
 ##################################################登录网络学堂###########################################################
 print("======登录网络学堂=====")
 print('测试浏览器:' + driver.name)
-driver.get('http://learn.tsinghua.edu.cn')
+# driver.get('http://learn.tsinghua.edu.cn')
+driver.get("http://wlxt160.thitc.cn")
 driver.maximize_window()
 driver.implicitly_wait(2)
 print('登录后句柄:' + driver.current_window_handle)  # 登录网络学堂，【第一个窗口】
 driver.find_element_by_name('i_user').clear()
 driver.find_element_by_name('i_pass').clear()
 # time.sleep(30)
-driver.find_element_by_name('i_user').send_keys('')  # 键入用户名
-driver.find_element_by_name('i_pass').send_keys('')  # 键入密码
+driver.find_element_by_name('i_user').send_keys('2014013037')  # 键入用户名
+driver.find_element_by_name('i_pass').send_keys('123')  # 键入密码
 driver.find_element_by_id('loginButtonId').send_keys(Keys.ENTER)
 time.sleep(2)
 print(driver.title, "【第一个窗口】")
@@ -44,8 +45,8 @@ print(driver.title, "【第一个窗口】")
 #     driver.switch_to.alert.accept('日历服务漫游失败')
 # except UnexpectedAlertPresentException as msg:
 #     pass
-# driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  # 开发60240202-0
-driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
+driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  # 开发60240202-0
+# driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
 # 【切换到第二个窗口】
 window_1 = driver.current_window_handle  # 当前窗口句柄
 print('课程句柄:' + window_1)
@@ -150,39 +151,39 @@ print('=====登录成功=====')
 # print('=====课件测试完毕=====')
 # time.sleep(3)
 ####################################################课程作业############################################################
-print('=====测试课程作业=====')
-driver.find_element_by_xpath("//a[@id='wlxt_kczy_zy']").click()
-time.sleep(3)
-driver.find_element_by_xpath('//*[@id="wtj"]/tbody/tr[1]/td[2]/a').click()
-time.sleep(1)
-try:
-    driver.find_element_by_xpath('//input[@id="saveBtn"]')
-except NoSuchElementException:
-    print('作业过期不能提交了')
-    print(NoSuchElementException)
-else:
-    driver.find_element_by_xpath('//input[@id="saveBtn"]').click()
-    time.sleep(1)
-    print('去提交作业')
-    driver.find_element_by_xpath('//textarea[@id="s_documention"]')
-    js = "document.getElementById('s_documention').value= new Date().toLocaleDateString()"
-    driver.execute_script(js)
-    driver.find_element_by_id('fileupload').send_keys(r'D:/Homework.pdf')  # 上传文件modify
-    # driver.find_element_by_id('fileupload').send_keys(r'/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/readme.txt')  # Mac上传文件
-    driver.find_element_by_xpath("//input[@onclick='daijiao()']").click()
-    time.sleep(1)
-    try:
-        driver.find_element_by_css_selector(
-            "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
-    except NoSuchElementException as msg:
-        print('截图', msg)
-        driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'TJZY' + ".png")  # modify截图
-    else:
-        print('弹框结果:' + driver.find_element_by_css_selector(
-            "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
-
-print('=====作业测试完毕=====')
-time.sleep(4)
+# print('=====测试课程作业=====')
+# driver.find_element_by_xpath("//a[@id='wlxt_kczy_zy']").click()
+# time.sleep(3)
+# driver.find_element_by_xpath('//*[@id="wtj"]/tbody/tr[1]/td[2]/a').click()
+# time.sleep(1)
+# try:
+#     driver.find_element_by_xpath('//input[@id="saveBtn"]')
+# except NoSuchElementException:
+#     print('作业过期不能提交了')
+#     print(NoSuchElementException)
+# else:
+#     driver.find_element_by_xpath('//input[@id="saveBtn"]').click()
+#     time.sleep(1)
+#     print('去提交作业')
+#     driver.find_element_by_xpath('//textarea[@id="s_documention"]')
+#     js = "document.getElementById('s_documention').value= new Date().toLocaleDateString()"
+#     driver.execute_script(js)
+#     driver.find_element_by_id('fileupload').send_keys(r'D:/Homework.pdf')  # 上传文件modify
+#     # driver.find_element_by_id('fileupload').send_keys(r'/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/readme.txt')  # Mac上传文件
+#     driver.find_element_by_xpath("//input[@onclick='daijiao()']").click()
+#     time.sleep(1)
+#     try:
+#         driver.find_element_by_css_selector(
+#             "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
+#     except NoSuchElementException as msg:
+#         print('截图', msg)
+#         driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'TJZY' + ".png")  # modify截图
+#     else:
+#         print('弹框结果:' + driver.find_element_by_css_selector(
+#             "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+#
+# print('=====作业测试完毕=====')
+# time.sleep(4)
 
 ########################################################我的分组#########################################################
 # print('测试我的分组')
