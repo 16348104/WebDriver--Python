@@ -2,8 +2,8 @@ import time
 import os
 from selenium import webdriver
 
-browser = webdriver.Firefox()
-# # browser = webdriver.Ie()
+# browser = webdriver.Firefox()
+browser = webdriver.Ie()
 # browser = webdriver.Chrome()
 browser.get('https://net.tsinghua.edu.cn')
 browser.maximize_window()
@@ -31,7 +31,7 @@ time.sleep(2)
 date = browser.find_element_by_xpath('//*[@id="usage_flux"]').text
 print(date)
 os.system("python E:/163study/WebDriver--Python/Example/send_mail.py")
-time.sleep(60)
+time.sleep(120)
 # 断网
 time.sleep(1)
 js_disconnect = "do_logout();"
