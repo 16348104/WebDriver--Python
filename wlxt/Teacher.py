@@ -459,7 +459,6 @@ win32gui.SendMessage(Edit, win32con.WM_SETTEXT, None, "D:/mov.mp4")  # 往输入
 win32gui.PostMessage(dialog, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
 win32gui.PostMessage(dialog, win32con.WM_KEYUP, win32con.VK_RETURN, 0)
 
-
 # if __name__ == "__main__":
 #     WinUpLoadFile().winUpLoadFile("D:\mov.mp4", "打开")
 time.sleep(5)
