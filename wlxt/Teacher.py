@@ -119,7 +119,7 @@ time.sleep(2)
 print('=====发课件=====')
 driver.find_element_by_xpath('//span[@class="rt right"]/child::a').click()  # 上课件
 time.sleep(1)
-
+# 测试win32gui
 driver.find_element_by_xpath('//span[contains(text(),"添加附件（最大1G）")]').click()
 time.sleep(1)
 dialog = win32gui.FindWindow('#32770', '打开')
