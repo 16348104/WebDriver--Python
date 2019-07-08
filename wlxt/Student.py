@@ -25,6 +25,25 @@ def time_format():
     return current_time
 
 
+# pywin32
+def winUpLoadFile(file_path, title):
+    # 一级顶层窗口，此处title为上传窗口名称，浏览器不一样上传窗口名称不一样
+    dialog = win32gui.FindWindow("#32770", title)
+    # 二级窗口
+    ComboBoxEx32 = win32gui.FindWindowEx(dialog, 0, "ComboBoxEx32", None)
+    # 三级窗口
+    comboBox = win32gui.FindWindowEx(ComboBoxEx32, 0, "ComboBox", None)
+    # 四级窗口
+    edit = win32gui.FindWindowEx(comboBox, 0, 'Edit', None)
+    button = win32gui.FindWindowEx(dialog, 0, 'Button', None)
+    time.sleep(1)
+    # 执行操作 输入文件路径
+    win32gui.SendMessage(edit, win32con.WM_SETTEXT, None, file_path)
+    # 点击打开上传文件
+    time.sleep(1)
+    win32gui.SendMessage(dialog, win32con.WM_COMMAND, 1, button)
+
+
 ##################################################登录网络学堂###########################################################
 print("======登录网络学堂=====")
 print('测试浏览器:' + driver.name)
@@ -198,14 +217,28 @@ print('=====提问=====')
 driver.find_element_by_xpath('//*[@id="content"]//span[2]/a').click()
 time.sleep(1)
 driver.find_element_by_xpath('//*[@id="addFormId"]//div[2]/input[1]').send_keys(time_format() + '测试课程答疑')
-# 富文本音频
+# 富文本音频win32gui
 driver.find_element_by_xpath('//*[@id="cke_41"]').click()
-os.system("D:/Audio.exe")
-time.sleep(3)
-# 富文本视频
-driver.find_element_by_xpath('//*[@id="cke_41"]').click()
-os.system("D:/Video.exe")
+time.sleep(1)
+try:
+    winUpLoadFile("D:\Artists.mp3", "打开")
+except UnexpectedAlertPresentException as msg:
+    print(driver.switch_to.alert.text)
+    driver.switch_to.alert.accept()
+# AutoIt v3
+# os.system("D:/Audio.exe")
 time.sleep(5)
+# 富文本视频win32gui
+driver.find_element_by_xpath('//*[@id="cke_41"]').click()
+time.sleep(1)
+try:
+    winUpLoadFile("D:\mov.mp4", "打开")  # 往输入框输入绝对地址D:\modify
+except UnexpectedAlertPresentException as msg:
+    print(driver.switch_to.alert.text)
+    driver.switch_to.alert.accept()
+# AutoIt v3
+# os.system("D:/Video.exe")
+time.sleep(10)
 driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
 time.sleep(1)
 try:
@@ -244,8 +277,7 @@ driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[2]').click()
 time.sleep(2)
 driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]//td[6]//a[1]').click()
 time.sleep(2)
-scroll = "document.documentElement.scrollTop = 10000;"
-driver.execute_script(scroll)
+driver.execute_script("document.documentElement.scrollTop = 10000;")
 time.sleep(1)
 # Play Audio
 try:
@@ -255,7 +287,7 @@ except NoSuchElementException as msg_MP3:
 else:
     print('预览音频文件')
     js_audio = "var audio = document.getElementsByTagName('audio')[0];audio.play();"
-    driver.execute_script()
+    driver.execute_script(js_audio)
     time.sleep(5)
 # Play Video
 try:
@@ -277,7 +309,7 @@ else:
     Download = driver.find_elements_by_xpath('//*[@id="hfjg"]//a[@id="removeFile"]')
     for i in Download:
         i.click()
-driver.execute_script(scroll)
+driver.execute_script("document.documentElement.scrollTop = 10000;")
 # print('=====继续提问=====')
 # driver.find_element_by_xpath('//a[@class="ml-10 show-textar"]').click()
 # # CKeditor上传图片
@@ -328,17 +360,17 @@ else:
     driver.execute_script(js_video)
     time.sleep(5)
 # 随机下载答疑附件
-print('下载问题集锦文件')
-try:
-    driver.find_element_by_xpath('//*[@id="removeFile"]')
-except NoSuchElementException as msg:
-    print('无答疑附件', msg)
-else:
-    key = len(driver.find_elements_by_xpath('//*[@id="removeFile"]'))
-    print("答疑附件个数", key)
-    ran = random.randrange(key)
-    print('随机数', ran)
-    driver.find_elements_by_xpath('//*[@id="removeFile"]').pop(ran).click()
+# print('下载问题集锦文件')
+# try:
+#     driver.find_element_by_xpath('//*[@id="removeFile"]')
+# except NoSuchElementException as msg:
+#     print('无答疑附件', msg)
+# else:
+#     key = len(driver.find_elements_by_xpath('//*[@id="removeFile"]'))
+#     print("答疑附件个数", key)
+#     ran = random.randrange(key)
+#     print('随机数', ran)
+#     driver.find_elements_by_xpath('//*[@id="removeFile"]').pop(ran).click()
 time.sleep(1)
 print('=====答疑测试完毕=====')
 time.sleep(3)

@@ -1,5 +1,6 @@
 # coding=utf-8
 import re
+import os
 import time
 import random
 import win32gui
@@ -25,25 +26,25 @@ def time_format():
 
 
 # class WinUpLoadFile:
-#
-#     def winUpLoadFile(self, file_path, title):
-#         # 一级顶层窗口，此处title为上传窗口名称，浏览器不一样上传窗口名称不一样
-#         dialog = win32gui.FindWindow("#32770", title)
-#         # 二级窗口
-#         ComboBoxEx32 = win32gui.FindWindowEx(dialog, 0, "ComboBoxEx32", None)
-#         # 三级窗口
-#         comboBox = win32gui.FindWindowEx(ComboBoxEx32, 0, "ComboBox", None)
-#         # 四级窗口
-#         edit = win32gui.FindWindowEx(comboBox, 0, 'Edit', None)
-#         button = win32gui.FindWindowEx(dialog, 0, 'Button', None)
-#         # 执行操作 输入文件路径
-#         win32gui.SendMessage(edit, win32con.WM_SETTEXT, None, file_path)
-#         # 点击打开上传文件
-#         win32gui.SendMessage(dialog, win32con.WM_COMMAND, 1, button)
+# pywin32
+def winUpLoadFile(file_path, title):
+    # 一级顶层窗口，此处title为上传窗口名称，浏览器不一样上传窗口名称不一样
+    dialog = win32gui.FindWindow("#32770", title)
+    # 二级窗口
+    ComboBoxEx32 = win32gui.FindWindowEx(dialog, 0, "ComboBoxEx32", None)
+    # 三级窗口
+    comboBox = win32gui.FindWindowEx(ComboBoxEx32, 0, "ComboBox", None)
+    # 四级窗口
+    edit = win32gui.FindWindowEx(comboBox, 0, 'Edit', None)
+    button = win32gui.FindWindowEx(dialog, 0, 'Button', None)
+    # 执行操作 输入文件路径
+    win32gui.SendMessage(edit, win32con.WM_SETTEXT, None, file_path)
+    # 点击打开上传文件
+    win32gui.SendMessage(dialog, win32con.WM_COMMAND, 1, button)
 
 
 # if __name__ == "__main__":
-#     WinUpLoadFile().winUpLoadFile("D:\mov.mp4", "打开")
+#     Win32UpLoadFile().winUpLoadFile("D:\mov.mp4", "打开")
 ######################################################登录网络学堂######################################################
 # 打开网络学堂
 driver.get("http://wlxt160.thitc.cn")
@@ -115,12 +116,12 @@ time.sleep(2)
 # print('=====公告测试完毕=====')
 # time.sleep(4)
 ######################################################课程文件##########################################################
-print('=====测试课程文件=====')
-driver.find_element_by_xpath("//a[@id='wlxt_kj_wlkc_kjxxb']").click()
-time.sleep(2)
-print('=====发课件=====')
-driver.find_element_by_xpath('//span[@class="rt right"]/child::a').click()  # 上课件
-time.sleep(1)
+# print('=====测试课程文件=====')
+# driver.find_element_by_xpath("//a[@id='wlxt_kj_wlkc_kjxxb']").click()
+# time.sleep(2)
+# print('=====发课件=====')
+# driver.find_element_by_xpath('//span[@class="rt right"]/child::a').click()  # 上课件
+# time.sleep(1)
 # # 测试win32gui
 # driver.find_element_by_xpath('//span[contains(text(),"添加附件（最大1G）")]').click()
 # time.sleep(1)
@@ -457,19 +458,33 @@ else:
     ran = random.randrange(key)
     print('随机数', ran)
     driver.find_elements_by_xpath('//*[@id="removeFile"]').pop(ran).click()
-time.sleep(1)
-# CKeditor数学公式
-driver.find_element_by_xpath("//a[@id='cke_39']").click()
-js = "document.getElementsByClassName('cke_dialog_background_cover')[0].style.display = 'none'"
-driver.execute_script(js)
-time.sleep(1)
-driver.find_element_by_xpath("//a[contains(@class,'ok')]").click()
 time.sleep(2)
-driver.execute_script("document.documentElement.scrollTop = 10000;")  # 滚动条
-# CKeditor音频文件
+# CKeditor数学公式
+# driver.find_element_by_xpath("//a[@id='cke_39']").click()
+# js = "document.getElementsByClassName('cke_dialog_background_cover')[0].style.display = 'none'"
+# driver.execute_script(js)
+# time.sleep(1)
+# driver.find_element_by_xpath("//a[contains(@class,'ok')]").click()
+# time.sleep(2)
+# driver.execute_script("document.documentElement.scrollTop = 10000;")  # 滚动条
+# 富文本音频win32gui
 driver.find_element_by_xpath("//a[@id='cke_41']").click()
 time.sleep(1)
-# # win32gui
+winUpLoadFile("D:\Artists.mp3", "打开")
+# dialog = win32gui.FindWindow('#32770', '打开')  # 对话框
+# ComboBoxEx32 = win32gui.FindWindowEx(dialog, 0, 'ComboBoxEx32', None)
+# ComboBox = win32gui.FindWindowEx(ComboBoxEx32, 0, 'ComboBox', None)
+# Edit = win32gui.FindWindowEx(ComboBox, 0, 'Edit', None)  # 上面三句依次寻找对象，直到找到输入框Edit对象的句柄
+# button = win32gui.FindWindowEx(dialog, 0, 'Button', None)  # 确定按钮Button
+# win32gui.SendMessage(Edit, win32con.WM_SETTEXT, None, "D:\Artists.mp3")  # 往输入框输入绝对地址D:\
+# win32gui.SendMessage(dialog, win32con.WM_COMMAND, 1, button)  # 按button
+# win32gui.PostMessage(dialog, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
+# win32gui.PostMessage(dialog, win32con.WM_KEYUP, win32con.VK_RETURN, 0)
+time.sleep(5)
+# 富文本视频win32gui
+driver.find_element_by_xpath('//*[@id="cke_41"]').click()
+time.sleep(1)
+winUpLoadFile("D:\mov.mp4", "打开")  # 往输入框输入绝对地址D:\modify
 # dialog = win32gui.FindWindow('#32770', '打开')  # 对话框
 # ComboBoxEx32 = win32gui.FindWindowEx(dialog, 0, 'ComboBoxEx32', None)
 # ComboBox = win32gui.FindWindowEx(ComboBoxEx32, 0, 'ComboBox', None)
@@ -477,16 +492,9 @@ time.sleep(1)
 # button = win32gui.FindWindowEx(dialog, 0, 'Button', None)  # 确定按钮Button
 # win32gui.SendMessage(Edit, win32con.WM_SETTEXT, None, "D:\mov.mp4")  # 往输入框输入绝对地址D:\
 # win32gui.SendMessage(dialog, win32con.WM_COMMAND, 1, button)  # 按button
-# # win32gui.PostMessage(dialog, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
-# # win32gui.PostMessage(dialog, win32con.WM_KEYUP, win32con.VK_RETURN, 0)
-
+# os.system("D:/Video.exe")  # modify
 time.sleep(5)
-
-# 上传附件
-driver.find_element_by_xpath('//*[@id="fileupload"]').send_keys(r'D:/listening.pdf')  # modify
-# driver.find_element_by_xpath('//*[@id="editFormId"]/div[2]/div/div[1]/label/div/span').click()
-time.sleep(1)
-# driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
+driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
 time.sleep(2)
 try:
     driver.find_element_by_css_selector(
@@ -498,6 +506,8 @@ else:
     print('弹框结果:' + driver.find_element_by_css_selector(
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
 time.sleep(5)
+# driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_kcdy"]').click()
+# time.sleep(2)
 print('=====编辑已回答问题=====')
 # 切换标签
 driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[2]').click()
@@ -505,6 +515,8 @@ time.sleep(1)
 # 点编辑
 driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[7]/a[1]').click()
 time.sleep(1)
+# 上传附件
+driver.find_element_by_xpath('//*[@id="fileupload"]').send_keys(r'D:/listening.pdf')  # modify
 driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
 time.sleep(1)
 try:
@@ -516,7 +528,51 @@ except NoSuchElementException as msg:
 else:
     print('弹框结果:' + driver.find_element_by_css_selector(
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+time.sleep(5)
+print('=====查看问题集锦=====')
+# driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_kcdy"]').click()
+# time.sleep(2)
+# 切换标签
+driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[3]').click()
+time.sleep(2)
+driver.find_element_by_xpath('//tr[1]//td[2]/a').click()
+time.sleep(2)
+driver.execute_script("document.documentElement.scrollTop = 10000;")
+# Play Audio
+try:
+    driver.find_element_by_xpath("//p[@id='wtnr']//p//audio")
+except NoSuchElementException as msg_MP3:
+    print('无音频文件', msg_MP3)
+else:
+    print('预览音频文件')
+    js_audio = "var audio = document.getElementsByTagName('audio')[0];audio.play();"
+    driver.execute_script(js_audio)
+    time.sleep(5)
+# Play Video
+try:
+    driver.find_element_by_xpath("//p[@id='wtnr']//p//video")
+except NoSuchElementException as msg_MP4:
+    print('无视频文件', msg_MP4)
+else:
+    print('预览视频文件')
+    js_video = "var video = document.getElementsByTagName('video')[0];video.play();"
+    driver.execute_script(js_video)
+    time.sleep(5)
+# 随机下载答疑附件
+print('下载问题集锦文件')
+try:
+    driver.find_element_by_xpath('//*[@id="removeFile"]')
+except NoSuchElementException as msg:
+    print('无答疑附件', msg)
+else:
+    key = len(driver.find_elements_by_xpath('//*[@id="removeFile"]'))
+    print("答疑附件个数", key)
+    ran = random.randrange(key)
+    print('随机数', ran)
+    driver.find_elements_by_xpath('//*[@id="removeFile"]').pop(ran).click()
+time.sleep(1)
 print('=====课程答疑测试完毕=====')
+time.sleep(3)
 ######################################################课程邮件##########################################################
 # print('=====测试课程邮件=====')
 # driver.find_element_by_xpath("//a[@id='wlxt_mail_yj_yjxxb']").click()
