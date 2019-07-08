@@ -470,7 +470,11 @@ time.sleep(2)
 # 富文本音频win32gui
 driver.find_element_by_xpath("//a[@id='cke_41']").click()
 time.sleep(1)
-winUpLoadFile("D:\Artists.mp3", "打开")
+try:
+    winUpLoadFile("D:\Artists.mp3", "打开")
+except UnexpectedAlertPresentException as msg:
+    print(driver.switch_to.alert.text)
+    driver.switch_to.alert.accept()
 # dialog = win32gui.FindWindow('#32770', '打开')  # 对话框
 # ComboBoxEx32 = win32gui.FindWindowEx(dialog, 0, 'ComboBoxEx32', None)
 # ComboBox = win32gui.FindWindowEx(ComboBoxEx32, 0, 'ComboBox', None)
@@ -484,7 +488,11 @@ time.sleep(5)
 # 富文本视频win32gui
 driver.find_element_by_xpath('//*[@id="cke_41"]').click()
 time.sleep(1)
-winUpLoadFile("D:\mov.mp4", "打开")  # 往输入框输入绝对地址D:\modify
+try:
+    winUpLoadFile("D:\mov.mp4", "打开")  # 往输入框输入绝对地址D:\modify
+except UnexpectedAlertPresentException as msg:
+    print(driver.switch_to.alert.text)
+    driver.switch_to.alert.accept()
 # dialog = win32gui.FindWindow('#32770', '打开')  # 对话框
 # ComboBoxEx32 = win32gui.FindWindowEx(dialog, 0, 'ComboBoxEx32', None)
 # ComboBox = win32gui.FindWindowEx(ComboBoxEx32, 0, 'ComboBox', None)
@@ -493,7 +501,7 @@ winUpLoadFile("D:\mov.mp4", "打开")  # 往输入框输入绝对地址D:\modify
 # win32gui.SendMessage(Edit, win32con.WM_SETTEXT, None, "D:\mov.mp4")  # 往输入框输入绝对地址D:\
 # win32gui.SendMessage(dialog, win32con.WM_COMMAND, 1, button)  # 按button
 # os.system("D:/Video.exe")  # modify
-time.sleep(5)
+time.sleep(10)
 driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
 time.sleep(2)
 try:
@@ -506,9 +514,9 @@ else:
     print('弹框结果:' + driver.find_element_by_css_selector(
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
 time.sleep(5)
-# driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_kcdy"]').click()
-# time.sleep(2)
 print('=====编辑已回答问题=====')
+driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_kcdy"]').click()
+time.sleep(2)
 # 切换标签
 driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[2]').click()
 time.sleep(1)
@@ -530,8 +538,8 @@ else:
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
 time.sleep(5)
 print('=====查看问题集锦=====')
-# driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_kcdy"]').click()
-# time.sleep(2)
+driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_kcdy"]').click()
+time.sleep(2)
 # 切换标签
 driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[3]').click()
 time.sleep(2)
