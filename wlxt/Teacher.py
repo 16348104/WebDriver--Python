@@ -24,24 +24,26 @@ def time_format():
     return current_time
 
 
-class WinUpLoadFile:
+# class WinUpLoadFile:
+#
+#     def winUpLoadFile(self, file_path, title):
+#         # 一级顶层窗口，此处title为上传窗口名称，浏览器不一样上传窗口名称不一样
+#         dialog = win32gui.FindWindow("#32770", title)
+#         # 二级窗口
+#         ComboBoxEx32 = win32gui.FindWindowEx(dialog, 0, "ComboBoxEx32", None)
+#         # 三级窗口
+#         comboBox = win32gui.FindWindowEx(ComboBoxEx32, 0, "ComboBox", None)
+#         # 四级窗口
+#         edit = win32gui.FindWindowEx(comboBox, 0, 'Edit', None)
+#         button = win32gui.FindWindowEx(dialog, 0, 'Button', None)
+#         # 执行操作 输入文件路径
+#         win32gui.SendMessage(edit, win32con.WM_SETTEXT, None, file_path)
+#         # 点击打开上传文件
+#         win32gui.SendMessage(dialog, win32con.WM_COMMAND, 1, button)
 
-    def winUpLoadFile(self, file_path, title):
-        # 一级顶层窗口，此处title为上传窗口名称，浏览器不一样上传窗口名称不一样
-        dialog = win32gui.FindWindow("#32770", title)
-        # 二级窗口
-        ComboBoxEx32 = win32gui.FindWindowEx(dialog, 0, "ComboBoxEx32", None)
-        # 三级窗口
-        comboBox = win32gui.FindWindowEx(ComboBoxEx32, 0, "ComboBox", None)
-        # 四级窗口
-        edit = win32gui.FindWindowEx(comboBox, 0, 'Edit', None)
-        button = win32gui.FindWindowEx(dialog, 0, 'Button', None)
-        # 执行操作 输入文件路径
-        win32gui.SendMessage(edit, win32con.WM_SETTEXT, None, file_path)
-        # 点击打开上传文件
-        win32gui.SendMessage(dialog, win32con.WM_COMMAND, 1, button)
 
-
+# if __name__ == "__main__":
+#     WinUpLoadFile().winUpLoadFile("D:\mov.mp4", "打开")
 ######################################################登录网络学堂######################################################
 # 打开网络学堂
 driver.get("http://wlxt160.thitc.cn")
@@ -119,24 +121,24 @@ time.sleep(2)
 print('=====发课件=====')
 driver.find_element_by_xpath('//span[@class="rt right"]/child::a').click()  # 上课件
 time.sleep(1)
-# 测试win32gui
-driver.find_element_by_xpath('//span[contains(text(),"添加附件（最大1G）")]').click()
-time.sleep(1)
-dialog = win32gui.FindWindow('#32770', '打开')
-ComboBoxEx32 = win32gui.FindWindowEx(dialog, 0, 'ComboBoxEx32', None)
-ComboBox = win32gui.FindWindowEx(ComboBoxEx32, 0, 'ComboBox', None)
-Edit = win32gui.FindWindowEx(ComboBox, 0, 'Edit', None)  # 上面三句依次寻找对象，直到找到输入框Edit对象的句柄
-button = win32gui.FindWindowEx(dialog, 0, 'Button', None)  # 确定按钮Button
-time.sleep(1)
-win32gui.SendMessage(Edit, win32con.WM_SETTEXT, None, 'D:\mov.mp4')  # 往输入框输入绝对地址D:\
-win32gui.SendMessage(dialog, win32con.WM_COMMAND, 1, button)  # 按button
-# # win32gui.PostMessage(dialog, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
-# # win32gui.PostMessage(dialog, win32con.WM_KEYUP, win32con.VK_RETURN, 0)
-print(dialog)
-# print("%x" % ComboBox)
-print(Edit)
-print(button)
-time.sleep(5)
+# # 测试win32gui
+# driver.find_element_by_xpath('//span[contains(text(),"添加附件（最大1G）")]').click()
+# time.sleep(1)
+# dialog = win32gui.FindWindow('#32770', '打开')
+# ComboBoxEx32 = win32gui.FindWindowEx(dialog, 0, 'ComboBoxEx32', None)
+# ComboBox = win32gui.FindWindowEx(ComboBoxEx32, 0, 'ComboBox', None)
+# Edit = win32gui.FindWindowEx(ComboBox, 0, 'Edit', None)  # 上面三句依次寻找对象，直到找到输入框Edit对象的句柄
+# button = win32gui.FindWindowEx(dialog, 0, 'Button', None)  # 确定按钮Button
+# time.sleep(1)
+# win32gui.SendMessage(Edit, win32con.WM_SETTEXT, None, 'D:\mov.mp4')  # 往输入框输入绝对地址D:\
+# win32gui.SendMessage(dialog, win32con.WM_COMMAND, 1, button)  # 按button
+# # # win32gui.PostMessage(dialog, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
+# # # win32gui.PostMessage(dialog, win32con.WM_KEYUP, win32con.VK_RETURN, 0)
+# print(dialog)
+# # print("%x" % ComboBox)
+# print(Edit)
+# print(button)
+# time.sleep(5)
 
 # js = "document.getElementById('fileupload').style.display=\'block\'"
 # driver.execute_script(js)
@@ -145,18 +147,18 @@ time.sleep(5)
 # driver.find_element_by_name("fileupload").send_keys("D:/Artists.mp3")  # modify
 # driver.find_element_by_id('fileupload').send_keys(
 #     r'/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/readme.txt')  # mac上传文件
-time.sleep(5)
-driver.find_element_by_id("sub").click()
-time.sleep(1)
-try:
-    driver.find_element_by_css_selector(
-        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
-except NoSuchElementException as msg:
-    print('截图', msg)
-    driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'KJ' + ".png")  # 截图modify
-else:
-    print('弹框结果:' + driver.find_element_by_css_selector(
-        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+# time.sleep(5)
+# driver.find_element_by_id("sub").click()
+# time.sleep(1)
+# try:
+#     driver.find_element_by_css_selector(
+#         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
+# except NoSuchElementException as msg:
+#     print('截图', msg)
+#     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'KJ' + ".png")  # 截图modify
+# else:
+#     print('弹框结果:' + driver.find_element_by_css_selector(
+#         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
 # print('=====查看课件详情=====')
 # driver.find_element_by_xpath("//a[@id='wlxt_kj_wlkc_kjxxb']").click()
 # time.sleep(2)
@@ -468,18 +470,16 @@ driver.execute_script("document.documentElement.scrollTop = 10000;")  # 滚动�
 driver.find_element_by_xpath("//a[@id='cke_41']").click()
 time.sleep(1)
 # # win32gui
-dialog = win32gui.FindWindow('#32770', '打开')  # 对话框
-ComboBoxEx32 = win32gui.FindWindowEx(dialog, 0, 'ComboBoxEx32', None)
-ComboBox = win32gui.FindWindowEx(ComboBoxEx32, 0, 'ComboBox', None)
-Edit = win32gui.FindWindowEx(ComboBox, 0, 'Edit', None)  # 上面三句依次寻找对象，直到找到输入框Edit对象的句柄
-button = win32gui.FindWindowEx(dialog, 0, 'Button', None)  # 确定按钮Button
-win32gui.SendMessage(Edit, win32con.WM_SETTEXT, None, "D:/mov.mp4")  # 往输入框输入绝对地址D:\
+# dialog = win32gui.FindWindow('#32770', '打开')  # 对话框
+# ComboBoxEx32 = win32gui.FindWindowEx(dialog, 0, 'ComboBoxEx32', None)
+# ComboBox = win32gui.FindWindowEx(ComboBoxEx32, 0, 'ComboBox', None)
+# Edit = win32gui.FindWindowEx(ComboBox, 0, 'Edit', None)  # 上面三句依次寻找对象，直到找到输入框Edit对象的句柄
+# button = win32gui.FindWindowEx(dialog, 0, 'Button', None)  # 确定按钮Button
+# win32gui.SendMessage(Edit, win32con.WM_SETTEXT, None, "D:\mov.mp4")  # 往输入框输入绝对地址D:\
 # win32gui.SendMessage(dialog, win32con.WM_COMMAND, 1, button)  # 按button
-win32gui.PostMessage(dialog, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
-win32gui.PostMessage(dialog, win32con.WM_KEYUP, win32con.VK_RETURN, 0)
+# # win32gui.PostMessage(dialog, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
+# # win32gui.PostMessage(dialog, win32con.WM_KEYUP, win32con.VK_RETURN, 0)
 
-# if __name__ == "__main__":
-#     WinUpLoadFile().winUpLoadFile("D:\mov.mp4", "打开")
 time.sleep(5)
 
 # 上传附件
