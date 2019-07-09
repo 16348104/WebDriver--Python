@@ -465,8 +465,8 @@ time.sleep(1)
 try:
     winUpLoadFile("D:\Artists.mp3", "打开")
     print('CKeditor传音频文件')
-except UnexpectedAlertPresentException as msg_ckeditor:
-    print('截图', msg_ckeditor)
+except UnexpectedAlertPresentException as msg_alert:
+    print('截图', msg_alert)  # 上传文件失败
     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'ckeditor' + ".png")  # modify截图
     driver.switch_to.alert.accept()
 time.sleep(5)
@@ -485,12 +485,11 @@ time.sleep(1)
 try:
     winUpLoadFile("D:\mov.mp4", "打开")  # 往输入框输入绝对地址D:\modify
     print('CKeditor传视频文件')
-except UnexpectedAlertPresentException as msg_ckeditor:
-    print('截图', msg_ckeditor)
+except UnexpectedAlertPresentException as msg_alert:
+    print('截图', msg_alert)
     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'ckeditor' + ".png")  # modify截图
     driver.switch_to.alert.accept()
 time.sleep(10)
-
 driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
 time.sleep(2)
 try:
@@ -510,7 +509,7 @@ time.sleep(2)
 # 切换标签
 driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[2]').click()
 time.sleep(1)
-# 点编辑
+# 点编辑按钮
 driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[7]/a[1]').click()
 time.sleep(1)
 # CKeditor数学公式
@@ -547,6 +546,18 @@ else:
     print('弹框结果:' + driver.find_element_by_css_selector(
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
 time.sleep(5)
+print('=====加入问题集锦=====')
+driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[2]').click()
+time.sleep(1)
+try:
+    driver.find_element_by_xpath('//*[@id="addWtjjBtn"]')
+except NoSuchElementException as msg:
+    print('已经加入问题集锦了！', msg)
+else:
+    driver.find_element_by_xpath('//*[@id="addWtjjBtn"]').click()
+    print('弹框结果:' + driver.find_element_by_css_selector(
+        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+time.sleep(2)
 print('=====查看问题集锦=====')
 driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_kcdy"]').click()
 time.sleep(2)
