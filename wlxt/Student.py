@@ -217,6 +217,7 @@ print('=====提问=====')
 driver.find_element_by_xpath('//*[@id="content"]//span[2]/a').click()
 time.sleep(1)
 driver.find_element_by_xpath('//*[@id="addFormId"]//div[2]/input[1]').send_keys(time_format() + '测试课程答疑')
+driver.execute_script("document.documentElement.scrollTop = 10000;")
 # 富文本音频win32gui
 driver.find_element_by_xpath('//*[@id="cke_41"]').click()
 time.sleep(1)
@@ -260,8 +261,7 @@ time.sleep(1)
 driver.find_element_by_xpath("//a[@id='cke_39']").click()
 js = "document.getElementsByClassName('cke_dialog_background_cover')[0].style.display = 'none'"
 driver.execute_script(js)
-time.sleep(1)
-driver.find_element_by_xpath('//*[@id="cke_87_uiElement"]').click()
+driver.find_element_by_xpath("//a[contains(@class,'ok')]").click()  # 动态id
 time.sleep(2)
 # 上传答疑文件
 driver.find_element_by_id('fileupload').send_keys(r'D:/英语.docx')  # modify

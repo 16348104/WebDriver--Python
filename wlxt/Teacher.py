@@ -38,8 +38,10 @@ def winUpLoadFile(file_path, title):
     edit = win32gui.FindWindowEx(comboBox, 0, 'Edit', None)
     button = win32gui.FindWindowEx(dialog, 0, 'Button', None)
     # 执行操作 输入文件路径
+    time.sleep(1)
     win32gui.SendMessage(edit, win32con.WM_SETTEXT, None, file_path)
     # 点击打开上传文件
+    time.sleep(1)
     win32gui.SendMessage(dialog, win32con.WM_COMMAND, 1, button)
 
 
@@ -422,10 +424,8 @@ driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_kcdy"]').click()
 time.sleep(2)
 print('=====回答=====')
 driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[5]/a[1]').click()
+driver.execute_script("document.documentElement.scrollTop = 10000;")
 time.sleep(2)
-# scroll = "document.documentElement.scrollTop = 10000;"
-# driver.execute_script(scroll)
-# time.sleep(1)
 # Play Audio
 try:
     driver.find_element_by_xpath('//audio')
@@ -459,22 +459,17 @@ else:
     print('随机数', ran)
     driver.find_elements_by_xpath('//*[@id="removeFile"]').pop(ran).click()
 time.sleep(2)
-# CKeditor数学公式
-# driver.find_element_by_xpath("//a[@id='cke_39']").click()
-# js = "document.getElementsByClassName('cke_dialog_background_cover')[0].style.display = 'none'"
-# driver.execute_script(js)
-# time.sleep(1)
-# driver.find_element_by_xpath("//a[contains(@class,'ok')]").click()
-# time.sleep(2)
-# driver.execute_script("document.documentElement.scrollTop = 10000;")  # 滚动条
 # 富文本音频win32gui
 driver.find_element_by_xpath("//a[@id='cke_41']").click()
 time.sleep(1)
 try:
     winUpLoadFile("D:\Artists.mp3", "打开")
-except UnexpectedAlertPresentException as msg:
-    print(driver.switch_to.alert.text)
+    print('CKeditor传音频文件')
+except UnexpectedAlertPresentException as msg_ckeditor:
+    print('截图', msg_ckeditor)
+    driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'ckeditor' + ".png")  # modify截图
     driver.switch_to.alert.accept()
+time.sleep(5)
 # dialog = win32gui.FindWindow('#32770', '打开')  # 对话框
 # ComboBoxEx32 = win32gui.FindWindowEx(dialog, 0, 'ComboBoxEx32', None)
 # ComboBox = win32gui.FindWindowEx(ComboBoxEx32, 0, 'ComboBox', None)
@@ -484,23 +479,16 @@ except UnexpectedAlertPresentException as msg:
 # win32gui.SendMessage(dialog, win32con.WM_COMMAND, 1, button)  # 按button
 # win32gui.PostMessage(dialog, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
 # win32gui.PostMessage(dialog, win32con.WM_KEYUP, win32con.VK_RETURN, 0)
-time.sleep(5)
 # 富文本视频win32gui
 driver.find_element_by_xpath('//*[@id="cke_41"]').click()
 time.sleep(1)
 try:
     winUpLoadFile("D:\mov.mp4", "打开")  # 往输入框输入绝对地址D:\modify
-except UnexpectedAlertPresentException as msg:
-    print(driver.switch_to.alert.text)
+    print('CKeditor传视频文件')
+except UnexpectedAlertPresentException as msg_ckeditor:
+    print('截图', msg_ckeditor)
+    driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'ckeditor' + ".png")  # modify截图
     driver.switch_to.alert.accept()
-# dialog = win32gui.FindWindow('#32770', '打开')  # 对话框
-# ComboBoxEx32 = win32gui.FindWindowEx(dialog, 0, 'ComboBoxEx32', None)
-# ComboBox = win32gui.FindWindowEx(ComboBoxEx32, 0, 'ComboBox', None)
-# Edit = win32gui.FindWindowEx(ComboBox, 0, 'Edit', None)  # 上面三句依次寻找对象，直到找到输入框Edit对象的句柄
-# button = win32gui.FindWindowEx(dialog, 0, 'Button', None)  # 确定按钮Button
-# win32gui.SendMessage(Edit, win32con.WM_SETTEXT, None, "D:\mov.mp4")  # 往输入框输入绝对地址D:\
-# win32gui.SendMessage(dialog, win32con.WM_COMMAND, 1, button)  # 按button
-# os.system("D:/Video.exe")  # modify
 time.sleep(10)
 driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
 time.sleep(2)
@@ -523,9 +511,28 @@ time.sleep(1)
 # 点编辑
 driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[7]/a[1]').click()
 time.sleep(1)
+# CKeditor数学公式
+driver.find_element_by_xpath("//a[@id='cke_39']").click()
+time.sleep(1)
+js = "document.getElementsByClassName('cke_dialog_background_cover')[0].style.display = 'none'"
+driver.execute_script(js)
+driver.find_element_by_xpath("//a[contains(@class,'ok')]").click()  # 动态id
+print("CKeditor录入数学公式")
+time.sleep(2)
+# 富文本图片win32gui
+driver.find_element_by_xpath('//*[@id="cke_40"]').click()
+time.sleep(1)
+try:
+    winUpLoadFile('D:\Test.jpg', "打开")  # 往输入框输入绝对地址D:\   modify
+    print('富文本图片')
+except UnexpectedAlertPresentException as msg_ckeditor:
+    print('截图', msg_ckeditor)
+    driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'ckeditor' + ".png")  # modify截图
+    driver.switch_to.alert.accept()
+time.sleep(3)
 # 上传附件
 driver.find_element_by_xpath('//*[@id="fileupload"]').send_keys(r'D:/listening.pdf')  # modify
-driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
+# driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
 time.sleep(1)
 try:
     driver.find_element_by_css_selector(
