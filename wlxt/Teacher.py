@@ -515,9 +515,10 @@ driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[7]/a[1]').click()
 time.sleep(1)
 # CKeditor数学公式
 driver.find_element_by_xpath("//a[@id='cke_39']").click()
-time.sleep(1)
+time.sleep(2)
 js = "document.getElementsByClassName('cke_dialog_background_cover')[0].style.display = 'none'"
 driver.execute_script(js)
+time.sleep(1)
 driver.find_element_by_xpath("//a[contains(@class,'ok')]").click()  # 动态id
 print("CKeditor录入数学公式")
 time.sleep(2)
@@ -526,16 +527,16 @@ driver.find_element_by_xpath('//*[@id="cke_40"]').click()
 time.sleep(1)
 try:
     winUpLoadFile('D:\Test.jpg', "打开")  # 往输入框输入绝对地址D:\   modify
-    print('富文本图片')
+    print('Ckeditor传图片')
 except UnexpectedAlertPresentException as msg_ckeditor:
     print('截图', msg_ckeditor)
     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'ckeditor' + ".png")  # modify截图
     driver.switch_to.alert.accept()
 time.sleep(3)
 # 上传附件
-driver.find_element_by_xpath('//*[@id="fileupload"]').send_keys(r'D:/listening.pdf')  # modify
-# driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
-time.sleep(1)
+driver.find_element_by_xpath('//*[@id="fileupload"]').send_keys(r'D:\Introduction.pdf')  # modify
+driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
+time.sleep(2)
 try:
     driver.find_element_by_css_selector(
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
@@ -576,18 +577,18 @@ else:
     driver.execute_script(js_video)
     time.sleep(5)
 # 随机下载答疑附件
-# print('随机下载问题集锦文件')
-# try:
-#     driver.find_element_by_xpath('//*[@id="removeFile"]')
-# except NoSuchElementException as msg:
-#     print('无答疑附件', msg)
-# else:
-#     key = len(driver.find_elements_by_xpath('//*[@id="removeFile"]'))
-#     print("答疑附件个数", key)
-#     ran = random.randrange(key)
-#     print('随机数', ran)
-#     driver.find_elements_by_xpath('//*[@id="removeFile"]').pop(ran).click()
-# time.sleep(1)
+print('随机下载问题集锦文件')
+try:
+    driver.find_element_by_xpath("//*[@class='download-file']//*[@id='removeFile']")
+except NoSuchElementException as msg:
+    print('无答疑附件', msg)
+else:
+    key = len(driver.find_elements_by_xpath("//*[@class='download-file']//*[@id='removeFile']"))
+    print("答疑附件个数", key)
+    ran = random.randrange(key)
+    print('随机数', ran)
+    driver.find_elements_by_xpath("//*[@class='download-file']//*[@id='removeFile']").pop(ran).click()
+time.sleep(1)
 print('=====课程答疑测试完毕=====')
 time.sleep(3)
 ######################################################课程邮件##########################################################
