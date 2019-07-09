@@ -336,8 +336,7 @@ driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[3]').click()
 time.sleep(2)
 driver.find_element_by_xpath('//tr[1]//td[2]/a').click()
 time.sleep(3)
-scroll = "document.documentElement.scrollTop = 10000;"
-driver.execute_script(scroll)
+driver.execute_script("document.documentElement.scrollTop = 10000;")
 time.sleep(1)
 # Play Audio
 try:
@@ -360,17 +359,17 @@ else:
     driver.execute_script(js_video)
     time.sleep(5)
 # 随机下载答疑附件
-# print('下载问题集锦文件')
-# try:
-#     driver.find_element_by_xpath('//*[@id="removeFile"]')
-# except NoSuchElementException as msg:
-#     print('无答疑附件', msg)
-# else:
-#     key = len(driver.find_elements_by_xpath('//*[@id="removeFile"]'))
-#     print("答疑附件个数", key)
-#     ran = random.randrange(key)
-#     print('随机数', ran)
-#     driver.find_elements_by_xpath('//*[@id="removeFile"]').pop(ran).click()
+print('随机下载问题集锦文件')
+try:
+    driver.find_element_by_xpath('//a[@id="removeFile"]')
+except NoSuchElementException as msg:
+    print('无答疑附件', msg)
+else:
+    key = len(driver.find_elements_by_xpath('//a[@id="removeFile"]'))
+    print("答疑附件个数", key)
+    ran = random.randrange(key)
+    print('随机数', ran)
+    driver.find_elements_by_xpath('//a[@id="removeFile"]').pop(ran).click()
 time.sleep(1)
 print('=====答疑测试完毕=====')
 time.sleep(3)

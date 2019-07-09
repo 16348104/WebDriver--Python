@@ -7,7 +7,7 @@ import win32gui
 import win32con
 import win32api
 from selenium import webdriver
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException, UnexpectedAlertPresentException
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 
@@ -490,6 +490,7 @@ except UnexpectedAlertPresentException as msg_ckeditor:
     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'ckeditor' + ".png")  # modify截图
     driver.switch_to.alert.accept()
 time.sleep(10)
+
 driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
 time.sleep(2)
 try:
@@ -502,6 +503,7 @@ else:
     print('弹框结果:' + driver.find_element_by_css_selector(
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
 time.sleep(5)
+
 print('=====编辑已回答问题=====')
 driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_kcdy"]').click()
 time.sleep(2)
@@ -574,18 +576,18 @@ else:
     driver.execute_script(js_video)
     time.sleep(5)
 # 随机下载答疑附件
-print('下载问题集锦文件')
-try:
-    driver.find_element_by_xpath('//*[@id="removeFile"]')
-except NoSuchElementException as msg:
-    print('无答疑附件', msg)
-else:
-    key = len(driver.find_elements_by_xpath('//*[@id="removeFile"]'))
-    print("答疑附件个数", key)
-    ran = random.randrange(key)
-    print('随机数', ran)
-    driver.find_elements_by_xpath('//*[@id="removeFile"]').pop(ran).click()
-time.sleep(1)
+# print('随机下载问题集锦文件')
+# try:
+#     driver.find_element_by_xpath('//*[@id="removeFile"]')
+# except NoSuchElementException as msg:
+#     print('无答疑附件', msg)
+# else:
+#     key = len(driver.find_elements_by_xpath('//*[@id="removeFile"]'))
+#     print("答疑附件个数", key)
+#     ran = random.randrange(key)
+#     print('随机数', ran)
+#     driver.find_elements_by_xpath('//*[@id="removeFile"]').pop(ran).click()
+# time.sleep(1)
 print('=====课程答疑测试完毕=====')
 time.sleep(3)
 ######################################################课程邮件##########################################################
