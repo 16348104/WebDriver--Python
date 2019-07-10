@@ -253,6 +253,8 @@ else:
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
 time.sleep(3)
 print('=====编辑未答问题=====')
+driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_kcdy"]').click()
+time.sleep(2)
 driver.find_element_by_xpath('//tr[1]//td[4]//a[1]').click()
 time.sleep(1)
 driver.find_element_by_xpath("//a[@class='ml-10 show-textar']").click()
