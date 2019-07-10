@@ -49,8 +49,8 @@ def winUpLoadFile(file_path, title):
 #     Win32UpLoadFile().winUpLoadFile("D:\mov.mp4", "打开")
 ######################################################登录网络学堂######################################################
 # 打开网络学堂
-driver.get("http://wlxt160.thitc.cn")
-# driver.get("http://learn.tsinghua.edu.cn")
+# driver.get("http://wlxt160.thitc.cn")
+driver.get("http://learn.tsinghua.edu.cn")
 driver.maximize_window()
 print("======登录网络学堂=====")
 print(driver.title)
@@ -60,13 +60,13 @@ ticks = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 tomorrow = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time() + 3600))
 print("当前时间戳为:", ticks)
 # print ("当前时间戳为:", tomorrow)
-driver.find_element_by_name("i_user").send_keys("2004980847")
-driver.find_element_by_name("i_pass").send_keys("123")
+driver.find_element_by_name("i_user").send_keys("")
+driver.find_element_by_name("i_pass").send_keys("")
 driver.find_element_by_id("loginButtonId").click()
 print(driver.title, "【第1个窗口】")
 time.sleep(1)
-# driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
-driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  # 开发环境60240202-0
+driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
+# driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  # 开发环境60240202-0
 # 【切换到第二个窗口】
 window_1 = driver.current_window_handle  # 当前窗口句柄
 print('课程句柄:' + window_1)
@@ -512,6 +512,7 @@ time.sleep(1)
 # 点编辑按钮
 driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[7]/a[1]').click()
 time.sleep(1)
+driver.execute_script("document.documentElement.scrollTop = 10000;")
 # CKeditor数学公式
 driver.find_element_by_xpath("//a[@id='cke_39']").click()
 time.sleep(2)
@@ -533,7 +534,7 @@ except UnexpectedAlertPresentException as msg_ckeditor:
     driver.switch_to.alert.accept()
 time.sleep(3)
 # 上传附件
-driver.find_element_by_xpath('//*[@id="fileupload"]').send_keys(r'D:\Introduction.pdf')  # modify
+driver.find_element_by_xpath('//*[@id="fileupload"]').send_keys(r'D:\Homework.pdf')  # modify
 driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
 time.sleep(2)
 try:
@@ -602,6 +603,7 @@ else:
 time.sleep(1)
 print('=====课程答疑测试完毕=====')
 time.sleep(3)
+
 ######################################################课程邮件##########################################################
 # print('=====测试课程邮件=====')
 # driver.find_element_by_xpath("//a[@id='wlxt_mail_yj_yjxxb']").click()
