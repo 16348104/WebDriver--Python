@@ -55,8 +55,8 @@ print('登录后句柄:' + driver.current_window_handle)  # 登录网络学堂�
 driver.find_element_by_name('i_user').clear()
 driver.find_element_by_name('i_pass').clear()
 # time.sleep(30)
-driver.find_element_by_name('i_user').send_keys('2014013037')  # 键入用户名
-driver.find_element_by_name('i_pass').send_keys('123')  # 键入密码
+driver.find_element_by_name('i_user').send_keys('')  # 键入用户名
+driver.find_element_by_name('i_pass').send_keys('')  # 键入密码
 driver.find_element_by_id('loginButtonId').send_keys(Keys.ENTER)
 time.sleep(2)
 print(driver.title, "【第一个窗口】")
