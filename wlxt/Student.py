@@ -272,9 +272,10 @@ driver.find_element_by_xpath('//*[@id="saveTltBtn"]').click()
 time.sleep(1)
 print('弹框结果:' + driver.find_element_by_css_selector(
     "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
-print('=====查看已回答的问题=====')
-driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_kcdy"]').click()
-time.sleep(2)
+print('=====编辑已回答的问题=====')
+
+# driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_kcdy"]').click()
+# time.sleep(2)
 driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[2]').click()
 time.sleep(2)
 driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]//td[6]//a[1]').click()

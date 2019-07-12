@@ -49,8 +49,8 @@ def winUpLoadFile(file_path, title):
 #     Win32UpLoadFile().winUpLoadFile("D:\mov.mp4", "打开")
 ######################################################登录网络学堂######################################################
 # 打开网络学堂
-driver.get("http://wlxt160.thitc.cn")
-# driver.get("http://learn.tsinghua.edu.cn")
+# driver.get("http://wlxt160.thitc.cn")
+driver.get("http://learn.tsinghua.edu.cn")
 driver.maximize_window()
 print("======登录网络学堂=====")
 print(driver.title)
@@ -65,8 +65,8 @@ driver.find_element_by_name("i_pass").send_keys("")
 driver.find_element_by_id("loginButtonId").click()
 print(driver.title, "【第1个窗口】")
 time.sleep(1)
-# driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
-driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  # 开发环境60240202-0
+driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
+# driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  # 开发环境60240202-0
 # 【切换到第二个窗口】
 window_1 = driver.current_window_handle  # 当前窗口句柄
 print('课程句柄:' + window_1)
@@ -131,7 +131,7 @@ driver.find_element_by_name("fileupload").send_keys("D:/Lost Horizon.mp4")  # mo
 # driver.find_element_by_id('fileupload').send_keys(
 #     r'/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/readme.txt')  # mac上传文件
 driver.find_element_by_id("sub").click()
-time.sleep(2)
+time.sleep(5)
 try:
     driver.find_element_by_css_selector(
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
@@ -141,7 +141,7 @@ except NoSuchElementException as msg:
 else:
     print('弹框结果:' + driver.find_element_by_css_selector(
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
-time.sleep(3)
+time.sleep(5)
 print('=====查看课件详情=====')
 # driver.find_element_by_xpath("//a[@id='wlxt_kj_wlkc_kjxxb']").click()
 # time.sleep(2)
@@ -152,7 +152,7 @@ driver.back()
 time.sleep(1)
 driver.find_element_by_xpath("//tbody//tr[1]//td[8]//a[1]").click()
 print('=====预览课件=====')
-# time.sleep(3)
+time.sleep(2)
 str1 = driver.find_element_by_xpath("//tbody//tr[1]//td[8]//a[2]").get_attribute('class')
 print(str1)
 searchObj = re.search(r'disabled', str1, re.I)  # 正则表达式
@@ -165,7 +165,7 @@ if searchObj is None:
     print("当前窗口：", window_1)
     # 切换窗口
     driver.switch_to.window(windows[2])  # 切换到第3个窗口
-    # time.sleep(1)
+    time.sleep(1)
     # sate = driver.find_element_by_css_selector(
     #     "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").get_attribute('class')
     # if sate == 'zeromodal-title1':
