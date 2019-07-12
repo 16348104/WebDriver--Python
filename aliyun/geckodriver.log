@@ -161,3 +161,51 @@ console.error: BroadcastService:
 ###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
 
 [GPU 99361562226988878	mozrunner::runner	INFO	Running command: "E:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\zb\\AppData\\Local\\Temp\\rust_mozprofile.Ee2Xd1AOb1BV"
+1562730043804	mozrunner::runner	INFO	Running command: "E:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\zb\\AppData\\Local\\Temp\\rust_mozprofile.mJuYB5rEbfnQ"
+1562730046681	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1562730046681	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1562730046681	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1562730051336	Marionette	INFO	Listening on port 52638
+1562730051592	Marionette	WARN	TLS certificate errors will be ignored for this session
+WebGL(0000000012504800)::ForceLoseContext
+WebGL(0000000019905000)::ForceLoseContext
+WebGL(0000000002775800)::ForceLoseContext
+WebGL(000000001CD43000)::ForceLoseContext
+WebGL(000000001CD59800)::ForceLoseContext
+WebGL(000000001CD5B800)::ForceLoseContext
+[Parent 9160, Gecko_IOThread] WARNING: pipe error: 109: file z:/task_1560988636/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+WebGL(000000000CB10800)::ForceLoseContext
+[Parent 9160, Gecko_IOThread] WARNING: pipe error: 109: file z:/task_1560988636/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: http://%(server)s/dummy/blocklist//buckets/monitor/collections/changes/records?_expected=%221562719311956%22 is not a valid URL..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:203:13
+
+WebGL(000000001BC78000)::ForceLoseContext
+WebGL(000000001CD42000)::ForceLoseContext
+[Parent 9160, Gecko_IOThread] WARNING: pipe error: 109: file z:/task_1560988636/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+WebGL(000000001FAAD000)::ForceLoseContext
+WebGL(000000001FDDD000)::ForceLoseContext
+WebGL(000000002B2DB000)::ForceLoseContext
+1562730099423	Marionette	INFO	Stopped listening on port 52638
+[Child 8416, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_1560988636/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[Child 8416, Chrome_ChildThread[Parent 9160, Gecko_IOThread] WARNING: pipe error: 109: file z:/task_1560988636/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[Child 9512, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_1560988636/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[Child 9512, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_1560988636/build/src/ipc/chromium/src/chrom
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+e/common/ipc_channel_win.cc
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+, l
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+ine 341
+[Parent 9160, Gecko_IOThread] WARNING: pipe error: 109: file z:/task_1560988636/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[Child 6092, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_1560988636/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[GP
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
