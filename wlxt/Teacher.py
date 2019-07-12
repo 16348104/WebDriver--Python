@@ -125,13 +125,8 @@ time.sleep(2)
 driver.execute_script("document.documentElement.scrollTop = 0;")  # 滚动条
 time.sleep(1)
 print('=====漫游教务系统=====')
-try:
-    driver.find_element_by_xpath('//*[@id="content"]/div[2]/div[2]/div/div[1]/div[2]/div[2]/p[2]/a').click()
-except UnexpectedAlertPresentException as msg:
-    print(msg)
-    driver.switch_to.alert.accept()
-# else:
-#     pass
+driver.find_element_by_xpath('//*[@id="content"]/div[2]/div[2]/div/div[1]/div[2]/div[2]/p[2]/a').click()
+driver.switch_to.alert.accept()
 time.sleep(2)
 driver.back()
 print('=====上传课程图片=====')
