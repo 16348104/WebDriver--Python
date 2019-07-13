@@ -11,7 +11,7 @@ from selenium.common.exceptions import NoSuchElementException, UnexpectedAlertPr
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 
-driver = webdriver.Chrome(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/chromedriver')  # modify
+driver = webdriver.Chrome(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/chromedriver')  # MacOS
 
 
 # driver = webdriver.Firefox()
