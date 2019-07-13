@@ -3,17 +3,19 @@ import re
 import os
 import time
 import random
-import win32gui
-import win32con
-import win32api
+# import win32gui
+# import win32con
+# import win32api
 from selenium import webdriver
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException, UnexpectedAlertPresentException
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 
-# driver = webdriver.Chrome(executable_path='C:/Users/zb/Desktop/test/python/chromedriver.exe')  # modify
+driver = webdriver.Chrome(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/chromedriver')  # modify
+
+
 # driver = webdriver.Firefox()
-driver = webdriver.Chrome()
+# driver = webdriver.Chrome()
 
 
 # driver = webdriver.Firefox(
@@ -60,8 +62,8 @@ ticks = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 tomorrow = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time() + 3600))
 print("当前时间戳为:", ticks)
 # print ("当前时间戳为:", tomorrow)
-driver.find_element_by_name("i_user").send_keys("")
-driver.find_element_by_name("i_pass").send_keys("")
+driver.find_element_by_name("i_user").send_keys("2004980847")
+driver.find_element_by_name("i_pass").send_keys("123")
 driver.find_element_by_id("loginButtonId").click()
 print(driver.title, "【第1个窗口】")
 time.sleep(1)
@@ -126,11 +128,20 @@ driver.execute_script("document.documentElement.scrollTop = 0;")  # 滚动条
 time.sleep(1)
 print('=====漫游教务系统=====')
 driver.find_element_by_xpath('//*[@id="content"]/div[2]/div[2]/div/div[1]/div[2]/div[2]/p[2]/a').click()
-driver.switch_to.alert.accept()
-time.sleep(2)
+try:
+    driver.switch_to.alert.accept()
+except BaseException:  # 捕获到异常
+    print(BaseException)
+    pass
+else:  # 未捕获到
+    print(UnexpectedAlertPresentException)
+    print(driver.switch_to.alert.text)
+    driver.switch_to.alert.accept()
+time.sleep(3)
 driver.back()
 print('=====上传课程图片=====')
-driver.find_element_by_id('doc').send_keys(r"D:/Photo.jpg")
+# driver.find_element_by_id('doc').send_keys(r"D:/Photo.jpg")  # Modify
+driver.find_element_by_id('doc').send_keys(r"/Users/xdx/Downloads/Map.png")  # Mac
 time.sleep(1)
 try:
     driver.find_element_by_css_selector(
@@ -141,7 +152,7 @@ except NoSuchElementException as msg:
 else:
     print('弹框结果:' + driver.find_element_by_css_selector(
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
-time.sleep(5)
+time.sleep(3)
 ######################################################课程文件##########################################################
 # print('=====测试课程文件=====')
 # driver.find_element_by_xpath("//a[@id='wlxt_kj_wlkc_kjxxb']").click()
