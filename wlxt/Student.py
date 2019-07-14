@@ -213,67 +213,67 @@ print('=====登录成功=====')
 print('=====测试课程答疑=====')
 driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_kcdy"]').click()
 time.sleep(2)
-print('=====提问=====')
-driver.find_element_by_xpath('//*[@id="content"]//span[2]/a').click()
-time.sleep(1)
-driver.find_element_by_xpath('//*[@id="addFormId"]//div[2]/input[1]').send_keys(time_format() + '测试课程答疑')
-driver.execute_script("document.documentElement.scrollTop = 10000;")
-# 富文本音频win32gui
-driver.find_element_by_xpath('//*[@id="cke_41"]').click()
-time.sleep(1)
-try:
-    winUpLoadFile("D:\Artists.mp3", "打开")
-except UnexpectedAlertPresentException as msg:
-    print(driver.switch_to.alert.text)
-    driver.switch_to.alert.accept()
-# AutoIt v3
-# os.system("D:/Audio.exe")
-time.sleep(5)
-# 富文本视频win32gui
-driver.find_element_by_xpath('//*[@id="cke_41"]').click()
-time.sleep(1)
-try:
-    winUpLoadFile("D:\mov.mp4", "打开")  # 往输入框输入绝对地址D:\modify
-except UnexpectedAlertPresentException as msg:
-    print(driver.switch_to.alert.text)
-    driver.switch_to.alert.accept()
-# AutoIt v3
-# os.system("D:/Video.exe")
-time.sleep(10)
-driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
-time.sleep(1)
-try:
-    driver.find_element_by_css_selector(
-        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
-except NoSuchElementException as msg:
-    print('截图', msg)
-    driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'TWDY' + ".png")  # modify截图
-else:
-    print('弹框结果:' + driver.find_element_by_css_selector(
-        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
-time.sleep(3)
-print('=====编辑未答问题=====')
+# print('=====提问=====')
+# driver.find_element_by_xpath('//*[@id="content"]//span[2]/a').click()
+# time.sleep(1)
+# driver.find_element_by_xpath('//*[@id="addFormId"]//div[2]/input[1]').send_keys(time_format() + '测试课程答疑')
+# driver.execute_script("document.documentElement.scrollTop = 10000;")
+# # 富文本音频win32gui
+# driver.find_element_by_xpath('//*[@id="cke_41"]').click()
+# time.sleep(1)
+# try:
+#     winUpLoadFile("D:\Artists.mp3", "打开")
+# except UnexpectedAlertPresentException as msg:
+#     print(driver.switch_to.alert.text)
+#     driver.switch_to.alert.accept()
+# # AutoIt v3
+# # os.system("D:/Audio.exe")
+# time.sleep(5)
+# # 富文本视频win32gui
+# driver.find_element_by_xpath('//*[@id="cke_41"]').click()
+# time.sleep(1)
+# try:
+#     winUpLoadFile("D:\mov.mp4", "打开")  # 往输入框输入绝对地址D:\modify
+# except UnexpectedAlertPresentException as msg:
+#     print(driver.switch_to.alert.text)
+#     driver.switch_to.alert.accept()
+# # AutoIt v3
+# # os.system("D:/Video.exe")
+# time.sleep(10)
+# driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
+# time.sleep(1)
+# try:
+#     driver.find_element_by_css_selector(
+#         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
+# except NoSuchElementException as msg:
+#     print('截图', msg)
+#     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'TWDY' + ".png")  # modify截图
+# else:
+#     print('弹框结果:' + driver.find_element_by_css_selector(
+#         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+# time.sleep(3)
+# print('=====编辑未答问题=====')
 # driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_kcdy"]').click()
 # time.sleep(2)
-driver.find_element_by_xpath('//tr[1]//td[4]//a[1]').click()
-time.sleep(1)
-driver.find_element_by_xpath("//a[@class='ml-10 show-textar']").click()
-time.sleep(1)
-# CKeditor数学公式
-driver.find_element_by_xpath("//a[@id='cke_39']").click()
-js = "document.getElementsByClassName('cke_dialog_background_cover')[0].style.display = 'none'"
-driver.execute_script(js)
-driver.find_element_by_xpath("//a[contains(@class,'ok')]").click()  # 动态id
-time.sleep(2)
-# 上传答疑文件
-driver.find_element_by_id('fileupload').send_keys(r'D:/英语.docx')  # modify
-time.sleep(1)
-driver.find_element_by_xpath('//*[@id="saveTltBtn"]').click()
-time.sleep(1)
-print('弹框结果:' + driver.find_element_by_css_selector(
-    "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
-print('=====编辑已回答的问题=====')
-
+# driver.find_element_by_xpath('//tr[1]//td[4]//a[1]').click()
+# time.sleep(1)
+# driver.find_element_by_xpath("//a[@class='ml-10 show-textar']").click()
+# time.sleep(1)
+# # CKeditor数学公式
+# driver.find_element_by_xpath("//a[@id='cke_39']").click()
+# js = "document.getElementsByClassName('cke_dialog_background_cover')[0].style.display = 'none'"
+# driver.execute_script(js)
+# driver.find_element_by_xpath("//a[contains(@class,'ok')]").click()  # 动态id
+# time.sleep(2)
+# # 上传答疑文件
+# driver.find_element_by_id('fileupload').send_keys(r'D:/Homework.pdf')  # modify
+# time.sleep(1)
+# driver.find_element_by_xpath('//*[@id="saveTltBtn"]').click()
+# time.sleep(1)
+# print('弹框结果:' + driver.find_element_by_css_selector(
+#     "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+# time.sleep(5)
+print('=====查看已回答问题=====')
 # driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_kcdy"]').click()
 # time.sleep(2)
 driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[2]').click()
@@ -303,15 +303,17 @@ else:
     driver.execute_script(js_video)
     time.sleep(5)
 # 下载全部答疑附件
-print('下载全部回复答疑文件')
+print('下载全部已回复的答疑文件')
 try:
     driver.find_element_by_xpath('//*[@id="hfjg"]//a[@id="removeFile"]')  # 全部教师的答疑文件
 except NoSuchElementException as msg:
     print('无答疑附件', msg)
 else:
-    Download = driver.find_elements_by_xpath('//*[@id="hfjg"]//a[@id="removeFile"]')
-    for i in Download:
+    Downloads = driver.find_elements_by_xpath('//*[@id="hfjg"]//a[@id="removeFile"]')
+    print(Downloads)
+    for i in Downloads:
         i.click()
+        time.sleep(1)
 driver.execute_script("document.documentElement.scrollTop = 10000;")
 # print('=====继续提问=====')
 # driver.find_element_by_xpath('//a[@class="ml-10 show-textar"]').click()
@@ -373,9 +375,8 @@ else:
     ran = random.randrange(key)
     print('随机数', ran)
     driver.find_elements_by_xpath('//a[@id="removeFile"]').pop(ran).click()
-time.sleep(1)
 print('=====答疑测试完毕=====')
-time.sleep(3)
+time.sleep(1)
 ####################################################课程邮件#############################################################
 # print('=====测试课程邮件=====')
 # driver.find_element_by_xpath("//a[@id='wlxt_mail_yj_yjxxb']").click()
@@ -420,10 +421,15 @@ driver.find_element_by_xpath("//i[@class='webicon-out']").click()
 time.sleep(2)
 driver.find_element_by_xpath("//div[contains(@class,'zeromodal-footer')]//button[contains(text(),'确定')]").send_keys(
     Keys.ENTER)
+print('=====退出网络学堂=====')
 # js = "alert('12345')"
 # driver.execute_script(js)
 # driver.switch_to_alert().accept()
 # driver.switch_to.alert.accept()
-print('=====退出网络学堂=====')
+# cookie = driver.get_cookies()
+# print(cookie)
+driver.delete_all_cookies()
 time.sleep(1)
 driver.quit()
+print('关闭浏览器，删除cookie')
+driver.refresh()
