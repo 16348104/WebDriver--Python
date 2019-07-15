@@ -11,11 +11,11 @@ from selenium.common.exceptions import NoSuchElementException, UnexpectedAlertPr
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 
-driver = webdriver.Chrome(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/chromedriver')  # MacOS
+# driver = webdriver.Chrome(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/chromedriver')  # MacOS
 
 
 # driver = webdriver.Firefox()
-# driver = webdriver.Chrome()
+driver = webdriver.Chrome()
 
 
 # driver = webdriver.Firefox(
@@ -62,8 +62,8 @@ ticks = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 tomorrow = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time() + 3600))
 print("当前时间戳为:", ticks)
 # print ("当前时间戳为:", tomorrow)
-driver.find_element_by_name("i_user").send_keys("2004980847")
-driver.find_element_by_name("i_pass").send_keys("123")
+driver.find_element_by_name("i_user").send_keys("")
+driver.find_element_by_name("i_pass").send_keys("")
 driver.find_element_by_id("loginButtonId").click()
 print(driver.title, "【第1个窗口】")
 time.sleep(1)
@@ -120,39 +120,39 @@ time.sleep(2)
 # time.sleep(4)
 
 ######################################################课程信息##########################################################
-print('=====测试课程信息=====')
-driver.find_element_by_xpath("//*[@id='wlxt_kc_v_kcxx_jskcxx']").click()
-driver.execute_script("document.documentElement.scrollTop = 10000;")  # 滚动条
-time.sleep(2)
-driver.execute_script("document.documentElement.scrollTop = 0;")  # 滚动条
-time.sleep(1)
-print('=====漫游教务系统=====')
-driver.find_element_by_xpath('//*[@id="content"]/div[2]/div[2]/div/div[1]/div[2]/div[2]/p[2]/a').click()
-try:
-    driver.switch_to.alert.accept()
-except BaseException:  # 捕获到异常
-    print(BaseException)
-    pass
-else:  # 未捕获到
-    print(UnexpectedAlertPresentException)
-    print(driver.switch_to.alert.text)
-    driver.switch_to.alert.accept()
-time.sleep(3)
-driver.back()
-print('=====上传课程图片=====')
+# print('=====测试课程信息=====')
+# driver.find_element_by_xpath("//*[@id='wlxt_kc_v_kcxx_jskcxx']").click()
+# driver.execute_script("document.documentElement.scrollTop = 10000;")  # 滚动条
+# time.sleep(2)
+# driver.execute_script("document.documentElement.scrollTop = 0;")  # 滚动条
+# time.sleep(1)
+# print('=====漫游教务系统=====')
+# driver.find_element_by_xpath('//*[@id="content"]/div[2]/div[2]/div/div[1]/div[2]/div[2]/p[2]/a').click()
+# try:
+#     driver.switch_to.alert.accept()
+# except Exception:  # 捕获到异常
+#     print(Exception)
+#     pass
+# else:  # 未捕获到
+#     print(UnexpectedAlertPresentException)
+#     print(driver.switch_to.alert.text)
+#     driver.switch_to.alert.accept()
+# time.sleep(3)
+# driver.back()
+# print('=====上传课程图片=====')
 # driver.find_element_by_id('doc').send_keys(r"D:/Photo.jpg")  # Modify
-driver.find_element_by_id('doc').send_keys(r"/Users/xdx/Downloads/Map.png")  # Mac
-time.sleep(1)
-try:
-    driver.find_element_by_css_selector(
-        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
-except NoSuchElementException as msg:
-    print('截图', msg)
-    driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'kctp' + ".png")  # 截图modify
-else:
-    print('弹框结果:' + driver.find_element_by_css_selector(
-        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
-time.sleep(3)
+# # driver.find_element_by_id('doc').send_keys(r"/Users/xdx/Downloads/Map.png")  # Mac
+# time.sleep(1)
+# try:
+#     driver.find_element_by_css_selector(
+#         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
+# except NoSuchElementException as msg:
+#     print('截图', msg)
+#     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'kctp' + ".png")  # 截图modify
+# else:
+#     print('弹框结果:' + driver.find_element_by_css_selector(
+#         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+# time.sleep(3)
 ######################################################课程文件##########################################################
 # print('=====测试课程文件=====')
 # driver.find_element_by_xpath("//a[@id='wlxt_kj_wlkc_kjxxb']").click()
@@ -663,4 +663,7 @@ time.sleep(1)
 driver.find_element_by_xpath("//div[contains(@class,'zeromodal-footer')]//button[contains(text(),'确定')]").send_keys(
     Keys.ENTER)
 print('=====退出网络学堂=====')
+driver.delete_all_cookies()
+time.sleep(1)
+print('关闭浏览器，删除cookie')
 driver.quit()
