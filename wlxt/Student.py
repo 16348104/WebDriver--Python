@@ -109,8 +109,11 @@ print('=====登录成功=====')
 ####################################################课程信息#############################################################
 # print('测试课程信息')
 # driver.find_element_by_css_selector('#wlxt_kc_v_kcxx_jskcxx').click()
+# driver.execute_script("document.documentElement.scrollTop = 10000;")  # 滚动条
+# time.sleep(2)
+# driver.execute_script("document.documentElement.scrollTop = 0;")  # 滚动条
+# time.sleep(1)
 # print('=======课程信息测试完毕=====')
-# time.sleep(3)
 ####################################################课程文件#############################################################
 # print("=====测试课程文件=====")
 # driver.find_element_by_xpath("//a[@id='wlxt_kj_wlkc_kjxxb']").click()
