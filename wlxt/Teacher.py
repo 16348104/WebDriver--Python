@@ -96,6 +96,7 @@ time.sleep(2)
 # print('上传公告附件')
 # driver.find_element_by_xpath("//input[@id='fileupload']").send_keys(r"D:/Artists.mp3")  # modify
 # time.sleep(1)
+# ckeditor表情
 # driver.find_element_by_xpath('//a[@id="cke_37"]').click()
 # js = "document.getElementsByClassName('cke_dialog_background_cover')[0].style.display = 'none'"
 # driver.execute_script(js)
