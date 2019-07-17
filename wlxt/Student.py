@@ -36,12 +36,18 @@ def winUpLoadFile(file_path, title):
     # 四级窗口
     edit = win32gui.FindWindowEx(comboBox, 0, 'Edit', None)
     button = win32gui.FindWindowEx(dialog, 0, 'Button', None)
-    time.sleep(1)
     # 执行操作 输入文件路径
+    time.sleep(1)
     win32gui.SendMessage(edit, win32con.WM_SETTEXT, None, file_path)
     # 点击打开上传文件
     time.sleep(1)
-    win32gui.SendMessage(dialog, win32con.WM_COMMAND, 1, button)
+    try:
+        win32gui.SendMessage(dialog, win32con.WM_COMMAND, 1, button)
+    except Exception as msg_alert:
+        driver.get_screenshot_as_file(
+            "C:/Users/zb/Downloads/FireShot/" + time_format() + 'ckeditor' + ".png")  # modify截图
+        print('截图', msg_alert)  # 上传文件失败
+        driver.switch_to.alert.accept()
 
 
 ##################################################登录网络学堂###########################################################
@@ -55,8 +61,13 @@ print('登录后句柄:' + driver.current_window_handle)  # 登录网络学堂�
 driver.find_element_by_name('i_user').clear()
 driver.find_element_by_name('i_pass').clear()
 # time.sleep(30)
-driver.find_element_by_name('i_user').send_keys('')  # 键入用户名
-driver.find_element_by_name('i_pass').send_keys('')  # 键入密码
+# driver.find_element_by_name('i_user').send_keys('')
+# driver.find_element_by_name('i_pass').send_keys('')
+user = input('name:')
+password = input('pw:"')
+driver.find_element_by_name("i_user").send_keys(user)
+driver.find_element_by_name("i_pass").send_keys(password)
+time.sleep(2)
 driver.find_element_by_id('loginButtonId').send_keys(Keys.ENTER)
 time.sleep(2)
 print(driver.title, "【第一个窗口】")
@@ -77,6 +88,7 @@ time.sleep(3)
 print(driver.title, "【第二个窗口】")
 print('新窗口句柄:' + current_window)
 print('=====登录成功=====')
+print('登录时间：', time_format())
 # driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + 'dl-' + time_format() + ".png")  # modify截图
 ####################################################课程公告############################################################
 # print("=====测试课程公告=====")
@@ -224,25 +236,17 @@ print('=====登录成功=====')
 # # 富文本音频win32gui
 # driver.find_element_by_xpath('//*[@id="cke_41"]').click()
 # time.sleep(1)
-# try:
-#     winUpLoadFile("D:\Artists.mp3", "打开")
-# except UnexpectedAlertPresentException as msg:
-#     print(driver.switch_to.alert.text)
-#     driver.switch_to.alert.accept()
+# winUpLoadFile("D:\Artists.mp3", "打开")
 # # AutoIt v3
 # # os.system("D:/Audio.exe")
-# time.sleep(5)
+# time.sleep(3)
 # # 富文本视频win32gui
 # driver.find_element_by_xpath('//*[@id="cke_41"]').click()
 # time.sleep(1)
-# try:
-#     winUpLoadFile("D:\mov.mp4", "打开")  # 往输入框输入绝对地址D:\modify
-# except UnexpectedAlertPresentException as msg:
-#     print(driver.switch_to.alert.text)
-#     driver.switch_to.alert.accept()
+# winUpLoadFile("D:\mov.mp4", "打开")  # 往输入框输入绝对地址D:\modify
 # # AutoIt v3
 # # os.system("D:/Video.exe")
-# time.sleep(10)
+# time.sleep(5)
 # driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
 # time.sleep(1)
 # try:
@@ -410,15 +414,17 @@ else:
     js_video = "var video = document.getElementsByTagName('video')[0];video.play();"
     driver.execute_script(js_video)
     time.sleep(5)
+print('=====下载讨论附件=====')
 print('=====回帖=====')
 driver.find_element_by_xpath('//*[@id="answerFirstLink"]').click()
 driver.find_element_by_xpath('//*[@id="editFirstAnswerFormId"]/div[1]/p/span[2]').click()
-driver.find_element_by_xpath('//a[@id="cke_37"]').click()
-js = "document.getElementsByClassName('cke_dialog_background_cover')[0].style.display = 'none'"
-driver.execute_script(js)
-time.sleep(2)
-driver.find_element_by_xpath('//*/table/tbody/tr[1]/td[1]/a/img').click()
-# # 富文本视频win32gui
+# 富文本表情
+# driver.find_element_by_xpath('//a[@id="cke_37"]').click()
+# js = "document.getElementsByClassName('cke_dialog_background_cover')[0].style.display = 'none'"
+# driver.execute_script(js)
+# time.sleep(2)
+# driver.find_element_by_xpath('//*/table/tbody/tr[1]/td[1]/a/img').click()
+# # 富文本音频win32gui
 time.sleep(1)
 driver.find_element_by_xpath('//*[@id="cke_41"]').click()
 time.sleep(1)
@@ -436,7 +442,7 @@ driver.find_element_by_id('fileupload0').send_keys(r'D:/Homework.pdf')  # modify
 time.sleep(1)
 # 发表
 driver.find_element_by_xpath("//div[@class='rt huifu']//input").click()
-time.sleep(2)
+time.sleep(3)
 try:
     driver.find_element_by_css_selector(
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
@@ -447,6 +453,8 @@ else:
     print('弹框结果:' + driver.find_element_by_css_selector(
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
 time.sleep(5)
+print('=====子回复=====')
+driver.find_element_by_xpath("//p[@class='times reply-btn clearfix noreply']//a[@class='huifu']").click()
 print('=====讨论测试完毕=====')
 ####################################################课程邮件#############################################################
 # print('=====测试课程邮件=====')
