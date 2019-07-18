@@ -558,10 +558,23 @@ else:
     js_audio = "var audio = document.getElementsByTagName('audio')[0];audio.play();"
     driver.execute_script(js_audio)
     time.sleep(5)
-#
-# print("=====回复讨论帖=====")
-# driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_tltb"]').click()
-# time.sleep(1)
+
+print("=====子回复=====")
+driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_tltb"]').click()
+driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[2]/td[2]').click()
+time.sleep(1)
+print('随机下载子回复附件')
+try:
+    driver.find_element_by_xpath("//*[@id='removeFile']")
+except NoSuchElementException as msg:
+    print('无子回复附件', msg)
+else:
+    key = len(driver.find_elements_by_xpath("//*[@id='removeFile']"))
+    print("子回复附件个数", key)
+    ran = random.randrange(key)
+    print('随机数', ran)
+    driver.find_elements_by_xpath("//*[@id='removeFile']").pop(ran).click()
+time.sleep(1)
 
 print('=====课程讨论测试完毕=====')
 ######################################################课程答疑###########################################################

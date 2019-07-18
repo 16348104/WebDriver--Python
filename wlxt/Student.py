@@ -414,7 +414,14 @@ else:
     js_video = "var video = document.getElementsByTagName('video')[0];video.play();"
     driver.execute_script(js_video)
     time.sleep(5)
-print('=====下载讨论附件=====')
+print('=====下载楼主的附件=====')
+try:
+    driver.find_element_by_xpath("//*[@id='answerFirstLink']/preceding::a[@id='']")
+except NoSuchElementException as msg:
+    print('楼主没有附件!', msg)
+else:
+    driver.find_element_by_xpath("//*[@id='answerFirstLink']/preceding::a[@id='']").click()
+
 print('=====回帖=====')
 driver.find_element_by_xpath('//*[@id="answerFirstLink"]').click()
 driver.find_element_by_xpath('//*[@id="editFirstAnswerFormId"]/div[1]/p/span[2]').click()
@@ -440,7 +447,7 @@ time.sleep(3)
 # # 上传答疑文件
 driver.find_element_by_id('fileupload0').send_keys(r'D:/Homework.pdf')  # modify
 time.sleep(1)
-# 发表
+# 发表话题
 driver.find_element_by_xpath("//div[@class='rt huifu']//input").click()
 time.sleep(3)
 try:
@@ -454,7 +461,12 @@ else:
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
 time.sleep(5)
 print('=====子回复=====')
-driver.find_element_by_xpath("//p[@class='times reply-btn clearfix noreply']//a[@class='huifu']").click()
+try:
+    driver.find_element_by_xpath("//p[@class='times reply-btn clearfix noreply']//a[@class='huifu']").click()
+except:
+    pass
+else:
+    driver.findelementby
 print('=====讨论测试完毕=====')
 ####################################################课程邮件#############################################################
 # print('=====测试课程邮件=====')
