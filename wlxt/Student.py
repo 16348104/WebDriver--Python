@@ -422,7 +422,7 @@ except NoSuchElementException as msg:
 else:
     driver.find_element_by_xpath("//*[@id='answerFirstLink']/preceding::a[@id='']").click()
 
-print('=====回帖=====')
+print('=====回复楼主=====')
 driver.find_element_by_xpath('//*[@id="answerFirstLink"]').click()
 driver.find_element_by_xpath('//*[@id="editFirstAnswerFormId"]/div[1]/p/span[2]').click()
 # 富文本表情
@@ -462,11 +462,13 @@ else:
 time.sleep(5)
 print('=====子回复=====')
 try:
-    driver.find_element_by_xpath("//p[@class='times reply-btn clearfix noreply']//a[@class='huifu']").click()
-except:
-    pass
+    driver.find_element_by_xpath("//p[@class='times reply-btn clearfix noreply']//a[@class='huifu']")
+except NoSuchElementException:
+    print('暂无回复！')
+
 else:
-    driver.findelementby
+    # 回复跟帖
+    driver.find_element_by_xpath("//p[@class='times reply-btn clearfix noreply']//a[@class='huifu']").click()
 print('=====讨论测试完毕=====')
 ####################################################课程邮件#############################################################
 # print('=====测试课程邮件=====')
