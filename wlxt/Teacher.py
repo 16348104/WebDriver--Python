@@ -59,8 +59,8 @@ def winUpLoadFile(file_path, title):
 #     Win32UpLoadFile().winUpLoadFile("D:\mov.mp4", "打开")
 ######################################################登录网络学堂######################################################
 # 打开网络学堂
-# driver.get("http://wlxt160.thitc.cn")
-driver.get("http://learn.tsinghua.edu.cn")
+driver.get("http://wlxt160.thitc.cn")
+# driver.get("http://learn.tsinghua.edu.cn")
 driver.maximize_window()
 print("======登录网络学堂=====")
 print(driver.title)
@@ -79,8 +79,8 @@ driver.find_element_by_name('i_pass').send_keys('')
 driver.find_element_by_id("loginButtonId").click()
 time.sleep(1)
 print(driver.title, "【第1个窗口】")
-driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
-# driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  # 开发环境60240202-0
+# driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
+driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  # 开发环境60240202-0
 # 【切换到第二个窗口】
 window_1 = driver.current_window_handle  # 当前窗口句柄
 print('课程句柄:' + window_1)
@@ -620,19 +620,19 @@ time.sleep(3)
 try:
     driver.find_element_by_xpath("//a[@id='cke_39']")
 except NoSuchElementException as msg_math:
-    print('CKeditor未加载!', msg_math)
+    print('刷新CKeditor!', msg_math)
     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'ckeidtor' + ".png")  # modify截图
-    time.sleep(1)
     driver.refresh()
-else:
-    driver.find_element_by_xpath("//a[@id='cke_39']").click()
     time.sleep(1)
-    js = "document.getElementsByClassName('cke_dialog_background_cover')[0].style.display = 'none'"
-    driver.execute_script(js)
-    time.sleep(1)
-    driver.find_element_by_xpath("//a[contains(@class,'ok')]").click()  # 动态id
-    time.sleep(2)
-    print('CKeditor插入公式')
+# finally:
+driver.find_element_by_xpath("//a[@id='cke_39']").click()
+time.sleep(1)
+js = "document.getElementsByClassName('cke_dialog_background_cover')[0].style.display = 'none'"
+driver.execute_script(js)
+time.sleep(1)
+driver.find_element_by_xpath("//a[contains(@class,'ok')]").click()  # 动态id
+time.sleep(2)
+print('CKeditor插入公式')
 time.sleep(1)
 # 上传附件
 print('=====上传答疑附件=====')
@@ -671,12 +671,18 @@ time.sleep(1)
 driver.execute_script("document.documentElement.scrollTop = 10000;")
 time.sleep(2)
 # 富文本图片win32gui
-driver.find_element_by_xpath('//*[@id="cke_40"]').click()
-time.sleep(1)
-winUpLoadFile('D:\Photo.jpg', "打开")  # 往输入框输入绝对地址D:\   modify
-time.sleep(1)
-print('Ckeditor传图片')
-time.sleep(2)
+try:
+    driver.find_element_by_xpath('//*[@id="cke_40"]')
+except NoSuchElementException as msg_photo:
+    print('CKeditor未加载!', msg_photo)
+    driver.refresh()
+    time.sleep(1)
+finally:
+    driver.find_element_by_xpath('//*[@id="cke_40"]').click()
+    time.sleep(1)
+    winUpLoadFile('D:\Photo.jpg', "打开")  # 往输入框输入绝对地址D:\   modify
+    time.sleep(2)
+    print('Ckeditor传图片')
 driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
 time.sleep(2)
 try:
@@ -735,6 +741,8 @@ else:
     time.sleep(5)
 # 随机下载答疑附件
 print('随机下载问题集锦文件')
+driver.refresh()
+time.sleep(1)
 try:
     driver.find_element_by_xpath("//*[@class='download-file']//*[@id='removeFile']")
 except NoSuchElementException as msg:

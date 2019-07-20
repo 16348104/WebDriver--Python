@@ -4,7 +4,8 @@ import win32gui
 import win32con
 
 from selenium import webdriver
-from selenium.common.exceptions import NoSuchElementException, UnexpectedAlertPresentException
+from selenium.common.exceptions import NoSuchElementException, UnexpectedAlertPresentException, \
+    ElementNotInteractableException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys
 import time
@@ -55,15 +56,15 @@ def winUpLoadFile(file_path, title):
 ##################################################登录网络学堂###########################################################
 print("======登录网络学堂=====")
 print('测试浏览器:' + driver.name)
-driver.get('http://learn.tsinghua.edu.cn')
-# driver.get("http://wlxt160.thitc.cn")
+# driver.get('http://learn.tsinghua.edu.cn')
+driver.get("http://wlxt160.thitc.cn")
 driver.maximize_window()
 driver.implicitly_wait(2)
 print('登录后句柄:' + driver.current_window_handle)  # 登录网络学堂，【第一个窗口】
 driver.find_element_by_name('i_user').clear()
 driver.find_element_by_name('i_pass').clear()
 # time.sleep(30)
-driver.find_element_by_name('i_user').send_keys('')
+driver.find_element_by_name('i_user').send_keys('2014013037')
 driver.find_element_by_name('i_pass').send_keys('')
 # user = input('name:')
 # password = input('pw:"')
@@ -77,8 +78,8 @@ print(driver.title, "【第一个窗口】")
 #     driver.switch_to.alert.accept('日历服务漫游失败')
 # except UnexpectedAlertPresentException as msg:
 #     pass
-# driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  # 开发60240202-0
-driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
+driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  # 开发60240202-0
+# driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
 # 【切换到第二个窗口】
 window_1 = driver.current_window_handle  # 当前窗口句柄
 print('课程句柄:' + window_1)
@@ -87,7 +88,7 @@ for current_window in windows:
     if current_window != window_1:
         driver.switch_to.window(current_window)
 time.sleep(3)
-print(driver.title, "【第二个窗口】")
+print(driver.title, "【第2个窗口】")
 print('新窗口句柄:' + current_window)
 print('=====登录成功=====')
 print('登录时间：', time_format())
@@ -236,12 +237,20 @@ time.sleep(1)
 driver.find_element_by_xpath('//*[@id="addFormId"]//div[2]/input[1]').send_keys(time_format() + '测试课程答疑')
 driver.execute_script("document.documentElement.scrollTop = 10000;")
 # 富文本视频win32gui
+try:
+    driver.find_element_by_xpath('//*[@id="cke_41"]')
+except NoSuchElementException as msg_MP4:
+    print('CKeditor未加载!', msg_MP4)
+    driver.refresh()
+    time.sleep(1)
+# finally:
 driver.find_element_by_xpath('//*[@id="cke_41"]').click()
 time.sleep(1)
 winUpLoadFile("D:\mov.mp4", "打开")  # 往输入框输入绝对地址D:\modify
+time.sleep(5)
+print('ckeditor传MP4')
 # AutoIt v3
 # os.system("D:/Video.exe")
-time.sleep(5)
 print('=====上传答疑附件=====')
 driver.find_element_by_id('fileupload').send_keys(r'D:/Homework.pdf')  # modify
 driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
@@ -261,25 +270,36 @@ print('=====编辑未答问题=====')
 driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_kcdy"]').click()
 driver.find_element_by_xpath('//tr[1]//td[4]//a[1]').click()
 time.sleep(1)
+# 编辑答疑
 driver.find_element_by_xpath("//a[@class='ml-10 show-textar']").click()
-driver.find_element_by_xpath('//*[@id="cke_41"]').click()
-time.sleep(1)
+time.sleep(2)
 # 富文本音频win32gui
-winUpLoadFile("D:\Artists.mp3", "打开")
-time.sleep(3)
-# AutoIt v3
-# os.system("D:/Audio.exe")
-# 上传答疑文件
+try:
+    driver.find_element_by_xpath('//*[@id="cke_41"]')
+except NoSuchElementException as msg_MP4:
+    print('CKeditor未加载!', msg_MP4)
+    driver.refresh()
+    time.sleep(1)
+finally:
+    driver.find_element_by_xpath('//*[@id="cke_41"]').click()
+    time.sleep(1)
+    winUpLoadFile("D:\Artists.mp3", "打开")
+    time.sleep(3)
+    print('ckeditor传MP3')
+    # AutoIt v3
+    # os.system("D:/Audio.exe")
+# 保存
 driver.find_element_by_xpath('//*[@id="saveTltBtn"]').click()
 time.sleep(1)
 print('弹框结果:' + driver.find_element_by_css_selector(
     "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
 time.sleep(5)
 print('=====查看已回答问题=====')
-driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_kcdy"]').click()
+# driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_kcdy"]').click()
+# 已回答问题tab
 driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[2]').click()
 driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]//td[6]//a[1]').click()
-time.sleep(1)
+time.sleep(2)
 driver.execute_script("document.documentElement.scrollTop = 10000;")
 time.sleep(1)
 # Play Audio
@@ -310,10 +330,16 @@ except NoSuchElementException as msg:
     print('无答疑附件', msg)
 else:
     Downloads = driver.find_elements_by_xpath('//*[@id="hfjg"]//a[@id="removeFile"]')
-    print(Downloads)
+    # print(Downloads)
     for i in Downloads:
-        i.click()
-        time.sleep(1)
+        try:
+            i.click()
+        except ElementNotInteractableException as msg:
+            print(msg)
+            driver.refresh()
+        finally:
+            i.click()
+            time.sleep(1)
 driver.execute_script("document.documentElement.scrollTop = 10000;")
 
 ##等待正式环境修改
