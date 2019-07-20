@@ -7,9 +7,9 @@ from email.mime.text import MIMEText
 from selenium.common.exceptions import NoSuchElementException, UnexpectedAlertPresentException, TimeoutException, \
     ElementNotInteractableException
 
-# browser = webdriver.Firefox()
+browser = webdriver.Firefox()
 # browser = webdriver.Ie()
-browser = webdriver.Chrome()
+# browser = webdriver.Chrome()
 
 # browser = webdriver.Chrome(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/chromedriver')
 
@@ -133,5 +133,6 @@ smtp.login(user, password)
 smtp.sendmail(sender, receiver, msg.as_string())
 smtp.quit()
 print('Email has send out!')
+time.sleep(2)
 browser.delete_all_cookies()
-browser.close()
+browser.quit()
