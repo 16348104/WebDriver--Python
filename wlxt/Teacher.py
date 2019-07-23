@@ -199,7 +199,7 @@ driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[2]/a').click()
 driver.execute_script("document.documentElement.scrollTop = 10000;")  # 滚动条
 print('下载课件')
 driver.back()
-time.sleep(1)
+time.sleep(2)
 driver.find_element_by_xpath("//tbody//tr[1]//td[8]//a[1]").click()
 print('预览课件')
 time.sleep(2)
@@ -208,7 +208,7 @@ print(str1)
 searchObj = re.search(r'disabled', str1, re.I)  # 正则表达式
 if searchObj is None:
     print('课件可以预览!')
-    time.sleep(2)
+    time.sleep(5)
     driver.find_element_by_xpath("//tbody//tr[1]//td[8]//a[2]").click()  # 点预览按钮
     windows = driver.window_handles  # 显示所有句柄
     window_1 = driver.current_window_handle
@@ -216,7 +216,7 @@ if searchObj is None:
     print("当前窗口：", window_1)
     # 切换窗口
     driver.switch_to.window(windows[2])  # 切换到第3个窗口
-    time.sleep(1)
+    time.sleep(2)
     # sate = driver.find_element_by_css_selector(
     #     "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").get_attribute('class')
     # if sate == 'zeromodal-title1':
@@ -265,14 +265,14 @@ time.sleep(4)
 print('=====测试课程作业=====')
 driver.find_element_by_xpath("//a[@id='wlxt_kczy_zy']").click()
 time.sleep(3)
-布置作业
+##布置作业
 print('布置作业')
 driver.find_element_by_xpath('//*[@id="content"]//span[2]/a').click()
 driver.find_element_by_name("bt").send_keys("测试全体作业" + ticks)
 # 定位上传按钮，添加本地文件
 js = "document.getElementById('fileupload').style.display=\'block\'"
 driver.execute_script(js)
-driver.find_element_by_name("fileupload").send_keys("D:/listening.pdf")  # modify
+driver.find_element_by_name("fileupload").send_keys("D:/Homework.pdf")  # modify
 # 设置截止时间
 # driver.find_element_by_name("jzsj").send_keys(tomorrow)
 scroll = "document.documentElement.scrollTop = 10000;"
@@ -333,7 +333,7 @@ if zy_geren == 'true' and jf_fz == 'true':  # 个人分值作业
         driver.find_element_by_xpath("//*[@id='documention']").clear()
         driver.find_element_by_xpath("//*[@id='documention']").send_keys('个人作业已阅')  # 填评语
         driver.find_element_by_id('fileupload').send_keys(
-            r'C:/Users/zb/Desktop/test/python/review.docx')  # modify      # 传评语附件
+            r'D:/review.docx')  # modify      # 传评语附件
         time.sleep(1)
         driver.find_element_by_xpath("//div[@class='sub-back sub-back-3 absolute']//input[1]").click()
         time.sleep(2)
@@ -373,7 +373,7 @@ elif zy_geren == 'true' and jf_ffz == 'true':  # 个人非分值作业
         driver.find_element_by_xpath("//*[@id='documention']").send_keys('个人作业已阅')  # 填评语
         time.sleep(1)
         driver.find_element_by_id('fileupload').send_keys(
-            r'C:/Users/zb/Desktop/test/python/review.docx')  # modify      # 传评语附件
+            r'D:/review.docx')  # modify      # 传评语附件
         time.sleep(1)
         driver.find_element_by_xpath("//*[@class='sub-back sub-back-3 absolute']//input[1]").click()
         time.sleep(2)
@@ -407,7 +407,7 @@ elif zy_zu == 'true' and jf_fz == 'true':  # 分值组作业
         driver.find_element_by_id('recommandPL').send_keys('组作业已阅')  # 填评语
         driver.find_element_by_id('setPL').click()  # 设定成绩
         driver.find_element_by_id('fileupload').send_keys(
-            r'C:/Users/zb/Desktop/test/python/review.docx')  # modify # 传评语附件
+            r'D:/review.docx')  # modify # 传评语附件
         time.sleep(1)
         driver.find_element_by_xpath("//div[@class='sub-back sub-back-3 absolute']//input[1]").click()
         time.sleep(1)
@@ -448,7 +448,7 @@ elif zy_zu == 'true' and jf_ffz == 'true':  # 非分值组作业
         driver.find_element_by_id('recommandPL').send_keys('组作业已阅')  # 填评语
         driver.find_element_by_id('setPL').click()  # 设定成绩
         driver.find_element_by_id('fileupload').send_keys(
-            r'C:/Users/zb/Desktop/test/python/review.docx')  # modify # 传评语附件
+            r'D:/review.docx')  # modify # 传评语附件
         time.sleep(1)
         driver.find_element_by_xpath("//div[@class='sub-back absolute sub-back-3']//input[1]").click()
         time.sleep(2)

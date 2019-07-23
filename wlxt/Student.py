@@ -217,13 +217,13 @@ else:
     else:
         print('弹框结果:' + driver.find_element_by_css_selector(
             "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
-time.sleep(2)
+time.sleep(3)
 print('=====作业测试完毕=====')
 ########################################################我的分组#########################################################
 print('=====测试我的分组=====')
-driver.find_element_by_css_selector('#wlxt_qz_v_wlkc_qzcyb').click()
+driver.find_element_by_xpath('//*[@id="wlxt_qz_v_wlkc_qzcyb"]').click()
+time.sleep(2)
 print('=====我的分组测试完毕=====')
-time.sleep(3)
 ######################################################课程答疑###########################################################
 print('=====测试课程答疑=====')
 driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_kcdy"]').click()
@@ -521,7 +521,7 @@ driver.switch_to.frame(iframe)  # 切入iframe
 driver.find_element_by_xpath("//body[starts-with(@class,'cke')]").send_keys('学生端功能正常')
 driver.switch_to.default_content()  # 跳出iframe
 # driver.find_element_by_id('fileupload').send_keys(r'/Users/xiaodaxing/Desktop/Race.pdf')  # Mac上传文件
-driver.find_element_by_id('fileupload').send_keys(r'C:/Users/zb/Desktop/test/python/review.docx')  # modify
+# driver.find_element_by_id('fileupload').send_keys(r'D:/review.docx')  # modify
 time.sleep(1)
 driver.find_element_by_xpath('//input[@id="submitButton"]').click()
 time.sleep(1)
