@@ -52,19 +52,20 @@ def winUpLoadFile(file_path, title):
         print('截图', msg_alert)  # 上传文件失败
         driver.switch_to.alert.accept()
 
+
 ##################################################登录网络学堂###########################################################
 print("======登录网络学堂=====")
 print('测试浏览器:' + driver.name)
-driver.get('http://learn.tsinghua.edu.cn')
-# driver.get("http://wlxt160.thitc.cn")
+# driver.get('http://learn.tsinghua.edu.cn')
+driver.get("http://wlxt160.thitc.cn")
 driver.maximize_window()
 driver.implicitly_wait(2)
 print('登录后句柄:' + driver.current_window_handle)  # 登录网络学堂，【第一个窗口】
 driver.find_element_by_name('i_user').clear()
 driver.find_element_by_name('i_pass').clear()
 # time.sleep(30)
-driver.find_element_by_name('i_user').send_keys('')
-driver.find_element_by_name('i_pass').send_keys('')
+driver.find_element_by_name('i_user').send_keys('2014013037')
+driver.find_element_by_name('i_pass').send_keys('123')
 # user = input('name:')
 # password = input('pw:"')
 # driver.find_element_by_name("i_user").send_keys(user)
@@ -77,8 +78,8 @@ print(driver.title, "【第1个窗口】")
 #     driver.switch_to.alert.accept('日历服务漫游失败')
 # except UnexpectedAlertPresentException as msg:
 #     pass
-# driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  # 开发60240202-0
-driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
+driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  # 开发60240202-0
+# driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
 # 【切换到第二个窗口】
 window_1 = driver.current_window_handle  # 当前窗口句柄
 print('课程句柄:' + window_1)
@@ -433,16 +434,18 @@ else:
     js_video = "var video = document.getElementsByTagName('video')[0];video.play();"
     driver.execute_script(js_video)
     time.sleep(5)
-print('=====下载楼主的附件=====')
-try:
-    driver.find_element_by_xpath("//*[@id='answerFirstLink']/preceding::a[@id='']")
-except NoSuchElementException as msg:
-    print('楼主没有附件!', msg)
-else:
-    driver.find_element_by_xpath("//*[@id='answerFirstLink']/preceding::a[@id='']").click()
+# print('下载楼主的附件')
+# try:
+#     driver.find_element_by_xpath("//*[@id='answerFirstLink']/preceding::a[@id='']")
+# except NoSuchElementException as msg:
+#     print('楼主没有附件!', msg)
+# else:
+#     driver.find_element_by_xpath("//*[@id='answerFirstLink']/preceding::a[@id='']").click()
+
 
 print('=====回复楼主=====')
 driver.find_element_by_xpath('//*[@id="answerFirstLink"]').click()
+# 切换编辑器
 driver.find_element_by_xpath('//*[@id="editFirstAnswerFormId"]/div[1]/p/span[2]').click()
 # 富文本表情
 # driver.find_element_by_xpath('//a[@id="cke_37"]').click()
@@ -453,11 +456,11 @@ driver.find_element_by_xpath('//*[@id="editFirstAnswerFormId"]/div[1]/p/span[2]'
 # # 富文本音频win32gui
 time.sleep(1)
 driver.find_element_by_xpath('//*[@id="cke_41"]').click()
-time.sleep(1)
+time.sleep(2)
 try:
     winUpLoadFile("D:\Artists.mp3", "打开")  # 往输入框输入绝对地址D:\modify
-    time.sleep(3)
-    print('CKeditor传视频文件')
+    time.sleep(4)
+    print('CKeditor传音频文件')
 except UnexpectedAlertPresentException as msg_alert:
     print('截图', msg_alert)
     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'ckeditor' + ".png")  # modify截图
@@ -482,12 +485,14 @@ time.sleep(5)
 print('=====回复跟帖=====')
 try:
     # 对回复的回复
-    driver.find_element_by_xpath("//p[@class='times reply-btn clearfix noreply']//a[@class='huifu']")
+    driver.find_element_by_xpath("//p[@class='times reply-btn noreply clearfix']")
 except NoSuchElementException as msg:
     print('暂无回复', msg)
 else:
-    driver.find_element_by_xpath("//p[@class='times reply-btn clearfix noreply']//a[@class='huifu']").click()
+    driver.find_element_by_xpath("//p[@class='times reply-btn noreply clearfix']").click()
     driver.find_element_by_xpath("//div[@id='item_38379995']//span[contains(@class,'rt toeditor')]")
+    js = "document.getElementsByClassName('reply-more clearfix')[2]"
+    driver.execute_script(js).click()
     # 获取hfid
     item = driver.find_element_by_xpath(
         "//div[@id='item_38380410']//span[contains(@class,'rt toeditor')]").get_attribute('id')
