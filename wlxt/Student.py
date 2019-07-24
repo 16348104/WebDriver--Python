@@ -434,26 +434,17 @@ else:
     js_video = "var video = document.getElementsByTagName('video')[0];video.play();"
     driver.execute_script(js_video)
     time.sleep(5)
-# print('下载楼主的附件')
-# try:
-#     driver.find_element_by_xpath("//*[@id='answerFirstLink']/preceding::a[@id='']")
-# except NoSuchElementException as msg:
-#     print('楼主没有附件!', msg)
-# else:
-#     driver.find_element_by_xpath("//*[@id='answerFirstLink']/preceding::a[@id='']").click()
-
-
+print('下载楼主的附件')
+try:
+    driver.find_element_by_xpath("//*[@id='answerFirstLink']/preceding::a[@id='']")
+except NoSuchElementException as msg:
+    print('楼主没有附件!', msg)
+else:
+    driver.find_element_by_xpath("//*[@id='answerFirstLink']/preceding::a[@id='']").click()
 print('=====回复楼主=====')
 driver.find_element_by_xpath('//*[@id="answerFirstLink"]').click()
 # 切换编辑器
 driver.find_element_by_xpath('//*[@id="editFirstAnswerFormId"]/div[1]/p/span[2]').click()
-# 富文本表情
-# driver.find_element_by_xpath('//a[@id="cke_37"]').click()
-# js = "document.getElementsByClassName('cke_dialog_background_cover')[0].style.display = 'none'"
-# driver.execute_script(js)
-# time.sleep(2)
-# driver.find_element_by_xpath('//*/table/tbody/tr[1]/td[1]/a/img').click()
-# # 富文本音频win32gui
 time.sleep(1)
 driver.find_element_by_xpath('//*[@id="cke_41"]').click()
 time.sleep(2)
@@ -485,17 +476,34 @@ time.sleep(5)
 print('=====回复跟帖=====')
 try:
     # 对回复的回复
-    driver.find_element_by_xpath("//p[@class='times reply-btn noreply clearfix']")
+    driver.find_element_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']")
 except NoSuchElementException as msg:
     print('暂无回复', msg)
 else:
-    driver.find_element_by_xpath("//p[@class='times reply-btn noreply clearfix']").click()
-    driver.find_element_by_xpath("//div[@id='item_38379995']//span[contains(@class,'rt toeditor')]")
-    js = "document.getElementsByClassName('reply-more clearfix')[2]"
-    driver.execute_script(js).click()
+    driver.find_elements_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']").pop(0).click()
     # 获取hfid
-    item = driver.find_element_by_xpath(
-        "//div[@id='item_38380410']//span[contains(@class,'rt toeditor')]").get_attribute('id')
+    item = driver.find_element_by_xpath("a[@class='huifu']//span[contains(@id,'span_first')]").pop(0).getAttribute('id')
+    print(item)
+    # //span[contains( @id, 'span_first')]
+    # 切换ckeditor
+    driver.find_elements_by_xpath("//span[contains(@class,'toeditor')]").pop(0).click()
+    time.sleep(2)
+    try:
+        # 富文本表情
+        driver.find_element_by_xpath('//a[@id="cke_37"]').click()
+    except NoSuchElementException as msg:
+        print('CKeditor未加载!', msg)
+        driver.refresh()
+        time.sleep(2)
+    js = "document.getElementsByClassName('cke_dialog_background_cover')[0].style.display = 'none'"
+    driver.execute_script(js)
+    time.sleep(2)
+    driver.find_element_by_xpath('//*/table/tbody/tr[1]/td[1]/a/img').click()
+    print('上传文件')
+    driver.find_elements_by_xpath("//input[@name='fileupload']").pop(0).send_keys(r'D:/review.docx')
+    time.sleep(1)
+    print('发表子回复')
+    driver.find_elements_by_xpath("//input[contains(@class,'submit')]").pop(0).click()
 time.sleep(2)
 print('=====讨论测试完毕=====')
 ####################################################课程邮件#############################################################
