@@ -132,6 +132,7 @@ print('登录时间：', time_format())
 ####################################################课程文件#############################################################
 # print("=====测试课程文件=====")
 # driver.find_element_by_xpath("//a[@id='wlxt_kj_wlkc_kjxxb']").click()
+# time.sleep(2)
 # driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[1]/p').click()  # 电子教案类
 # kjs = len(driver.find_elements_by_xpath("//i[contains(@class,'webicon-download downLoadFile')]"))
 # li = driver.find_elements_by_xpath("//i[contains(@class,'webicon-download downLoadFile')]")
@@ -413,7 +414,7 @@ print('=====测试课程讨论=====')
 driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_tltb"]').click()
 driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[2]/a').click()
 time.sleep(1)
-print('=====浏览讨论帖=====')
+print('浏览讨论帖')
 # # Play Audio
 try:
     driver.find_element_by_xpath("//p[@id='wtnr']//p//audio")
@@ -441,7 +442,7 @@ except NoSuchElementException as msg:
     print('楼主没有附件!', msg)
 else:
     driver.find_element_by_xpath("//*[@id='answerFirstLink']/preceding::a[@id='']").click()
-print('=====回复楼主=====')
+print('回复楼主')
 driver.find_element_by_xpath('//*[@id="answerFirstLink"]').click()
 # 切换编辑器
 driver.find_element_by_xpath('//*[@id="editFirstAnswerFormId"]/div[1]/p/span[2]').click()
@@ -473,20 +474,27 @@ else:
     print('弹框结果:' + driver.find_element_by_css_selector(
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
 time.sleep(5)
-print('=====回复跟帖=====')
+print('回复跟帖')
 try:
-    # 对回复的回复
+    # 回复的回复
     driver.find_element_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']")
 except NoSuchElementException as msg:
     print('暂无回复', msg)
 else:
-    driver.find_elements_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']").pop(0).click()
+    hf_list = len(
+        driver.find_elements_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']"))
+    ran_hf = random.randrange(hf_list)
+    print('仅回复楼主讨论帖数:', hf_list)
+    print('子回复楼层:', ran_hf + 1)
+    driver.find_elements_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']").pop(
+        ran_hf).click()
     # 获取hfid
-    item = driver.find_element_by_xpath("a[@class='huifu']//span[contains(@id,'span_first')]").pop(0).getAttribute('id')
-    print(item)
+    # item = driver.find_element_by_xpath("a[@class='huifu']//span[contains(@id,'span_first')]").pop(ran_hf).getAttribute(
+    #     'id')
+    # print(item)
     # //span[contains( @id, 'span_first')]
     # 切换ckeditor
-    driver.find_elements_by_xpath("//span[contains(@class,'toeditor')]").pop(0).click()
+    driver.find_elements_by_xpath("//span[contains(@class,'toeditor')]").pop(ran_hf).click()
     time.sleep(2)
     try:
         # 富文本表情
@@ -500,10 +508,10 @@ else:
     time.sleep(2)
     driver.find_element_by_xpath('//*/table/tbody/tr[1]/td[1]/a/img').click()
     print('上传文件')
-    driver.find_elements_by_xpath("//input[@name='fileupload']").pop(0).send_keys(r'D:/review.docx')
+    driver.find_elements_by_xpath("//input[@name='fileupload']").pop(ran_hf).send_keys(r'D:/review.docx')
     time.sleep(1)
     print('发表子回复')
-    driver.find_elements_by_xpath("//input[contains(@class,'submit')]").pop(0).click()
+    driver.find_elements_by_xpath("//input[contains(@class,'submit')]").pop(ran_hf).click()
 time.sleep(2)
 print('=====讨论测试完毕=====')
 ####################################################课程邮件#############################################################

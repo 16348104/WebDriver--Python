@@ -562,8 +562,22 @@ else:
 
 print("=====子回复=====")
 driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_tltb"]').click()
+time.sleep(1)
 driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[2]/td[2]').click()
 time.sleep(1)
+try:
+    driver.find_element_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu other']")
+except NoSuchElementException as msg:
+    print('暂无回复', msg)
+else:
+    hf_list = len(
+        driver.find_elements_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu other']"))
+    ran_hf = random.randrange(hf_list)
+    print('子回复跟帖数:', hf_list)
+    print('子回复楼层:', ran_hf + 1)
+    driver.find_elements_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu other']").pop(
+        ran_hf).click()
+    driver.find_elements_by_xpath("//textarea[@name='nr']").pop(ran_hf).send_keys("Hello")
 print('随机下载子回复附件')
 try:
     driver.find_element_by_xpath("//*[@id='removeFile']")
