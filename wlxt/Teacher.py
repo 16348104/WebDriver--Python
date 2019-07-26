@@ -59,8 +59,8 @@ def winUpLoadFile(file_path, title):
 #     Win32UpLoadFile().winUpLoadFile("D:\mov.mp4", "打开")
 ######################################################登录网络学堂######################################################
 # 打开网络学堂
-# driver.get("http://wlxt160.thitc.cn")
-driver.get("http://learn.tsinghua.edu.cn")
+driver.get("http://wlxt160.thitc.cn")
+# driver.get("http://learn.tsinghua.edu.cn")
 driver.maximize_window()
 print("======登录网络学堂=====")
 print(driver.title)
@@ -70,8 +70,8 @@ ticks = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 tomorrow = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time() + 3600))
 # print("当前时间戳为:", ticks)
 # print ("当前时间戳为:", tomorrow)
-driver.find_element_by_name('i_user').send_keys('')
-driver.find_element_by_name('i_pass').send_keys('')
+driver.find_element_by_name('i_user').send_keys('2004980847')
+driver.find_element_by_name('i_pass').send_keys('123')
 # user = input('name:')
 # password = input('pw:"')
 # driver.find_element_by_name("i_user").send_keys(user)
@@ -79,8 +79,8 @@ driver.find_element_by_name('i_pass').send_keys('')
 driver.find_element_by_id("loginButtonId").click()
 time.sleep(1)
 print(driver.title, "【第1个窗口】")
-driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
-# driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  # 开发环境60240202-0
+# driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
+driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  # 开发环境60240202-0
 # 【切换到第二个窗口】
 window_1 = driver.current_window_handle  # 当前窗口句柄
 print('课程句柄:' + window_1)
@@ -488,14 +488,13 @@ time.sleep(1)
 # time.sleep(3)
 
 # # 富文本视频win32gui
-driver.find_element_by_xpath('//*[@id="cke_41"]').click()
-time.sleep(1)
-winUpLoadFile("D:\mov.mp4", "打开")  # 往输入框输入绝对地址D:\modify
-time.sleep(3)
 print('CKeditor传视频文件')
+driver.find_element_by_xpath('//*[@id="cke_41"]').click()
+time.sleep(2)
+winUpLoadFile("D:\mov.mp4", "打开")  # 往输入框输入绝对地址D:\modify
 time.sleep(5)
 # 上传附件
-print('=====上传讨论附件=====')
+print('上传讨论附件')
 driver.find_element_by_xpath('//*[@id="fileupload"]').send_keys(r'D:\Homework.pdf')  # modify
 driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
 time.sleep(2)
@@ -560,11 +559,11 @@ else:
     driver.execute_script(js_audio)
     time.sleep(5)
 
-print("=====子回复=====")
+print("=====回复子回复=====")
 driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_tltb"]').click()
 time.sleep(1)
-driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[2]/td[2]').click()
-time.sleep(1)
+driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[2]/td[2]/a').click()
+time.sleep(3)
 try:
     driver.find_element_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu other']")
 except NoSuchElementException as msg:
@@ -572,13 +571,19 @@ except NoSuchElementException as msg:
 else:
     hf_list = len(
         driver.find_elements_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu other']"))
-    ran_hf = random.randrange(hf_list)
     print('子回复跟帖数:', hf_list)
-    print('子回复楼层:', ran_hf + 1)
+    if hf_list >= 2:
+        # 展开子回复
+        driver.find_element_by_xpath('//*[@id="hufuitem"]/a').click()
+    ran_hf = random.randrange(hf_list)
+    print('子回复在第', ran_hf + 1, '楼')
     driver.find_elements_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu other']").pop(
         ran_hf).click()
-    driver.find_elements_by_xpath("//textarea[@name='nr']").pop(ran_hf).send_keys("Hello")
-print('随机下载子回复附件')
+    driver.find_elements_by_xpath("//textarea[@name='nr']").pop(ran_hf).send_keys("教师端测试子回复!")
+    time.sleep(1)
+    print('发表子回复')
+    driver.find_elements_by_xpath("//input[contains(@class,'submit')]").pop(ran_hf).click()
+print('随机下载讨论附件')
 try:
     driver.find_element_by_xpath("//*[@id='removeFile']")
 except NoSuchElementException as msg:
@@ -587,9 +592,9 @@ else:
     key = len(driver.find_elements_by_xpath("//*[@id='removeFile']"))
     print("子回复附件个数", key)
     ran = random.randrange(key)
-    print('随机数', ran)
+    print('随机数:', ran)
     driver.find_elements_by_xpath("//*[@id='removeFile']").pop(ran).click()
-time.sleep(1)
+time.sleep(2)
 print('=====课程讨论测试完毕=====')
 ######################################################课程答疑###########################################################
 # print('=====测试课程答疑=====')

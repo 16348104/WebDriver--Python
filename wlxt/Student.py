@@ -447,12 +447,12 @@ driver.find_element_by_xpath('//*[@id="answerFirstLink"]').click()
 # 切换编辑器
 driver.find_element_by_xpath('//*[@id="editFirstAnswerFormId"]/div[1]/p/span[2]').click()
 time.sleep(1)
+print('CKeditor传音频文件')
 driver.find_element_by_xpath('//*[@id="cke_41"]').click()
 time.sleep(2)
 try:
     winUpLoadFile("D:\Artists.mp3", "打开")  # 往输入框输入绝对地址D:\modify
     time.sleep(4)
-    print('CKeditor传音频文件')
 except UnexpectedAlertPresentException as msg_alert:
     print('截图', msg_alert)
     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'ckeditor' + ".png")  # modify截图
@@ -474,9 +474,9 @@ else:
     print('弹框结果:' + driver.find_element_by_css_selector(
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
 time.sleep(5)
-print('回复跟帖')
+print('回复本人跟帖')
 try:
-    # 回复的回复
+    # 回复本人的回复
     driver.find_element_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']")
 except NoSuchElementException as msg:
     print('暂无回复', msg)
@@ -484,30 +484,31 @@ else:
     hf_list = len(
         driver.find_elements_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']"))
     ran_hf = random.randrange(hf_list)
-    print('仅回复楼主讨论帖数:', hf_list)
-    print('子回复楼层:', ran_hf + 1)
-    driver.find_elements_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']").pop(
-        ran_hf).click()
+    print('学生回复楼主讨论帖个数:', hf_list)
+    print('子回复序号:', ran_hf + 1)
+    driver.find_elements_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']").pop(ran_hf).click()
+    time.sleep(3)
     # 获取hfid
     # item = driver.find_element_by_xpath("a[@class='huifu']//span[contains(@id,'span_first')]").pop(ran_hf).getAttribute(
     #     'id')
     # print(item)
     # //span[contains( @id, 'span_first')]
     # 切换ckeditor
-    driver.find_elements_by_xpath("//span[contains(@class,'toeditor')]").pop(ran_hf).click()
-    time.sleep(2)
+    driver.find_elements_by_xpath("//div[@id='mypanel']//span[contains(@class,'toeditor')]").pop(ran_hf).click()
     try:
         # 富文本表情
-        driver.find_element_by_xpath('//a[@id="cke_37"]').click()
+        driver.find_element_by_xpath('//a[@id="cke_37"]')
     except NoSuchElementException as msg:
         print('CKeditor未加载!', msg)
         driver.refresh()
         time.sleep(2)
-    js = "document.getElementsByClassName('cke_dialog_background_cover')[0].style.display = 'none'"
-    driver.execute_script(js)
-    time.sleep(2)
-    driver.find_element_by_xpath('//*/table/tbody/tr[1]/td[1]/a/img').click()
-    print('上传文件')
+    else:
+        driver.find_element_by_xpath('//a[@id="cke_37"]').click()
+        js = "document.getElementsByClassName('cke_dialog_background_cover')[0].style.display = 'none'"
+        driver.execute_script(js)
+        time.sleep(2)
+        driver.find_element_by_xpath('//*/table/tbody/tr[1]/td[1]/a/img').click()
+    print('上传子回复附件')
     driver.find_elements_by_xpath("//input[@name='fileupload']").pop(ran_hf).send_keys(r'D:/review.docx')
     time.sleep(1)
     print('发表子回复')
