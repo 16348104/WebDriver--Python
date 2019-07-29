@@ -468,11 +468,11 @@ time.sleep(2)
 print('=====测试课程讨论=====')
 driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_tltb"]').click()
 time.sleep(1)
-print('=====发表话题=====')
-driver.find_element_by_xpath('//span[@class="rt right"]/child::a').click()
-driver.find_element_by_xpath('//*[@name="bt"]').send_keys("测试讨论" + ticks)
-driver.find_element_by_xpath("//div[@class='onetab active']//label[1]").click()
-time.sleep(1)
+# print('=====发表话题=====')
+# driver.find_element_by_xpath('//span[@class="rt right"]/child::a').click()
+# driver.find_element_by_xpath('//*[@name="bt"]').send_keys("测试讨论" + ticks)
+# driver.find_element_by_xpath("//div[@class='onetab active']//label[1]").click()
+# time.sleep(1)
 
 # 富文本图片win32gui
 # driver.find_element_by_xpath('//*[@id="cke_40"]').click()
@@ -488,98 +488,104 @@ time.sleep(1)
 # time.sleep(3)
 
 # # 富文本视频win32gui
-print('CKeditor传视频文件')
-driver.find_element_by_xpath('//*[@id="cke_41"]').click()
-time.sleep(2)
-winUpLoadFile("D:\mov.mp4", "打开")  # 往输入框输入绝对地址D:\modify
-time.sleep(5)
-# 上传附件
-print('上传讨论附件')
-driver.find_element_by_xpath('//*[@id="fileupload"]').send_keys(r'D:\Homework.pdf')  # modify
-driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
-time.sleep(2)
-try:
-    driver.find_element_by_css_selector(
-        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
-except NoSuchElementException as msg:
-    print('截图', msg)
-    driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'FBHT' + ".png")  # modify截图
-else:
-    print('弹框结果:' + driver.find_element_by_css_selector(
-        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
-time.sleep(5)
-print('=====编辑话题=====')
-# driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_tltb"]').click()
+# print('CKeditor传视频文件')
+# driver.find_element_by_xpath('//*[@id="cke_41"]').click()
+# time.sleep(2)
+# winUpLoadFile("D:\mov.mp4", "打开")  # 往输入框输入绝对地址D:\modify
+# time.sleep(5)
+# # 上传附件
+# print('上传讨论附件')
+# driver.find_element_by_xpath('//*[@id="fileupload"]').send_keys(r'D:\Homework.pdf')  # modify
+# driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
+# time.sleep(2)
+# try:
+#     driver.find_element_by_css_selector(
+#         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
+# except NoSuchElementException as msg:
+#     print('截图', msg)
+#     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'FBHT' + ".png")  # modify截图
+# else:
+#     print('弹框结果:' + driver.find_element_by_css_selector(
+#         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+# time.sleep(5)
+# print('=====编辑话题=====')
+# # driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_tltb"]').click()
+# # time.sleep(1)
+# driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[7]/a[1]').click()
 # time.sleep(1)
-driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[7]/a[1]').click()
-time.sleep(1)
-# 富文本表情
-driver.find_element_by_xpath('//a[@id="cke_37"]').click()
-js = "document.getElementsByClassName('cke_dialog_background_cover')[0].style.display = 'none'"
-driver.execute_script(js)
-time.sleep(1)
-driver.find_element_by_xpath('//*/table/tbody/tr[1]/td[1]/a/img').click()
-time.sleep(1)
-driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
-time.sleep(2)
-try:
-    driver.find_element_by_css_selector(
-        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
-except NoSuchElementException as msg:
-    print('截图', msg)
-    driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'HD' + ".png")  # modify截图
-else:
-    print('弹框结果:' + driver.find_element_by_css_selector(
-        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
-time.sleep(5)
-print("=====浏览讨论帖=====")
-# driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_tltb"]').click()
+# # 富文本表情
+# driver.find_element_by_xpath('//a[@id="cke_37"]').click()
+# js = "document.getElementsByClassName('cke_dialog_background_cover')[0].style.display = 'none'"
+# driver.execute_script(js)
 # time.sleep(1)
-driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[2]/a').click()  # 第一条话题
-time.sleep(1)
-# driver.execute_script("document.documentElement.scrollTop = 10000;")
-# Play Video
-try:
-    driver.find_element_by_xpath("//video")
-except NoSuchElementException as msg_MP4:
-    print('无视频文件', msg_MP4)
-else:
-    print('预览视频文件!')
-    js_video = "var video = document.getElementsByTagName('video')[0];video.play();"
-    driver.execute_script(js_video)
-    time.sleep(5)
-# Play Audio
-try:
-    driver.find_element_by_xpath('//audio')
-except NoSuchElementException as msg_MP3:
-    print('无音频文件', msg_MP3)
-else:
-    print('预览音频文件!')
-    js_audio = "var audio = document.getElementsByTagName('audio')[0];audio.play();"
-    driver.execute_script(js_audio)
-    time.sleep(5)
+# driver.find_element_by_xpath('//*/table/tbody/tr[1]/td[1]/a/img').click()
+# time.sleep(1)
+# driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
+# time.sleep(2)
+# try:
+#     driver.find_element_by_css_selector(
+#         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
+# except NoSuchElementException as msg:
+#     print('截图', msg)
+#     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'HD' + ".png")  # modify截图
+# else:
+#     print('弹框结果:' + driver.find_element_by_css_selector(
+#         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+# time.sleep(5)
+# print("=====浏览讨论帖=====")
+# # driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_tltb"]').click()
+# # time.sleep(1)
+# driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[2]/a').click()  # 第一条话题
+# time.sleep(1)
+# # driver.execute_script("document.documentElement.scrollTop = 10000;")
+# # Play Video
+# try:
+#     driver.find_element_by_xpath("//video")
+# except NoSuchElementException as msg_MP4:
+#     print('无视频文件', msg_MP4)
+# else:
+#     print('预览视频文件!')
+#     js_video = "var video = document.getElementsByTagName('video')[0];video.play();"
+#     driver.execute_script(js_video)
+#     time.sleep(5)
+# # Play Audio
+# try:
+#     driver.find_element_by_xpath('//audio')
+# except NoSuchElementException as msg_MP3:
+#     print('无音频文件', msg_MP3)
+# else:
+#     print('预览音频文件!')
+#     js_audio = "var audio = document.getElementsByTagName('audio')[0];audio.play();"
+#     driver.execute_script(js_audio)
+#     time.sleep(5)
 
-print("=====回复子回复=====")
+print("=====回复其他人=====")
 driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_tltb"]').click()
 time.sleep(1)
 driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[2]/td[2]/a').click()
 time.sleep(3)
 try:
+    # 定位子回复楼层
     driver.find_element_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu other']")
 except NoSuchElementException as msg:
     print('暂无回复', msg)
 else:
+    #获取子回复楼层序列
     hf_list = len(
         driver.find_elements_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu other']"))
-    print('子回复跟帖数:', hf_list)
-    if hf_list >= 2:
+    print('其他人跟帖数:', hf_list)
+    if hf_list > 2:
         # 展开子回复
         driver.find_element_by_xpath('//*[@id="hufuitem"]/a').click()
     ran_hf = random.randrange(hf_list)
-    print('子回复在第', ran_hf + 1, '楼')
+    print('随机选择其他人跟帖', ran_hf)
     driver.find_elements_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu other']").pop(
         ran_hf).click()
-    driver.find_elements_by_xpath("//textarea[@name='nr']").pop(ran_hf).send_keys("教师端测试子回复!")
+    item = driver.find_elements_by_xpath("//a[@class='huifu other']").pop(ran_hf).get_attribute('id')
+    num = item[:8]
+    print("子回复楼层id:", num)
+    #// div[contains( @ id, '38380444')] // textarea[ @ name = 'nr']
+    driver.find_elements_by_xpath("//textarea[@name='nr']").pop(ran_hf).send_keys("教师端测试回复其他人跟帖!")
     time.sleep(1)
     print('发表子回复')
     driver.find_elements_by_xpath("//input[contains(@class,'submit')]").pop(ran_hf).click()
