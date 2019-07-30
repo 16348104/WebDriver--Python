@@ -577,6 +577,8 @@ else:
     item = driver.find_elements_by_xpath("//a[@class='huifu other']").pop(ran_hf).get_attribute('id')
     num = item[:8]
     print("子回复所在楼层id:", num)
+    # 定位回复其他人按钮 //a[@id='38380460_38380461']
+
     # 定位回复他人文本域 //div[contains(@id,'38380444')]//textarea[ @ name = 'nr']
     textarea = "//*[contains(@id," + "\'" + num + "\'" + ")]//*[@name='nr']"
     # 定位发表按钮
