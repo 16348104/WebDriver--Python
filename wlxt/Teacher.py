@@ -570,13 +570,10 @@ try:
 except NoSuchElementException as msg:
     print('暂无回复', msg)
 else:
-    #获取子回复楼层序列
+    # 获取子回复楼层序列
     hf_list = len(
         driver.find_elements_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu other']"))
     print('其他人跟帖数:', hf_list)
-    if hf_list > 2:
-        # 展开子回复
-        driver.find_element_by_xpath('//*[@id="hufuitem"]/a').click()
     ran_hf = random.randrange(hf_list)
     print('随机选择其他人跟帖', ran_hf)
     driver.find_elements_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu other']").pop(
@@ -584,11 +581,25 @@ else:
     item = driver.find_elements_by_xpath("//a[@class='huifu other']").pop(ran_hf).get_attribute('id')
     num = item[:8]
     print("子回复楼层id:", num)
-    #// div[contains( @ id, '38380444')] // textarea[ @ name = 'nr']
-    driver.find_elements_by_xpath("//textarea[@name='nr']").pop(ran_hf).send_keys("教师端测试回复其他人跟帖!")
+    # 定位回复他人文本域 //div[contains(@id,'38380444')]//textarea[ @ name = 'nr']
+    textarea = "// div[contains(@id," + "\'" + num + "\'" + ")]//textarea[ @ name = 'nr']"
+    # 定位发表按钮
+    submit = "// div[contains(@id," + "\'" + num + "\'" + ")]//input[@class='rt count_submit']"
+    # 定位点击查看其他人跟帖
+    click_span = "// div[contains(@id," + "\'" + num + "\'" + ")] // span[ @ id = 'hufuitem']"
+    # 定位切换编辑器
+    switch_span = "// div[contains(@id," + "\'" + num + "\'" + ")]//span[@class='rt toeditor']"
+    # 定位添加附件   //*[@id='fileupload38380442']
+    str1 = "fileupload"
+    add_attch = "//*[@id=" + "\'" + str1 + num + "\'" + ")]"
+    # driver.find_elements_by_xpath("//textarea[@name='nr']").pop(ran_hf).send_keys("教师端测试回复其他人跟帖!")
+    if hf_list > 2:
+        # 展开子回复
+        driver.find_element_by_xpath(click_span).click()
+    driver.find_element_by_xpath(textarea).send_keys("教师端测试回复其他人跟帖!")
     time.sleep(1)
     print('发表子回复')
-    driver.find_elements_by_xpath("//input[contains(@class,'submit')]").pop(ran_hf).click()
+    driver.find_element_by_xpath(submit).click()
 print('随机下载讨论附件')
 try:
     driver.find_element_by_xpath("//*[@id='removeFile']")
@@ -598,7 +609,7 @@ else:
     key = len(driver.find_elements_by_xpath("//*[@id='removeFile']"))
     print("子回复附件个数", key)
     ran = random.randrange(key)
-    print('随机数:', ran)
+    print('讨论附件随机数:', ran)
     driver.find_elements_by_xpath("//*[@id='removeFile']").pop(ran).click()
 time.sleep(2)
 print('=====课程讨论测试完毕=====')
