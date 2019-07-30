@@ -587,7 +587,7 @@ else:
     switch_span = "//*[contains(@id," + "\'" + num + "\'" + ")]//*[@class='rt toeditor']"
     # 定位添加附件   //*[@id='fileupload38380442']
     str1 = "fileupload"
-    add_attch = "//*[@id=" + "\'" + str1 + num + "\'" + ")]"
+    add_attch = "//*[@id=" + "\'" + str1 + num + "\'" + "]"
     if hf_list > 2:
         # 展开子回复
         driver.find_element_by_xpath(click_span).click()

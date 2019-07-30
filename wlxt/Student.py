@@ -1,5 +1,7 @@
 # coding=utf-8
 import os
+import re
+
 import win32gui
 import win32con
 
@@ -476,7 +478,7 @@ else:
 time.sleep(5)
 print('回复本人跟帖')
 try:
-    # 回复本人的回复
+    # 回复本人
     driver.find_element_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']")
 except NoSuchElementException as msg:
     print('暂无回复', msg)
@@ -485,16 +487,33 @@ else:
         driver.find_elements_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']"))
     ran_hf = random.randrange(hf_list)
     print('学生回复楼主讨论帖个数:', hf_list)
-    print('子回复序号:', ran_hf + 1)
-    driver.find_elements_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']").pop(ran_hf).click()
-    time.sleep(3)
-    # 获取hfid
-    # item = driver.find_element_by_xpath("a[@class='huifu']//span[contains(@id,'span_first')]").pop(ran_hf).getAttribute(
-    #     'id')
-    # print(item)
-    # //span[contains( @id, 'span_first')]
+    print('随机选择第', ran_hf + 1, '楼')
+    driver.find_elements_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']").pop(
+        ran_hf).click()
+    time.sleep(1)
+    # 获取回复楼层id
+    item = driver.find_elements_by_xpath("//*[@class='huifu']//*[contains(@id,'span_first')]").pop(
+        ran_hf).get_attribute('id')
+    num = re.sub(r'\D', '', item)
+    print("回复楼层id:", num)
+
+    ###此功能暂不使用###
+    # 定位回复他人文本域
+    # textarea = "//*[contains(@id," + "\'" + num + "\'" + ")]//*[@name='nr']"
+    # 定位点击查看其他人跟帖
+    # click_span = "//*[contains(@id," + "\'" + num + "\'" + ")]//*[@id='hufuitem']/a"
+    ########
+
+    # 定位发表按钮 //div[contains(@id,'38380462')]//input[@class='rt count_submit']
+    submit = "//*[contains(@id," + "\'" + num + "\'" + ")]//*[@class='rt count_submit']"
+    # 定位切换编辑器 //div[contains(@id,'38380462')]//span[@class='rt toeditor']
+    switch_span = "//*[contains(@id," + "\'" + num + "\'" + ")]//*[@class='rt toeditor']"
+    # 定位添加附件   //input[@id='fileupload38380462']
+    str1 = "fileupload"
+    add_attch = "//*[@id=" + "\'" + str1 + num + "\'" + "]"
     # 切换ckeditor
-    driver.find_elements_by_xpath("//div[@id='mypanel']//span[contains(@class,'toeditor')]").pop(ran_hf).click()
+    driver.find_element_by_xpath(switch_span).click()
+    # driver.find_elements_by_xpath("//div[@id='mypanel']//span[contains(@class,'toeditor')]").pop(ran_hf).click()
     try:
         # 富文本表情
         driver.find_element_by_xpath('//a[@id="cke_37"]')
@@ -509,10 +528,22 @@ else:
         time.sleep(2)
         driver.find_element_by_xpath('//*/table/tbody/tr[1]/td[1]/a/img').click()
     print('上传子回复附件')
-    driver.find_elements_by_xpath("//input[@name='fileupload']").pop(ran_hf).send_keys(r'D:/review.docx')
+    driver.find_element_by_xpath(add_attch).send_keys(r'D:/review.docx')
+    # driver.find_elements_by_xpath("//input[@name='fileupload']").pop(ran_hf).send_keys(r'D:/review.docx')
     time.sleep(1)
     print('发表子回复')
-    driver.find_elements_by_xpath("//input[contains(@class,'submit')]").pop(ran_hf).click()
+    driver.find_element_by_xpath(submit).click()
+    time.sleep(2)
+    # driver.find_elements_by_xpath("//input[contains(@class,'submit')]").pop(ran_hf).click()
+    try:
+        driver.find_element_by_css_selector(
+            "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
+    except NoSuchElementException as msg:
+        print('截图', msg)
+        driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'HD' + ".png")  # modify截图
+    else:
+        print('弹框结果:' + driver.find_element_by_css_selector(
+            "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
 time.sleep(2)
 print('=====讨论测试完毕=====')
 ####################################################课程邮件#############################################################
