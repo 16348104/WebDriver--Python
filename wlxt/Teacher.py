@@ -594,6 +594,7 @@ else:
         # 展开子回复
         driver.find_element_by_xpath(click_span).click()
     time.sleep(1)
+    # 定位回复其他人按钮
     driver.find_elements_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu other']").pop(
         ran_hf).click()
     driver.find_element_by_xpath(textarea).send_keys("教师端测试回复其他人跟帖!")
