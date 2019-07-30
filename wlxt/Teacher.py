@@ -568,34 +568,35 @@ try:
     # 定位子回复楼层
     driver.find_element_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu other']")
 except NoSuchElementException as msg:
-    print('暂无回复', msg)
+    print('暂无其他人回复', msg)
 else:
-    # 获取子回复楼层序列
+    # 获取子回复楼层item
     hf_list = len(
         driver.find_elements_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu other']"))
     print('其他人跟帖数:', hf_list)
     ran_hf = random.randrange(hf_list)
-    print('随机选择其他人跟帖', ran_hf)
-    driver.find_elements_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu other']").pop(
-        ran_hf).click()
+    print('随机选择第', ran_hf, '条其他人跟帖')
+    # 获取其子回复楼层id
     item = driver.find_elements_by_xpath("//a[@class='huifu other']").pop(ran_hf).get_attribute('id')
     num = item[:8]
     print("子回复楼层id:", num)
     # 定位回复他人文本域 //div[contains(@id,'38380444')]//textarea[ @ name = 'nr']
-    textarea = "// div[contains(@id," + "\'" + num + "\'" + ")]//textarea[ @ name = 'nr']"
+    textarea = "//*[contains(@id," + "\'" + num + "\'" + ")]//*[@name='nr']"
     # 定位发表按钮
-    submit = "// div[contains(@id," + "\'" + num + "\'" + ")]//input[@class='rt count_submit']"
+    submit = "//*[contains(@id," + "\'" + num + "\'" + ")]//*[@class='rt count_submit']"
     # 定位点击查看其他人跟帖
-    click_span = "// div[contains(@id," + "\'" + num + "\'" + ")] // span[ @ id = 'hufuitem']"
+    click_span = "//*[contains(@id," + "\'" + num + "\'" + ")]//*[@id='hufuitem']/a"
     # 定位切换编辑器
-    switch_span = "// div[contains(@id," + "\'" + num + "\'" + ")]//span[@class='rt toeditor']"
+    switch_span = "//*[contains(@id," + "\'" + num + "\'" + ")]//*[@class='rt toeditor']"
     # 定位添加附件   //*[@id='fileupload38380442']
     str1 = "fileupload"
     add_attch = "//*[@id=" + "\'" + str1 + num + "\'" + ")]"
-    # driver.find_elements_by_xpath("//textarea[@name='nr']").pop(ran_hf).send_keys("教师端测试回复其他人跟帖!")
     if hf_list > 2:
         # 展开子回复
         driver.find_element_by_xpath(click_span).click()
+    time.sleep(1)
+    driver.find_elements_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu other']").pop(
+        ran_hf).click()
     driver.find_element_by_xpath(textarea).send_keys("教师端测试回复其他人跟帖!")
     time.sleep(1)
     print('发表子回复')
