@@ -209,3 +209,62 @@ ine 341
 [GP
 ###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
 
+1564628835290	mozrunner::runner	INFO	Running command: "E:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\zb\\AppData\\Local\\Temp\\rust_mozprofile.1iSUdgjYCG7t"
+1564628837252	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1564628837252	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1564628837252	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1564628837253	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1564628839063	Marionette	INFO	Listening on port 51305
+1564628839101	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://g.alicdn.com/??nextbox/ace-homepage-footer-list/0.0.36/index.js,nextbox/ace-homepage-footer-list/0.0.36/services.js,nextbox/ace-common-search/0.0.60/index.js,nextbox/ace-common-search/0.0.60/services.js, line 1: TypeError: d is undefined
+JavaScript error: https://account.aliyun.com/login/login.htm?oauth_callback=https%3A%2F%2Fcloudmonitor.console.aliyun.com%2F, line 126: TypeError: window.$ACE_PARSER is undefined
+WebGL(0000000013AE0000)::ForceLoseContext
+WebGL(0000000018622000)::ForceLoseContext
+WebGL(00000000185D6000)::ForceLoseContext
+WebGL(00000000185E0800)::ForceLoseContext
+WebGL(00000000188AC800)::ForceLoseContext
+WebGL(000000001C768000)::ForceLoseContext
+WebGL(000000001F67E800)::ForceLoseContext
+WebGL(000000000CA29800)::ForceLoseContext
+WebGL(000000000CAC3800)::ForceLoseContext
+WebGL(0000000018625000)::ForceLoseContext
+WebGL(000000001889F800)::ForceLoseContext
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: http://%(server)s/dummy/blocklist//buckets/monitor/collections/changes/records?_expected=%221564617613350%22 is not a valid URL..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:201:13
+
+1564629162211	mozrunner::runner	INFO	Running command: "E:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\zb\\AppData\\Local\\Temp\\rust_mozprofile.xPd4k1JnMpBM"
+1564629166198	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1564629166199	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1564629166199	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1564629166199	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1564629168169	Marionette	INFO	Listening on port 51469
+1564629168226	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://g.alicdn.com/??nextbox/ace-homepage-footer-list/0.0.36/index.js,nextbox/ace-homepage-footer-list/0.0.36/services.js,nextbox/ace-common-search/0.0.60/index.js,nextbox/ace-common-search/0.0.60/services.js, line 1: TypeError: d is undefined
+JavaScript error: https://account.aliyun.com/login/login.htm?oauth_callback=https%3A%2F%2Fcloudmonitor.console.aliyun.com%2F, line 126: TypeError: window.$ACE_PARSER is undefined
+WebGL(000000001286B000)::ForceLoseContext
+WebGL(000000001506F000)::ForceLoseContext
+WebGL(000000001BA11000)::ForceLoseContext
+WebGL(000000001BABC800)::ForceLoseContext
+WebGL(000000001C006800)::ForceLoseContext
+WebGL(000000001F5E2800)::ForceLoseContext
+WebGL(000000001F5E5000)::ForceLoseContext
+WebGL(000000000CB28800)::ForceLoseContext
+WebGL(0000000011A5E000)::ForceLoseContext
+WebGL(0000000015BDE800)::ForceLoseContext
+WebGL(000000001BA13000)::ForceLoseContext
+WebGL(0000000012631000)::ForceLoseContext
+WebGL(000000001BAD4800)::ForceLoseContext
+WebGL(000000001D29A000)::ForceLoseContext
+WebGL(000000001F3BF800)::ForceLoseContext
+1564629214683	Marionette	INFO	Stopped listening on port 51469
+[Child 12228, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_1563383129/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[Child 12228, Chrome_Ch[Parent 11740, Gecko_IOThread] WARNING: pipe error: 109: file z:/task_1563383129/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[Child 11376, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_1563383129/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[Child 11376, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_1563383129/build/src/ipc/chromi[[GPU 12064, Chrome_ChildTh
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
