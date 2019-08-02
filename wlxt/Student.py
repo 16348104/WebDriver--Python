@@ -585,7 +585,7 @@ else:
     print('讨论附件随机数:', ran)
     driver.find_elements_by_xpath("//*[@id='removeFile']").pop(ran).click()
 print('回复我参与的话题')
-driver.find_element_by_xpath('//*[@id="answer_first"]').send_keys('我参与的话题Textarea')
+driver.find_element_by_xpath('//*[@id="answer_first"]').send_keys('Textarea我参与的话题')
 time.sleep(2)
 driver.find_element_by_xpath('//div[@class="rt huifu"]//input').click()
 time.sleep(2)
