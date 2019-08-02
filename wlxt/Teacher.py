@@ -9,6 +9,7 @@ import win32api
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException, UnexpectedAlertPresentException
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import Select
 
 # driver = webdriver.Chrome(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/chromedriver')  # MacOS
@@ -461,19 +462,54 @@ time.sleep(2)
 #         else:
 #             print('弹框结果:' + driver.find_element_by_css_selector(
 #                 "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
-# time.sleep(2)
 # print('=====作业测试完毕=====')
+# time.sleep(3)
 
 ######################################################课程讨论###########################################################
 print('=====测试课程讨论=====')
 driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_tltb"]').click()
 time.sleep(1)
-#创建新讨论版区
-# //*[@class="mytab active"]
-# 编辑版区
-# 隐藏版区
-# 移动版区
-#删除版区
+# 创建新讨论版区
+print('创建新讨论版区')
+driver.find_element_by_xpath('//li[@class="addbtn"]').click()
+time.sleep(2)
+driver.find_element_by_xpath('//*[@id="fqmc"]').send_keys('Test')
+driver.find_element_by_xpath("//div[contains(@class,'zeromodal-footer')]//button[@class='btn btn-primary']").click()
+time.sleep(1)
+try:
+    driver.find_element_by_css_selector(
+        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
+except NoSuchElementException as msg:
+    print(msg)
+else:
+    print('弹框结果:' + driver.find_element_by_css_selector(
+        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+time.sleep(3)
+# 定位到新讨论版区
+driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[7]').click()  # modify最后的版区
+time.sleep(2)
+# 定位到小扳手
+above = driver.find_element_by_xpath("//li[contains(@class,'active')]/i")
+# 悬停在小扳手
+ActionChains(driver).move_to_element(above).perform()
+time.sleep(2)
+# 删除版区
+print('删除新讨论版区')
+Del = driver.find_element_by_xpath("//ul[contains(@class,'active')]/li[2]")
+ActionChains(driver).move_to_element(Del).perform()
+Del.click()
+time.sleep(2)
+print('弹框结果:' + driver.find_element_by_css_selector("body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title2").text)
+driver.find_element_by_xpath("//div[contains(@class,'zeromodal-footer')]//button[@class='btn btn-primary']").click()
+time.sleep(1)
+try:
+    driver.find_element_by_css_selector(
+        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
+except NoSuchElementException as msg:
+    print(msg)
+else:
+    print('弹框结果:' + driver.find_element_by_css_selector(
+        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
 print('发表话题')
 driver.find_element_by_xpath('//span[@class="rt right"]/child::a').click()
 time.sleep(2)
@@ -500,9 +536,9 @@ else:
     print('弹框结果:' + driver.find_element_by_css_selector(
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
 time.sleep(5)
-print('话题置顶')
-driver.find_element_by_xpath("//*[@id='table']/tbody/tr[1]/td[7]/a[3]").click()
-time.sleep(1)
+# print('话题置顶')
+# driver.find_element_by_xpath("//*[@id='table']/tbody/tr[1]/td[7]/a[3]").click()
+# time.sleep(1)
 print('编辑话题')
 # driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_tltb"]').click()
 # time.sleep(1)
@@ -622,7 +658,6 @@ else:
     else:
         print('弹框结果:' + driver.find_element_by_css_selector(
             "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
-# time.sleep(5)
 driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_tltb"]').click()
 time.sleep(1)
 print('浏览我参与的讨论话题')
@@ -677,7 +712,7 @@ except UnexpectedAlertPresentException as msg_ckeditor:
     print('截图', msg_ckeditor)
     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'ckeditor' + ".png")  # modify截图
     driver.switch_to.alert.accept()
-time.sleep(3)
+time.sleep(5)
 driver.find_element_by_xpath('//div[@class="rt huifu"]//input').click()
 time.sleep(2)
 try:
@@ -690,6 +725,7 @@ else:
     print('弹框结果:' + driver.find_element_by_css_selector(
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
 print('=====课程讨论测试完毕=====')
+time.sleep(3)
 ######################################################课程答疑###########################################################
 # print('=====测试课程答疑=====')
 # driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_kcdy"]').click()
@@ -868,8 +904,8 @@ print('=====课程讨论测试完毕=====')
 #         driver.refresh()
 #         time.sleep(2)
 #         driver.find_elements_by_xpath("//*[@class='download-file']//*[@id='removeFile']").pop(0).click()
-# time.sleep(2)
 # print('=====课程答疑测试完毕=====')
+# time.sleep(3)
 ######################################################作业成绩##########################################################
 # print('=====测试作业成绩=====')
 # driver.find_element_by_xpath("//*[@id='wlxt_kycj']").click()
@@ -883,7 +919,7 @@ print('=====课程讨论测试完毕=====')
 # driver.find_element_by_xpath('//*[@id="exportExcelButtonId"]').click()
 # time.sleep(2)
 # print('=====作业成绩测试完毕=====')
-# time.sleep(2)
+# time.sleep(3)
 ######################################################课程邮件##########################################################
 # print('=====测试课程邮件=====')
 # driver.find_element_by_xpath("//a[@id='wlxt_mail_yj_yjxxb']").click()
@@ -903,8 +939,8 @@ print('=====课程讨论测试完毕=====')
 # print("浏览邮件")
 # driver.find_element_by_xpath('//*[@id="list"]/tbody/tr[1]/td[2]/a').click()  # 浏览邮件
 # driver.find_element_by_xpath('//*[@id="returnButton"]').click()
-# time.sleep(2)
 # print('=====邮件测试完毕=====')
+# time.sleep(3)
 ##################################################退出网络学堂##########################################################
 driver.find_element_by_xpath("//i[@class='webicon-out']").click()
 time.sleep(1)

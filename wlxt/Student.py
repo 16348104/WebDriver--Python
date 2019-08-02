@@ -459,7 +459,7 @@ except UnexpectedAlertPresentException as msg_alert:
     print('截图', msg_alert)
     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'ckeditor' + ".png")  # modify截图
     driver.switch_to.alert.accept()
-time.sleep(3)
+time.sleep(5)
 # # 上传答疑文件
 driver.find_element_by_id('fileupload0').send_keys(r'D:/Homework.pdf')  # modify
 time.sleep(1)
@@ -487,12 +487,13 @@ else:
         driver.find_elements_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']"))
     ran_hf = random.randrange(hf_list)
     print('学生回复楼主讨论帖个数:', hf_list)
-    print('随机选择第', ran_hf + 1, '楼')
+    print('随机回复楼主讨论帖序号:', ran_hf)
     driver.find_elements_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']").pop(
         ran_hf).click()
-    time.sleep(1)
+    time.sleep(2)
     # 获取回复楼层id
-    item = driver.find_elements_by_xpath("//*[@class='huifu']//*[contains(@id,'span_first')]").pop(
+    item = driver.find_elements_by_xpath(
+        "//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']//*[contains(@id,'span_first')]").pop(
         ran_hf).get_attribute('id')
     num = re.sub(r'\D', '', item)
     print("回复楼层id:", num)
@@ -511,6 +512,7 @@ else:
     # 定位添加附件   //input[@id='fileupload38380462']
     str1 = "fileupload"
     add_attch = "//*[@id=" + "\'" + str1 + num + "\'" + "]"
+    time.sleep(2)
     # 切换ckeditor
     driver.find_element_by_xpath(switch_span).click()
     # driver.find_elements_by_xpath("//div[@id='mypanel']//span[contains(@class,'toeditor')]").pop(ran_hf).click()
@@ -545,7 +547,6 @@ else:
         print('弹框结果:' + driver.find_element_by_css_selector(
             "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
 driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_tltb"]').click()
-time.sleep(1)
 print('浏览我参与的讨论话题')
 driver.find_element_by_xpath("//*[@id='canyu']").click()
 time.sleep(2)
@@ -584,7 +585,7 @@ else:
     print('讨论附件随机数:', ran)
     driver.find_elements_by_xpath("//*[@id='removeFile']").pop(ran).click()
 print('回复我参与的话题')
-driver.find_element_by_xpath('//*[@id="answer_first"]').send_keys('Textarea')
+driver.find_element_by_xpath('//*[@id="answer_first"]').send_keys('我参与的话题Textarea')
 time.sleep(2)
 driver.find_element_by_xpath('//div[@class="rt huifu"]//input').click()
 time.sleep(2)

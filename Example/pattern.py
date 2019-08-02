@@ -9,8 +9,10 @@ if searchObj:
 else:
     print(searchObj)
 
-item = 'span_first_38380442'
-# num = re.sub(r'\D', '', item)
-# print("id是 : ", num)
-print("id是 : ", item[-8:])
+# item = 'span_first_38380442'
+item = '38380111_38380442'
 
+# num = re.sub(r'\D', '', item)
+num = re.sub(r'\D', item)
+print("id是 : ", num)
+# print("id是 : ", item[-8:])
