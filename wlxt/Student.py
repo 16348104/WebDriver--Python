@@ -487,7 +487,7 @@ else:
         driver.find_elements_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']"))
     ran_hf = random.randrange(hf_list)
     print('学生回复楼主讨论帖个数:', hf_list)
-    print('随机回复楼主讨论帖序号:', ran_hf)
+    print('随机回复楼主讨论帖楼层:', ran_hf+2)
     driver.find_elements_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']").pop(
         ran_hf).click()
     time.sleep(2)
@@ -530,7 +530,7 @@ else:
         time.sleep(2)
         driver.find_element_by_xpath('//*/table/tbody/tr[1]/td[1]/a/img').click()
     print('上传子回复附件')
-    driver.find_element_by_xpath(add_attch).send_keys(r'D:/review.docx')
+    driver.find_element_by_xpath(add_attch).send_keys(r'D:/review.docx')  #modify
     # driver.find_elements_by_xpath("//input[@name='fileupload']").pop(ran_hf).send_keys(r'D:/review.docx')
     time.sleep(1)
     print('发表子回复')

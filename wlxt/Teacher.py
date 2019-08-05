@@ -499,7 +499,8 @@ Del = driver.find_element_by_xpath("//ul[contains(@class,'active')]/li[2]")
 ActionChains(driver).move_to_element(Del).perform()
 Del.click()
 time.sleep(2)
-print('弹框结果:' + driver.find_element_by_css_selector("body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title2").text)
+print('弹框结果:' + driver.find_element_by_css_selector(
+    "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title2").text)
 driver.find_element_by_xpath("//div[contains(@class,'zeromodal-footer')]//button[@class='btn btn-primary']").click()
 time.sleep(1)
 try:
@@ -701,18 +702,27 @@ print('回复我参与的话题')
 # 切换编辑器
 driver.find_element_by_xpath("//div[@class='answer']//span[@class='rt toeditor']").click()
 time.sleep(2)
+## ckeditor表情
+driver.find_element_by_xpath('//a[@id="cke_37"]').click()
+js = "document.getElementsByClassName('cke_dialog_background_cover')[0].style.display = 'none'"
+driver.execute_script(js)
+time.sleep(2)
+driver.find_element_by_xpath('//*/table/tbody/tr[1]/td[1]/a/img').click()
+
 ## 富文本图片win32gui
-driver.find_element_by_xpath('//*[@id="cke_40"]').click()
-time.sleep(1)
-try:
-    winUpLoadFile('D:\Photo.jpg', "打开")  # 往输入框输入绝对地址D:\   modify
-    time.sleep(3)
-    print('Ckeditor传图片')
-except UnexpectedAlertPresentException as msg_ckeditor:
-    print('截图', msg_ckeditor)
-    driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'ckeditor' + ".png")  # modify截图
-    driver.switch_to.alert.accept()
-time.sleep(5)
+# driver.find_element_by_xpath('//*[@id="cke_40"]').click()
+# time.sleep(1)
+# try:
+#     winUpLoadFile('D:\Photo.jpg', "打开")  # 往输入框输入绝对地址D:\   modify
+#     time.sleep(3)
+#     print('Ckeditor传图片')
+# except UnexpectedAlertPresentException as msg_ckeditor:
+#     print('截图', msg_ckeditor)
+#     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'ckeditor' + ".png")  # modify截图
+#     driver.switch_to.alert.accept()
+# time.sleep(5)
+
+# 点发表
 driver.find_element_by_xpath('//div[@class="rt huifu"]//input').click()
 time.sleep(2)
 try:
