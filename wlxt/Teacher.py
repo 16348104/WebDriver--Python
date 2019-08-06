@@ -470,145 +470,142 @@ print('=====测试课程讨论=====')
 driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_tltb"]').click()
 time.sleep(1)
 # 创建新讨论版区
-print('创建新讨论版区')
-driver.find_element_by_xpath('//li[@class="addbtn"]').click()
-time.sleep(2)
-driver.find_element_by_xpath('//*[@id="fqmc"]').send_keys('Test')
-driver.find_element_by_xpath("//div[contains(@class,'zeromodal-footer')]//button[@class='btn btn-primary']").click()
-time.sleep(1)
-try:
-    driver.find_element_by_css_selector(
-        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
-except NoSuchElementException as msg:
-    print(msg)
-else:
-    print('弹框结果:' + driver.find_element_by_css_selector(
-        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
-time.sleep(3)
+# print('创建新讨论版区')
+# driver.find_element_by_xpath('//li[@class="addbtn"]').click()
+# time.sleep(2)
+# driver.find_element_by_xpath('//*[@id="fqmc"]').send_keys('Test')
+# driver.find_element_by_xpath("//div[contains(@class,'zeromodal-footer')]//button[@class='btn btn-primary']").click()
+# time.sleep(1)
+# try:
+#     driver.find_element_by_css_selector(
+#         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
+# except NoSuchElementException as msg:
+#     print(msg)
+# else:
+#     print('弹框结果:' + driver.find_element_by_css_selector(
+#         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+# time.sleep(3)
 # 定位到新讨论版区
-driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[7]').click()  # modify最后的版区
-time.sleep(2)
-# 定位到小扳手
-above = driver.find_element_by_xpath("//li[contains(@class,'active')]/i")
-# 悬停在小扳手
-ActionChains(driver).move_to_element(above).perform()
-time.sleep(2)
-# 删除版区
-print('删除新讨论版区')
-Del = driver.find_element_by_xpath("//ul[contains(@class,'active')]/li[2]")
-ActionChains(driver).move_to_element(Del).perform()
-Del.click()
-time.sleep(2)
-print('弹框结果:' + driver.find_element_by_css_selector(
-    "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title2").text)
-driver.find_element_by_xpath("//div[contains(@class,'zeromodal-footer')]//button[@class='btn btn-primary']").click()
-time.sleep(1)
-try:
-    driver.find_element_by_css_selector(
-        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
-except NoSuchElementException as msg:
-    print(msg)
-else:
-    print('弹框结果:' + driver.find_element_by_css_selector(
-        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
-print('发表话题')
-driver.find_element_by_xpath('//span[@class="rt right"]/child::a').click()
-time.sleep(2)
-driver.find_element_by_xpath('//*[@name="bt"]').send_keys("测试讨论" + ticks)
-driver.find_element_by_xpath("//div[@class='onetab active']//label[1]").click()
-# 富文本视频win32gui
-print('CKeditor传视频文件')
-driver.find_element_by_xpath('//*[@id="cke_41"]').click()
-time.sleep(2)
-winUpLoadFile("D:\mov.mp4", "打开")  # 往输入框输入绝对地址D:\modify
-time.sleep(5)
-# 上传附件
-print('上传讨论附件')
-driver.find_element_by_xpath('//*[@id="fileupload"]').send_keys(r'D:\Homework.pdf')  # modify
-driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
-time.sleep(2)
-try:
-    driver.find_element_by_css_selector(
-        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
-except NoSuchElementException as msg:
-    print('截图', msg)
-    driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'FBHT' + ".png")  # modify截图
-else:
-    print('弹框结果:' + driver.find_element_by_css_selector(
-        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
-time.sleep(5)
+# driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[4]').click()  # modify最后的版区
+# time.sleep(2)
+# # 定位到小扳手
+# above = driver.find_element_by_xpath("//li[contains(@class,'active')]/i")
+# # 悬停在小扳手
+# ActionChains(driver).move_to_element(above).perform()
+# time.sleep(2)
+# # 删除版区
+# print('删除新讨论版区')
+# Del = driver.find_element_by_xpath("//ul[contains(@class,'active')]/li[2]")
+# ActionChains(driver).move_to_element(Del).perform()
+# Del.click()
+# time.sleep(2)
+# print('弹框结果:' + driver.find_element_by_css_selector(
+#     "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title2").text)
+# driver.find_element_by_xpath("//div[contains(@class,'zeromodal-footer')]//button[@class='btn btn-primary']").click()
+# time.sleep(1)
+# try:
+#     driver.find_element_by_css_selector(
+#         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
+# except NoSuchElementException as msg:
+#     print(msg)
+# else:
+#     print('弹框结果:' + driver.find_element_by_css_selector(
+#         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+# print('发表话题')
+# driver.find_element_by_xpath('//span[@class="rt right"]/child::a').click()
+# time.sleep(2)
+# driver.find_element_by_xpath('//*[@name="bt"]').send_keys("测试讨论" + ticks)
+# driver.find_element_by_xpath("//div[@class='onetab active']//label[1]").click()
+# # 富文本视频win32gui
+# print('CKeditor传视频文件')
+# driver.find_element_by_xpath('//*[@id="cke_41"]').click()
+# time.sleep(2)
+# winUpLoadFile("D:\mov.mp4", "打开")  # 往输入框输入绝对地址D:\modify
+# time.sleep(5)
+# # 上传附件
+# print('上传讨论附件')
+# driver.find_element_by_xpath('//*[@id="fileupload"]').send_keys(r'D:\Homework.pdf')  # modify
+# driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
+# time.sleep(2)
+# try:
+#     driver.find_element_by_css_selector(
+#         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
+# except NoSuchElementException as msg:
+#     print('截图', msg)
+#     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'FBHT' + ".png")  # modify截图
+# else:
+#     print('弹框结果:' + driver.find_element_by_css_selector(
+#         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+# time.sleep(5)
 # print('话题置顶')
 # driver.find_element_by_xpath("//*[@id='table']/tbody/tr[1]/td[7]/a[3]").click()
 # time.sleep(1)
-print('编辑话题')
-# driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_tltb"]').click()
+# print('编辑话题')
+# driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[7]/a[1]').click()
 # time.sleep(1)
-# print('取消话题置顶')
-# driver.find_element_by_xpath("//*[@id='table']/tbody/tr[1]/td[7]/a[3]").click()
-driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[7]/a[1]').click()
-time.sleep(1)
-# 富文本表情
-driver.find_element_by_xpath('//a[@id="cke_37"]').click()
-js = "document.getElementsByClassName('cke_dialog_background_cover')[0].style.display = 'none'"
-driver.execute_script(js)
-time.sleep(1)
-driver.find_element_by_xpath('//*/table/tbody/tr[1]/td[1]/a/img').click()
-time.sleep(1)
-driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
-time.sleep(2)
-try:
-    driver.find_element_by_css_selector(
-        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
-except NoSuchElementException as msg:
-    print('截图', msg)
-    driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'HD' + ".png")  # modify截图
-else:
-    print('弹框结果:' + driver.find_element_by_css_selector(
-        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
-time.sleep(5)
-print("浏览讨论帖")
-# driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_tltb"]').click()
+# # 富文本表情
+# driver.find_element_by_xpath('//a[@id="cke_37"]').click()
+# js = "document.getElementsByClassName('cke_dialog_background_cover')[0].style.display = 'none'"
+# driver.execute_script(js)
 # time.sleep(1)
-driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[2]/a').click()  # 第一条话题
-time.sleep(1)
-driver.execute_script("document.documentElement.scrollTop = 10000;")
-# Play Video
-try:
-    driver.find_element_by_xpath("//video")
-except NoSuchElementException as msg_MP4:
-    print('无视频文件', msg_MP4)
-else:
-    print('预览视频文件!')
-    js_video = "var video = document.getElementsByTagName('video')[0];video.play();"
-    driver.execute_script(js_video)
-    time.sleep(5)
-# Play Audio
-try:
-    driver.find_element_by_xpath('//audio')
-except NoSuchElementException as msg_MP3:
-    print('无音频文件', msg_MP3)
-else:
-    print('预览音频文件!')
-    js_audio = "var audio = document.getElementsByTagName('audio')[0];audio.play();"
-    driver.execute_script(js_audio)
-    time.sleep(5)
-print('随机下载讨论附件')
-try:
-    driver.find_element_by_xpath("//*[@id='removeFile']")
-except NoSuchElementException as msg:
-    print('无子回复附件', msg)
-else:
-    key = len(driver.find_elements_by_xpath("//*[@id='removeFile']"))
-    print("子回复附件个数:", key)
-    ran = random.randrange(key)
-    print('讨论附件随机数:', ran)
-    driver.find_elements_by_xpath("//*[@id='removeFile']").pop(ran).click()
-time.sleep(1)
+# driver.find_element_by_xpath('//*/table/tbody/tr[1]/td[1]/a/img').click()
+# time.sleep(1)
+# driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
+# time.sleep(2)
+# try:
+#     driver.find_element_by_css_selector(
+#         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
+# except NoSuchElementException as msg:
+#     print('截图', msg)
+#     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'HD' + ".png")  # modify截图
+# else:
+#     print('弹框结果:' + driver.find_element_by_css_selector(
+#         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+# time.sleep(5)
+# print("浏览讨论帖")
+# # driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_tltb"]').click()
+# # time.sleep(1)
+# driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[2]/a').click()  # 第一条话题
+# time.sleep(1)
+# driver.execute_script("document.documentElement.scrollTop = 10000;")
+# # Play Video
+# try:
+#     driver.find_element_by_xpath("//video")
+# except NoSuchElementException as msg_MP4:
+#     print('无视频文件', msg_MP4)
+# else:
+#     print('预览视频文件!')
+#     js_video = "var video = document.getElementsByTagName('video')[0];video.play();"
+#     driver.execute_script(js_video)
+#     time.sleep(5)
+# # Play Audio
+# try:
+#     driver.find_element_by_xpath('//audio')
+# except NoSuchElementException as msg_MP3:
+#     print('无音频文件', msg_MP3)
+# else:
+#     print('预览音频文件!')
+#     js_audio = "var audio = document.getElementsByTagName('audio')[0];audio.play();"
+#     driver.execute_script(js_audio)
+#     time.sleep(5)
+# print('随机下载讨论附件')
+# try:
+#     driver.find_element_by_xpath("//*[@id='removeFile']")
+# except NoSuchElementException as msg:
+#     print('无子回复附件', msg)
+# else:
+#     key = len(driver.find_elements_by_xpath("//*[@id='removeFile']"))
+#     print("子回复附件个数:", key)
+#     ran = random.randrange(key)
+#     print('讨论附件随机数:', ran)
+#     driver.find_elements_by_xpath("//*[@id='removeFile']").pop(ran).click()
+# time.sleep(1)
 print("回复其他人跟帖")
 driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_tltb"]').click()
 time.sleep(1)
-driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[2]/td[2]/a').click()
-time.sleep(3)
+driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[2]/td[2]/a').click()  # 第二条话题
+driver.execute_script("document.documentElement.scrollTop = 10000;")
+time.sleep(2)
 try:
     # 定位子回复楼层
     driver.find_element_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu other']")
@@ -623,29 +620,31 @@ else:
     print('随机选择第', ran_hf, '条其他人跟帖')
     # 获取其子回复楼层id
     item = driver.find_elements_by_xpath("//a[@class='huifu other']").pop(ran_hf).get_attribute('id')
-    num = item[:8]
-    print("子回复所在楼层id:", num)
+    num = item.split("_")[0]
+    print("其他人回复所在楼层id:", num)
     # 定位回复其他人按钮 //*[starts-with(@id,'38380460')]
     reply_other = "//*[starts-with(@id," + "\'" + num + "\'" + ")]"
-    # 定位回复他人文本域 //div[contains(@id,'38380444')]//textarea[ @ name = 'nr']
-    textarea = "//*[contains(@id," + "\'" + num + "\'" + ")]//*[@name='nr']"
+    # 定位回复他人文本域 //*[@id="textarea_38380483"]
+    str1 = 'textarea_'
+    textarea = "//*[(@id=" + "\'" + str1 + num + "\'" + ")]"
     # 定位发表按钮
     submit = "//*[contains(@id," + "\'" + num + "\'" + ")]//*[@class='rt count_submit']"
-    # 定位点击查看其他人跟帖
+    # 定位点击查看其他人跟帖//*[contains(@id,"38380483")]//*[@id="hufuitem"]/a
     click_span = "//*[contains(@id," + "\'" + num + "\'" + ")]//*[@id='hufuitem']/a"
     # 定位切换编辑器
     switch_span = "//*[contains(@id," + "\'" + num + "\'" + ")]//*[@class='rt toeditor']"
     # 定位添加附件   //*[@id='fileupload38380442']
-    str1 = "fileupload"
-    add_attch = "//*[@id=" + "\'" + str1 + num + "\'" + "]"
-    if hf_list > 2:
+    str2 = "fileupload"
+    add_attch = "//*[@id=" + "\'" + str2 + num + "\'" + "]"
+    try:
         # 展开子回复
         driver.find_element_by_xpath(click_span).click()
-    time.sleep(1)
+        time.sleep(2)
+    except NoSuchElementException as msg_huifu:
+        print('子回复少于2条', msg_huifu)
     # 定位回复其他人按钮
     driver.find_element_by_xpath(reply_other).click()
-    # driver.find_elements_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu other']").pop(ran_hf).click()
-    driver.find_element_by_xpath(textarea).send_keys("教师端测试回复其他人跟帖!")
+    driver.find_element_by_xpath(textarea).send_keys("教师测试回复其他人跟帖!")
     time.sleep(1)
     print('发表子回复')
     driver.find_element_by_xpath(submit).click()
@@ -700,14 +699,18 @@ else:
     driver.find_elements_by_xpath("//*[@id='removeFile']").pop(ran).click()
 print('回复我参与的话题')
 # 切换编辑器
+driver.execute_script("document.documentElement.scrollTop = 10000;")
 driver.find_element_by_xpath("//div[@class='answer']//span[@class='rt toeditor']").click()
 time.sleep(2)
-## ckeditor表情
-driver.find_element_by_xpath('//a[@id="cke_37"]').click()
+## ckeditor公式
+driver.find_element_by_xpath("//a[@id='cke_39']").click()
+time.sleep(1)
 js = "document.getElementsByClassName('cke_dialog_background_cover')[0].style.display = 'none'"
 driver.execute_script(js)
 time.sleep(2)
-driver.find_element_by_xpath('//*/table/tbody/tr[1]/td[1]/a/img').click()
+driver.find_element_by_xpath("//a[contains(@class,'ok')]").click()  # 动态id
+time.sleep(2)
+print('CKeditor插入公式')
 
 ## 富文本图片win32gui
 # driver.find_element_by_xpath('//*[@id="cke_40"]').click()
