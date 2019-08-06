@@ -505,14 +505,12 @@ else:
     # 定位添加附件   //input[@id='fileupload38380462']
     str1 = "fileupload"
     add_attch = "//*[@id=" + "\'" + str1 + num + "\'" + "]"
-    time.sleep(2)
     print('学生回复楼主讨论帖个数:', hf_list)
     print('随机回复楼主讨论帖楼层:', ran_hf + 2)
+    time.sleep(2)
     # 点回复
     driver.find_elements_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']").pop(
         ran_hf).click()
-    time.sleep(2)
-
     # 切换ckeditor
     driver.find_element_by_xpath(switch_span).click()
     # driver.find_elements_by_xpath("//div[@id='mypanel']//span[contains(@class,'toeditor')]").pop(ran_hf).click()
@@ -549,9 +547,9 @@ else:
 driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_tltb"]').click()
 print('浏览我参与的讨论话题')
 driver.find_element_by_xpath("//*[@id='canyu']").click()
-time.sleep(2)
+time.sleep(1)
 driver.find_element_by_xpath('//*[@id="canyutable"]/tbody/tr[1]/td[2]/a').click()
-time.sleep(2)
+time.sleep(1)
 driver.execute_script("document.documentElement.scrollTop = 10000;")
 # Play Video
 try:
@@ -562,7 +560,7 @@ else:
     print('预览视频文件!')
     js_video = "var video = document.getElementsByTagName('video')[0];video.play();"
     driver.execute_script(js_video)
-    time.sleep(5)
+    time.sleep(3)
 # Play Audio
 try:
     driver.find_element_by_xpath('//audio')
@@ -572,7 +570,7 @@ else:
     print('预览音频文件!')
     js_audio = "var audio = document.getElementsByTagName('audio')[0];audio.play();"
     driver.execute_script(js_audio)
-    time.sleep(5)
+    time.sleep(3)
 print('随机下载讨论附件')
 try:
     driver.find_element_by_xpath("//*[@id='removeFile']")
@@ -586,7 +584,7 @@ else:
     driver.find_elements_by_xpath("//*[@id='removeFile']").pop(ran).click()
 print('回复我参与的话题')
 driver.find_element_by_xpath('//*[@id="answer_first"]').send_keys('Textarea我参与的话题')
-time.sleep(2)
+time.sleep(1)
 driver.find_element_by_xpath('//div[@class="rt huifu"]//input').click()
 time.sleep(2)
 try:
