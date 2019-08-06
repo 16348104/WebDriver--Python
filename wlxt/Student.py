@@ -1,10 +1,8 @@
 # coding=utf-8
 import os
 import re
-
 import win32gui
 import win32con
-
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException, UnexpectedAlertPresentException, \
     ElementNotInteractableException
@@ -448,13 +446,13 @@ print('回复楼主')
 driver.find_element_by_xpath('//*[@id="answerFirstLink"]').click()
 # 切换编辑器
 driver.find_element_by_xpath('//*[@id="editFirstAnswerFormId"]/div[1]/p/span[2]').click()
-time.sleep(1)
+time.sleep(2)
 print('CKeditor传音频文件')
 driver.find_element_by_xpath('//*[@id="cke_41"]').click()
-time.sleep(2)
+time.sleep(3)
 try:
     winUpLoadFile("D:\Artists.mp3", "打开")  # 往输入框输入绝对地址D:\modify
-    time.sleep(4)
+    time.sleep(2)
 except UnexpectedAlertPresentException as msg_alert:
     print('截图', msg_alert)
     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'ckeditor' + ".png")  # modify截图
@@ -475,7 +473,7 @@ except NoSuchElementException as msg:
 else:
     print('弹框结果:' + driver.find_element_by_css_selector(
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
-time.sleep(5)
+time.sleep(3)
 print('回复本人跟帖')
 try:
     # 回复本人
@@ -486,11 +484,6 @@ else:
     hf_list = len(
         driver.find_elements_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']"))
     ran_hf = random.randrange(hf_list)
-    print('学生回复楼主讨论帖个数:', hf_list)
-    print('随机回复楼主讨论帖楼层:', ran_hf+2)
-    driver.find_elements_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']").pop(
-        ran_hf).click()
-    time.sleep(2)
     # 获取回复楼层id
     item = driver.find_elements_by_xpath(
         "//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']//*[contains(@id,'span_first')]").pop(
@@ -513,6 +506,13 @@ else:
     str1 = "fileupload"
     add_attch = "//*[@id=" + "\'" + str1 + num + "\'" + "]"
     time.sleep(2)
+    print('学生回复楼主讨论帖个数:', hf_list)
+    print('随机回复楼主讨论帖楼层:', ran_hf + 2)
+    # 点回复
+    driver.find_elements_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']").pop(
+        ran_hf).click()
+    time.sleep(2)
+
     # 切换ckeditor
     driver.find_element_by_xpath(switch_span).click()
     # driver.find_elements_by_xpath("//div[@id='mypanel']//span[contains(@class,'toeditor')]").pop(ran_hf).click()
@@ -530,7 +530,7 @@ else:
         time.sleep(2)
         driver.find_element_by_xpath('//*/table/tbody/tr[1]/td[1]/a/img').click()
     print('上传子回复附件')
-    driver.find_element_by_xpath(add_attch).send_keys(r'D:/review.docx')  #modify
+    driver.find_element_by_xpath(add_attch).send_keys(r'D:/review.docx')  # modify
     # driver.find_elements_by_xpath("//input[@name='fileupload']").pop(ran_hf).send_keys(r'D:/review.docx')
     time.sleep(1)
     print('发表子回复')
