@@ -109,14 +109,14 @@ time.sleep(1)
 print('上传公告附件')
 driver.find_element_by_xpath("//input[@id='fileupload']").send_keys(r"D:/Artists.mp3")  # modify
 time.sleep(1)
-ckeditor表情
+##ckeditor表情
 driver.find_element_by_xpath('//a[@id="cke_37"]').click()
 js = "document.getElementsByClassName('cke_dialog_background_cover')[0].style.display = 'none'"
 driver.execute_script(js)
 time.sleep(2)
 driver.find_element_by_xpath('//*/table/tbody/tr[1]/td[1]/a/img').click()
 driver.find_element_by_id("saveBtn").click()  # 发公告
-time.sleep(2)
+time.sleep(5)
 try:
     print('弹框结果:' + driver.find_element_by_css_selector(
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
@@ -175,14 +175,14 @@ driver.find_element_by_name("fileupload").send_keys("D:/Lost Horizon.mp4")  # mo
 # driver.find_element_by_id('fileupload').send_keys(
 #     r'/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/readme.txt')  # mac上传文件
 driver.find_element_by_id("sub").click()
-time.sleep(5)
+time.sleep(1)
 try:
     print('弹框结果:' + driver.find_element_by_css_selector(
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
 except NoSuchElementException as msg:
     print('截图', msg)
     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'KJ' + ".png")  # 截图modify
-time.sleep(3)
+time.sleep(4)
 print('查看课件详情')
 # driver.find_element_by_xpath("//a[@id='wlxt_kj_wlkc_kjxxb']").click()
 # time.sleep(2)
@@ -207,7 +207,7 @@ if searchObj is None:
     print("当前窗口：", window_1)
     # 切换窗口
     driver.switch_to.window(windows[2])  # 切换到第3个窗口
-    time.sleep(2)
+    time.sleep(1.5)
     # sate = driver.find_element_by_css_selector(
     #     "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").get_attribute('class')
     # if sate == 'zeromodal-title1':
@@ -223,15 +223,13 @@ if searchObj is None:
     else:  # 课件异常情况
         print(driver.find_element_by_css_selector(
             "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
-        driver.get_screenshot_as_file(
-            "C:/Users/zb/Downloads/FireShot/" + time_format() + 'ZHUANMA' + ".png")  # modify截图
+        driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'ZHUANMA' + ".png")  # modify截图
     try:  # Play Video
         driver.find_element_by_xpath("//button[@class='vjs-big-play-button']").click()
         print('预览视频文件!')
         time.sleep(5)
     except NoSuchElementException as msg:
         print('暂无视频文件', msg)
-
     try:  # Play Audio
         Audio = driver.find_element_by_css_selector("#mp3")
     except NoSuchElementException as msg:
@@ -788,10 +786,9 @@ winUpLoadFile('D:\Photo.jpg', "打开")  # 往输入框输入绝对地址D:\   m
 time.sleep(5)
 print('Ckeditor传图片')
 driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
-time.sleep(3)
+time.sleep(2)
 try:
-    print('弹框结果:' + driver.find_element_by_css_selector(
-        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+    print('弹框结果:' + driver.find_element_by_css_selector("body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
 except NoSuchElementException as msg:
     print('截图', msg)
     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'BJWT' + ".png")  # modify截图
