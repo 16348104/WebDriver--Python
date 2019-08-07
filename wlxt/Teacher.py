@@ -151,7 +151,7 @@ time.sleep(1)
 print('上传课程图片')
 driver.find_element_by_id('doc').send_keys(r"D:/Photo.jpg")  # Modify
 # driver.find_element_by_id('doc').send_keys(r"/Users/xdx/Downloads/Map.png")  # Mac
-time.sleep(1)
+time.sleep(4)
 try:
     print('弹框结果:' + driver.find_element_by_css_selector(
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
@@ -184,8 +184,8 @@ except NoSuchElementException as msg:
     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'KJ' + ".png")  # 截图modify
 time.sleep(4)
 print('查看课件详情')
-# driver.find_element_by_xpath("//a[@id='wlxt_kj_wlkc_kjxxb']").click()
-# time.sleep(2)
+driver.find_element_by_xpath("//a[@id='wlxt_kj_wlkc_kjxxb']").click()
+time.sleep(2)
 driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[2]/a').click()
 driver.execute_script("document.documentElement.scrollTop = 10000;")  # 滚动条
 print('下载课件')
@@ -239,7 +239,6 @@ if searchObj is None:
         driver.execute_script(js_audio)
         print('预览音频文件!')
         time.sleep(5)
-    windows = driver.window_handles  # 窗口总数
     # 切换到第2个窗口
     driver.switch_to.window(windows[1])
     print("当前窗口：", window_1)
@@ -890,7 +889,7 @@ try:
 except NoSuchElementException as msg:
     print('截图', msg)
     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'YJ' + ".png")  # modify截图
-time.sleep(4)
+time.sleep(5)
 print("浏览邮件")
 driver.find_element_by_xpath('//*[@id="list"]/tbody/tr[1]/td[2]/a').click()  # 浏览邮件
 driver.find_element_by_xpath('//*[@id="returnButton"]').click()
