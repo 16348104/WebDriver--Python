@@ -155,7 +155,7 @@ try:
     print('下载无法预览的文件')
     time.sleep(3)
 except NoSuchElementException as msg:
-    print('此文件暂时无法预览', msg)
+    print('压缩文件暂时无法预览', msg)
 
 try:
     driver.find_element_by_xpath("//button[@class='vjs-big-play-button']").click()
@@ -195,8 +195,7 @@ else:
     driver.find_element_by_xpath('//input[@id="saveBtn"]').click()
     time.sleep(1)
     print('去提交作业')
-    # 展开查看更多
-    driver.find_element_by_xpath("//p[@class='zhan']").click()
+    driver.find_element_by_xpath("//p[@class='zhan']").click()# 展开查看更多
     time.sleep(2)
     print("下载作业附件")
     try:
@@ -240,7 +239,6 @@ except NoSuchElementException as msg_MP4:
     print('CKeditor未加载!', msg_MP4)
     driver.refresh()
     time.sleep(2)
-# finally:
 driver.find_element_by_xpath('//*[@id="cke_41"]').click()
 time.sleep(1)
 winUpLoadFile("D:\mov.mp4", "打开")  # 往输入框输入绝对地址D:\modify
@@ -258,7 +256,7 @@ try:
 except NoSuchElementException as msg:
     print('截图', msg)
     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'TW' + ".png")  # modify截图
-time.sleep(4)
+time.sleep(3)
 print('编辑未答问题')
 driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_kcdy"]').click()
 driver.find_element_by_xpath('//tr[1]//td[4]//a[1]').click()
@@ -575,7 +573,7 @@ print('回复我参与的话题')
 driver.find_element_by_xpath('//*[@id="answer_first"]').send_keys('Textarea我参与的话题')
 time.sleep(1)
 driver.find_element_by_xpath('//div[@class="rt huifu"]//input').click()
-time.sleep(2)
+time.sleep(1)
 try:
     print('弹框结果:' + driver.find_element_by_css_selector(
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
@@ -594,7 +592,6 @@ for i in addresses:
     # if i.get_attribute('text') != '肖大兴':
     i.click()
     time.sleep(1)
-time.sleep(1)
 driver.find_element_by_xpath('//ul[@id="myTags"]//li//input').send_keys('wlxt@tsinghua.edu.cn')
 driver.find_element_by_xpath('//ul[@id="myTags"]//li//input').send_keys(Keys.ENTER)
 # driver.find_element_by_xpath('//ul[@id="myTags"]//li[2]/input').send_keys('谢素萍')
