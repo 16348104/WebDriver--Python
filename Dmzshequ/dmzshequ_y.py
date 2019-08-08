@@ -104,9 +104,9 @@ else:
     time.sleep(3)
     # 关闭对话框
     browser.find_element_by_xpath('//*[@id="yyl-random-box"]/div[1]').click()
-time.sleep(5)
+time.sleep(6)
 score = browser.find_element_by_xpath('//*[@class="zzza_hall_top_left_infor"]/ul/li[2]/span[2]').text
-print('获得:', score)
+print('获得:', score, '分')
 print('今天任务已完成!')
 current_time = time.strftime("%y-%m-%d %H:%M:%S", time.localtime(time.time()))
 print('在', current_time, '退出Dmz社区')
