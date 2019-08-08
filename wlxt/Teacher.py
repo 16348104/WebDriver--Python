@@ -192,7 +192,7 @@ driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[2]/a').click()
 driver.execute_script("document.documentElement.scrollTop = 10000;")  # 滚动条
 print('下载课件')
 driver.back()
-time.sleep(2)
+time.sleep(1)
 driver.find_element_by_xpath("//tbody//tr[1]//td[8]//a[1]").click()
 print('预览课件')
 time.sleep(2)
@@ -217,12 +217,13 @@ if searchObj is None:
     #         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
     #     driver.get_screenshot_as_file(
     #         "C:/Users/zb/Downloads/FireShot/" + time_format() + 'ZHUANMA' + ".png")  # modify截图
-    try:  # 课件正常转码情况
+    try:
         driver.find_element_by_css_selector(
             "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
-    except NoSuchElementException:
-        print('课件已经转码')
-    else:  # 课件异常情况
+    except NoSuchElementException:  # 课件正常转码
+        print('课件已经转码！')
+    # 课件转码中
+    else:
         print(driver.find_element_by_css_selector(
             "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
         driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'ZHUANMA' + ".png")  # modify截图
