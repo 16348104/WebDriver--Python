@@ -60,8 +60,8 @@ def winUpLoadFile(file_path, title):
 #     Win32UpLoadFile().winUpLoadFile("D:\mov.mp4", "打开")
 ######################################################登录网络学堂######################################################
 # 打开网络学堂
-driver.get("http://wlxt160.thitc.cn")
-# driver.get("http://learn.tsinghua.edu.cn")
+# driver.get("http://wlxt160.thitc.cn")
+driver.get("http://learn.tsinghua.edu.cn")
 driver.maximize_window()
 print("======登录网络学堂=====")
 print(driver.title)
@@ -71,8 +71,8 @@ ticks = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 tomorrow = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time() + 3600))
 # print("当前时间戳为:", ticks)
 # print ("当前时间戳为:", tomorrow)
-driver.find_element_by_name('i_user').send_keys('2004980847')
-driver.find_element_by_name('i_pass').send_keys('123')
+driver.find_element_by_name('i_user').send_keys('')
+driver.find_element_by_name('i_pass').send_keys('')
 # user = input('name:')
 # password = input('pw:"')
 # driver.find_element_by_name("i_user").send_keys(user)
@@ -80,8 +80,9 @@ driver.find_element_by_name('i_pass').send_keys('123')
 driver.find_element_by_id("loginButtonId").click()
 time.sleep(1)
 print(driver.title, "【第1个窗口】")
-# driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
-driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  # 开发环境60240202-0
+driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
+# driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  # 开发环境60240202-0
+time.sleep(1)
 # 【切换到第二个窗口】
 window_1 = driver.current_window_handle  # 当前窗口句柄
 print('课程句柄:' + window_1)
@@ -116,7 +117,7 @@ driver.execute_script(js)
 time.sleep(2)
 driver.find_element_by_xpath('//*/table/tbody/tr[1]/td[1]/a/img').click()
 driver.find_element_by_id("saveBtn").click()  # 发公告
-time.sleep(5)
+time.sleep(2)
 try:
     print('弹框结果:' + driver.find_element_by_css_selector(
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
@@ -151,7 +152,7 @@ time.sleep(1)
 print('上传课程图片')
 driver.find_element_by_id('doc').send_keys(r"D:/Photo.jpg")  # Modify
 # driver.find_element_by_id('doc').send_keys(r"/Users/xdx/Downloads/Map.png")  # Mac
-time.sleep(4)
+time.sleep(2)
 try:
     print('弹框结果:' + driver.find_element_by_css_selector(
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
@@ -171,7 +172,8 @@ js = "document.getElementById('fileupload').style.display=\'block\'"
 driver.execute_script(js)
 driver.find_element_by_name("bt").send_keys("测试课件" + ticks)
 driver.find_element_by_xpath("//div[@class='list']//label[1]").click()  # 重要标记
-driver.find_element_by_name("fileupload").send_keys("D:/Lost Horizon.mp4")  # modify
+driver.find_element_by_name("fileupload").send_keys("D:/review.docx")  # modify
+# driver.find_element_by_name("fileupload").send_keys("D:/Lost Horizon.mp4")  # modify
 # driver.find_element_by_id('fileupload').send_keys(
 #     r'/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/readme.txt')  # mac上传文件
 driver.find_element_by_id("sub").click()
@@ -446,7 +448,7 @@ except NoSuchElementException as msg:
     print(msg)
 time.sleep(3)
 # 定位到新讨论版区
-driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[4]').click()  # modify最后的版区
+driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[2]').click()  # modify最后的版区
 time.sleep(2)
 # 定位到小扳手
 above = driver.find_element_by_xpath("//li[contains(@class,'active')]/i")
@@ -739,9 +741,7 @@ driver.find_element_by_xpath("//a[contains(@class,'ok')]").click()  # 动态id
 time.sleep(2)
 print('CKeditor插入公式')
 time.sleep(1)
-# 上传附件
-print('上传答疑附件')
-driver.find_element_by_xpath('//*[@id="fileupload"]').send_keys(r'D:\Homework.pdf')  # modify
+
 # dialog = win32gui.FindWindow('#32770', '打开')  # 对话框
 # ComboBoxEx32 = win32gui.FindWindowEx(dialog, 0, 'ComboBoxEx32', None)
 # ComboBox = win32gui.FindWindowEx(ComboBoxEx32, 0, 'ComboBox', None)
@@ -765,25 +765,27 @@ print('修改已回答问题')
 # time.sleep(2)
 # 切换标签
 driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[2]').click()
-time.sleep(1)
+time.sleep(2)
 # 点编辑按钮
 driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[7]/a[1]').click()
-time.sleep(1)
 driver.execute_script("document.documentElement.scrollTop = 10000;")
 time.sleep(2)
-# 富文本图片win32gui
-try:
-    driver.find_element_by_xpath('//*[@id="cke_40"]')
-except NoSuchElementException as msg_photo:
-    print('CKeditor未加载!', msg_photo)
-    driver.refresh()
-    time.sleep(1)
-# finally:
-driver.find_element_by_xpath('//*[@id="cke_40"]').click()
-time.sleep(2)
-winUpLoadFile('D:\Photo.jpg', "打开")  # 往输入框输入绝对地址D:\   modify
-time.sleep(5)
-print('Ckeditor传图片')
+# 上传附件
+print('上传答疑附件')
+driver.find_element_by_xpath('//*[@id="fileupload"]').send_keys(r'D:\Homework.pdf')  # modify
+## 富文本图片win32gui
+# try:
+#     driver.find_element_by_xpath('//*[@id="cke_40"]')
+# except NoSuchElementException as msg_photo:
+#     print('CKeditor未加载!', msg_photo)
+#     driver.refresh()
+#     time.sleep(1)
+# # finally:
+# driver.find_element_by_xpath('//*[@id="cke_40"]').click()
+# time.sleep(2)
+# winUpLoadFile('D:\Photo.jpg', "打开")  # 往输入框输入绝对地址D:\   modify
+# time.sleep(5)
+# print('Ckeditor传图片')
 driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
 time.sleep(2)
 try:
@@ -793,14 +795,13 @@ except NoSuchElementException as msg:
     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'BJWT' + ".png")  # modify截图
 time.sleep(5)
 print('加入问题集锦')
-# 切换问题集锦tab
-driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[2]').click()
-time.sleep(2)
-driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[2]/a').click()
-time.sleep(3)
+## 切换问题集锦tab
+# driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[2]').click()
+# time.sleep(2)
+# driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[2]/a').click()
+# time.sleep(3)
 try:
     driver.find_element_by_xpath('//*[@id="addWtjjBtn"]').click()
-    time.sleep(1)
     print('弹框结果:' + driver.find_element_by_css_selector(
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
 except NoSuchElementException as msg:
@@ -811,7 +812,7 @@ driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_kcdy"]').click()
 driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[3]').click()
 time.sleep(2)
 driver.find_element_by_xpath('//tr[1]//td[2]/a').click()
-time.sleep(2)
+time.sleep(3)
 driver.execute_script("document.documentElement.scrollTop = 10000;")
 # Play Audio
 try:
@@ -869,6 +870,17 @@ time.sleep(3)
 # time.sleep(2)
 # print('=====作业成绩测试完毕=====')
 # time.sleep(3)
+######################################################学生活动##########################################################
+print('=====测试学生活动=====')
+driver.find_element_by_xpath("//*[@id='wlxt_xshd_wlkc_xstjb']").click()
+time.sleep(1)
+driver.find_element_by_xpath("//tr[@class='even']//td//font//a").click()
+time.sleep(2)
+# driver.find_element_by_xpath('//*[@id="goBack"]').click()
+driver.back()
+print('=====学生活动测试完毕=====')
+time.sleep(2)
+########################################################################################################################
 ######################################################课程邮件##########################################################
 print('=====测试课程邮件=====')
 driver.find_element_by_xpath("//a[@id='wlxt_mail_yj_yjxxb']").click()
@@ -882,7 +894,6 @@ time.sleep(1)
 driver.find_element_by_id("bt").send_keys(ticks + "网络学堂自动测试:教师端系统正常")
 driver.find_element_by_id("submitButton").click()
 time.sleep(2)
-
 try:
     print('弹框结果:' + driver.find_element_by_css_selector(
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
@@ -892,7 +903,9 @@ except NoSuchElementException as msg:
 time.sleep(5)
 print("浏览邮件")
 driver.find_element_by_xpath('//*[@id="list"]/tbody/tr[1]/td[2]/a').click()  # 浏览邮件
-driver.find_element_by_xpath('//*[@id="returnButton"]').click()
+time.sleep(1)
+# driver.find_element_by_xpath('//*[@id="returnButton"]').click()
+driver.back()
 print('=====邮件测试完毕=====')
 time.sleep(3)
 ##################################################退出网络学堂##########################################################

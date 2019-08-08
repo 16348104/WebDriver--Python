@@ -56,16 +56,16 @@ def winUpLoadFile(file_path, title):
 ##################################################登录网络学堂###########################################################
 print("======登录网络学堂=====")
 print('测试浏览器:' + driver.name)
-# driver.get('http://learn.tsinghua.edu.cn')
-driver.get("http://wlxt160.thitc.cn")
+driver.get('http://learn.tsinghua.edu.cn')
+# driver.get("http://wlxt160.thitc.cn")
 driver.maximize_window()
 driver.implicitly_wait(2)
 print('登录后句柄:' + driver.current_window_handle)  # 登录网络学堂，【第一个窗口】
 driver.find_element_by_name('i_user').clear()
 driver.find_element_by_name('i_pass').clear()
 # time.sleep(30)
-driver.find_element_by_name('i_user').send_keys('2014013037')
-driver.find_element_by_name('i_pass').send_keys('123')
+driver.find_element_by_name('i_user').send_keys('')
+driver.find_element_by_name('i_pass').send_keys('')
 # user = input('name:')
 # password = input('pw:"')
 # driver.find_element_by_name("i_user").send_keys(user)
@@ -78,8 +78,8 @@ print(driver.title, "【第1个窗口】")
 #     driver.switch_to.alert.accept('日历服务漫游失败')
 # except UnexpectedAlertPresentException as msg:
 #     pass
-driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  # 开发60240202-0
-# driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
+# driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  # 开发60240202-0
+driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
 # 【切换到第二个窗口】
 window_1 = driver.current_window_handle  # 当前窗口句柄
 print('课程句柄:' + window_1)
@@ -105,14 +105,14 @@ print('是否含有附件:', ggfj)
 if ggfj:
     print('预览公告附件!')
     driver.find_element_by_xpath("//div[@id='ggfj']//a[@id='wjid']").click()  # 浏览公告附件
-    time.sleep(3)
+    time.sleep(2)
     # 切换【第3个窗口】
     windows = driver.window_handles  # 窗口总数
     driver.switch_to.window(windows[2])  # 切换到第3个窗口
     window_2 = driver.current_window_handle
     print('所有句柄:', windows)
     print("当前窗口：", window_2)
-    time.sleep(3)
+    time.sleep(2)
     driver.switch_to.window(windows[1])  # 切换到第2个窗口
     window_2 = driver.current_window_handle
     print("当前窗口：", window_2)
@@ -140,7 +140,7 @@ print('课件总数', kjs)
 ran = random.randrange(15)  # 随机数,前[0-14)个文件
 print('随机数', ran)
 li.pop(ran).click()  # Download
-print('下载课件!')
+print('下载课件')
 # element = driver.find_element_by_xpath("//div[@id='content']")
 # target = driver.find_element_by_xpath("//iframe[@id='playFrame']")
 # ActionChains(driver).drag_and_drop(element, target).perform()
@@ -149,7 +149,7 @@ js = "document.getElementsByClassName('playli')[0].scrollTop = 1000;"
 driver.execute_script(js)
 time.sleep(1)
 driver.switch_to.frame('playFrame')
-print('开始预览课件!')
+print('开始预览课件')
 try:
     driver.find_element_by_xpath("//a[@class='downLoadFile']").click()
     print('下载无法预览的文件')
@@ -189,19 +189,27 @@ driver.find_element_by_xpath('//*[@id="wtj"]/tbody/tr[1]/td[2]/a').click()
 time.sleep(1)
 try:
     driver.find_element_by_xpath('//input[@id="saveBtn"]')
-except NoSuchElementException:
-    print('逾期不能提交!', NoSuchElementException)
+except NoSuchElementException as msg:
+    print('逾期不能提交!', msg)
 else:
     driver.find_element_by_xpath('//input[@id="saveBtn"]').click()
     time.sleep(1)
     print('去提交作业')
+    # 展开查看更多
+    driver.find_element_by_xpath("//p[@class='zhan']").click()
+    time.sleep(2)
+    print("下载作业附件")
+    try:
+        driver.find_element_by_xpath("//a[@class='ml-10']").click()
+    except NoSuchElementException as msg:
+        print("无作业附件", msg)
     driver.find_element_by_xpath('//textarea[@id="s_documention"]')
     js = "document.getElementById('s_documention').value= new Date().toLocaleDateString()"
     driver.execute_script(js)
     driver.find_element_by_id('fileupload').send_keys(r'D:/Homework.pdf')  # 上传文件modify
     # driver.find_element_by_id('fileupload').send_keys(r'/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/readme.txt')  # Mac上传文件
     driver.find_element_by_xpath("//input[@onclick='daijiao()']").click()
-    time.sleep(6)
+    time.sleep(1)
     try:
         print('弹框结果:' + driver.find_element_by_css_selector(
             "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
@@ -241,9 +249,9 @@ print('ckeditor传MP4')
 # AutoIt v3
 # os.system("D:/Video.exe")
 print('上传答疑附件')
-driver.find_element_by_id('fileupload').send_keys(r'D:/Homework.pdf')  # modify
+driver.find_element_by_id('fileupload').send_keys(r'D:/Photo.jpg')  # modify
 driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
-time.sleep(3)
+time.sleep(2)
 try:
     print('弹框结果:' + driver.find_element_by_css_selector(
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
@@ -567,7 +575,7 @@ print('回复我参与的话题')
 driver.find_element_by_xpath('//*[@id="answer_first"]').send_keys('Textarea我参与的话题')
 time.sleep(1)
 driver.find_element_by_xpath('//div[@class="rt huifu"]//input').click()
-time.sleep(5)
+time.sleep(2)
 try:
     print('弹框结果:' + driver.find_element_by_css_selector(
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
@@ -617,8 +625,9 @@ time.sleep(4)
 print('浏览邮件')
 driver.find_element_by_xpath('//*[@id="list"]/tbody/tr[1]/td[2]/a').click()  # 浏览邮件
 time.sleep(1)
-driver.find_element_by_id('returnButton').click()
-time.sleep(2)
+# driver.find_element_by_id('returnButton').click()
+driver.back()
+time.sleep(3)
 print('=====邮件测试完毕=====')
 ##################################################退出网络学堂############################################################
 driver.find_element_by_xpath("//i[@class='webicon-out']").click()
