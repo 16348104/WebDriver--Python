@@ -7,9 +7,9 @@ from email.mime.text import MIMEText
 from selenium.common.exceptions import NoSuchElementException, UnexpectedAlertPresentException, TimeoutException, \
     ElementNotInteractableException
 
-browser = webdriver.Firefox()
+# browser = webdriver.Firefox()
 # browser = webdriver.Ie()
-# browser = webdriver.Chrome()
+browser = webdriver.Chrome()
 
 # browser = webdriver.Chrome(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/chromedriver')
 
@@ -45,7 +45,7 @@ try:
     # except NoSuchElementException as msg:
 except BaseException:
     print('今天已签到!')
-    print(BaseException)
+    # print(BaseException)
 else:
     qdbq = len(browser.find_elements_by_xpath("//ul[@class='qdsmile']//following-sibling::li"))
     ran_bq = random.randrange(qdbq)
@@ -97,7 +97,7 @@ try:
     browser.find_element_by_xpath("//*[@id='zzza_go']")
 except BaseException:
     print(date)
-    print(NoSuchElementException)
+    # print(NoSuchElementException)
 else:
     # 摇金币
     browser.find_element_by_xpath("//*[@id='zzza_go']").click()  # 摇金币
@@ -105,7 +105,7 @@ else:
     # 关闭对话框
     browser.find_element_by_xpath('//*[@id="yyl-random-box"]/div[1]').click()
 time.sleep(5)
-score = browser.find_element_by_xpath('//*[@id="nv_plugin"]/div[8]//ul/li[2]/span[2]').text
+score = browser.find_element_by_xpath('//*[@class="zzza_hall_top_left_infor"]/ul/li[2]/span[2]').text
 print('获得:', score)
 print('今天任务已完成!')
 current_time = time.strftime("%y-%m-%d %H:%M:%S", time.localtime(time.time()))
