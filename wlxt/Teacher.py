@@ -172,12 +172,12 @@ js = "document.getElementById('fileupload').style.display=\'block\'"
 driver.execute_script(js)
 driver.find_element_by_name("bt").send_keys("测试课件" + ticks)
 driver.find_element_by_xpath("//div[@class='list']//label[1]").click()  # 重要标记
-driver.find_element_by_name("fileupload").send_keys("D:/review.docx")  # modify
-# driver.find_element_by_name("fileupload").send_keys("D:/Lost Horizon.mp4")  # modify
+# driver.find_element_by_name("fileupload").send_keys("D:/review.docx")  # modify
+driver.find_element_by_name("fileupload").send_keys("D:/Lost Horizon.mp4")  # modify
 # driver.find_element_by_id('fileupload').send_keys(
 #     r'/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/readme.txt')  # mac上传文件
 driver.find_element_by_id("sub").click()
-time.sleep(1)
+time.sleep(2)
 try:
     print('弹框结果:' + driver.find_element_by_css_selector(
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
@@ -227,22 +227,24 @@ if searchObj is None:
         print(driver.find_element_by_css_selector(
             "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
         driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'ZHUANMA' + ".png")  # modify截图
-    try:  # Play Video
+    # Play Video
+    try:
         driver.find_element_by_xpath("//button[@class='vjs-big-play-button']").click()
         print('预览视频文件!')
         time.sleep(5)
     except NoSuchElementException as msg:
         print('暂无视频文件', msg)
-    try:  # Play Audio
+    # Play Audio
+    try:
         Audio = driver.find_element_by_css_selector("#mp3")
-    except NoSuchElementException as msg:
-        print('暂无音频文件', msg)
-    else:
         js_audio = "var audio = document.getElementById('mp3');audio.play();"
         driver.execute_script(js_audio)
         print('预览音频文件!')
         time.sleep(5)
+    except NoSuchElementException as msg:
+        print('暂无音频文件', msg)
     # 切换到第2个窗口
+    time.sleep(1)
     driver.switch_to.window(windows[1])
     print("当前窗口：", window_1)
 else:
@@ -525,23 +527,23 @@ driver.execute_script("document.documentElement.scrollTop = 10000;")
 # Play Video
 try:
     driver.find_element_by_xpath("//video")
-except NoSuchElementException as msg_MP4:
-    print('无视频文件', msg_MP4)
-else:
     print('预览视频文件!')
     js_video = "var video = document.getElementsByTagName('video')[0];video.play();"
     driver.execute_script(js_video)
     time.sleep(5)
+except NoSuchElementException as msg_MP4:
+    print('无视频文件', msg_MP4)
+
 # Play Audio
 try:
     driver.find_element_by_xpath('//audio')
-except NoSuchElementException as msg_MP3:
-    print('无音频文件', msg_MP3)
-else:
     print('预览音频文件!')
     js_audio = "var audio = document.getElementsByTagName('audio')[0];audio.play();"
     driver.execute_script(js_audio)
     time.sleep(5)
+except NoSuchElementException as msg_MP3:
+    print('无音频文件', msg_MP3)
+
 print('随机下载讨论附件')
 try:
     driver.find_element_by_xpath("//*[@id='removeFile']")
@@ -620,23 +622,22 @@ driver.execute_script("document.documentElement.scrollTop = 10000;")
 # Play Video
 try:
     driver.find_element_by_xpath("//video")
-except NoSuchElementException as msg_MP4:
-    print('无视频文件', msg_MP4)
-else:
     print('预览视频文件!')
     js_video = "var video = document.getElementsByTagName('video')[0];video.play();"
     driver.execute_script(js_video)
     time.sleep(5)
+except NoSuchElementException as msg_MP4:
+    print('无视频文件', msg_MP4)
 # Play Audio
 try:
     driver.find_element_by_xpath('//audio')
-except NoSuchElementException as msg_MP3:
-    print('无音频文件', msg_MP3)
-else:
     print('预览音频文件!')
     js_audio = "var audio = document.getElementsByTagName('audio')[0];audio.play();"
     driver.execute_script(js_audio)
     time.sleep(5)
+except NoSuchElementException as msg_MP3:
+    print('无音频文件', msg_MP3)
+
 print('随机下载讨论附件')
 try:
     driver.find_element_by_xpath("//*[@id='removeFile']")
@@ -698,23 +699,22 @@ time.sleep(2)
 # Play Audio
 try:
     driver.find_element_by_xpath('//audio')
-except NoSuchElementException as msg_MP3:
-    print('无音频文件', msg_MP3)
-else:
     print('预览音频文件!')
     js_audio = "var audio = document.getElementsByTagName('audio')[0];audio.play();"
     driver.execute_script(js_audio)
     time.sleep(5)
+except NoSuchElementException as msg_MP3:
+    print('无音频文件', msg_MP3)
 # Play Video
 try:
     driver.find_element_by_xpath("//video")
-except NoSuchElementException as msg_MP4:
-    print('无视频文件', msg_MP4)
-else:
     print('预览视频文件!')
     js_video = "var video = document.getElementsByTagName('video')[0];video.play();"
     driver.execute_script(js_video)
     time.sleep(5)
+except NoSuchElementException as msg_MP4:
+    print('无视频文件', msg_MP4)
+
 # 下载答疑附件
 print('下载学生的答疑文件')
 try:
@@ -818,23 +818,21 @@ driver.execute_script("document.documentElement.scrollTop = 10000;")
 # Play Audio
 try:
     driver.find_element_by_xpath("//p[@id='wtnr']//p//audio")
-except NoSuchElementException as msg_MP3:
-    print('无音频文件', msg_MP3)
-else:
     print('预览音频文件!')
     js_audio = "var audio = document.getElementsByTagName('audio')[0];audio.play();"
     driver.execute_script(js_audio)
     time.sleep(5)
+except NoSuchElementException as msg_MP3:
+    print('无音频文件', msg_MP3)
 # Play Video
 try:
     driver.find_element_by_xpath("//p[@id='wtnr']//p//video")
-except NoSuchElementException as msg_MP4:
-    print('无视频文件', msg_MP4)
-else:
     print('预览视频文件!')
     js_video = "var video = document.getElementsByTagName('video')[0];video.play();"
     driver.execute_script(js_video)
     time.sleep(5)
+except NoSuchElementException as msg_MP4:
+    print('无视频文件', msg_MP4)
 # 随机下载答疑附件
 print('随机下载问题集锦文件')
 # driver.refresh()
