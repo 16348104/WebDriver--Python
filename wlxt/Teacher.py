@@ -609,9 +609,9 @@ else:
     except NoSuchElementException as msg:
         print('截图', msg)
         driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'HD' + ".png")  # modify截图
+print('浏览我参与的讨论话题')
 driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_tltb"]').click()
 time.sleep(1)
-print('浏览我参与的讨论话题')
 driver.find_element_by_xpath("//*[@id='canyu']").click()
 time.sleep(2)
 driver.find_element_by_xpath('//*[@id="canyutable"]/tbody/tr[1]/td[2]/a').click()
@@ -731,8 +731,8 @@ except NoSuchElementException as msg_math:
     print('刷新CKeditor!', msg_math)
     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'ckeidtor' + ".png")  # modify截图
     driver.refresh()
-    time.sleep(1)
-# finally:
+    time.sleep(2)
+
 driver.find_element_by_xpath("//a[@id='cke_39']").click()
 time.sleep(1)
 js = "document.getElementsByClassName('cke_dialog_background_cover')[0].style.display = 'none'"
@@ -855,8 +855,8 @@ else:
         driver.refresh()
         time.sleep(2)
         driver.find_elements_by_xpath("//*[@class='download-file']//*[@id='removeFile']").pop(0).click()
-print('=====课程答疑测试完毕=====')
 time.sleep(3)
+print('=====课程答疑测试完毕=====')
 ######################################################作业成绩##########################################################
 # print('=====测试作业成绩=====')
 # driver.find_element_by_xpath("//*[@id='wlxt_kycj']").click()
@@ -879,9 +879,8 @@ driver.find_element_by_xpath("//tr[@class='even']//td//font//a").click()
 time.sleep(2)
 # driver.find_element_by_xpath('//*[@id="goBack"]').click()
 driver.back()
-print('=====学生活动测试完毕=====')
 time.sleep(2)
-########################################################################################################################
+print('=====学生活动测试完毕=====')
 ######################################################课程邮件##########################################################
 print('=====测试课程邮件=====')
 driver.find_element_by_xpath("//a[@id='wlxt_mail_yj_yjxxb']").click()
