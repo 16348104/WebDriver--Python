@@ -6,7 +6,6 @@ from email.header import Header
 from email.mime.text import MIMEText
 from selenium.common.exceptions import NoSuchElementException, UnexpectedAlertPresentException, TimeoutException, \
     ElementNotInteractableException
-
 # browser = webdriver.Firefox()
 # browser = webdriver.Ie()
 browser = webdriver.Chrome()
