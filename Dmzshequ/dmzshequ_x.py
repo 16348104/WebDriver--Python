@@ -45,7 +45,6 @@ try:
     # except NoSuchElementException as msg:
 except BaseException:
     print('今天已签到!')
-    # print(BaseException)
 else:
     qdbq = len(browser.find_elements_by_xpath("//ul[@class='qdsmile']//following-sibling::li"))
     ran_bq = random.randrange(qdbq)
@@ -97,7 +96,6 @@ try:
     browser.find_element_by_xpath("//*[@id='zzza_go']")
 except BaseException:
     print(date)
-    # print(NoSuchElementException)
 else:
     # 摇金币
     browser.find_element_by_xpath("//*[@id='zzza_go']").click()  # 摇金币
@@ -106,7 +104,7 @@ else:
     browser.find_element_by_xpath('//*[@id="yyl-random-box"]/div[1]').click()
 time.sleep(6)
 score = browser.find_element_by_xpath('//*[@class="zzza_hall_top_left_infor"]/ul/li[2]/span[2]').text
-print('获得:', score, '分')
+print('今日获得:', score, '分')
 print('今天任务已完成!')
 current_time = time.strftime("%y-%m-%d %H:%M:%S", time.localtime(time.time()))
 print('在', current_time, '退出Dmz社区')

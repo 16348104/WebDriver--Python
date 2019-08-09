@@ -45,7 +45,6 @@ try:
     # except NoSuchElementException as msg:
 except BaseException:
     print('今天已签到!')
-    # print(BaseException)
 else:
     qdbq = len(browser.find_elements_by_xpath("//ul[@class='qdsmile']//following-sibling::li"))
     ran_bq = random.randrange(qdbq)
@@ -97,7 +96,6 @@ try:
     browser.find_element_by_xpath("//*[@id='zzza_go']")
 except BaseException:
     print(date)
-    # print(NoSuchElementException)
 else:
     # 摇金币
     browser.find_element_by_xpath("//*[@id='zzza_go']").click()  # 摇金币
