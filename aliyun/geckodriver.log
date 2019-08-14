@@ -268,3 +268,48 @@ WebGL(000000001F3BF800)::ForceLoseContext
 [Child 11376, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_1563383129/build/src/ipc/chromi[[GPU 12064, Chrome_ChildTh
 ###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
 
+1565665352172	mozrunner::runner	INFO	Running command: "E:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\zb\\AppData\\Local\\Temp\\rust_mozprofile.Do2Q6m8sZCmb"
+1565665353987	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1565665353988	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1565665353988	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1565665353988	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+[Child 4608, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_1563383129/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[Child 1565665355776	Marionette	INFO	Listening on port 53136
+1565665356070	Marionette	WARN	TLS certificate errors will be ignored for this session
+WebGL(0000000011A7E800)::ForceLoseContext
+WebGL(00000000151D8000)::ForceLoseContext
+JavaScript error: https://g.alicdn.com/??nextbox/ace-homepage-footer-list/0.0.36/index.js,nextbox/ace-homepage-footer-list/0.0.36/services.js,nextbox/ace-common-search/0.0.60/index.js,nextbox/ace-common-search/0.0.60/services.js, line 1: TypeError: d is undefined
+JavaScript error: https://account.aliyun.com/login/login.htm?oauth_callback=https%3A%2F%2Fcloudmonitor.console.aliyun.com%2F, line 126: TypeError: window.$ACE_PARSER is undefined
+WebGL(00000000167A8800)::ForceLoseContext
+WebGL(00000000199B4000)::ForceLoseContext
+WebGL(000000001A61A000)::ForceLoseContext
+WebGL(000000000C42C000)::ForceLoseContext
+WebGL(000000000C42E800)::ForceLoseContext
+WebGL(000000000C421800)::ForceLoseContext
+WebGL(0000000012632000)::ForceLoseContext
+WebGL(0000000012690000)::ForceLoseContext
+WebGL(00000000157C0800)::ForceLoseContext
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: http://%(server)s/dummy/blocklist//buckets/monitor/collections/changes/records?_expected=%221565654482633%22 is not a valid URL..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:201:13
+
+WebGL(000000001A616000)::ForceLoseContext
+WebGL(000000001A628000)::ForceLoseContext
+[Parent 7736, Gecko_IOThread] WARNING: pipe error: 109: file z:/task_1563383129/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+WebGL(000000003516B000)::ForceLoseContext
+WebGL(00000000375CA800)::ForceLoseContext
+1565665406822	Marionette	INFO	Stopped listening on port 53136
+[Parent 7736, Gecko_IOThread] WARNING: pipe error: 109: file z:/task_1563383129/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[Child 8664, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_1563383129/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[Child 8664, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_1563383129/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[Child 8964, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_1563383129/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+[GPU 960
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+

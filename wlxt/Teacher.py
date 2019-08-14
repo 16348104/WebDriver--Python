@@ -7,7 +7,7 @@ import win32gui
 import win32con
 import win32api
 from selenium import webdriver
-from selenium.common.exceptions import NoSuchElementException, UnexpectedAlertPresentException
+from selenium.common.exceptions import NoSuchElementException, UnexpectedAlertPresentException,StaleElementReferenceException
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import Select
@@ -60,8 +60,8 @@ def winUpLoadFile(file_path, title):
 #     Win32UpLoadFile().winUpLoadFile("D:\mov.mp4", "打开")
 ######################################################登录网络学堂######################################################
 # 打开网络学堂
-# driver.get("http://wlxt160.thitc.cn")
-driver.get("http://learn.tsinghua.edu.cn")
+driver.get("http://wlxt160.thitc.cn")
+# driver.get("http://learn.tsinghua.edu.cn")
 driver.maximize_window()
 print("======登录网络学堂=====")
 print(driver.title)
@@ -71,8 +71,8 @@ ticks = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 tomorrow = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time() + 3600))
 # print("当前时间戳为:", ticks)
 # print ("当前时间戳为:", tomorrow)
-driver.find_element_by_name('i_user').send_keys('')
-driver.find_element_by_name('i_pass').send_keys('')
+driver.find_element_by_name('i_user').send_keys('2004980847')
+driver.find_element_by_name('i_pass').send_keys('123')
 # user = input('name:')
 # password = input('pw:"')
 # driver.find_element_by_name("i_user").send_keys(user)
@@ -80,8 +80,8 @@ driver.find_element_by_name('i_pass').send_keys('')
 driver.find_element_by_id("loginButtonId").click()
 time.sleep(1)
 print(driver.title, "【第1个窗口】")
-driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
-# driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  # 开发环境60240202-0
+# driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
+driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  # 开发环境60240202-0
 time.sleep(1)
 # 【切换到第二个窗口】
 window_1 = driver.current_window_handle  # 当前窗口句柄
@@ -780,7 +780,7 @@ driver.find_element_by_xpath('//*[@id="fileupload"]').send_keys(r'D:\Homework.pd
 # except NoSuchElementException as msg_photo:
 #     print('CKeditor未加载!', msg_photo)
 #     driver.refresh()
-#     time.sleep(1)
+#     time.sleep(2)
 # # finally:
 # driver.find_element_by_xpath('//*[@id="cke_40"]').click()
 # time.sleep(2)
@@ -791,7 +791,8 @@ driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
 time.sleep(2)
 try:
     print('弹框结果:' + driver.find_element_by_css_selector("body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
-except NoSuchElementException as msg:
+# except NoSuchElementException as msg:
+except StaleElementReferenceException as msg:
     print('截图', msg)
     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'BJWT' + ".png")  # modify截图
 time.sleep(5)
