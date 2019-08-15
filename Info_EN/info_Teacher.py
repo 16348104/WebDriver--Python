@@ -25,16 +25,24 @@ def login(user, password):
 
 
 login('1992990279', '123')
-time.sleep(5)
+driver.find_element_by_xpath('//*[@id="1"]').click()
+hrefs = driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a')
+for i in hrefs:
+    # str1 = driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(i)
+    date = driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(i).get_attribute('href')
+    print(date)
+    time.sleep(1)
 
 driver.find_element_by_xpath("//*[@class='btn btn-default dropdown-toggle']").click()
-# 鼠标滑动exit
-above = driver.find_element_by_xpath("//ul[@class='dropdown-menu']/li[3]/a")
-time.sleep(2)
-ActionChains(driver).move_to_element(above).perform()
-above.click()
-# js_logout = "beforeLogout();"
-# driver.execute_script(js_logout)
+# # 鼠标滑动exit
+# above = driver.find_element_by_xpath("//ul[@class='dropdown-menu']/li[3]/a")
+# time.sleep(2)
+# ActionChains(driver).move_to_element(above).perform()
+# above.click()
+
+# js退出
+js_logout = "beforeLogout();"
+driver.execute_script(js_logout)
 time.sleep(1)
 driver.find_element_by_xpath("//*[@class='btn btn-sub']").send_keys(Keys.ENTER)
 print('=====退出info=====')
