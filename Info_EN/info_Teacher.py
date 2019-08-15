@@ -3,14 +3,15 @@ import os
 import time
 import random
 from selenium import webdriver
-from selenium.common.exceptions import NoSuchElementException, UnexpectedAlertPresentException, \
-    StaleElementReferenceException
+from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException
+from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys
 
+# driver = webdriver.Firefox()
 driver = webdriver.Chrome()
-driver.delete_all_cookies()
-print("======Ó¢ÎÄ°æinfo=====")
-print('²âÊÔä¯ÀÀÆ÷:' + driver.name)
+# driver = webdriver.Safari() #Mac os
+print("======è¿›å…¥info=====")
+print('æµ‹è¯•æµè§ˆå™¨:' + driver.name)
 driver.get('http://101.6.28.150:29009')
 driver.maximize_window()
 time.sleep(1)
@@ -24,10 +25,18 @@ def login(user, password):
 
 
 login('1992990279', '123')
-print('µÇÂ¼Ó¢ÎÄ°æinfo')
 time.sleep(5)
 
-driver.find_element_by_xpath("//button[@class='btn btn-default dropdown-toggle']").click()
-
-
-
+driver.find_element_by_xpath("//*[@class='btn btn-default dropdown-toggle']").click()
+# é¼ æ ‡æ»‘åŠ¨exit
+above = driver.find_element_by_xpath("//ul[@class='dropdown-menu']/li[3]/a")
+time.sleep(2)
+ActionChains(driver).move_to_element(above).perform()
+above.click()
+# js_logout = "beforeLogout();"
+# driver.execute_script(js_logout)
+time.sleep(1)
+driver.find_element_by_xpath("//*[@class='btn btn-sub']").send_keys(Keys.ENTER)
+print('=====é€€å‡ºinfo=====')
+driver.delete_all_cookies()
+driver.quit()

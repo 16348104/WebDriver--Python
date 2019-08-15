@@ -7,7 +7,8 @@ import win32gui
 import win32con
 import win32api
 from selenium import webdriver
-from selenium.common.exceptions import NoSuchElementException, UnexpectedAlertPresentException,StaleElementReferenceException
+from selenium.common.exceptions import NoSuchElementException, UnexpectedAlertPresentException, \
+    StaleElementReferenceException
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import Select
@@ -19,7 +20,6 @@ from selenium.webdriver.support.ui import Select
 driver = webdriver.Chrome()
 driver.delete_all_cookies()
 time.sleep(1)
-
 
 # driver = webdriver.Firefox(
 #     executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/geckodriver')  # mac firefox
@@ -226,7 +226,8 @@ if searchObj is None:
     else:
         print(driver.find_element_by_css_selector(
             "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
-        driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'ZHUANMA' + ".png")  # modify截图
+        driver.get_screenshot_as_file(
+            "C:/Users/zb/Downloads/FireShot/" + time_format() + 'ZHUANMA' + ".png")  # modify截图
     # Play Video
     try:
         driver.find_element_by_xpath("//button[@class='vjs-big-play-button']").click()
@@ -790,7 +791,8 @@ driver.find_element_by_xpath('//*[@id="fileupload"]').send_keys(r'D:\Homework.pd
 driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
 time.sleep(2)
 try:
-    print('弹框结果:' + driver.find_element_by_css_selector("body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+    print('弹框结果:' + driver.find_element_by_css_selector(
+        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
 # except NoSuchElementException as msg:
 except StaleElementReferenceException as msg:
     print('截图', msg)
