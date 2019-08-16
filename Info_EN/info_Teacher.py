@@ -25,14 +25,24 @@ def login(user, password):
 
 
 login('1992990279', '123')
-driver.find_element_by_xpath('//*[@id="1"]').click()
-hrefs = driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a')
-for i in hrefs:
-    # str1 = driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(i)
-    date = driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(i).get_attribute('href')
-    print(date)
+time.sleep(1)
+mk = len(driver.find_elements_by_xpath("//ul[@id='tas']/a"))
+i = 0
+while i < mk:
+    driver.find_elements_by_xpath("//ul[@id='tas']/a").pop(i).click()
     time.sleep(1)
-
+    str1 = driver.find_elements_by_xpath("//ul[@id='tas']/a").pop(i).text
+    print(str1, "模块")
+    i = i + 1
+    # driver.find_element_by_xpath('//*[@id="1"]').click()
+    hrefs = len(driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a'))
+    j = 0
+    while j < hrefs:
+        str2 = driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).text
+        date = driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).get_attribute('href')
+        # time.sleep(1)
+        print(str2, ":", date)
+        j = j + 1
 driver.find_element_by_xpath("//*[@class='btn btn-default dropdown-toggle']").click()
 # # 鼠标滑动exit
 # above = driver.find_element_by_xpath("//ul[@class='dropdown-menu']/li[3]/a")
