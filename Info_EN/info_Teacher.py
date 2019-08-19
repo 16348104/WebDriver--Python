@@ -12,7 +12,9 @@ driver = webdriver.Chrome()
 # driver = webdriver.Safari() #Mac os
 print("======进入info=====")
 print('测试浏览器:' + driver.name)
-driver.get('http://101.6.28.150:29009')
+# driver.get('http://101.6.28.150:29009')
+driver.get('http://infoen.syx.thcic.cn')
+
 driver.maximize_window()
 time.sleep(1)
 
@@ -24,7 +26,7 @@ def login(user, password):
     driver.find_element_by_id('loginButtonId').send_keys(Keys.ENTER)
 
 
-login('1992990279', '123')
+login('2019430117', 'a123456')
 time.sleep(1)
 mk = len(driver.find_elements_by_xpath("//ul[@id='tas']/a"))
 i = 0
