@@ -947,7 +947,7 @@ print('发邮件')
 driver.find_element_by_xpath('//span[@class="rt right"]/child::a').click()
 # driver.find_element_by_class_name("ui-autocomplete-input").send_keys(
 #    "xiesp@tsinghua.edu.cn,chc@tsinghua.edu.cn,wlxt@tsinghua.edu.cn,dj1005@tsinghua.edu.cn,zhongwenfeng@tsinghua.edu.cn")
-driver.find_element_by_xpath('//*[@id="myTags"]/li/input').send_keys('wlxt@tsinghua.edu.cn')
+driver.find_element_by_xpath('//*[@id="myTags"]/li/input').send_keys('wlxt@tsinghua.edu.cn，xiesp@tsinghua.edu.cn')
 time.sleep(1)
 driver.find_element_by_id("bt").send_keys(ticks + "网络学堂自动测试:教师端系统正常")
 driver.find_element_by_id("submitButton").click()
