@@ -16,6 +16,7 @@ print('测试浏览器:' + driver.name)
 driver.get('http://infoen.syx.thcic.cn')
 
 driver.maximize_window()
+# driver.set_window_size(1080*760)
 time.sleep(1)
 
 
@@ -26,7 +27,7 @@ def login(user, password):
     driver.find_element_by_id('loginButtonId').send_keys(Keys.ENTER)
 
 
-login('2019430117', 'a123456')
+login('2011990118', 'a123456')
 time.sleep(1)
 mk = len(driver.find_elements_by_xpath("//ul[@id='tas']/a"))
 i = 0
@@ -41,6 +42,7 @@ while i < mk:
     j = 0
     while j < hrefs:
         str2 = driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).text
+        # date = driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).get_property('href')
         date = driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).get_attribute('href')
         # time.sleep(1)
         print(str2, ":", date)

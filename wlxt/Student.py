@@ -600,10 +600,13 @@ driver.find_element_by_xpath('//ul[@id="myTags"]//li//input').send_keys(Keys.ENT
 js = "document.getElementById('bt').value = new Date().toLocaleString();"
 val = driver.execute_script(js)
 driver.find_element_by_xpath('//input[@id="bt"]').send_keys('网络学堂自动化测试结果—学生端功能正常')
-iframe = driver.find_element_by_xpath("//iframe[contains(@title,'nrStr')]")  # 定位iframe
-driver.switch_to.frame(iframe)  # 切入iframe
+# 定位iframe
+iframe = driver.find_element_by_xpath("//iframe[contains(@title,'nrStr')]")
+# 切入iframe
+driver.switch_to.frame(iframe)
 driver.find_element_by_xpath("//body[starts-with(@class,'cke')]").send_keys('学生端功能正常')
-driver.switch_to.default_content()  # 跳出iframe
+# 跳出iframe
+driver.switch_to.default_content()
 # driver.find_element_by_id('fileupload').send_keys(r'/Users/xiaodaxing/Desktop/Race.pdf')  # Mac上传文件
 # driver.find_element_by_id('fileupload').send_keys(r'D:/review.docx')  # modify
 time.sleep(1)
