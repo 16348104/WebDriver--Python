@@ -61,8 +61,8 @@ def winUpLoadFile(file_path, title):
 #     Win32UpLoadFile().winUpLoadFile("D:\mov.mp4", "打开")
 ######################################################登录网络学堂######################################################
 # 打开网络学堂
-driver.get("http://wlxt160.thitc.cn")
-# driver.get("http://learn.tsinghua.edu.cn")
+# driver.get("http://wlxt160.thitc.cn")
+driver.get("http://learn.tsinghua.edu.cn")
 driver.maximize_window()
 print("======登录网络学堂=====")
 print(driver.title)
@@ -72,8 +72,8 @@ ticks = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 tomorrow = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time() + 3600))
 # print("当前时间戳为:", ticks)
 # print ("当前时间戳为:", tomorrow)
-driver.find_element_by_name('i_user').send_keys('2004980847')
-driver.find_element_by_name('i_pass').send_keys('123')
+driver.find_element_by_name('i_user').send_keys('xdx2016')
+driver.find_element_by_name('i_pass').send_keys('ustb55aliyun')
 # user = input('name:')
 # password = input('pw:"')
 # driver.find_element_by_name("i_user").send_keys(user)
@@ -81,8 +81,8 @@ driver.find_element_by_name('i_pass').send_keys('123')
 driver.find_element_by_id("loginButtonId").click()
 time.sleep(1)
 print(driver.title, "【第1个窗口】")
-# driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
-driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  # 开发环境60240202-0
+driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
+# driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  # 开发环境60240202-0
 time.sleep(1)
 # 【切换到第二个窗口】
 window_1 = driver.current_window_handle  # 当前窗口句柄
@@ -896,7 +896,7 @@ driver.find_element_by_xpath("//body[starts-with(@class,'cke')]").send_keys(Keys
 driver.switch_to.default_content()
 time.sleep(1)
 print("上传笔记附件")
-driver.find_element_by_xpath('//*[@id="fileupload"]').send_keys(r'D:\Homework.pdf')
+driver.find_element_by_xpath('//*[@id="fileupload"]').send_keys(r'D:\Homework.pdf')  # modfiy
 driver.find_element_by_xpath('//*[@id="save"]').click()
 time.sleep(2)
 try:
@@ -907,10 +907,16 @@ except NoSuchElementException as msg:
     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'BJ' + ".png")  # modify截图
 time.sleep(5)
 print('搜索并预览笔记')
+# 展开笔记标签
+driver.find_element_by_xpath('//p[@class="zhan"]').click()
 driver.find_element_by_xpath('//*[@id="searchText"]').send_keys("Test")
 driver.find_element_by_xpath('//*[@id="grbjSearch"]').click()
 time.sleep(3)
 driver.find_element_by_xpath('//*[@id="dataTableId"]/tbody/tr[1]/td[2]/font/a[1]').click()
+try:
+    driver.find_element_by_xpath('//*[@id="downloadFile"]').click()
+except NoSuchElementException as msg:
+    print('无笔记附件', msg)
 time.sleep(2)
 driver.back()
 print('=====教学笔记测试完毕=====')
@@ -947,8 +953,8 @@ print('发邮件')
 driver.find_element_by_xpath('//span[@class="rt right"]/child::a').click()
 # driver.find_element_by_class_name("ui-autocomplete-input").send_keys(
 #    "xiesp@tsinghua.edu.cn,chc@tsinghua.edu.cn,wlxt@tsinghua.edu.cn,dj1005@tsinghua.edu.cn,zhongwenfeng@tsinghua.edu.cn")
-driver.find_element_by_xpath('//*[@id="myTags"]/li/input').send_keys('wlxt@tsinghua.edu.cn，xiesp@tsinghua.edu.cn')
-time.sleep(1)
+driver.find_element_by_xpath('//*[@id="myTags"]/li/input').send_keys('wlxt@tsinghua.edu.cn,xiesp@tsinghua.edu.cn')
+time.sleep(2)
 driver.find_element_by_id("bt").send_keys(ticks + "网络学堂自动测试:教师端系统正常")
 driver.find_element_by_id("submitButton").click()
 time.sleep(2)
@@ -966,7 +972,7 @@ time.sleep(1)
 driver.back()
 print('=====邮件测试完毕=====')
 time.sleep(3)
-##################################################退出网络学堂##########################################################
+##################################################退出网络学堂###########################################################
 driver.find_element_by_xpath("//i[@class='webicon-out']").click()
 time.sleep(1)
 driver.find_element_by_xpath("//div[contains(@class,'zeromodal-footer')]//button[@class='btn btn-primary']").send_keys(
