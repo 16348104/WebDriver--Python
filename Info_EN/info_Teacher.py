@@ -17,7 +17,21 @@ driver.get('http://infoen.syx.thcic.cn')
 
 driver.maximize_window()
 # driver.set_window_size(1080*760)
+print("======Forgot your password======")
+driver.find_element_by_xpath('//*[@id="loginForm"]/a').click()
 time.sleep(1)
+# # 切换【第二个窗口】
+windows = driver.window_handles
+# # 切换到新窗口
+# driver.switch_to.window(windows[1])
+# window_2 = driver.current_window_handle
+# print('所有句柄:', windows)
+# print("当前窗口：", window_2)
+time.sleep(3)
+# 切换到第1个窗口
+driver.switch_to.window(windows[0])
+window_2 = driver.current_window_handle
+print("当前窗口：", window_2)
 
 
 def login(user, password):
@@ -28,7 +42,14 @@ def login(user, password):
 
 
 login('2011990118', 'a123456')
-time.sleep(1)
+time.sleep(2)
+print("======Edit Personal Details======")
+driver.find_element_by_xpath("//*[@class='btn']").click()
+time.sleep(3)
+# 切换到第1个窗口
+driver.switch_to.window(windows[0])
+window_2 = driver.current_window_handle
+print("当前窗口：", window_2)
 mk = len(driver.find_elements_by_xpath("//ul[@id='tas']/a"))
 i = 0
 while i < mk:
@@ -48,12 +69,13 @@ while i < mk:
         print(str2, ":", date)
         j = j + 1
 driver.find_element_by_xpath("//*[@class='btn btn-default dropdown-toggle']").click()
-# # 鼠标滑动exit
-# above = driver.find_element_by_xpath("//ul[@class='dropdown-menu']/li[3]/a")
-# time.sleep(2)
-# ActionChains(driver).move_to_element(above).perform()
-# above.click()
-
+print("======Change Password======")
+# 鼠标滑动Change Password
+above = driver.find_element_by_xpath("//ul[@class='dropdown-menu']/li[1]/a")
+time.sleep(2)
+ActionChains(driver).move_to_element(above).perform()
+above.click()
+time.sleep(3)
 # js退出
 js_logout = "beforeLogout();"
 driver.execute_script(js_logout)

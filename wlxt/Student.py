@@ -60,7 +60,8 @@ driver.get('http://learn.tsinghua.edu.cn')
 # driver.get("http://wlxt160.thitc.cn")
 driver.maximize_window()
 driver.implicitly_wait(2)
-print('登录后句柄:' + driver.current_window_handle)  # 登录网络学堂，【第一个窗口】
+# 登录网络学堂，【第一个窗口】
+print('登录后句柄:' + driver.current_window_handle)
 driver.find_element_by_name('i_user').clear()
 driver.find_element_by_name('i_pass').clear()
 # time.sleep(30)
