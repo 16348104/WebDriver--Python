@@ -6,7 +6,7 @@ from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys
 
 
-# 教师端
+# 学生端
 class LoginTest():
     def __init__(self):
         self.driver = webdriver.Chrome()
@@ -15,18 +15,23 @@ class LoginTest():
         # self.driver.get('http://infoen.syx.thcic.cn')
         # driver.get('http://101.6.28.150:29009')
         self.driver.get('http://eng.info.tsinghua.edu.cn')
-        print("======进入info教师端=====")
+        print("======进入info学生端=====")
         self.driver.maximize_window()
         time.sleep(3)
         # driver.set_window_size(1080*760)
         # self.driver.implicitly_wait(10)
 
-    # 教师登录
-    def test_admin_login(self):
-        user = '2011990118'
+    # 本科生登录
+    def test_bachelor_login(self):
+        user = '2017013478'
         password = 'a123456'
         LoginInfo().user_login(self.driver, user, password)
-        time.sleep(2)
+
+    # 硕士生登录
+    def test_master_login(self):
+        username = '2017013478'
+        password = 'a123456'
+        LoginInfo().user_login(self.driver, username, password)
 
     # 退出系统
     def test_logout(self):
@@ -64,8 +69,9 @@ class LoginTest():
         time.sleep(2)
         print(self.driver.find_element_by_xpath('//li[@class="name"]').text)
         print(self.driver.find_element_by_xpath('//li[@class="stuId"]').text)
-        print("======Edit Personal Details======")
-        self.driver.find_element_by_xpath("//*[@class='btn']").click()
+        print("======Student Status======")
+        self.driver.find_element_by_xpath("//*[@class='btn'][1]").click()
+        time.sleep(1)
         windows = self.driver.window_handles
         # # 切换到新窗口
         self.driver.switch_to.window(windows[1])
@@ -78,7 +84,21 @@ class LoginTest():
         self.driver.switch_to.window(windows[0])
         window_2 = self.driver.current_window_handle
         print("当前窗口：", window_2)
-        time.sleep(1)
+        print("======Edit Personal Details======")
+        self.driver.find_element_by_xpath("//*[@class='btn'][2]").click()
+        windows = self.driver.window_handles
+        # # 切换到新窗口
+        self.driver.switch_to.window(windows[1])
+        window_2 = self.driver.current_window_handle
+        print('所有句柄:', windows)
+        print("当前窗口：", window_2)
+        time.sleep(3)
+        self.driver.close()
+        # 切换到第1个窗口
+        self.driver.switch_to.window(windows[0])
+        window_2 = self.driver.current_window_handle
+        print("当前窗口：", window_2)
+        time.sleep(2)
         print("======Tsinghua University Information Portal======")
         mk = len(self.driver.find_elements_by_xpath("//ul[@id='tas']/a"))
         i = 0
