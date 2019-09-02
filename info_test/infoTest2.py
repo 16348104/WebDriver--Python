@@ -1,5 +1,5 @@
 import time
-
+import xlwt
 from selenium import webdriver
 from public2 import LoginInfo
 from selenium.webdriver import ActionChains
@@ -39,46 +39,28 @@ class LoginTest():
     # 测试enginfo
     def test_enginfo(self):
         print('测试浏览器:' + self.driver.name)
-        # driver.get('http://101.6.28.150:29009')
+        self.driver.get('http://101.6.28.150:29009')
         # driver.set_window_size(1080*760)
         print("======Forgot your password======")
         self.driver.find_element_by_xpath('//*[@id="loginForm"]/a').click()
         time.sleep(1)
         # # 切换【第二个窗口】
-        windows = self.driver.window_handles
-        # # 切换到新窗口
-        self.driver.switch_to.window(windows[1])
-        window_2 = self.driver.current_window_handle
-        print('所有句柄:', windows)
-        print("当前窗口：", window_2)
-        time.sleep(3)
-        self.driver.close()
-        # 切换到第1个窗口
-        self.driver.switch_to.window(windows[0])
-        window_2 = self.driver.current_window_handle
-        print("当前窗口：", window_2)
+        LoginInfo.switch_window(self, self.driver)
+        print("======切换中文info======")
+        self.driver.find_element_by_xpath("//a[@class='backCh']").click()
+        time.sleep(1)
+        self.driver.back()
         print("======登录English_info======")
-        username = ''
-        password = ''
+        username = '1992990279'
+        password = '123'
         LoginInfo().user_login(self.driver, username, password)
         time.sleep(2)
         print(self.driver.find_element_by_xpath('//li[@class="name"]').text)
         print(self.driver.find_element_by_xpath('//li[@class="stuId"]').text)
         print("======Edit Personal Details======")
         self.driver.find_element_by_xpath("//*[@class='btn']").click()
-        windows = self.driver.window_handles
         # # 切换到新窗口
-        self.driver.switch_to.window(windows[1])
-        window_2 = self.driver.current_window_handle
-        print('所有句柄:', windows)
-        print("当前窗口：", window_2)
-        time.sleep(3)
-        self.driver.close()
-        # 切换到第1个窗口
-        self.driver.switch_to.window(windows[0])
-        window_2 = self.driver.current_window_handle
-        print("当前窗口：", window_2)
-        time.sleep(1)
+        LoginInfo.switch_window(self, self.driver)
         print("======Tsinghua University Information Portal======")
         mk = len(self.driver.find_elements_by_xpath("//ul[@id='tas']/a"))
         i = 0
@@ -93,8 +75,22 @@ class LoginTest():
             j = 0
             while j < hrefs:
                 str2 = self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).text
+                self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).click()
+                time.sleep(2)
+                # # 切换【第二个窗口】
+                windows = self.driver.window_handles
+                print("所有窗口:", windows)
+                # # 切换到新窗口
+                self.driver.switch_to.window(windows[1])
+                print("当前窗口标题:", self.driver.title, self.driver.current_window_handle)
+                time.sleep(2)
+                date = self.driver.current_url
+                self.driver.close()
+                # 切换到第1个窗口
+                self.driver.switch_to.window(windows[0])
+                print("当前窗口：", self.driver.current_window_handle)
                 # date = driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).get_property('href')
-                date = self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).get_attribute('href')
+                # date = self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).get_attribute('href')
                 # time.sleep(1)
                 print(str2, ":", date)
                 j = j + 1
@@ -105,19 +101,9 @@ class LoginTest():
         time.sleep(2)
         ActionChains(self.driver).move_to_element(above).perform()
         above.click()
-        time.sleep(3)
-        windows = self.driver.window_handles
+        time.sleep(2)
         # # 切换到新窗口
-        self.driver.switch_to.window(windows[1])
-        window_2 = self.driver.current_window_handle
-        print('所有句柄:', windows)
-        print("当前窗口：", window_2)
-        time.sleep(3)
-        self.driver.close()
-        # 切换到第1个窗口
-        self.driver.switch_to.window(windows[0])
-        window_2 = self.driver.current_window_handle
-        print("当前窗口：", window_2)
+        LoginInfo.switch_window(self, self.driver)
         LoginInfo.user_logout(self, self.driver)
 
 

@@ -25,3 +25,20 @@ class LoginInfo():
         print('=====退出info=====')
         driver.delete_all_cookies()
         driver.quit()
+
+    # 切换到第二个窗口
+    def switch_window(self, driver):
+        windows = driver.window_handles  # 窗口总数
+        window_1 = driver.current_window_handle  # 当前窗口句柄
+        for current_window in windows:
+            if current_window != window_1:
+                driver.switch_to.window(current_window)
+        print('所有句柄:', windows)
+        print("当前窗口：", window_1)
+        print("窗口title", driver.title)
+        time.sleep(2)
+        driver.close()
+        # 切换回第一个窗口
+        driver.switch_to.window(windows[0])
+        window_2 = driver.current_window_handle
+        print("当前窗口：", window_2)
