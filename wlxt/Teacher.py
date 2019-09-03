@@ -245,6 +245,7 @@ time.sleep(2)
 #         time.sleep(5)
 #     except NoSuchElementException as msg:
 #         print('暂无音频文件', msg)
+#     driver.close()
 #     # 切换到第2个窗口
 #     time.sleep(1)
 #     driver.switch_to.window(windows[1])
