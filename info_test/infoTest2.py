@@ -76,8 +76,9 @@ class LoginTest():
             for j in range(0, hrefs):
                 # 院系
                 str2 = self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).text
-                colum_dep.append(str2)
-                print("院系索引1：",colum_dep[1])
+                # 写死
+                colum_dep.append("tsinghua")
+                print("院系索引1：", colum_dep[0])
                 # self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).click()
                 # time.sleep(2)
                 # # # 切换【第二个窗口】
@@ -94,7 +95,7 @@ class LoginTest():
                 # 链接
                 date = self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).get_attribute('href')
                 colum_link.append(date)
-                print("链接索引1:",colum_link[1])
+                print("链接索引1:", colum_link[1])
                 # print(str2, ":", date)
         # LoginInfo.write_excel(self, row0, colum_dep, colum_link)
         print("======Change Password======")
