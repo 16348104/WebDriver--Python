@@ -38,7 +38,10 @@ class LoginTest():
 
     # 测试enginfo
     def test_enginfo(self):
-        global colum_dep, colum_link, row0
+        # global colum_dep, colum_link, row0
+        row0 = ["院系名称", "链接"]
+        colum_dep = []
+        colum_link = []
         print('测试浏览器:' + self.driver.name)
         # self.driver.get('http://101.6.28.150:29009')
         # driver.set_window_size(1080*760)
@@ -73,6 +76,8 @@ class LoginTest():
             for j in range(0, hrefs):
                 # 院系
                 str2 = self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).text
+                colum_dep.append(str2)
+                print("院系索引1：",colum_dep[1])
                 # self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).click()
                 # time.sleep(2)
                 # # # 切换【第二个窗口】
@@ -88,17 +93,10 @@ class LoginTest():
                 # date = driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).get_property('href')
                 # 链接
                 date = self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).get_attribute('href')
-                row0 = ["院系名称", "链接"]
-                colum_dep = []
-                colum_link = []
-                colum_dep.append(str2)
-                time.sleep(1)
                 colum_link.append(date)
-                time.sleep(1)
+                print("链接索引1:",colum_link[1])
                 # print(str2, ":", date)
-                print(colum_dep[0])
-                print(colum_link[0])
-        LoginInfo.write_excel(self, row0, colum_dep, colum_link)
+        # LoginInfo.write_excel(self, row0, colum_dep, colum_link)
         print("======Change Password======")
         # Action
         self.driver.find_element_by_xpath("//*[@class='btn btn-default dropdown-toggle']").click()

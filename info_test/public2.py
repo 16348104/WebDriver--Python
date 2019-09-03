@@ -53,9 +53,9 @@ class LoginInfo():
             # 写第一列
             for d in range(0, len(col_dep)):
                 sheet1.write(d + 1, 0, col_dep[d])
-                # print(col_dep[0])
+                print(len(col_dep))
                 # 写第二列
                 for k in range(0, len(col_link)):
                     sheet1.write(k + 1, 1, col_link[k])
-                    # print(col_link[0])
+                    print(len(col_link))
         f.save('E://test.xls')
