@@ -1,5 +1,5 @@
 import time
-
+import xlwt
 from selenium.webdriver.common.keys import Keys
 
 
@@ -34,11 +34,28 @@ class LoginInfo():
             if current_window != window_1:
                 driver.switch_to.window(current_window)
         print('所有句柄:', windows)
-        print("当前窗口：", window_1)
-        print("窗口title", driver.title)
+        print("当前窗口:", window_1)
+        # print("窗口title:", driver.title)
         time.sleep(2)
         driver.close()
         # 切换回第一个窗口
         driver.switch_to.window(windows[0])
         window_2 = driver.current_window_handle
         print("当前窗口：", window_2)
+
+    # 写入各个院系链接
+    def write_excel(self, row0, col_dep, col_link):
+        f = xlwt.Workbook()
+        sheet1 = f.add_sheet('各院系链接', cell_overwrite_ok=True)
+        # 写第一行
+        for i in range(0, len(row0)):
+            sheet1.write(0, i, row0[i])
+            # 写第一列
+            for d in range(0, len(col_dep)):
+                sheet1.write(d + 1, 0, col_dep[d])
+                # print(col_dep[0])
+                # 写第二列
+                for k in range(0, len(col_link)):
+                    sheet1.write(k + 1, 1, col_link[k])
+                    # print(col_link[0])
+        f.save('E://test.xls')

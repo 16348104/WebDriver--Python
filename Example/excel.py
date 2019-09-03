@@ -34,10 +34,9 @@ def set_style(name, height, bold=False):
 def write_excel():
     f = xlwt.Workbook()
     sheet1 = f.add_sheet('各院系链接', cell_overwrite_ok=True)
-    row0 = ["模块", "链接"]
+    row0 = ["院系名称", "链接"]
     colum0 = ["张三", "李四"]
     colum1 = ["Python", "java", "C#", "VB"]
-
     # 写第一行
     for i in range(0, len(row0)):
         sheet1.write(0, i, row0[i])

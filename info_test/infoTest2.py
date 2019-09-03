@@ -13,8 +13,8 @@ class LoginTest():
         # driver = webdriver.Firefox()
         # driver = webdriver.Safari() #Mac os
         # self.driver.get('http://infoen.syx.thcic.cn')
-        # driver.get('http://101.6.28.150:29009')
-        self.driver.get('http://eng.info.tsinghua.edu.cn')
+        self.driver.get('http://101.6.28.150:29009')
+        # self.driver.get('http://eng.info.tsinghua.edu.cn')
         print("======进入info教师端=====")
         self.driver.maximize_window()
         time.sleep(3)
@@ -38,8 +38,9 @@ class LoginTest():
 
     # 测试enginfo
     def test_enginfo(self):
+        global colum_dep, colum_link, row0
         print('测试浏览器:' + self.driver.name)
-        self.driver.get('http://101.6.28.150:29009')
+        # self.driver.get('http://101.6.28.150:29009')
         # driver.set_window_size(1080*760)
         print("======Forgot your password======")
         self.driver.find_element_by_xpath('//*[@id="loginForm"]/a').click()
@@ -63,39 +64,44 @@ class LoginTest():
         LoginInfo.switch_window(self, self.driver)
         print("======Tsinghua University Information Portal======")
         mk = len(self.driver.find_elements_by_xpath("//ul[@id='tas']/a"))
-        i = 0
-        while i < mk:
+        for i in range(0, mk):
             self.driver.find_elements_by_xpath("//ul[@id='tas']/a").pop(i).click()
             time.sleep(1)
             str1 = self.driver.find_elements_by_xpath("//ul[@id='tas']/a").pop(i).text
             print(str1, "模块")
-            i = i + 1
-            # driver.find_element_by_xpath('//*[@id="1"]').click()
             hrefs = len(self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a'))
-            j = 0
-            while j < hrefs:
+            for j in range(0, hrefs):
+                # 院系
                 str2 = self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).text
-                self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).click()
-                time.sleep(2)
-                # # 切换【第二个窗口】
-                windows = self.driver.window_handles
-                print("所有窗口:", windows)
-                # # 切换到新窗口
-                self.driver.switch_to.window(windows[1])
-                print("当前窗口标题:", self.driver.title, self.driver.current_window_handle)
-                time.sleep(2)
-                date = self.driver.current_url
-                self.driver.close()
-                # 切换到第1个窗口
-                self.driver.switch_to.window(windows[0])
-                print("当前窗口：", self.driver.current_window_handle)
+                # self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).click()
+                # time.sleep(2)
+                # # # 切换【第二个窗口】
+                # windows = self.driver.window_handles
+                # # # 切换到新窗口
+                # self.driver.switch_to.window(windows[1])
+                # print("当前窗口标题:", self.driver.title, self.driver.current_window_handle)
+                # time.sleep(2)
+                # date = self.driver.current_url
+                # self.driver.close()
+                # # 切换到第1个窗口
+                # self.driver.switch_to.window(windows[0])
                 # date = driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).get_property('href')
-                # date = self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).get_attribute('href')
-                # time.sleep(1)
-                print(str2, ":", date)
-                j = j + 1
-        self.driver.find_element_by_xpath("//*[@class='btn btn-default dropdown-toggle']").click()
+                # 链接
+                date = self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).get_attribute('href')
+                row0 = ["院系名称", "链接"]
+                colum_dep = []
+                colum_link = []
+                colum_dep.append(str2)
+                time.sleep(1)
+                colum_link.append(date)
+                time.sleep(1)
+                # print(str2, ":", date)
+                print(colum_dep[0])
+                print(colum_link[0])
+        LoginInfo.write_excel(self, row0, colum_dep, colum_link)
         print("======Change Password======")
+        # Action
+        self.driver.find_element_by_xpath("//*[@class='btn btn-default dropdown-toggle']").click()
         # 鼠标滑动Change Password
         above = self.driver.find_element_by_xpath("//ul[@class='dropdown-menu']/li[1]/a")
         time.sleep(2)
