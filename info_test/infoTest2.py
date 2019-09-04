@@ -38,12 +38,10 @@ class LoginTest():
 
     # 测试enginfo
     def test_enginfo(self):
-        # global colum_dep, colum_link, row0
-        row0 = ["院系名称", "链接"]
-        colum_dep = []
-        colum_link = []
+        # row0 = ["院系名称", "链接"]
+        # colum_dep = []
+        # colum_link = []
         print('测试浏览器:' + self.driver.name)
-        # self.driver.get('http://101.6.28.150:29009')
         # driver.set_window_size(1080*760)
         print("======Forgot your password======")
         self.driver.find_element_by_xpath('//*[@id="loginForm"]/a').click()
@@ -71,14 +69,12 @@ class LoginTest():
             self.driver.find_elements_by_xpath("//ul[@id='tas']/a").pop(i).click()
             time.sleep(1)
             str1 = self.driver.find_elements_by_xpath("//ul[@id='tas']/a").pop(i).text
-            print(str1, "模块")
+            print(str1, "板块")
             hrefs = len(self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a'))
             for j in range(0, hrefs):
                 # 院系
-                str2 = self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).text
-                # 写死
-                colum_dep.append("tsinghua")
-                print("院系索引1：", colum_dep[0])
+                dep = self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).text
+                # colum_dep.insert(j, dep)
                 # self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).click()
                 # time.sleep(2)
                 # # # 切换【第二个窗口】
@@ -93,10 +89,9 @@ class LoginTest():
                 # self.driver.switch_to.window(windows[0])
                 # date = driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).get_property('href')
                 # 链接
-                date = self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).get_attribute('href')
-                colum_link.append(date)
-                print("链接索引1:", colum_link[1])
-                # print(str2, ":", date)
+                link = self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).get_attribute('href')
+                # colum_link.insert(j, link)
+                print(dep, ":", link)
         # LoginInfo.write_excel(self, row0, colum_dep, colum_link)
         print("======Change Password======")
         # Action
@@ -109,6 +104,43 @@ class LoginTest():
         time.sleep(2)
         # # 切换到新窗口
         LoginInfo.switch_window(self, self.driver)
+        # 退出
+        LoginInfo.user_logout(self, self.driver)
+
+    # 测试URL
+    def test_URL(self):
+        row0 = ["模块", "院系名称", "链接"]
+        colum_dep = []
+        colum_link = []
+        module = []
+        print('测试浏览器:' + self.driver.name)
+        print("======登录English_info======")
+        username = '1992990279'
+        password = '123'
+        LoginInfo().user_login(self.driver, username, password)
+        time.sleep(2)
+        print(self.driver.find_element_by_xpath('//li[@class="name"]').text)
+        print(self.driver.find_element_by_xpath('//li[@class="stuId"]').text)
+        print("======Tsinghua University Information Portal======")
+        mk = len(self.driver.find_elements_by_xpath("//ul[@id='tas']/a"))
+        for i in range(0, mk):
+            self.driver.find_elements_by_xpath("//ul[@id='tas']/a").pop(i).click()
+            time.sleep(1)
+            # 板块
+            str1 = self.driver.find_elements_by_xpath("//ul[@id='tas']/a").pop(i).text
+            module.insert(i, str1)
+            print(str1, "模块")
+            hrefs = len(self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a'))
+            for j in range(0, hrefs):
+                # 院系
+                dep = self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).text
+                colum_dep.insert(j, dep)
+                # 链接
+                link = self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).get_attribute('href')
+                colum_link.insert(j, link)
+        LoginInfo.write_excel(self, row0, module, colum_dep, colum_link)
+        print("module2:", module[2])
+        # 退出
         LoginInfo.user_logout(self, self.driver)
 
 
@@ -116,4 +148,5 @@ class LoginTest():
 # LoginTest().test_admin_login()
 # LoginTest().test_bachelor_login()
 # LoginTest().test_logout()
-LoginTest().test_enginfo()
+# LoginTest().test_enginfo()
+LoginTest().test_URL()

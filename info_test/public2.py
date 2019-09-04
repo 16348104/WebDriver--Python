@@ -1,5 +1,6 @@
 import time
 import xlwt
+import xlrd
 from selenium.webdriver.common.keys import Keys
 
 
@@ -43,19 +44,28 @@ class LoginInfo():
         window_2 = driver.current_window_handle
         print("当前窗口：", window_2)
 
+    # 读取Excel文件
+    def open_excel(file='E://test.xls'):
+        try:
+            # 打开Excel文件读取数据
+            data = xlrd.open_workbook(file)
+            return data
+        except Exception as e:
+            print(e, "文件不存在!")
+
     # 写入各个院系链接
-    def write_excel(self, row0, col_dep, col_link):
+    def write_excel(self, row0, module, col_dep, col_link):
         f = xlwt.Workbook()
         sheet1 = f.add_sheet('各院系链接', cell_overwrite_ok=True)
         # 写第一行
         for i in range(0, len(row0)):
             sheet1.write(0, i, row0[i])
-            # 写第一列
+            # 写模块列
             for d in range(0, len(col_dep)):
                 sheet1.write(d + 1, 0, col_dep[d])
-                print(len(col_dep))
-                # 写第二列
+                # 写院系列
                 for k in range(0, len(col_link)):
                     sheet1.write(k + 1, 1, col_link[k])
-                    print(len(col_link))
         f.save('E://test.xls')
+        print('院系:', len(col_link), '个')
+        print("网站URL:", len(col_dep), "个")
