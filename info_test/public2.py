@@ -54,18 +54,22 @@ class LoginInfo():
             print(e, "文件不存在!")
 
     # 写入各个院系链接
-    def write_excel(self, row0, module, col_dep, col_link):
+    def write_excel(self, row0, col_module, col_dep, col_link):
         f = xlwt.Workbook()
         sheet1 = f.add_sheet('各院系链接', cell_overwrite_ok=True)
         # 写第一行
         for i in range(0, len(row0)):
             sheet1.write(0, i, row0[i])
-            # 写模块列
-            for d in range(0, len(col_dep)):
-                sheet1.write(d + 1, 0, col_dep[d])
-                # 写院系列
-                for k in range(0, len(col_link)):
-                    sheet1.write(k + 1, 1, col_link[k])
+            # 写第1列
+            for m in range(0, len(col_module)):
+                sheet1.write(m + 1, 0, col_module[m])
+                # 写第2列
+                for d in range(0, len(col_dep)):
+                    sheet1.write(d + 1, 1, col_dep[d])
+                    # 写第3列
+                    for k in range(0, len(col_link)):
+                        sheet1.write(k + 1, 2, col_link[k])
         f.save('E://test.xls')
+        print("模块:", len(col_module), "个")
         print('院系:', len(col_link), '个')
         print("网站URL:", len(col_dep), "个")

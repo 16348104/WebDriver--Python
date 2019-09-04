@@ -136,10 +136,11 @@ class LoginTest():
                 dep = self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).text
                 colum_dep.insert(j, dep)
                 # 链接
-                link = self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).get_attribute('href')
+                # link = self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).get_attribute('href')
+                link = self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).get_property('href')
                 colum_link.insert(j, link)
         LoginInfo.write_excel(self, row0, module, colum_dep, colum_link)
-        print("module2:", module[2])
+        time.sleep(1)
         # 退出
         LoginInfo.user_logout(self, self.driver)
 
