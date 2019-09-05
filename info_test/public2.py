@@ -3,6 +3,8 @@ import xlwt
 import xlrd
 from selenium.webdriver.common.keys import Keys
 
+from Example.excel import set_style
+
 
 class LoginInfo():
 
@@ -53,6 +55,17 @@ class LoginInfo():
         except Exception as e:
             print(e, "文件不存在!")
 
+    # 设置表格样式
+    def set_style(self, name, height, bold=False):
+        style = xlwt.XFStyle()
+        font = xlwt.Font()
+        font.name = name
+        font.bold = bold
+        font.color_index = 4
+        font.height = height
+        style.font = font
+        return style
+
     # 写入各个院系链接
     def write_excel(self, row0, col_module, col_dep, col_link):
         f = xlwt.Workbook()
@@ -69,7 +82,8 @@ class LoginInfo():
                     # 写第3列
                     for k in range(0, len(col_link)):
                         sheet1.write(k + 1, 2, col_link[k])
+
         f.save('E://test.xls')
-        print("模块:", len(col_module), "个")
-        print('院系:', len(col_link), '个')
-        print("网站URL:", len(col_dep), "个")
+        # print("模块:", len(col_module), "个")
+        # print('院系:', len(col_link), '个')
+        # print("网站URL:", len(col_dep), "个")

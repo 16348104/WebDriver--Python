@@ -12,8 +12,8 @@ class LoginTest():
         self.driver = webdriver.Chrome()
         # driver = webdriver.Firefox()
         # driver = webdriver.Safari() #Mac os
-        # self.driver.get('http://infoen.syx.thcic.cn')
-        self.driver.get('http://101.6.28.150:29009')
+        # self.driver.get('http://101.6.28.150:29009')
+        self.driver.get('http://infoen.syx.thcic.cn')
         # self.driver.get('http://eng.info.tsinghua.edu.cn')
         print("======进入info教师端=====")
         self.driver.maximize_window()
@@ -53,8 +53,8 @@ class LoginTest():
         time.sleep(1)
         self.driver.back()
         print("======登录English_info======")
-        username = '1992990279'
-        password = '123'
+        username = '2017013478'
+        password = 'a123456'
         LoginInfo().user_login(self.driver, username, password)
         time.sleep(2)
         print(self.driver.find_element_by_xpath('//li[@class="name"]').text)
@@ -64,6 +64,7 @@ class LoginTest():
         # # 切换到新窗口
         LoginInfo.switch_window(self, self.driver)
         print("======Tsinghua University Information Portal======")
+        link_dict = {}
         mk = len(self.driver.find_elements_by_xpath("//ul[@id='tas']/a"))
         for i in range(0, mk):
             self.driver.find_elements_by_xpath("//ul[@id='tas']/a").pop(i).click()
@@ -91,8 +92,11 @@ class LoginTest():
                 # 链接
                 link = self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).get_attribute('href')
                 # colum_link.insert(j, link)
-                print(dep, ":", link)
+                link_dict.update({dep: link})
+        # print(dep, ":", link)
         # LoginInfo.write_excel(self, row0, colum_dep, colum_link)
+        for k, v in link_dict.items():
+            print(k, ":\t", v)
         print("======Change Password======")
         # Action
         self.driver.find_element_by_xpath("//*[@class='btn btn-default dropdown-toggle']").click()
@@ -113,10 +117,11 @@ class LoginTest():
         colum_dep = []
         colum_link = []
         module = []
+        link_dict = {}
         print('测试浏览器:' + self.driver.name)
         print("======登录English_info======")
-        username = '1992990279'
-        password = '123'
+        username = '2011990118'
+        password = 'a123456'
         LoginInfo().user_login(self.driver, username, password)
         time.sleep(2)
         print(self.driver.find_element_by_xpath('//li[@class="name"]').text)
@@ -125,21 +130,26 @@ class LoginTest():
         mk = len(self.driver.find_elements_by_xpath("//ul[@id='tas']/a"))
         for i in range(0, mk):
             self.driver.find_elements_by_xpath("//ul[@id='tas']/a").pop(i).click()
-            time.sleep(1)
             # 板块
             str1 = self.driver.find_elements_by_xpath("//ul[@id='tas']/a").pop(i).text
-            module.insert(i, str1)
             print(str1, "模块")
             hrefs = len(self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a'))
+            time.sleep(2)
+            module.append('aaaaa')
             for j in range(0, hrefs):
+                # 模块
+                module.insert(i, str1)
                 # 院系
                 dep = self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).text
-                colum_dep.insert(j, dep)
                 # 链接
-                # link = self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).get_attribute('href')
-                link = self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).get_property('href')
+                link = self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).get_attribute('href')
+                colum_dep.insert(j, dep)
+                # link = self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).get_property('href')
                 colum_link.insert(j, link)
+                link_dict.update({dep: link})
         LoginInfo.write_excel(self, row0, module, colum_dep, colum_link)
+        for k, v in link_dict.items():
+            print(k, ":\t", v)
         time.sleep(1)
         # 退出
         LoginInfo.user_logout(self, self.driver)
