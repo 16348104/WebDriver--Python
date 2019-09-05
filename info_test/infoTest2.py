@@ -113,7 +113,8 @@ class LoginTest():
 
     # 测试URL
     def test_URL(self):
-        row0 = ["模块", "院系名称", "链接"]
+        # row0 = ["模块", "院系名称", "链接"]
+        row0 = ["院系名称", "链接"]
         colum_dep = []
         colum_link = []
         module = []
@@ -130,26 +131,24 @@ class LoginTest():
         mk = len(self.driver.find_elements_by_xpath("//ul[@id='tas']/a"))
         for i in range(0, mk):
             self.driver.find_elements_by_xpath("//ul[@id='tas']/a").pop(i).click()
-            # 板块
+            time.sleep(3)
             str1 = self.driver.find_elements_by_xpath("//ul[@id='tas']/a").pop(i).text
             print(str1, "模块")
             hrefs = len(self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a'))
-            time.sleep(2)
-            module.append('aaaaa')
             for j in range(0, hrefs):
-                # 模块
-                module.insert(i, str1)
                 # 院系
                 dep = self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).text
                 # 链接
                 link = self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).get_attribute('href')
+                # 模块
+                module.insert(i, str1)
                 colum_dep.insert(j, dep)
                 # link = self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).get_property('href')
                 colum_link.insert(j, link)
-                link_dict.update({dep: link})
-        LoginInfo.write_excel(self, row0, module, colum_dep, colum_link)
-        for k, v in link_dict.items():
-            print(k, ":\t", v)
+                # link_dict.update({dep: link})
+                LoginInfo.write_excel(self, row0, module, colum_dep, colum_link)
+        # for k, v in link_dict.items():
+        #     print(k, ":\t", v)
         time.sleep(1)
         # 退出
         LoginInfo.user_logout(self, self.driver)
