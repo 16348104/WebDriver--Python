@@ -11,8 +11,11 @@ class LoginTest():
         self.driver = webdriver.Chrome()
         # driver = webdriver.Firefox()
         # driver = webdriver.Safari() #Mac os
-        # self.driver.get('http://101.6.28.150:29009')
+        # Eng_info开发环境
+        # driver.get('http://101.6.28.150:29009')
+        # Eng_info模拟环境
         self.driver.get('http://infoen.syx.thcic.cn')
+        # Eng_info正式环境
         # self.driver.get('http://eng.info.tsinghua.edu.cn')
         print("======进入info教师端=====")
         self.driver.maximize_window()

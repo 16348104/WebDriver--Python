@@ -2,14 +2,21 @@ import time
 import xlwt
 import xlrd
 from selenium.webdriver.common.keys import Keys
-
-
+from selenium import webdriver
 
 
 class LoginInfo():
 
     # 登录
     def user_login(self, driver, user, password):
+        driver.find_element_by_id('user').send_keys('user')
+        driver.find_element_by_id('pass').send_keys('password')
+        time.sleep(2)
+        print('清除登录框')
+        icons = len(driver.find_elements_by_xpath("//*[contains(@class,'icon-t_close')]"))
+        for i in range(0, icons):
+            driver.find_elements_by_xpath("//*[contains(@class,'icon-t_close')]").pop(i).click()
+        time.sleep(1)
         driver.find_element_by_id('user').send_keys(user)
         driver.find_element_by_id('pass').send_keys(password)
         driver.find_element_by_id('loginButtonId').send_keys(Keys.ENTER)
