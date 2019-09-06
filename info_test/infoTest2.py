@@ -1,5 +1,4 @@
 import time
-import xlwt
 from selenium import webdriver
 from public2 import LoginInfo
 from selenium.webdriver import ActionChains
@@ -118,7 +117,7 @@ class LoginTest():
         colum_dep = []
         colum_link = []
         module = []
-        link_dict = {}
+        # link_dict = {}
         print('测试浏览器:' + self.driver.name)
         print("======登录English_info======")
         username = '2011990118'
@@ -131,22 +130,22 @@ class LoginTest():
         mk = len(self.driver.find_elements_by_xpath("//ul[@id='tas']/a"))
         for i in range(0, mk):
             self.driver.find_elements_by_xpath("//ul[@id='tas']/a").pop(i).click()
-            time.sleep(3)
-            str1 = self.driver.find_elements_by_xpath("//ul[@id='tas']/a").pop(i).text
-            print(str1, "模块")
+            time.sleep(5)
+            str1 = self.driver.find_element_by_xpath("//*[@class='active']").text
             hrefs = len(self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a'))
+            # print(str1, "模块")
             for j in range(0, hrefs):
                 # 院系
                 dep = self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).text
                 # 链接
+                # link = self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).get_property('href')
                 link = self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).get_attribute('href')
                 # 模块
-                module.insert(i, str1)
+                module.insert(j, str1)
                 colum_dep.insert(j, dep)
-                # link = self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).get_property('href')
                 colum_link.insert(j, link)
                 # link_dict.update({dep: link})
-                LoginInfo.write_excel(self, row0, module, colum_dep, colum_link)
+        LoginInfo.write_excel(self, row0, module, colum_dep, colum_link)
         # for k, v in link_dict.items():
         #     print(k, ":\t", v)
         time.sleep(1)

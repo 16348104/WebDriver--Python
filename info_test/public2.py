@@ -3,7 +3,7 @@ import xlwt
 import xlrd
 from selenium.webdriver.common.keys import Keys
 
-from Example.excel import set_style
+
 
 
 class LoginInfo():
@@ -68,21 +68,40 @@ class LoginInfo():
 
     # 写入各个院系链接
     def write_excel(self, row0, col_module, col_dep, col_link):
-        f = xlwt.Workbook()
+        # 初始化样式
+        style_head = xlwt.XFStyle()
+        # 初始化字体相关
+        font = xlwt.Font()
+        font.name = "微软雅黑"
+        font.bold = True
+        font.colour_index = 1  # 必须是数字索引
+
+        # # 初始背景图案
+        # bg = xlwt.Pattern()
+        # # May be: NO_PATTERN, SOLID_PATTERN, or 0x00 through 0x12
+        # bg.pattern = xlwt.Pattern.SOLID_PATTERN
+        # # May be: 8 through 63. 0 = Black, 1 = White, 2 = Red, 3 = Green, 4 = Blue, 5 = Yellow, 6 = Magenta, 7 = Cyan, 16 = Maroon, 17 = Dark Green, 18 = Dark Blue, 19 = Dark Yellow , almost brown), 20 = Dark Magenta, 21 = Teal, 22 = Light Gray, 23 = Dark Gray
+        # bg.pattern_fore_colour = 4
+        # 设置字体
+        style_head.font = font
+        # 设置背景
+        # style_head.pattern = bg
+        f = xlwt.Workbook(encoding='utf-8')
+        # f = xlwt.Workbook()
         sheet1 = f.add_sheet('各院系链接', cell_overwrite_ok=True)
         # 写第一行
         for i in range(0, len(row0)):
             sheet1.write(0, i, row0[i])
-            # 写院系
-            for d in range(0, len(col_dep)):
-                # 写模块
-                for m in range(0, len(col_module)):
-                    sheet1.write(m + 1, 0, col_module[m])
-                sheet1.write(d + 1, 0, col_dep[d])
-            # 写链接
-            for k in range(0, len(col_link)):
-                sheet1.write(k + 1, 1, col_link[k])
-        f.save('E://test.xls')
+            # 写模块
+            for m in range(0, len(col_module)):
+                sheet1.write(m + 1, 0, col_module[m])
+                # 写院系
+                for d in range(0, len(col_dep)):
+                    sheet1.write(d + 1, 1, col_dep[d])
+                    # 写链接
+                    for k in range(0, len(col_link)):
+                        sheet1.write(k + 1, 2, col_link[k])
+        f.save('test.xls')
         # print("模块:", len(col_module), "个")
-        # print('院系:', len(col_link), '个')
-        # print("网站URL:", len(col_dep), "个")
+        print('院系:', len(col_link), '个')
+        print("网站URL:", len(col_dep), "个")
