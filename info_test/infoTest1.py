@@ -142,9 +142,52 @@ class LoginTest():
         print("当前窗口：", window_2)
         LoginInfo.user_logout(self, self.driver)
 
+    # 测试URL
+    def test_URL(self):
+        # row0 = ["模块", "院系名称", "链接"]
+        row0 = ["院系名称", "链接"]
+        colum_dep = []
+        colum_link = []
+        module = []
+        # link_dict = {}
+        print('测试浏览器:' + self.driver.name)
+        print("======登录English_info======")
+        username = '2019430117'
+        password = 'a123456'
+        LoginInfo().user_login(self.driver, username, password)
+        time.sleep(2)
+        print(self.driver.find_element_by_xpath('//li[@class="name"]').text)
+        print(self.driver.find_element_by_xpath('//li[@class="stuId"]').text)
+        print("======Tsinghua University Information Portal======")
+        mk = len(self.driver.find_elements_by_xpath("//ul[@id='tas']/a"))
+        for i in range(0, mk):
+            self.driver.find_elements_by_xpath("//ul[@id='tas']/a").pop(i).click()
+            time.sleep(5)
+            str1 = self.driver.find_element_by_xpath("//*[@class='active']").text
+            hrefs = len(self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a'))
+            # print(str1, "模块")
+            for j in range(0, hrefs):
+                # 院系
+                dep = self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).text
+                # 链接
+                # link = self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).get_property('href')
+                link = self.driver.find_elements_by_xpath('//*[@id="fir_ul"]/li/a').pop(j).get_attribute('href')
+                # 模块
+                module.insert(j, str1)
+                colum_dep.insert(j, dep)
+                colum_link.insert(j, link)
+                # link_dict.update({dep: link})
+        LoginInfo.write_excel(self, row0, module, colum_dep, colum_link)
+        # for k, v in link_dict.items():
+        #     print(k, ":\t", v)
+        time.sleep(1)
+        # 退出
+        LoginInfo.user_logout(self, self.driver)
+
 
 # 执行测试
 # LoginTest().test_admin_login()
 # LoginTest().test_bachelor_login()
 # LoginTest().test_logout()
-LoginTest().test_enginfo()
+# LoginTest().test_enginfo()
+LoginTest().test_URL()
