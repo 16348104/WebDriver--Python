@@ -19,8 +19,8 @@ time.sleep(1)
 
 # driver = webdriver.Firefox()
 # driver = webdriver.Ie()
-# driver = webdriver.Firefox(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/geckodriver')  # mac firefox
-# driver = webdriver.Chrome(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/chromedriver')  # mac  chrome
+# driver = webdriver.Firefox(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/geckodriver')  # mac firefox
+# driver = webdriver.Chrome(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/chromedriver')  # mac  chrome
 # driver = webdriver.Safari() #Mac os
 # 格式化时间
 def time_format():

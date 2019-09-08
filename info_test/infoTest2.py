@@ -10,7 +10,9 @@ class LoginTest():
     def __init__(self):
         self.driver = webdriver.Chrome()
         # driver = webdriver.Firefox()
-        # driver = webdriver.Safari() #Mac os
+        # Mac os
+        # driver = webdriver.Safari()
+        # self.driver = webdriver.Chrome(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/chromedriver')  # MacOS
         # Eng_info开发环境
         # driver.get('http://101.6.28.150:29009')
         # Eng_info模拟环境

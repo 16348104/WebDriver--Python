@@ -13,7 +13,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import Select
 
-# driver = webdriver.Chrome(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/chromedriver')  # MacOS
+# driver = webdriver.Chrome(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/chromedriver')  # MacOS
 
 
 # driver = webdriver.Firefox()
@@ -24,7 +24,7 @@ time.sleep(1)
 
 # driver = webdriver.Firefox(
 #     executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/geckodriver')  # mac firefox
-# driver = webdriver.Chrome(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/wlxt/chromedriver')  # mac  chrome
+# driver = webdriver.Chrome(executable_path='/Users/xiaodaxing/Downloads/PycharmProjects/chromedriver')  # mac  chrome
 # driver = webdriver.Safari() #Mac os
 def time_format():
     current_time = time.strftime("%y-%m-%d %H-%M-%S", time.localtime(time.time()))

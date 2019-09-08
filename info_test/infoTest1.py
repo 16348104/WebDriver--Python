@@ -1,6 +1,5 @@
 import time
-import xlwt
-import xlrd
+
 
 from selenium import webdriver
 from public2 import LoginInfo
@@ -12,8 +11,11 @@ from selenium.webdriver.common.keys import Keys
 class LoginTest():
     def __init__(self):
         self.driver = webdriver.Chrome()
-        # driver = webdriver.Firefox()
-        # driver = webdriver.Safari() #Mac os
+        # self.driver = webdriver.Firefox()
+        # Mac os
+        # self.driver = webdriver.Safari()
+        # self.driver = webdriver.Chrome(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/chromedriver')  # MacOS
+
         # Eng_info开发环境
         # driver.get('http://101.6.28.150:29009')
         # Eng_info模拟环境
