@@ -21,7 +21,7 @@ subject = 'Python Mail'
 msgRoot = MIMEText('<html><h3>Hello</h3></html>', 'html', 'utf-8')
 # mail_msg = 'Hello,Our task is done.'
 sendfile = open('D:/Homework.pdf', 'rb').read()
-att = MIMEText(sendfile, 'base64', 'utf-8')
+att = MIMEText(sendfile, 'pdf', 'utf-8')
 att["Content-Type"] = 'application/octet-stream'
 att["Content-Disposition"] = 'attachment;filename="Homework.pdf"'
 # msgRoot = MIMEText(mail_msg, 'html', 'utf-8')
