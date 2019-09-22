@@ -19,8 +19,8 @@ time.sleep(1)
 
 # driver = webdriver.Firefox()
 # driver = webdriver.Ie()
-# driver = webdriver.Firefox(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/geckodriver')  # mac firefox
-# driver = webdriver.Chrome(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/chromedriver')  # mac  chrome
+# driver = webdriver.Firefox(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/geckodriver')  # mac firefox
+# driver = webdriver.Chrome(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/chromedriver')  # mac  chrome
 # driver = webdriver.Safari() #Mac os
 # 格式化时间
 def time_format():
@@ -114,6 +114,7 @@ if ggfj:
     print('所有句柄:', windows)
     print("当前窗口：", window_2)
     time.sleep(2)
+    driver.close()
     driver.switch_to.window(windows[1])  # 切换到第2个窗口
     window_2 = driver.current_window_handle
     print("当前窗口：", window_2)
