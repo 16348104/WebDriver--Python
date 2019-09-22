@@ -26,9 +26,7 @@ att = MIMEText(sendfile, 'base64', 'utf-8')
 # msg = MIMEText(mail_msg, 'html', 'utf-8')
 att["Content-Type"] = 'application/octet-stream'
 att["Content-Disposition"] = 'attachment;filename="Homework.pdf"'
-# msg['Subject'] = Header(subject, 'utf-8')
-# msg['From'] = user
-# msg['To'] = receiver
+
 msgRoot = MIMEMultipart('related')
 msgRoot['Subject'] = subject
 msgRoot['From'] = user
@@ -36,7 +34,7 @@ msgRoot['To'] = receiver
 msgRoot.attach(att)
 # msg['To'] = receiver2
 smtp = smtplib.SMTP()
-# smtp.set_debuglevel(1)
+smtp.set_debuglevel(1)
 smtp.connect(smtpsever, 25)
 smtp.login(user, password)
 smtp.sendmail(sender, receiver, msgRoot.as_string())
