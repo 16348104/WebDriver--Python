@@ -19,7 +19,7 @@ receiver = '16348104@qq.com'
 # subject = 'Dmz'
 subject = 'Python Mail'
 # HTML类型邮件正文
-# msg = MIMEText('<html><h3>Hello,<br>The network is connected.</h3></html>', 'html', 'utf-8')
+msgRoot = MIMEText('<html><h3>Hello,<br>The network is connected.</h3></html>', 'html', 'utf-8')
 # mail_msg = 'Hello,Our task is done.'
 sendfile = open('D:\Homework.pdf', 'rb').read()
 att = MIMEText(sendfile, 'base64', 'utf-8')
