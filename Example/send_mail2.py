@@ -16,23 +16,21 @@ sender = 'xiaodaxing@126.com'
 receiver = '16348104@qq.com'
 # receiver0 = 'xdx2016@tsinghua.edu.cn'
 # 邮件主题
-# subject = 'Dmz'
 subject = 'Python Mail'
 # HTML类型邮件正文
-msgRoot = MIMEText('<html><h3>Hello,<br>The network is connected.</h3></html>', 'html', 'utf-8')
+msgRoot = MIMEText('<html><h3>Hello</h3></html>', 'html', 'utf-8')
 # mail_msg = 'Hello,Our task is done.'
-sendfile = open('D:\Homework.pdf', 'rb').read()
+sendfile = open('D:/Homework.pdf', 'rb').read()
 att = MIMEText(sendfile, 'base64', 'utf-8')
-# msg = MIMEText(mail_msg, 'html', 'utf-8')
 att["Content-Type"] = 'application/octet-stream'
 att["Content-Disposition"] = 'attachment;filename="Homework.pdf"'
-
+# msgRoot = MIMEText(mail_msg, 'html', 'utf-8')
 msgRoot = MIMEMultipart('related')
 msgRoot['Subject'] = subject
 msgRoot['From'] = user
 msgRoot['To'] = receiver
-msgRoot.attach(att)
 # msg['To'] = receiver2
+msgRoot.attach(att)
 smtp = smtplib.SMTP()
 smtp.set_debuglevel(1)
 smtp.connect(smtpsever, 25)
