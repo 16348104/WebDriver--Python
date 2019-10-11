@@ -5,8 +5,8 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
 
-driver = webdriver.Firefox()
-# driver = webdriver.Chrome()
+# driver = webdriver.Firefox()
+driver = webdriver.Chrome()
 # driver = webdriver.Chrome(
 #     executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/chromedriver')  # mac  chrome
 # driver = webdriver.Firefox(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/geckodriver')# mac  firefox

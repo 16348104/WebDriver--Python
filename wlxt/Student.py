@@ -124,13 +124,13 @@ else:
 time.sleep(2)
 print('=====公告测试完毕=====')
 ####################################################课程信息#############################################################
-# print('=====测试课程信息=====')
-# driver.find_element_by_css_selector('#wlxt_kc_v_kcxx_jskcxx').click()
-# driver.execute_script("document.documentElement.scrollTop = 10000;")  # 滚动条
-# time.sleep(2)
-# driver.execute_script("document.documentElement.scrollTop = 0;")  # 滚动条
-# time.sleep(1)
-# print('=======课程信息测试完毕=====')
+print('=====测试课程信息=====')
+driver.find_element_by_css_selector('#wlxt_kc_v_kcxx_jskcxx').click()
+driver.execute_script("document.documentElement.scrollTop = 10000;")  # 滚动条
+time.sleep(2)
+driver.execute_script("document.documentElement.scrollTop = 0;")  # 滚动条
+time.sleep(1)
+print('=======课程信息测试完毕=====')
 ####################################################课程文件#############################################################
 print("=====测试课程文件=====")
 driver.find_element_by_xpath("//a[@id='wlxt_kj_wlkc_kjxxb']").click()
@@ -223,10 +223,10 @@ else:
 time.sleep(3)
 print('=====作业测试完毕=====')
 ########################################################我的分组#########################################################
-# print('=====测试我的分组=====')
-# driver.find_element_by_xpath('//*[@id="wlxt_qz_v_wlkc_qzcyb"]').click()
-# time.sleep(2)
-# print('=====我的分组测试完毕=====')
+print('=====测试我的分组=====')
+driver.find_element_by_xpath('//*[@id="wlxt_qz_v_wlkc_qzcyb"]').click()
+time.sleep(2)
+print('=====我的分组测试完毕=====')
 ####################################################课程讨论#############################################################
 print('=====测试课程讨论=====')
 driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_tltb"]').click()
@@ -516,7 +516,7 @@ try:
 except NoSuchElementException as msg_MP4:
     print('无视频文件', msg_MP4)
 
-########等待正式环境修改
+######等待正式环境修改############
 # print('=====继续提问=====')
 # driver.find_element_by_xpath('//a[@class="ml-10 show-textar"]').click()
 # # CKeditor上传图片
@@ -591,8 +591,8 @@ for i in addresses:
     # if i.get_attribute('text') != '肖大兴':
     i.click()
     time.sleep(1)
-driver.find_element_by_xpath('//ul[@id="myTags"]//li//input').send_keys('wlxt@tsinghua.edu.cn')
-driver.find_element_by_xpath('//ul[@id="myTags"]//li//input').send_keys(Keys.ENTER)
+driver.find_element_by_xpath('//ul[@id="myTags"]//li[1]//input').send_keys('wlxt@tsinghua.edu.cn')
+driver.find_element_by_xpath('//ul[@id="myTags"]//li[1]//input').send_keys(Keys.ENTER)
 # driver.find_element_by_xpath('//ul[@id="myTags"]//li[2]/input').send_keys('谢素萍')
 # driver.find_element_by_xpath('//ul[@id="myTags"]//li[2]//input').send_keys(Keys.ENTER)
 # time.sleep(1)
