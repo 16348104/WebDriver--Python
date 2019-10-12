@@ -8,7 +8,7 @@ import win32con
 import win32api
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException, UnexpectedAlertPresentException, \
-    StaleElementReferenceException, ElementClickInterceptedException
+    StaleElementReferenceException, ElementClickInterceptedException, ElementNotInteractableException
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import Select
@@ -72,8 +72,8 @@ ticks = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 tomorrow = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time() + 3600))
 # print("当前时间戳为:", ticks)
 # print ("当前时间戳为:", tomorrow)
-driver.find_element_by_name('i_user').send_keys('')
-driver.find_element_by_name('i_pass').send_keys('')
+driver.find_element_by_name('i_user').send_keys('2004980847')
+driver.find_element_by_name('i_pass').send_keys('123')
 # user = input('name:')
 # password = input('pw:"')
 # driver.find_element_by_name("i_user").send_keys(user)
@@ -81,8 +81,8 @@ driver.find_element_by_name('i_pass').send_keys('')
 driver.find_element_by_id("loginButtonId").click()
 time.sleep(1)
 print(driver.title, "【第1个窗口】")
-driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
-# driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  # 开发环境60240202-0
+# driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
+driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  # 开发环境60240202-0
 time.sleep(1)
 # 【切换到第二个窗口】
 window_1 = driver.current_window_handle  # 当前窗口句柄
@@ -105,8 +105,10 @@ driver.find_element_by_xpath('//*[@id="content"]//span[2]/a').click()
 print('发布公告')
 time.sleep(2)
 driver.find_element_by_name("bt").send_keys("测试公告" + ticks)
-driver.find_element_by_xpath("//div[@class='list title notext']//label[1]").click()  # 选标记重要公告
-driver.find_element_by_xpath("//div[@class='list order clearfix']//label[1]").click()  # 不推送邮件、微信
+# 选标记重要公告
+driver.find_element_by_xpath("//div[@class='list title notext']//label[1]").click()
+# 不推送邮件、微信
+# driver.find_element_by_xpath("//div[@class='list order clearfix']//label[1]").click()
 time.sleep(1)
 print('上传公告附件')
 driver.find_element_by_xpath("//input[@id='fileupload']").send_keys(r"D:/Artists.mp3")  # modify
@@ -125,7 +127,8 @@ try:
 except NoSuchElementException as msg:
     print('截图', msg)
     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'GG' + ".png")  # 截图modify
-time.sleep(4)
+time.sleep(3)
+driver.find_element_by_xpath("//a[@id='wlxt_kcgg_wlkc_ggb']").click()
 print('预览公告详情')
 driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[1]/a').click()
 driver.execute_script("document.documentElement.scrollTop = 10000;")  # 滚动条
@@ -173,8 +176,7 @@ js = "document.getElementById('fileupload').style.display=\'block\'"
 driver.execute_script(js)
 driver.find_element_by_name("bt").send_keys("测试课件" + ticks)
 driver.find_element_by_xpath("//div[@class='list']//label[1]").click()  # 重要标记
-driver.find_element_by_name("fileupload").send_keys("D:/review.docx")  # modify
-# driver.find_element_by_name("fileupload").send_keys("D:/Lost Horizon.mp4")  # modify
+driver.find_element_by_name("fileupload").send_keys("D:/mov.mp4")  # modify
 # driver.find_element_by_id('fileupload').send_keys(
 #     r'/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/readme.txt')  # mac上传文件
 driver.find_element_by_id("sub").click()
@@ -454,7 +456,8 @@ except NoSuchElementException as msg:
     print(msg)
 time.sleep(3)
 # 定位到新讨论版区
-driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[5]').click()  # modify最后的版区
+# 开发环境li[3]
+driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[3]').click()  # modify最后的版区
 time.sleep(2)
 # 定位到小扳手
 above = driver.find_element_by_xpath("//li[contains(@class,'active')]/i")
@@ -463,6 +466,7 @@ ActionChains(driver).move_to_element(above).perform()
 time.sleep(2)
 # 删除版区
 print('删除新讨论版区')
+# 开发环境li[3]
 Del = driver.find_element_by_xpath("//ul[contains(@class,'active')]/li[2]")
 ActionChains(driver).move_to_element(Del).perform()
 Del.click()
@@ -734,7 +738,7 @@ except NoSuchElementException as msg_math:
     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'ckeidtor' + ".png")  # modify截图
     driver.refresh()
     time.sleep(2)
-
+# CKeditor插入公式
 driver.find_element_by_xpath("//a[@id='cke_39']").click()
 time.sleep(1)
 js = "document.getElementsByClassName('cke_dialog_background_cover')[0].style.display = 'none'"
@@ -923,19 +927,19 @@ driver.back()
 print('=====教学笔记测试完毕=====')
 time.sleep(3)
 ######################################################作业成绩##########################################################
-# print('=====测试作业成绩=====')
-# driver.find_element_by_xpath("//*[@id='wlxt_kycj']").click()
-# time.sleep(5)
-# driver.execute_script("document.documentElement.scrollTop = 10000;")  # 上下滚动条
-# time.sleep(2)
-# driver.execute_script("document.documentElement.scrollTop = 0;")  # 滚动条
-# # time.sleep(1)
-# # driver.execute_script("document.documentElement.scrollLeft = 10000;")  # 左右滚动条
-# print('导出成绩Excel')
-# driver.find_element_by_xpath('//*[@id="exportExcelButtonId"]').click()
-# time.sleep(2)
-# print('=====作业成绩测试完毕=====')
-# time.sleep(3)
+print('=====测试作业成绩=====')
+driver.find_element_by_xpath("//*[@id='wlxt_kycj']").click()
+time.sleep(5)
+driver.execute_script("document.documentElement.scrollTop = 10000;")  # 上下滚动条
+time.sleep(2)
+driver.execute_script("document.documentElement.scrollTop = 0;")  # 滚动条
+# time.sleep(1)
+# driver.execute_script("document.documentElement.scrollLeft = 10000;")  # 左右滚动条
+print('导出成绩Excel')
+driver.find_element_by_xpath('//*[@id="exportExcelButtonId"]').click()
+time.sleep(3)
+print('=====作业成绩测试完毕=====')
+time.sleep(3)
 ######################################################学生活动##########################################################
 print('=====测试学生活动=====')
 driver.find_element_by_xpath("//*[@id='wlxt_xshd_wlkc_xstjb']").click()
@@ -954,9 +958,11 @@ print('发邮件')
 driver.find_element_by_xpath('//span[@class="rt right"]/child::a').click()
 # driver.find_element_by_class_name("ui-autocomplete-input").send_keys(
 #    "xiesp@tsinghua.edu.cn,chc@tsinghua.edu.cn,wlxt@tsinghua.edu.cn,dj1005@tsinghua.edu.cn,zhongwenfeng@tsinghua.edu.cn")
-driver.find_element_by_xpath('//*[@id="myTags"]/li/input').send_keys('wlxt@tsinghua.edu.cn,xiesp@tsinghua.edu.cn')
+driver.find_element_by_xpath('//*[@id="myTags"]/li/input').send_keys('wlxt@tsinghua.edu.cn,dxx2018@sina.cn')
 time.sleep(2)
 driver.find_element_by_id("bt").send_keys(ticks + "网络学堂自动测试:教师端系统正常")
+print("抄送到本人邮箱")
+driver.find_element_by_xpath('//label[@class="mycheck"]').click()
 driver.find_element_by_id("submitButton").click()
 time.sleep(2)
 try:
