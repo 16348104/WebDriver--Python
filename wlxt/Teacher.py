@@ -286,8 +286,9 @@ except NoSuchElementException as msg:
     print(msg, '截图')
     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'ZY' + ".png")
 time.sleep(5)
+# 编辑上一条作业
 print('编辑作业')
-driver.find_element_by_xpath('//*[@id="zyTable"]/tbody/tr[1]/td[8]/a[3]').click()
+driver.find_element_by_xpath('//*[@id="zyTable"]/tbody/tr[2]/td[8]/a[3]').click()
 zy_geren = driver.find_element_by_xpath('//*[@id="r1"]').get_attribute('checked')  # 选作业完成方式:个人
 print('是否个人作业：', zy_geren)
 zy_zu = driver.find_element_by_xpath('//*[@id="r2"]').get_attribute('checked')  # 选作业完成方式:组
