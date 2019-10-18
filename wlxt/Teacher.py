@@ -61,8 +61,8 @@ def winUpLoadFile(file_path, title):
 #     Win32UpLoadFile().winUpLoadFile("D:\mov.mp4", "打开")
 ######################################################登录网络学堂######################################################
 # 打开网络学堂
-driver.get("http://wlxt160.thitc.cn")
-# driver.get("http://learn.tsinghua.edu.cn")
+# driver.get("http://wlxt160.thitc.cn")
+driver.get("http://learn.tsinghua.edu.cn")
 driver.maximize_window()
 print("======登录网络学堂=====")
 print(driver.title)
@@ -73,7 +73,7 @@ tomorrow = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time() + 3600)
 # print("当前时间戳为:", ticks)
 # print ("当前时间戳为:", tomorrow)
 driver.find_element_by_name('i_user').send_keys('2004980847')
-driver.find_element_by_name('i_pass').send_keys('123')
+driver.find_element_by_name('i_pass').send_keys('CSJS@@0847')
 # user = input('name:')
 # password = input('pw:"')
 # driver.find_element_by_name("i_user").send_keys(user)
@@ -81,8 +81,8 @@ driver.find_element_by_name('i_pass').send_keys('123')
 driver.find_element_by_id("loginButtonId").click()
 time.sleep(1)
 print(driver.title, "【第1个窗口】")
-# driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
-driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  # 开发环境60240202-0
+driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
+# driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  # 开发环境60240202-0
 time.sleep(1)
 # 【切换到第二个窗口】
 window_1 = driver.current_window_handle  # 当前窗口句柄
@@ -198,7 +198,7 @@ driver.back()
 time.sleep(1)
 driver.find_element_by_xpath("//tbody//tr[1]//td[8]//a[1]").click()
 print('预览课件')
-time.sleep(2)
+time.sleep(3)
 str1 = driver.find_element_by_xpath("//tbody//tr[1]//td[8]//a[2]").get_attribute('class')
 print(str1)
 searchObj = re.search(r'disabled', str1, re.I)  # 正则表达式
@@ -457,18 +457,19 @@ except NoSuchElementException as msg:
     print(msg)
 time.sleep(3)
 # 定位到新讨论版区
-# 开发环境li[3]
+# 开发环境li[3]正式环境li[2]
+# driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[3]').click()  # modify最后的版区
 driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[3]').click()  # modify最后的版区
 time.sleep(2)
 # 定位到小扳手
 above = driver.find_element_by_xpath("//li[contains(@class,'active')]/i")
 # 悬停在小扳手
 ActionChains(driver).move_to_element(above).perform()
-time.sleep(2)
+time.sleep(3)
 # 删除版区
 print('删除新讨论版区')
-# 开发环境li[3]
 Del = driver.find_element_by_xpath("//ul[contains(@class,'active')]/li[2]")
+# Del = driver.find_element_by_xpath("//ul[contains(@class,'controldiv')]/li[2])")
 ActionChains(driver).move_to_element(Del).perform()
 Del.click()
 time.sleep(3)
@@ -957,11 +958,12 @@ driver.find_element_by_xpath("//a[@id='wlxt_mail_yj_yjxxb']").click()
 time.sleep(2)
 print('发邮件')
 driver.find_element_by_xpath('//span[@class="rt right"]/child::a').click()
+# 正式环境发邮件
 # driver.find_element_by_class_name("ui-autocomplete-input").send_keys(
-#    "xiesp@tsinghua.edu.cn,chc@tsinghua.edu.cn,wlxt@tsinghua.edu.cn,dj1005@tsinghua.edu.cn,zhongwenfeng@tsinghua.edu.cn")
+#    "xiesp@tsinghua.edu.cn,wlxt@tsinghua.edu.cn,dj1005@tsinghua.edu.cn,zhongwenfeng@tsinghua.edu.cn")
 driver.find_element_by_xpath('//*[@id="myTags"]/li/input').send_keys('wlxt@tsinghua.edu.cn,dxx2018@sina.cn')
 time.sleep(2)
-driver.find_element_by_id("bt").send_keys(ticks + "网络学堂自动测试:教师端系统正常")
+driver.find_element_by_id("bt").send_keys(ticks + "LocalHost网络学堂自动测试:教师端系统正常")
 print("抄送到本人邮箱")
 driver.find_element_by_xpath('//label[@class="mycheck"]').click()
 driver.find_element_by_id("submitButton").click()

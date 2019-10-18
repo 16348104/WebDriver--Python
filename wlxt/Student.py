@@ -56,8 +56,8 @@ def winUpLoadFile(file_path, title):
 ##################################################登录网络学堂###########################################################
 print("======登录网络学堂=====")
 print('测试浏览器:' + driver.name)
-# driver.get('http://learn.tsinghua.edu.cn')
-driver.get("http://wlxt160.thitc.cn")
+driver.get('http://learn.tsinghua.edu.cn')
+# driver.get("http://wlxt160.thitc.cn")
 driver.maximize_window()
 driver.implicitly_wait(2)
 # 登录网络学堂，【第一个窗口】
@@ -65,8 +65,8 @@ print('登录后句柄:' + driver.current_window_handle)
 driver.find_element_by_name('i_user').clear()
 driver.find_element_by_name('i_pass').clear()
 # time.sleep(30)
-driver.find_element_by_name('i_user').send_keys('2014013037')
-driver.find_element_by_name('i_pass').send_keys('123')
+driver.find_element_by_name('i_user').send_keys('ahl16')
+driver.find_element_by_name('i_pass').send_keys('aihailin9808')
 # user = input('name:')
 # password = input('pw:"')
 # driver.find_element_by_name("i_user").send_keys(user)
@@ -79,8 +79,8 @@ print(driver.title, "【第1个窗口】")
 #     driver.switch_to.alert.accept('日历服务漫游失败')
 # except UnexpectedAlertPresentException as msg:
 #     pass
-driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  # 开发60240202-0
-# driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
+# driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  # 开发60240202-0
+driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
 # 【切换到第二个窗口】
 window_1 = driver.current_window_handle  # 当前窗口句柄
 print('课程句柄:' + window_1)
@@ -600,11 +600,12 @@ time.sleep(1)
 # driver.find_element_by_xpath('//ul[@id="myTags"]//li[3]/input').send_keys('杜娟')
 # driver.find_element_by_xpath('//ul[@id="myTags"]//li[3]//input').send_keys(Keys.ENTER)
 # time.sleep(1)
-print("抄送到本人邮箱")
-driver.find_element_by_xpath('//label[@class="mycheck"]').click()
+# 正式环境不抄送本人
+# print("抄送到本人邮箱")
+# driver.find_element_by_xpath('//label[@class="mycheck"]').click()
 js = "document.getElementById('bt').value = new Date().toLocaleString();"
 val = driver.execute_script(js)
-driver.find_element_by_xpath('//input[@id="bt"]').send_keys('网络学堂自动化测试结果—学生端功能正常')
+driver.find_element_by_xpath('//input[@id="bt"]').send_keys('LocalHost网络学堂自动化测试结果—学生端功能正常')
 # 定位iframe
 iframe = driver.find_element_by_xpath("//iframe[contains(@title,'nrStr')]")
 # 切入iframe
