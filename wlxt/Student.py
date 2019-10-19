@@ -60,7 +60,7 @@ driver.get('http://learn.tsinghua.edu.cn')
 # driver.get("http://wlxt160.thitc.cn")
 driver.maximize_window()
 driver.implicitly_wait(2)
-# 登录网络学堂，【第一个窗口】
+# 登录网络学堂，第一个窗口
 print('登录后句柄:' + driver.current_window_handle)
 driver.find_element_by_name('i_user').clear()
 driver.find_element_by_name('i_pass').clear()
@@ -81,7 +81,7 @@ print(driver.title, "【第1个窗口】")
 #     pass
 # driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  # 开发60240202-0
 driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
-# 【切换到第二个窗口】
+# 切换到第二个窗口
 window_1 = driver.current_window_handle  # 当前窗口句柄
 print('课程句柄:' + window_1)
 windows = driver.window_handles  # 窗口总数
@@ -89,7 +89,7 @@ for current_window in windows:
     if current_window != window_1:
         driver.switch_to.window(current_window)
 time.sleep(3)
-print(driver.title, "【第2个窗口】")
+print(driver.title, "第2个窗口")
 print('新窗口句柄:' + current_window)
 print('=====登录成功=====')
 print('登录时间：', time_format())
@@ -108,7 +108,7 @@ if ggfj:
     print('预览公告附件!')
     driver.find_element_by_xpath("//div[@id='ggfj']//a[@id='wjid']").click()  # 浏览公告附件
     time.sleep(2)
-    # 切换【第3个窗口】
+    # 切换第3个窗口
     windows = driver.window_handles  # 窗口总数
     driver.switch_to.window(windows[2])  # 切换到第3个窗口
     window_2 = driver.current_window_handle
@@ -122,8 +122,8 @@ if ggfj:
 else:
     print('无公告附件！')
     driver.find_element_by_id('backBtn').click()
-time.sleep(2)
 print('=====公告测试完毕=====')
+time.sleep(2)
 ####################################################课程信息#############################################################
 print('=====测试课程信息=====')
 driver.find_element_by_css_selector('#wlxt_kc_v_kcxx_jskcxx').click()
@@ -196,7 +196,7 @@ time.sleep(1)
 try:
     driver.find_element_by_xpath('//input[@id="saveBtn"]')
 except NoSuchElementException as msg:
-    print('逾期不能提交!', msg)
+    print('作业逾期不能提交!', msg)
 else:
     driver.find_element_by_xpath('//input[@id="saveBtn"]').click()
     time.sleep(1)
@@ -247,7 +247,7 @@ except NoSuchElementException as msg_MP3:
 # Play Video
 try:
     driver.find_element_by_xpath("//p[@id='wtnr']//p//video")
-    print('预览视频文件')
+    print('预览视频文件!')
     js_video = "var video = document.getElementsByTagName('video')[0];video.play();"
     driver.execute_script(js_video)
     time.sleep(5)
@@ -333,7 +333,7 @@ else:
         # 富文本表情
         driver.find_element_by_xpath('//a[@id="cke_37"]')
     except NoSuchElementException as msg:
-        print('CKeditor未加载!', msg)
+        print('CKeditor未加载,刷新一次浏览器!', msg)
         driver.refresh()
         time.sleep(2)
     else:
@@ -419,7 +419,7 @@ driver.execute_script("document.documentElement.scrollTop = 10000;")
 try:
     driver.find_element_by_xpath('//*[@id="cke_41"]')
 except NoSuchElementException as msg_MP4:
-    print('CKeditor未加载!', msg_MP4)
+    print('CKeditor未加载,刷新一次浏览器!', msg_MP4)
     driver.refresh()
     time.sleep(2)
 driver.find_element_by_xpath('//*[@id="cke_41"]').click()
@@ -451,7 +451,7 @@ time.sleep(2)
 try:
     driver.find_element_by_xpath('//*[@id="cke_41"]')
 except NoSuchElementException as msg_MP4:
-    print('CKeditor未加载!', msg_MP4)
+    print('CKeditor未加载，刷新一次浏览器!', msg_MP4)
     driver.refresh()
     time.sleep(1)
 # finally:
