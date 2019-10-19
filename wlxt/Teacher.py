@@ -80,11 +80,11 @@ driver.find_element_by_name('i_pass').send_keys('')
 # driver.find_element_by_name("i_pass").send_keys(password)
 driver.find_element_by_id("loginButtonId").click()
 time.sleep(1)
-print(driver.title, "【第1个窗口】")
+print(driver.title, "第1个窗口")
 driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
 # driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  # 开发环境60240202-0
 time.sleep(1)
-# 【切换到第二个窗口】
+# 切换到第二个窗口
 window_1 = driver.current_window_handle  # 当前窗口句柄
 print('课程句柄:' + window_1)
 windows = driver.window_handles  # 窗口总数
@@ -92,7 +92,7 @@ for current_window in windows:
     if current_window != window_1:
         driver.switch_to.window(current_window)
 time.sleep(3)
-print(driver.title, "【第2个窗口】")
+print(driver.title, "第2个窗口")
 print('新窗口句柄:' + current_window)
 print('=====登录成功=====')
 print("登录时间为:", ticks)
