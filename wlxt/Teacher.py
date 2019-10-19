@@ -73,7 +73,7 @@ tomorrow = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time() + 3600)
 # print("当前时间戳为:", ticks)
 # print ("当前时间戳为:", tomorrow)
 driver.find_element_by_name('i_user').send_keys('2004980847')
-driver.find_element_by_name('i_pass').send_keys('CSJS@@0847')
+driver.find_element_by_name('i_pass').send_keys('')
 # user = input('name:')
 # password = input('pw:"')
 # driver.find_element_by_name("i_user").send_keys(user)
@@ -132,8 +132,8 @@ driver.find_element_by_xpath("//a[@id='wlxt_kcgg_wlkc_ggb']").click()
 print('预览公告详情')
 driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[1]/a').click()
 driver.execute_script("document.documentElement.scrollTop = 10000;")  # 滚动条
-time.sleep(2)
 print('=====公告测试完毕=====')
+time.sleep(1)
 ######################################################课程信息##########################################################
 print('=====测试课程信息=====')
 driver.find_element_by_xpath("//*[@id='wlxt_kc_v_kcxx_jskcxx']").click()
@@ -163,8 +163,8 @@ try:
 except NoSuchElementException as msg:
     print('截图', msg)
     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'kctp' + ".png")  # 截图modify
-time.sleep(2)
 print('=====课程信息测试完毕=====')
+time.sleep(1)
 ######################################################课程文件##########################################################
 print('=====测试课程文件=====')
 driver.find_element_by_xpath("//a[@id='wlxt_kj_wlkc_kjxxb']").click()
@@ -254,8 +254,8 @@ if searchObj is None:
     print("当前窗口：", window_1)
 else:
     print('文件不支持预览!', searchObj)
-time.sleep(2)
 print('=====文件测试完毕=====')
+time.sleep(2)
 ######################################################课程作业##########################################################
 print('=====测试课程作业=====')
 driver.find_element_by_xpath("//a[@id='wlxt_kczy_zy']").click()
@@ -438,7 +438,7 @@ elif zy_zu == 'true' and jf_ffz == 'true':  # 非分值组作业
             print('截图', msg)
             driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'PZY' + ".png")  # modify
 print('=====作业测试完毕=====')
-time.sleep(3)
+time.sleep(2)
 ######################################################课程讨论###########################################################
 print('=====测试课程讨论=====')
 driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_tltb"]').click()
@@ -695,7 +695,7 @@ except NoSuchElementException as msg:
     print('截图', msg)
     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'FBHT' + ".png")  # modify截图
 print('=====课程讨论测试完毕=====')
-time.sleep(3)
+time.sleep(2)
 ######################################################课程答疑###########################################################
 print('=====测试课程答疑=====')
 driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_kcdy"]').click()
@@ -850,8 +850,8 @@ else:
         driver.refresh()
         time.sleep(2)
         driver.find_elements_by_xpath("//*[@class='download-file']//*[@id='removeFile']").pop(0).click()
-time.sleep(3)
 print('=====课程答疑测试完毕=====')
+time.sleep(2)
 ######################################################教学笔记##########################################################
 print('=====测试教学笔记=====')
 driver.find_element_by_xpath("//a[@id='wlxt_jxbj_wlkc_jxbjb']").click()
@@ -927,7 +927,7 @@ except NoSuchElementException as msg:
 time.sleep(2)
 driver.back()
 print('=====教学笔记测试完毕=====')
-time.sleep(3)
+time.sleep(1)
 ######################################################作业成绩##########################################################
 print('=====测试作业成绩=====')
 driver.find_element_by_xpath("//*[@id='wlxt_kycj']").click()
@@ -941,7 +941,7 @@ print('导出成绩Excel')
 driver.find_element_by_xpath('//*[@id="exportExcelButtonId"]').click()
 time.sleep(3)
 print('=====作业成绩测试完毕=====')
-time.sleep(3)
+time.sleep(1)
 ######################################################学生活动##########################################################
 print('=====测试学生活动=====')
 driver.find_element_by_xpath("//*[@id='wlxt_xshd_wlkc_xstjb']").click()
@@ -950,12 +950,17 @@ driver.find_element_by_xpath("//tr[@class='even']//td//font//a").click()
 time.sleep(2)
 # driver.find_element_by_xpath('//*[@id="goBack"]').click()
 driver.back()
-time.sleep(2)
 print('=====学生活动测试完毕=====')
+time.sleep(1)
 ######################################################课程邮件##########################################################
 print('=====测试课程邮件=====')
 driver.find_element_by_xpath("//a[@id='wlxt_mail_yj_yjxxb']").click()
 time.sleep(2)
+print("浏览邮件")
+driver.find_element_by_xpath('//*[@id="list"]/tbody/tr[1]/td[2]/a').click()  # 浏览邮件
+time.sleep(1)
+# driver.find_element_by_xpath('//*[@id="returnButton"]').click()
+driver.back()
 print('发邮件')
 driver.find_element_by_xpath('//span[@class="rt right"]/child::a').click()
 # 正式环境发邮件
@@ -974,12 +979,6 @@ try:
 except NoSuchElementException as msg:
     print('截图', msg)
     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'YJ' + ".png")  # modify截图
-time.sleep(5)
-print("浏览邮件")
-driver.find_element_by_xpath('//*[@id="list"]/tbody/tr[1]/td[2]/a').click()  # 浏览邮件
-time.sleep(1)
-# driver.find_element_by_xpath('//*[@id="returnButton"]').click()
-driver.back()
 print('=====邮件测试完毕=====')
 time.sleep(3)
 ##################################################退出网络学堂###########################################################

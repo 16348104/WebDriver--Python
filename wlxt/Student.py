@@ -66,7 +66,7 @@ driver.find_element_by_name('i_user').clear()
 driver.find_element_by_name('i_pass').clear()
 # time.sleep(30)
 driver.find_element_by_name('i_user').send_keys('ahl16')
-driver.find_element_by_name('i_pass').send_keys('aihailin9808')
+driver.find_element_by_name('i_pass').send_keys('')
 # user = input('name:')
 # password = input('pw:"')
 # driver.find_element_by_name("i_user").send_keys(user)
@@ -93,7 +93,8 @@ print(driver.title, "【第2个窗口】")
 print('新窗口句柄:' + current_window)
 print('=====登录成功=====')
 print('登录时间：', time_format())
-# driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + 'dl-' + time_format() + ".png")  # modify截图
+time.sleep(1)
+# driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + 'DL-' + time_format() + ".png")  # modify截图
 ####################################################课程公告############################################################
 print("=====测试课程公告=====")
 driver.find_element_by_xpath("//a[@id='wlxt_kcgg_wlkc_ggb']").click()
@@ -129,8 +130,8 @@ driver.find_element_by_css_selector('#wlxt_kc_v_kcxx_jskcxx').click()
 driver.execute_script("document.documentElement.scrollTop = 10000;")  # 滚动条
 time.sleep(2)
 driver.execute_script("document.documentElement.scrollTop = 0;")  # 滚动条
-time.sleep(1)
 print('=======课程信息测试完毕=====')
+time.sleep(2)
 ####################################################课程文件#############################################################
 print("=====测试课程文件=====")
 driver.find_element_by_xpath("//a[@id='wlxt_kj_wlkc_kjxxb']").click()
@@ -185,6 +186,7 @@ except NoSuchElementException as msg:
 driver.switch_to.parent_frame()
 time.sleep(2)
 print('=====课件测试完毕=====')
+time.sleep(1)
 ####################################################课程作业############################################################
 print('=====测试课程作业=====')
 driver.find_element_by_xpath("//a[@id='wlxt_kczy_zy']").click()
@@ -220,13 +222,13 @@ else:
         print('截图', msg)
         driver.get_screenshot_as_file(
             "C:/Users/zb/Downloads/FireShot/" + time_format() + 'TJZY' + ".png")  # modify截图
-time.sleep(3)
 print('=====作业测试完毕=====')
+time.sleep(3)
 ########################################################我的分组#########################################################
 print('=====测试我的分组=====')
 driver.find_element_by_xpath('//*[@id="wlxt_qz_v_wlkc_qzcyb"]').click()
-time.sleep(2)
 print('=====我的分组测试完毕=====')
+time.sleep(2)
 ####################################################课程讨论#############################################################
 print('=====测试课程讨论=====')
 driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_tltb"]').click()
@@ -402,8 +404,8 @@ try:
 except NoSuchElementException as msg:
     print('截图', msg)
     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'FBHT' + ".png")  # modify截图
-time.sleep(3)
 print('=====课程讨论测试完毕=====')
+time.sleep(3)
 ######################################################课程答疑###########################################################
 print('=====测试课程答疑=====')
 driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_kcdy"]').click()
@@ -580,12 +582,18 @@ else:
         driver.refresh()
         time.sleep(3)
         driver.find_elements_by_xpath('//a[@id="removeFile"]').pop(0).click()
-time.sleep(2)
 print('=====答疑测试完毕=====')
+time.sleep(2)
 ####################################################课程邮件#############################################################
 print('=====测试课程邮件=====')
 driver.find_element_by_xpath("//a[@id='wlxt_mail_yj_yjxxb']").click()
 time.sleep(2)
+print('浏览邮件')
+driver.find_element_by_xpath('//*[@id="list"]/tbody/tr[1]/td[2]/a').click()  # 浏览邮件
+time.sleep(1)
+# driver.find_element_by_id('returnButton').click()
+driver.back()
+time.sleep(3)
 driver.find_element_by_xpath('//span[@class="rt right"]/child::a').click()  # 去发邮件
 addresses = driver.find_elements_by_xpath("//span[contains(@class,'text-icon')]")
 for i in addresses:
@@ -624,14 +632,8 @@ try:
 except NoSuchElementException as msg:
     print('截图', msg)
     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'YJ' + ".png")  # modify截图
-time.sleep(4)
-print('浏览邮件')
-driver.find_element_by_xpath('//*[@id="list"]/tbody/tr[1]/td[2]/a').click()  # 浏览邮件
-time.sleep(1)
-# driver.find_element_by_id('returnButton').click()
-driver.back()
-time.sleep(3)
 print('=====邮件测试完毕=====')
+time.sleep(2)
 ##################################################退出网络学堂############################################################
 driver.find_element_by_xpath("//i[@class='webicon-out']").click()
 time.sleep(2)
@@ -645,6 +647,5 @@ print('=====退出网络学堂=====')
 # cookie = driver.get_cookies()
 # print(cookie)
 driver.delete_all_cookies()
-time.sleep(3)
 driver.quit()
 print('关闭浏览器，删除cookie')
