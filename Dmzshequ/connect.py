@@ -3,7 +3,7 @@ import os
 from selenium import webdriver
 
 # browser = webdriver.Firefox()
-browser = webdriver.Ie()
+browser = webdriver.Ie(executable_path='E:\Program Files\Python\Python37\IEDriverServer.exe')
 # browser = webdriver.Chrome()
 browser.get('https://net.tsinghua.edu.cn')
 browser.maximize_window()

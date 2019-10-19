@@ -12,13 +12,14 @@ import time
 import random
 
 # driver = webdriver.Chrome(executable_path='C:/Users/zb/Desktop/test/python/chromedriver.exe')  # modify
-driver = webdriver.Chrome()
+driver = webdriver.Firefox()
+# driver = webdriver.Chrome()
+# driver = webdriver.Ie()
 driver.delete_all_cookies()
 time.sleep(1)
 
 
 # driver = webdriver.Firefox()
-# driver = webdriver.Ie()
 # driver = webdriver.Firefox(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/geckodriver')  # mac firefox
 # driver = webdriver.Chrome(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/chromedriver')  # mac  chrome
 # driver = webdriver.Safari() #Mac os
@@ -74,7 +75,7 @@ driver.find_element_by_name('i_pass').send_keys('')
 # time.sleep(2)
 driver.find_element_by_id('loginButtonId').send_keys(Keys.ENTER)
 time.sleep(2)
-print(driver.title, "【第1个窗口】")
+print(driver.title, "第1个窗口")
 # try:
 #     driver.switch_to.alert.accept('日历服务漫游失败')
 # except UnexpectedAlertPresentException as msg:
