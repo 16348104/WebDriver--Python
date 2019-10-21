@@ -11,15 +11,20 @@ from selenium.webdriver.common.keys import Keys
 import time
 import random
 
-# driver = webdriver.Chrome(executable_path='C:/Users/zb/Desktop/test/python/chromedriver.exe')  # modify
-driver = webdriver.Firefox()
+#配置Firefox文件下载
+profile = webdriver.FirefoxProfile()
+# profile.set_preference('browser.download.dir', 'd:\\')
+profile.set_preference('browser.download.folderList', 0)
+profile.set_preference('browser.download.manager.showWhenStarting', False)
+profile.set_preference('browser.helperApps.neverAsk.saveToDisk', 'application/zip,application/gzip,application/pdf')
+driver = webdriver.Firefox(profile)
 # driver = webdriver.Chrome()
 # driver = webdriver.Ie()
 driver.delete_all_cookies()
 time.sleep(1)
 
 
-# driver = webdriver.Firefox()
+
 # driver = webdriver.Firefox(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/geckodriver')  # mac firefox
 # driver = webdriver.Chrome(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/chromedriver')  # mac  chrome
 # driver = webdriver.Safari() #Mac os

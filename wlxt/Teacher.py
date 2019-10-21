@@ -15,9 +15,14 @@ from selenium.webdriver.support.ui import Select
 
 # driver = webdriver.Chrome(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/chromedriver')  # MacOS
 
-
-# driver = webdriver.Firefox()
-driver = webdriver.Chrome()
+#配置Firefox文件下载
+profile = webdriver.FirefoxProfile()
+# profile.set_preference('browser.download.dir', 'd:\\')
+profile.set_preference('browser.download.folderList', 0)
+profile.set_preference('browser.download.manager.showWhenStarting', False)
+profile.set_preference('browser.helperApps.neverAsk.saveToDisk', 'application/zip,application/gzip,application/pdf')
+driver = webdriver.Firefox(profile)
+# driver = webdriver.Chrome()
 driver.delete_all_cookies()
 time.sleep(1)
 
