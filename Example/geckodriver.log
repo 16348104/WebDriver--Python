@@ -192,3 +192,53 @@ JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't fin
 [Child 8772, Chrome_Chi[GPU 6268, Chrome_
 ###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
 
+1571649264974	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\zb\\AppData\\Local\\Temp\\rust_mozprofile.ObRavFDf9ENS"
+1571649267020	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1571649267020	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1571649267020	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1571649267020	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1571649269394	Marionette	INFO	Listening on port 49557
+1571649269465	Marionette	WARN	TLS certificate errors will be ignored for this session
+1571649279873	Marionette	INFO	Stopped listening on port 49557
+[Parent 10688, Gecko_IOThread] WARNING: pipe error: 109: file z:/task_1571238801/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[Child 5440, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_1571238801/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[Child 5440, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_1571238801/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line [Child 8840, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_1571238801/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[Child 8840, Chrome_ChildTh[GPU 6
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+500, C
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1571650037620	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\zb\\AppData\\Local\\Temp\\rust_mozprofile.Jcic41fQqfev"
+1571650039599	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1571650039599	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1571650039599	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1571650039599	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1571650042275	Marionette	INFO	Listening on port 50113
+1571650042629	Marionette	WARN	TLS certificate errors will be ignored for this session
+1571650053087	Marionette	INFO	Stopped listening on port 50113
+[Child 11364, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_1571238801/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[Child 11364, Chrome_C[Child 5996, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_1571238801/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[Child 5996, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_1571238801/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[Child 5728, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_1571238801/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[Child 5728, Chrome_Child[GPU 6092, Chr
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1571651783465	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\zb\\AppData\\Local\\Temp\\rust_mozprofile.Ga6S8H41Ty8Q"
+1571651785236	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1571651785236	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1571651785236	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1571651785236	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1571651788079	Marionette	INFO	Listening on port 61800
+1571651788490	Marionette	WARN	TLS certificate errors will be ignored for this session
+1571651797526	Marionette	INFO	Stopped listening on port 61800
+[Child 2440, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_1571238801/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[Child 2440, Chrome_Chi[Child 6456, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_1571238801/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[Child 8888, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_1571238801/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[Child 8888, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_1571238801/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[GPU 12084, Ch
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+

@@ -5,8 +5,8 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
 
-# driver = webdriver.Firefox()
-driver = webdriver.Chrome()
+driver = webdriver.Firefox()
+# driver = webdriver.Chrome()
 # driver = webdriver.Chrome(
 #     executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/chromedriver')  # mac  chrome
 # driver = webdriver.Firefox(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/geckodriver')# mac  firefox
@@ -27,8 +27,8 @@ print(date)
 time.sleep(20)
 driver.switch_to.default_content()
 time.sleep(2)
-driver.find_element_by_css_selector(
-    'body > div.viewframeContainer > div.aliyun-console-help-guide > div.help-guide-step.help-guide-step-1 > div.help-guide-step-header > button > i').click()
+# driver.find_element_by_css_selector(
+#     'body > div.viewframeContainer > div.aliyun-console-help-guide > div.help-guide-step.help-guide-step-1 > div.help-guide-step-header > button > i').click()
 time.sleep(2)
 print('站点监控')
 driver.get(
