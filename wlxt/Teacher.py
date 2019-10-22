@@ -22,8 +22,8 @@ profile.set_preference('browser.download.folderList', 0)
 profile.set_preference('browser.download.manager.showWhenStarting', False)
 profile.set_preference('browser.helperApps.neverAsk.saveToDisk',
                        'application/zip,application/xhtml+xml,application/xml,application/x-msdownload,application/octet/octet-stream,application/exe,txt/csv,application/pdf,application/x-msexcl,application/x-excel,application/excel,image/png,image/jpeg,text/html,text/plain,text/x-c')
-driver = webdriver.Firefox(firefox_profile=profile)
-# driver = webdriver.Chrome()
+# driver = webdriver.Firefox(firefox_profile=profile)
+driver = webdriver.Chrome()
 driver.delete_all_cookies()
 time.sleep(1)
 
@@ -219,7 +219,7 @@ if searchObj is None:
     print("当前窗口：", window_1)
     # 切换窗口
     driver.switch_to.window(windows[2])  # 切换到第3个窗口
-    time.sleep(2)
+    time.sleep(1.5)
     # sate = driver.find_element_by_css_selector(
     #     "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").get_attribute('class')
     # if sate == 'zeromodal-title1':

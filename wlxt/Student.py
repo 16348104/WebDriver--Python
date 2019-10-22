@@ -17,8 +17,8 @@ profile.set_preference('browser.download.dir', os.getcwd())
 profile.set_preference('browser.download.folderList', 0)
 profile.set_preference('browser.download.manager.showWhenStarting', False)
 profile.set_preference('browser.helperApps.neverAsk.saveToDisk', 'application/zip,application/xhtml+xml,application/xml,application/x-msdownload,application/octet/octet-stream,application/exe,txt/csv,application/pdf,application/x-msexcl,application/x-excel,application/excel,image/png,image/jpeg,text/html,text/plain,text/x-c')
-driver = webdriver.Firefox(firefox_profile=profile)
-# driver = webdriver.Chrome()
+# driver = webdriver.Firefox(firefox_profile=profile)
+driver = webdriver.Chrome()
 # driver = webdriver.Ie()
 driver.delete_all_cookies()
 time.sleep(1)
@@ -312,7 +312,6 @@ else:
         ran_hf).get_attribute('id')
     num = re.sub(r'\D', '', item)
     print("回复楼层id:", num)
-
     ###此功能暂不使用###
     # 定位回复他人文本域
     # textarea = "//*[contains(@id," + "\'" + num + "\'" + ")]//*[@name='nr']"
@@ -330,12 +329,13 @@ else:
     print('学生回复楼主讨论帖个数:', hf_list)
     print('hf_list', ran_hf)
     print('随机回复楼主讨论帖楼层:', ran_hf + 2)
-    time.sleep(2)
+    time.sleep(3)
     # 点回复
     driver.find_elements_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']").pop(
         ran_hf).click()
     # 切换ckeditor
     driver.find_element_by_xpath(switch_span).click()
+    time.sleep(2)
     # driver.find_elements_by_xpath("//div[@id='mypanel']//span[contains(@class,'toeditor')]").pop(ran_hf).click()
     try:
         # 富文本表情
@@ -343,17 +343,16 @@ else:
     except NoSuchElementException as msg:
         print('CKeditor未加载,刷新一次浏览器!', msg)
         driver.refresh()
-        time.sleep(2)
+        time.sleep(3)
     else:
         driver.find_element_by_xpath('//a[@id="cke_37"]').click()
         js = "document.getElementsByClassName('cke_dialog_background_cover')[0].style.display = 'none'"
         driver.execute_script(js)
-        time.sleep(2)
         driver.find_element_by_xpath('//*/table/tbody/tr[1]/td[1]/a/img').click()
+        time.sleep(2)
     print('上传子回复附件')
     driver.find_element_by_xpath(add_attch).send_keys(r'D:\review.docx')  # modify
-    # driver.find_elements_by_xpath("//input[@name='fileupload']").pop(ran_hf).send_keys(r'D:/review.docx')
-    time.sleep(1)
+    time.sleep(2)
     print('发表子回复')
     driver.find_element_by_xpath(submit).click()
     time.sleep(2)
