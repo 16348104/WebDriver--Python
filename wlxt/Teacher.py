@@ -66,8 +66,8 @@ def winUpLoadFile(file_path, title):
 #     Win32UpLoadFile().winUpLoadFile("D:\mov.mp4", "打开")
 ######################################################登录网络学堂######################################################
 # 打开网络学堂
-# driver.get("http://wlxt160.thitc.cn")
-driver.get("http://learn.tsinghua.edu.cn")
+driver.get("http://wlxt160.thitc.cn")
+# driver.get("http://learn.tsinghua.edu.cn")
 driver.maximize_window()
 print("======登录网络学堂=====")
 print(driver.title)
@@ -86,8 +86,8 @@ driver.find_element_by_name('i_pass').send_keys('')
 driver.find_element_by_id("loginButtonId").click()
 time.sleep(1)
 print(driver.title, "第1个窗口")
-driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
-# driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  # 开发环境60240202-0
+# driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
+driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  # 开发环境60240202-0
 time.sleep(1)
 # 切换到第二个窗口
 window_1 = driver.current_window_handle  # 当前窗口句柄
@@ -217,7 +217,7 @@ if searchObj is None:
     print("当前窗口：", window_1)
     # 切换窗口
     driver.switch_to.window(windows[2])  # 切换到第3个窗口
-    time.sleep(1.5)
+    time.sleep(2)
     # sate = driver.find_element_by_css_selector(
     #     "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").get_attribute('class')
     # if sate == 'zeromodal-title1':
@@ -462,8 +462,6 @@ except NoSuchElementException as msg:
     print(msg)
 time.sleep(3)
 # 定位到新讨论版区
-# 开发环境li[3]正式环境li[2]
-# driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[3]').click()  # modify最后的版区
 driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[3]').click()  # modify最后的版区
 time.sleep(2)
 # 定位到小扳手
@@ -474,7 +472,6 @@ time.sleep(3)
 # 删除版区
 print('删除新讨论版区')
 Del = driver.find_element_by_xpath("//ul[contains(@class,'active')]/li[2]")
-# Del = driver.find_element_by_xpath("//ul[contains(@class,'controldiv')]/li[2])")
 ActionChains(driver).move_to_element(Del).perform()
 Del.click()
 time.sleep(3)

@@ -12,14 +12,14 @@ import time
 import random
 
 #配置Firefox文件下载
-# profile = webdriver.FirefoxProfile()
-# # profile.set_preference('browser.download.dir', 'd:\\')
-# profile.set_preference('browser.download.folderList', 0)
-# profile.set_preference('browser.download.manager.showWhenStarting', False)
-# profile.set_preference('browser.helperApps.neverAsk.saveToDisk', 'application/zip,application/gzip,application/pdf')
-# driver = webdriver.Firefox(firefox_profile=profile)
-# driver = webdriver.Firefox()
-driver = webdriver.Chrome()
+profile = webdriver.FirefoxProfile()
+# profile.set_preference('browser.download.dir', 'd:\\')
+profile.set_preference('browser.download.folderList', 0)
+profile.set_preference('browser.download.manager.showWhenStarting', False)
+profile.set_preference('browser.helperApps.neverAsk.saveToDisk', 'application/zip,application/gzip,application/pdf')
+driver = webdriver.Firefox(firefox_profile=profile)
+driver = webdriver.Firefox(profile)
+# driver = webdriver.Chrome()
 # driver = webdriver.Ie()
 driver.delete_all_cookies()
 time.sleep(1)
@@ -63,8 +63,8 @@ def winUpLoadFile(file_path, title):
 ##################################################登录网络学堂###########################################################
 print("======登录网络学堂=====")
 print('测试浏览器:' + driver.name)
-driver.get('http://learn.tsinghua.edu.cn')
-# driver.get("http://wlxt160.thitc.cn")
+# driver.get('http://learn.tsinghua.edu.cn')
+driver.get("http://wlxt160.thitc.cn")
 driver.maximize_window()
 driver.implicitly_wait(2)
 # 登录网络学堂，第一个窗口
@@ -72,7 +72,7 @@ print('登录后句柄:' + driver.current_window_handle)
 driver.find_element_by_name('i_user').clear()
 driver.find_element_by_name('i_pass').clear()
 # time.sleep(30)
-driver.find_element_by_name('i_user').send_keys('ahl16')
+driver.find_element_by_name('i_user').send_keys('2014013024')
 driver.find_element_by_name('i_pass').send_keys('')
 # user = input('name:')
 # password = input('pw:"')
@@ -86,8 +86,8 @@ print(driver.title, "第1个窗口")
 #     driver.switch_to.alert.accept('日历服务漫游失败')
 # except UnexpectedAlertPresentException as msg:
 #     pass
-# driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  # 开发60240202-0
-driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
+driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  # 开发60240202-0
+# driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
 # 切换到第二个窗口
 window_1 = driver.current_window_handle  # 当前窗口句柄
 print('课程句柄:' + window_1)
@@ -100,7 +100,7 @@ print(driver.title, "第2个窗口")
 print('新窗口句柄:' + current_window)
 print('=====登录成功=====')
 print('登录时间：', time_format())
-time.sleep(1)
+time.sleep(2)
 # driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + 'DL-' + time_format() + ".png")  # modify截图
 ####################################################课程公告############################################################
 print("=====测试课程公告=====")
@@ -240,7 +240,7 @@ time.sleep(2)
 print('=====测试课程讨论=====')
 driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_tltb"]').click()
 driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[2]/a').click()
-time.sleep(1)
+time.sleep(2)
 print('浏览讨论帖')
 #  Play Audio
 try:

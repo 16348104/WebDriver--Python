@@ -7,13 +7,13 @@
 
 from selenium import webdriver
 import time
-# profile = webdriver.FirefoxProfile()
-# # profile.set_preference('browser.download.dir', 'd:\\')
-# profile.set_preference('browser.download.folderList', 0)
-# profile.set_preference('browser.download.manager.showWhenStarting', False)
-# profile.set_preference('browser.helperApps.neverAsk.saveToDisk', 'application/zip,application/gzip,application/pdf')
+profile = webdriver.FirefoxProfile()
+# profile.set_preference('browser.download.dir', 'd:\\')
+profile.set_preference('browser.download.folderList', 0)
+profile.set_preference('browser.download.manager.showWhenStarting', False)
+profile.set_preference('browser.helperApps.neverAsk.saveToDisk', 'application/zip,application/gzip,application/pdf')
 
-driver = webdriver.Firefox()
+driver = webdriver.Firefox(profile)
 
 driver.get('http://sahitest.com/demo/saveAs.htm')
 driver.find_element_by_xpath('//a[text()="testsaveas.zip"]').click()
