@@ -15,12 +15,13 @@ from selenium.webdriver.support.ui import Select
 
 # driver = webdriver.Chrome(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/chromedriver')  # MacOS
 
-#配置Firefox文件下载
+# 配置Firefox文件下载
 profile = webdriver.FirefoxProfile()
 # profile.set_preference('browser.download.dir', 'd:\\')
 profile.set_preference('browser.download.folderList', 0)
 profile.set_preference('browser.download.manager.showWhenStarting', False)
-profile.set_preference('browser.helperApps.neverAsk.saveToDisk', 'application/zip,application/xhtml+xml,application/xml,application/x-msdownload,application/octet/octet-stream,application/exe,txt/csv,application/pdf,application/x-msexcl,application/x-excel,application/excel,image/png,image/jpeg,text/html,text/plain,text/x-c')
+profile.set_preference('browser.helperApps.neverAsk.saveToDisk',
+                       'application/zip,application/xhtml+xml,application/xml,application/x-msdownload,application/octet/octet-stream,application/exe,txt/csv,application/pdf,application/x-msexcl,application/x-excel,application/excel,image/png,image/jpeg,text/html,text/plain,text/x-c')
 driver = webdriver.Firefox(firefox_profile=profile)
 # driver = webdriver.Chrome()
 driver.delete_all_cookies()
@@ -90,7 +91,8 @@ print(driver.title, "第1个窗口")
 driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  # 开发环境60240202-0
 time.sleep(1)
 # 切换到第二个窗口
-window_1 = driver.current_window_handle  # 当前窗口句柄
+# 当前窗口句柄
+window_1 = driver.current_window_handle
 print('课程句柄:' + window_1)
 windows = driver.window_handles  # 窗口总数
 for current_window in windows:
@@ -105,7 +107,7 @@ time.sleep(2)
 ######################################################课程公告##########################################################
 print('=====测试课程公告=====')
 driver.find_element_by_xpath("//a[@id='wlxt_kcgg_wlkc_ggb']").click()
-time.sleep(3)
+time.sleep(2)
 driver.find_element_by_xpath('//*[@id="content"]//span[2]/a').click()
 print('发布公告')
 time.sleep(2)
@@ -790,7 +792,7 @@ try:
     print('弹框结果:' + driver.find_element_by_css_selector(
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
 except NoSuchElementException as msg:
-# except StaleElementReferenceException as msg:
+    # except StaleElementReferenceException as msg:
     print('截图', msg)
     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'BJWT' + ".png")  # modify截图
 time.sleep(5)
