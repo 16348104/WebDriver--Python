@@ -17,7 +17,7 @@ from selenium.webdriver.support.ui import Select
 
 # 配置Firefox文件下载
 profile = webdriver.FirefoxProfile()
-# profile.set_preference('browser.download.dir', 'd:\\')
+profile.set_preference('browser.download.dir', os.getcwd())
 profile.set_preference('browser.download.folderList', 0)
 profile.set_preference('browser.download.manager.showWhenStarting', False)
 profile.set_preference('browser.helperApps.neverAsk.saveToDisk',

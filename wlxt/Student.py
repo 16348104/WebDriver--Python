@@ -13,12 +13,11 @@ import random
 
 #配置Firefox文件下载
 profile = webdriver.FirefoxProfile()
-# profile.set_preference('browser.download.dir', 'd:\\')
+profile.set_preference('browser.download.dir', os.getcwd())
 profile.set_preference('browser.download.folderList', 0)
 profile.set_preference('browser.download.manager.showWhenStarting', False)
 profile.set_preference('browser.helperApps.neverAsk.saveToDisk', 'application/zip,application/xhtml+xml,application/xml,application/x-msdownload,application/octet/octet-stream,application/exe,txt/csv,application/pdf,application/x-msexcl,application/x-excel,application/excel,image/png,image/jpeg,text/html,text/plain,text/x-c')
 driver = webdriver.Firefox(firefox_profile=profile)
-driver = webdriver.Firefox(profile)
 # driver = webdriver.Chrome()
 # driver = webdriver.Ie()
 driver.delete_all_cookies()
@@ -144,6 +143,7 @@ print("=====测试课程文件=====")
 driver.find_element_by_xpath("//a[@id='wlxt_kj_wlkc_kjxxb']").click()
 time.sleep(2)
 driver.find_element_by_xpath('//*[@id="tabbox"]/ul/li[1]/p').click()  # 电子教案类
+time.sleep(3)
 kjs = len(driver.find_elements_by_xpath("//i[contains(@class,'webicon-download downLoadFile')]"))
 li = driver.find_elements_by_xpath("//i[contains(@class,'webicon-download downLoadFile')]")
 print('课件总数', kjs)
@@ -239,6 +239,7 @@ time.sleep(2)
 ####################################################课程讨论#############################################################
 print('=====测试课程讨论=====')
 driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_tltb"]').click()
+time.sleep(1)
 driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[2]/a').click()
 time.sleep(2)
 print('浏览讨论帖')
@@ -272,7 +273,7 @@ driver.find_element_by_xpath('//*[@id="answerFirstLink"]').click()
 driver.find_element_by_xpath('//*[@id="editFirstAnswerFormId"]/div[1]/p/span[2]').click()
 time.sleep(2)
 print('CKeditor传音频文件')
-driver.find_element_by_xpath('//*[@id="cke_41"]').click()
+driver.find_element_by_xpath('//*[@id="cke_40"]').click()
 time.sleep(3)
 try:
     winUpLoadFile("D:\Artists.mp3", "打开")  # 往输入框输入绝对地址D:\modify
