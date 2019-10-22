@@ -78,7 +78,7 @@ tomorrow = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time() + 3600)
 # print("当前时间戳为:", ticks)
 # print ("当前时间戳为:", tomorrow)
 driver.find_element_by_name('i_user').send_keys('2004980847')
-driver.find_element_by_name('i_pass').send_keys('')
+driver.find_element_by_name('i_pass').send_keys('123')
 # user = input('name:')
 # password = input('pw:"')
 # driver.find_element_by_name("i_user").send_keys(user)
@@ -116,7 +116,7 @@ driver.find_element_by_xpath("//div[@class='list title notext']//label[1]").clic
 # driver.find_element_by_xpath("//div[@class='list order clearfix']//label[1]").click()
 time.sleep(1)
 print('上传公告附件')
-driver.find_element_by_xpath("//input[@id='fileupload']").send_keys(r"D:/Artists.mp3")  # modify
+driver.find_element_by_xpath("//input[@id='fileupload']").send_keys(r"D:\Artists.mp3")  # modify
 time.sleep(1)
 ##ckeditor表情
 driver.find_element_by_xpath('//a[@id="cke_37"]').click()
@@ -159,8 +159,8 @@ time.sleep(1)
 # time.sleep(3)
 # driver.back()
 print('上传课程图片')
-driver.find_element_by_id('doc').send_keys(r"D:/Photo.jpg")  # Modify
-# driver.find_element_by_id('doc').send_keys(r"/Users/xdx/Downloads/Map.png")  # Mac
+driver.find_element_by_id('doc').send_keys(r"D:\Photo.jpg")  # Modify
+# driver.find_element_by_id('doc').send_keys(r"\Users\xdx\Downloads/Map.png")  # Mac
 time.sleep(2)
 try:
     print('弹框结果:' + driver.find_element_by_css_selector(
@@ -181,7 +181,7 @@ js = "document.getElementById('fileupload').style.display=\'block\'"
 driver.execute_script(js)
 driver.find_element_by_name("bt").send_keys("测试课件" + ticks)
 driver.find_element_by_xpath("//div[@class='list']//label[1]").click()  # 重要标记
-driver.find_element_by_name("fileupload").send_keys("D:/mov.mp4")  # modify
+driver.find_element_by_name("fileupload").send_keys("D:\mov.mp4")  # modify
 # driver.find_element_by_id('fileupload').send_keys(
 #     r'/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/readme.txt')  # mac上传文件
 driver.find_element_by_id("sub").click()
@@ -272,7 +272,7 @@ driver.find_element_by_name("bt").send_keys("测试全体作业" + ticks)
 # 定位上传按钮，添加本地文件
 js = "document.getElementById('fileupload').style.display=\'block\'"
 driver.execute_script(js)
-driver.find_element_by_name("fileupload").send_keys("D:/Homework.pdf")  # modify
+driver.find_element_by_name("fileupload").send_keys("D:\Homework.pdf")  # modify
 # 设置截止时间
 # driver.find_element_by_name("jzsj").send_keys(tomorrow)
 scroll = "document.documentElement.scrollTop = 10000;"
@@ -366,7 +366,7 @@ elif zy_geren == 'true' and jf_ffz == 'true':  # 个人非分值作业
         driver.find_element_by_xpath("//*[@id='documention']").send_keys('个人作业已阅')  # 填评语
         time.sleep(1)
         driver.find_element_by_id('fileupload').send_keys(
-            r'D:/review.docx')  # modify      # 传评语附件
+            r'D:\review.docx')  # modify      # 传评语附件
         time.sleep(1)
         driver.find_element_by_xpath("//*[@class='sub-back sub-back-3 absolute']//input[1]").click()
         time.sleep(2)
@@ -395,7 +395,7 @@ elif zy_zu == 'true' and jf_fz == 'true':  # 分值组作业
         driver.find_element_by_id('recommandPL').send_keys('组作业已阅')  # 填评语
         driver.find_element_by_id('setPL').click()  # 设定成绩
         driver.find_element_by_id('fileupload').send_keys(
-            r'D:/review.docx')  # modify # 传评语附件
+            r'D:\review.docx')  # modify # 传评语附件
         time.sleep(1)
         driver.find_element_by_xpath("//div[@class='sub-back sub-back-3 absolute']//input[1]").click()
         time.sleep(1)
@@ -432,7 +432,7 @@ elif zy_zu == 'true' and jf_ffz == 'true':  # 非分值组作业
         driver.find_element_by_id('recommandPL').send_keys('组作业已阅')  # 填评语
         driver.find_element_by_id('setPL').click()  # 设定成绩
         driver.find_element_by_id('fileupload').send_keys(
-            r'D:/review.docx')  # modify # 传评语附件
+            r'D:\review.docx')  # modify # 传评语附件
         time.sleep(1)
         driver.find_element_by_xpath("//div[@class='sub-back absolute sub-back-3']//input[1]").click()
         time.sleep(2)

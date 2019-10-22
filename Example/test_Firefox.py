@@ -7,11 +7,21 @@
 
 from selenium import webdriver
 import time
+
 profile = webdriver.FirefoxProfile()
 # profile.set_preference('browser.download.dir', 'd:\\')
 profile.set_preference('browser.download.folderList', 0)
 profile.set_preference('browser.download.manager.showWhenStarting', False)
-profile.set_preference('browser.helperApps.neverAsk.saveToDisk', 'application/zip,application/gzip,application/pdf')
+profile.set_preference('browser.helperApps.neverAsk.saveToDisk',
+                       'application/zip,application/xhtml+xml,application/xml,application/x-msdownload,application/octet/octet-stream,application/exe,txt/csv,application/pdf,application/x-msexcl,application/x-excel,application/excel,image/png,image/jpeg,text/html,text/plain,text/x-c')
+# 不会打开未知MIMe类型
+# profile.set_Preference("browser.helperApps.alwaysAsk.force", False)
+# 不会弹出警告框
+# profile.set_Preference("browser.download.manager.alertOnEXEopen", False)
+# profile.set_Preference("browser.download.manager.focusWhenStarting", False)
+# profile.set_Preference("browser.download.manager.useWindow", False)
+# profile.set_Preference("browser.download.manager.showAlertOnComplete", False)
+# profile.set_Preference("browser.download.manager.closewhenDone", False)
 
 driver = webdriver.Firefox(profile)
 

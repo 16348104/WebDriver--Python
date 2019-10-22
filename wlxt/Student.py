@@ -73,7 +73,7 @@ driver.find_element_by_name('i_user').clear()
 driver.find_element_by_name('i_pass').clear()
 # time.sleep(30)
 driver.find_element_by_name('i_user').send_keys('2014013024')
-driver.find_element_by_name('i_pass').send_keys('')
+driver.find_element_by_name('i_pass').send_keys('123')
 # user = input('name:')
 # password = input('pw:"')
 # driver.find_element_by_name("i_user").send_keys(user)
@@ -218,7 +218,7 @@ else:
     driver.find_element_by_xpath('//textarea[@id="s_documention"]')
     js = "document.getElementById('s_documention').value= new Date().toLocaleDateString()"
     driver.execute_script(js)
-    driver.find_element_by_id('fileupload').send_keys(r'D:/Homework.pdf')  # 上传文件modify
+    driver.find_element_by_id('fileupload').send_keys(r'D:\Homework.pdf')  # 上传文件modify
     # driver.find_element_by_id('fileupload').send_keys(r'/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/readme.txt')  # Mac上传文件
     driver.find_element_by_xpath("//input[@onclick='daijiao()']").click()
     time.sleep(1)
@@ -283,7 +283,7 @@ except UnexpectedAlertPresentException as msg_alert:
     driver.switch_to.alert.accept()
 time.sleep(5)
 # # 上传答疑文件
-driver.find_element_by_id('fileupload0').send_keys(r'D:/Homework.pdf')  # modify
+driver.find_element_by_id('fileupload0').send_keys(r'D:\Homework.pdf')  # modify
 time.sleep(1)
 # 发表话题
 driver.find_element_by_xpath("//div[@class='rt huifu']//input").click()
@@ -350,7 +350,7 @@ else:
         time.sleep(2)
         driver.find_element_by_xpath('//*/table/tbody/tr[1]/td[1]/a/img').click()
     print('上传子回复附件')
-    driver.find_element_by_xpath(add_attch).send_keys(r'D:/review.docx')  # modify
+    driver.find_element_by_xpath(add_attch).send_keys(r'D:\review.docx')  # modify
     # driver.find_elements_by_xpath("//input[@name='fileupload']").pop(ran_hf).send_keys(r'D:/review.docx')
     time.sleep(1)
     print('发表子回复')
@@ -437,7 +437,7 @@ print('ckeditor传MP4')
 # AutoIt v3
 # os.system("D:/Video.exe")
 print('上传答疑附件')
-driver.find_element_by_id('fileupload').send_keys(r'D:/Photo.jpg')  # modify
+driver.find_element_by_id('fileupload').send_keys(r'D:\Photo.jpg')  # modify
 driver.find_element_by_xpath('//*[@id="saveBtn"]').click()
 time.sleep(2)
 try:
@@ -629,7 +629,7 @@ driver.find_element_by_xpath("//body[starts-with(@class,'cke')]").send_keys('学
 # 跳出iframe
 driver.switch_to.default_content()
 # driver.find_element_by_id('fileupload').send_keys(r'/Users/xiaodaxing/Desktop/Race.pdf')  # Mac上传文件
-# driver.find_element_by_id('fileupload').send_keys(r'D:/review.docx')  # modify
+# driver.find_element_by_id('fileupload').send_keys(r'D:\review.docx')  # modify
 time.sleep(1)
 driver.find_element_by_xpath('//input[@id="submitButton"]').click()
 time.sleep(2)
