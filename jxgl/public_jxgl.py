@@ -28,6 +28,7 @@ class LoginJXGL():
         print(driver.find_element_by_xpath("//li[@class='active']//span[@class='title']").text)
         time.sleep(5)
         driver.quit()
+        print("填写问卷测试完毕")
     # 历史评估查看
     def view_evaluation(self,driver):
         driver.find_element_by_xpath("//ul[@class='page-sidebar-menu']//li[5]//a[1]").click()
@@ -40,5 +41,6 @@ class LoginJXGL():
         driver.find_element_by_xpath("//a[@class='btn btn-pgfh']").click()
         time.sleep(5)
         driver.quit()
+        print("历史评估测试完毕")
 
 
