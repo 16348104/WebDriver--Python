@@ -11,6 +11,7 @@ class Test_JXGL():
     def __init__(self):
         self.driver = webdriver.Chrome()
         # self.driver = webdriver.Firefox()
+        # self.driver = webdriver.Ie()
         # Mac os
         # self.driver = webdriver.Safari()
         # self.driver = webdriver.Chrome(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/chromedriver')  # MacOS
@@ -18,6 +19,7 @@ class Test_JXGL():
         # Eng_info模拟环境
         self.driver.get('http://info.syx.thcic.cn')
         self.driver.maximize_window()
+        print('测试浏览器:' + self.driver.name)
         time.sleep(2)
 
     # 登录
@@ -32,8 +34,6 @@ class Test_JXGL():
         # print(A2.value, B2.value)
         # print(user, password)
         LoginJXGL().userlogin(self.driver, user, password)
-        time.sleep(10)
-        print("登录info")
 
 
 # 执行测试
