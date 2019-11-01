@@ -74,8 +74,8 @@ print("======登录网络学堂=====")
 print(driver.title)
 print('测试浏览器:' + driver.name)
 ticks = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-# 计算明天时间
-tomorrow = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time() + 3600))
+# # 计算明天时间
+# tomorrow = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time() + 3600))
 # print("当前时间戳为:", ticks)
 # print ("当前时间戳为:", tomorrow)
 driver.find_element_by_name('i_user').send_keys('2004980847')
