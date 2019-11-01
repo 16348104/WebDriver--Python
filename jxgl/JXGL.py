@@ -4,7 +4,7 @@ from selenium import webdriver
 from openpyxl import *
 import xlrd
 # //table[@class='table table-bordered']//tbody//tr[1]//td[3]//ul[1]//li
-from public import LoginJXGL
+from public_jxgl import LoginJXGL
 
 
 class Test_JXGL():
@@ -24,17 +24,15 @@ class Test_JXGL():
     def login(self):
         wb = load_workbook(r'E:\sample.xlsx', read_only=True)
         my_sheet = wb.worksheets[0]
-        A2 = my_sheet["A2"]
-        B2 = my_sheet["B2"]
+        # A2 = my_sheet["A2"]
+        # B2 = my_sheet["B2"]
         # 用cell 函数
-        # user = my_sheet.cell(row=2, column=1)
-        # password = my_sheet.cell(row=2, column=2)
+        user = my_sheet.cell(row=2, column=1).value
+        password = my_sheet.cell(row=2, column=2).value
         # print(A2.value, B2.value)
-        user = A2.value
-        password = B2.value
         # print(user, password)
-        LoginJXGL.userlogin(self.driver, user, password)
-        time.sleep(2)
+        LoginJXGL().userlogin(self.driver, user, password)
+        time.sleep(10)
         print("登录info")
 
 
