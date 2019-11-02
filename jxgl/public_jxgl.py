@@ -41,6 +41,6 @@ class LoginJXGL():
         driver.find_element_by_xpath("//a[@class='btn btn-pgfh']").click()
         time.sleep(5)
         driver.quit()
-        print("历史评估测试完毕")
+        print("查阅历史评估测试完毕")
 
 
