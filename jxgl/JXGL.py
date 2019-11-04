@@ -63,6 +63,6 @@ class Test_JXGL():
 
 # 执行测试
 # Test_JXGL().login()
-# Test_JXGL().questionaire()
-Test_JXGL().evaluation()
+Test_JXGL().questionaire()
+# Test_JXGL().evaluation()
 
