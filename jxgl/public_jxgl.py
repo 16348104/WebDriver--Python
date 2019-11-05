@@ -32,9 +32,9 @@ class LoginJXGL():
         driver.find_element_by_xpath('//tr[1]//td[6]//a[1]').click()
         time.sleep(3)
         print('教师评价')
-        jspj = len(driver.find_elements_by_xpath("//table[@class='table table-bordered']//tbody//tr"))
-        print("教师评价列表", jspj)
-        for i in range(0, jspj):
+        js_evaluate = len(driver.find_elements_by_xpath("//table[@class='table table-bordered']//tbody//tr"))
+        print("教师评价列表", js_evaluate)
+        for i in range(0, js_evaluate):
             # 点第一颗心
             driver.find_elements_by_xpath(
                 "//table[@class='table table-bordered']//li[1]").pop(i).click()
@@ -51,13 +51,12 @@ class LoginJXGL():
         except NoSuchElementException as msg:
             print('本课程没助教!', msg)
         else:
-            zjpj = len(driver.find_elements_by_xpath("//table[@class='table table-bordered third']//tbody//tr"))
-            print("助教评价列表", zjpj)
-            for i in range(0, jspj):
+            zj_evaluate = len(driver.find_elements_by_xpath("//table[@class='table table-bordered third']//tbody//tr"))
+            print("助教评价列表", zj_evaluate)
+            for i in range(0, zj_evaluate):
                 # 点第一颗心
                 driver.find_elements_by_xpath(
-                    "//table[@class='table table-bordered']//li[1]").pop(
-                    i).click()
+                    "//table[@class='table table-bordered']//li[1]").pop(i).click()
         # 保存并前往下一课
         try:
             driver.find_element_by_xpath("//*[@class='btngrouppg btn3']//a[2]")
@@ -65,7 +64,13 @@ class LoginJXGL():
             print('弹框消息:', driver.find_element_by_xpath("//div[@class='aui_content']//strong"))
         except NoSuchElementException as msg:
             print('本学期所有课程已评估！', msg)
-        driver.quit()
+        print('建议与意见')
+        proposal = len(driver.find_element_by_xpath('//*[@id="xswjtxFormid"]//textarea'))
+        print('textarea:', proposal)
+        for i in range(0, proposal):
+            driver.find_elements_by_xpath('//*[@id="xswjtxFormid"]//textarea').pop(i).send_key(
+                "Writing task: Reflections on Pericles’ WordsInstructions:How does Athens look like in Pericles' words? Which aspect of it appeals to you most?Write an essay to present your reflection on these Writin!")
+        # driver.quit()
         print("填写问卷测试完毕")
 
     # 历史评估查看
