@@ -3,6 +3,7 @@ import random
 
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.common.keys import Keys
 
 
 class LoginJXGL():
@@ -11,6 +12,7 @@ class LoginJXGL():
         # print("public:"user, password)
         driver.find_element_by_xpath('//*[@id="userName"]').send_keys(username)
         driver.find_element_by_xpath('//input[@name="password"]').send_keys(password)
+        time.sleep(1)
         driver.find_element_by_xpath('//td[@class="but"]/input').click()
         time.sleep(3)
         print("登录信息门户")
@@ -29,54 +31,70 @@ class LoginJXGL():
     # 评估问卷填写
     def fill_questionaire(self, driver):
         driver.find_element_by_xpath("//ul[@class='page-sidebar-menu']//li[4]//a[1]").click()
+        time.sleep(1)
         print(driver.find_element_by_xpath("//li[@class='active']//span[@class='title']").text)
         driver.find_element_by_xpath('//tr[1]//td[6]//a[1]').click()
-        time.sleep(3)
+        time.sleep(4)
         print('教师评价')
-        js_evaluate = len(driver.find_elements_by_xpath("//table[@class='table table-bordered']//tbody//tr"))
-        print("教师评价列表", js_evaluate)
-        for i in range(0, js_evaluate):
+        js_pg = len(driver.find_elements_by_xpath("//table[@class='table table-bordered']//tbody//tr"))
+        print("教师评价项", js_pg)
+        for i in range(0, js_pg):
             # 点第一颗心
             driver.find_elements_by_xpath(
                 "//table[@class='table table-bordered']//li[1]").pop(i).click()
+            time.sleep(0.5)
         # 保存教师评价
-        driver.find_element_by_xpath("//*[@class='btngrouppg btn3']//a[3]").click()
-        time.sleep(1)
-        print('弹框消息:', driver.find_element_by_xpath("//div[@class='aui_content']//strong"))
+        driver.execute_script("document.documentElement.scrollTop = 10000;")  # 滚动条
+        # driver.find_element_by_xpath("//div[@class='jxpg container-fluid']//a[2]").click()
+        # print('弹框消息:', driver.find_element_by_xpath("//div[@class='aui_content']//strong"))
+        # time.sleep(2)
         print('课程评价')
         driver.find_element_by_xpath("//table[@class='table table-bordered second']//tbody//li[7]").click()
-        time.sleep(2)
-        # 助教评价
+        print('助教评价')
         try:
             driver.find_element_by_xpath("//table[@class='table table-bordered third']")
         except NoSuchElementException as msg:
             print('本课程没助教!', msg)
         else:
-            zj_evaluate = len(driver.find_elements_by_xpath("//table[@class='table table-bordered third']//tbody//tr"))
-            print("助教评价列表", zj_evaluate)
-            for i in range(0, zj_evaluate):
+            zj_pg = len(driver.find_elements_by_xpath("//table[@class='table table-bordered third']//tbody//tr"))
+            print("助教评价列表", zj_pg)
+            for i in range(0, zj_pg):
                 # 点第一颗心
                 driver.find_elements_by_xpath(
                     "//table[@class='table table-bordered']//li[1]").pop(i).click()
-        # 保存并前往下一课
-        try:
-            driver.find_element_by_xpath("//*[@class='btngrouppg btn3']//a[2]")
-            time.sleep(1)
-            print('弹框消息:', driver.find_element_by_xpath("//div[@class='aui_content']//strong"))
-        except NoSuchElementException as msg:
-            print('本学期所有课程已评估！', msg)
+                time.sleep(0.5)
         print('建议与意见')
-        proposal = len(driver.find_element_by_xpath('//*[@id="xswjtxFormid"]//textarea'))
+        proposal = len(driver.find_elements_by_xpath('//*[@id="xswjtxFormid"]//textarea'))
         print('textarea:', proposal)
         for i in range(0, proposal):
-            driver.find_elements_by_xpath('//*[@id="xswjtxFormid"]//textarea').pop(i).send_key(
+            driver.find_elements_by_xpath('//*[@id="xswjtxFormid"]//textarea').pop(i).clear()
+            time.sleep(0.5)
+            driver.find_elements_by_xpath('//*[@id="xswjtxFormid"]//textarea').pop(i).send_keys(
                 "Writing task: Reflections on Pericles’ WordsInstructions:How does Athens look like in Pericles' words? Which aspect of it appeals to you most?Write an essay to present your reflection on these Writin!")
+            time.sleep(0.5)
+        # 保存并前往下一课
+        try:
+            driver.find_element_by_xpath("//*[@class='btngrouppg btn3']//a[2]").click()
+            time.sleep(2)
+            print('弹框:', driver.find_element_by_xpath("//div[@class='aui_content']//strong").text)
+            time.sleep(2)
+            driver.find_element_by_xpath('//button[@class="aui_state_highlight"]').send_keys(Keys.ENTER)
+        except NoSuchElementException as msg:
+            print('本学期所有课程已评估！', msg)
+        time.sleep(2)
+        print('弹框:', driver.find_element_by_xpath("//div[@class='aui_content']//strong").text)
+        driver.find_element_by_xpath("//*[@class='aui_buttons']//button").send_keys(Keys.ENTER)
+        time.sleep(2)
         print('切换课程')
-        driver.find_elements_by_xpath('//*[@id="controlw"]/i').click()
+        driver.find_element_by_xpath('//*[@id="controlw"]/i').click()
+        time.sleep(1)
         cj_list = len(driver.find_elements_by_xpath("//*[@id='youwindow']//a"))
-        ran_list = random.randint(1, cj_list)
+        ran_list = random.randrange(0, cj_list - 1)
         print('随机数', ran_list)
-        driver.find_elements_by_xpath("//*[@id='youwindow']//a").pop(list).click()
+        driver.find_elements_by_xpath("//*[@id='youwindow']//a").pop(ran_list).click()
+        time.sleep(2)
+        print('弹框:', driver.find_element_by_xpath("//div[@class='aui_content']//strong").text)
+        driver.find_element_by_xpath('//button[@class="aui_state_highlight"]').send_keys(Keys.ENTER)
         time.sleep(3)
         # driver.quit()
         print("填写问卷测试完毕")

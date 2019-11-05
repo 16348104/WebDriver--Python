@@ -48,6 +48,7 @@ class Test_JXGL():
         LoginJXGL().userlogin(self.driver, username, password)
         LoginJXGL().fill_questionaire(self.driver)
 
+
     # 查阅历史问卷
     def evaluation(self):
         wb = load_workbook(r'E:\sample.xlsx', read_only=True)
