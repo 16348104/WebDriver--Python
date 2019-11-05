@@ -1,4 +1,5 @@
 import time
+import random
 
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
@@ -70,6 +71,13 @@ class LoginJXGL():
         for i in range(0, proposal):
             driver.find_elements_by_xpath('//*[@id="xswjtxFormid"]//textarea').pop(i).send_key(
                 "Writing task: Reflections on Pericles’ WordsInstructions:How does Athens look like in Pericles' words? Which aspect of it appeals to you most?Write an essay to present your reflection on these Writin!")
+        print('切换课程')
+        driver.find_elements_by_xpath('//*[@id="controlw"]/i').click()
+        cj_list = len(driver.find_elements_by_xpath("//*[@id='youwindow']//a"))
+        ran_list = random.randint(1, cj_list)
+        print('随机数', ran_list)
+        driver.find_elements_by_xpath("//*[@id='youwindow']//a").pop(list).click()
+        time.sleep(3)
         # driver.quit()
         print("填写问卷测试完毕")
 
