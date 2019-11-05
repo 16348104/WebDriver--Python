@@ -1,6 +1,7 @@
 import time
 
 from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException
 
 
 class LoginJXGL():
@@ -36,11 +37,10 @@ class LoginJXGL():
         for i in range(0, jspj):
             # 点第一颗心
             driver.find_elements_by_xpath(
-                "//table[@class='table table-bordered']//tbody//tr[1]//td[3]//ul[1]//li[1]").pop(
-                i).click()
+                "//table[@class='table table-bordered']//li[1]").pop(i).click()
         # 保存教师评价
         driver.find_element_by_xpath("//*[@class='btngrouppg btn3']//a[3]").click()
-        time.sleep(2)
+        time.sleep(1)
         print('弹框消息:', driver.find_element_by_xpath("//div[@class='aui_content']//strong"))
         print('课程评价')
         driver.find_element_by_xpath("//table[@class='table table-bordered second']//tbody//li[7]").click()
@@ -48,19 +48,23 @@ class LoginJXGL():
         # 助教评价
         try:
             driver.find_element_by_xpath("//table[@class='table table-bordered third']")
-        except:
-            print('此课程没有助教!')
+        except NoSuchElementException as msg:
+            print('本课程没助教!', msg)
         else:
             zjpj = len(driver.find_elements_by_xpath("//table[@class='table table-bordered third']//tbody//tr"))
             print("助教评价列表", zjpj)
             for i in range(0, jspj):
                 # 点第一颗心
                 driver.find_elements_by_xpath(
-                    "//table[@class='table table-bordered']//tbody//tr[1]//td[3]//ul[1]//li[1]").pop(
+                    "//table[@class='table table-bordered']//li[1]").pop(
                     i).click()
         # 保存并前往下一课
-        driver.find_element_by_xpath("//*[@class='btngrouppg btn3']//a[2]")
-        time.sleep(2)
+        try:
+            driver.find_element_by_xpath("//*[@class='btngrouppg btn3']//a[2]")
+            time.sleep(1)
+            print('弹框消息:', driver.find_element_by_xpath("//div[@class='aui_content']//strong"))
+        except NoSuchElementException as msg:
+            print('本学期所有课程已评估！', msg)
         driver.quit()
         print("填写问卷测试完毕")
 
