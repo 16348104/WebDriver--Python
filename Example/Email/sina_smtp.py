@@ -12,11 +12,11 @@ from email.mime.image import MIMEImage
 # 设置服务器所需信息
 fromaddr = 'dxx2018@sina.cn'  # 邮件发送方邮箱地址
 password = '1caa85b5a6e13b7d'  # 密码(部分邮箱为授权码)
-toaddrs = ['yumj@mail.tsinghua.edu.cn', 'xdx2016@tsinghua.edu.cn']  # 邮件接受方邮箱地址，注意需要[]包裹，这意味着你可以写多个邮件地址群发
+toaddrs = ['xiesp@tsinghua.edu.cn', 'xdx2016@tsinghua.edu.cn']  # 邮件接受方邮箱地址，注意需要[]包裹，这意味着你可以写多个邮件地址群发
 # 设置email信息
 # ---------------------------发送字符串的邮件-----------------------------
 # 邮件内容设置
-message = MIMEText('此为系统邮件，请勿直接回复！', 'plain', 'utf-8')
+message = MIMEText('此为系统测试邮件，请勿直接回复！', 'plain', 'utf-8')
 # 邮件主题
 message['Subject'] = '教学评估测试完成!'
 # 发送方信息
@@ -32,7 +32,7 @@ try:
     server = smtplib.SMTP('smtp.sina.cn')  # 新浪邮箱服务器地址，端口默认为25
     server.login(fromaddr, password)
     server.sendmail(fromaddr, toaddrs, message.as_string())
-    print('Success')
+    print('Success,Email has send out!')
     server.quit()
 
 except smtplib.SMTPException as e:

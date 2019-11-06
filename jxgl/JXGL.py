@@ -1,4 +1,5 @@
 import time
+import os
 
 from selenium import webdriver
 from openpyxl import *
@@ -19,7 +20,8 @@ class Test_JXGL():
         self.driver.get('http://info.syx.thcic.cn')
         self.driver.maximize_window()
         print('测试浏览器:' + self.driver.name)
-        time.sleep(2)
+        time.sleep(3)
+        self.driver.quit()
 
     # 登录
     def login(self):
@@ -43,11 +45,10 @@ class Test_JXGL():
         # A2 = my_sheet["A2"]
         # B2 = my_sheet["B2"]
         # 用cell 函数
-        username = my_sheet.cell(row=2, column=1).value
-        password = my_sheet.cell(row=2, column=2).value
+        username = my_sheet.cell(row=3, column=1).value
+        password = my_sheet.cell(row=3, column=2).value
         LoginJXGL().userlogin(self.driver, username, password)
         LoginJXGL().fill_questionaire(self.driver)
-
 
     # 查阅历史问卷
     def evaluation(self):
@@ -62,8 +63,9 @@ class Test_JXGL():
         LoginJXGL().view_evaluation(self.driver)
 
 
-# 执行测试
-# Test_JXGL().login()
-Test_JXGL().questionaire()
-# Test_JXGL().evaluation()
 
+# 执行测试
+Test_JXGL().login()
+# Test_JXGL().questionaire()
+# Test_JXGL().evaluation()
+# Test_JXGL().LoginJXGL().email()
