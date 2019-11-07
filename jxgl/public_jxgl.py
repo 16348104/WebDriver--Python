@@ -10,7 +10,7 @@ from selenium.webdriver.common.keys import Keys
 class LoginJXGL():
     # 登录
     def userlogin(self, driver, username, password):
-        # print("public:"user, password)
+        print("public:", username, password)
         driver.find_element_by_xpath('//*[@id="userName"]').send_keys(username)
         driver.find_element_by_xpath('//input[@name="password"]').send_keys(password)
         time.sleep(1)
@@ -40,17 +40,17 @@ class LoginJXGL():
         js_pg = len(driver.find_elements_by_xpath("//table[@class='table table-bordered']//tbody//tr"))
         print("教师评价项", js_pg)
         for i in range(0, js_pg):
-            # 点第三颗心
+            # 点第一颗心
             driver.find_elements_by_xpath(
-                "//table[@class='table table-bordered']//li[3]").pop(i).click()
-            time.sleep(0.5)
+                "//table[@class='table table-bordered']//li[1]").pop(i).click()
+            time.sleep(1)
         # 保存教师评价
-        driver.execute_script("document.documentElement.scrollTop = 10000;")  # 滚动条
         # driver.find_element_by_xpath("//div[@class='jxpg container-fluid']//a[2]").click()
         # print('弹框消息:', driver.find_element_by_xpath("//div[@class='aui_content']//strong"))
         # time.sleep(2)
         print('课程评价')
-        driver.find_element_by_xpath("//table[@class='table table-bordered second']//tbody//li[7]").click()
+        # 点第三颗心
+        driver.find_element_by_xpath("//table[@class='table table-bordered second']//tbody//li[3]").click()
         print('助教评价')
         try:
             driver.find_element_by_xpath("//table[@class='table table-bordered third']")
@@ -60,10 +60,10 @@ class LoginJXGL():
             zj_pg = len(driver.find_elements_by_xpath("//table[@class='table table-bordered third']//tbody//tr"))
             print("助教评价列表", zj_pg)
             for i in range(0, zj_pg):
-                # 点第三颗心
+                # 点第二颗心
                 driver.find_elements_by_xpath(
-                    "//table[@class='table table-bordered']//li[3]").pop(i).click()
-                time.sleep(0.5)
+                    "//table[@class='table table-bordered']//li[2]").pop(i).click()
+                time.sleep(1)
         print('建议与意见')
         proposal = len(driver.find_elements_by_xpath('//*[@id="xswjtxFormid"]//textarea'))
         print('textarea:', proposal)
@@ -72,20 +72,43 @@ class LoginJXGL():
             time.sleep(0.5)
             driver.find_elements_by_xpath('//*[@id="xswjtxFormid"]//textarea').pop(i).send_keys(
                 "Writing task: Reflections on Pericles’ WordsInstructions:How does Athens look like in Pericles' words? Which aspect of it appeals to you most?Write an essay to present your reflection on these Writin!")
-            time.sleep(0.5)
+            time.sleep(1)
         # 保存并前往下一课
+        driver.execute_script("document.documentElement.scrollTop = 10000;")  # 滚动条
+        msg_success = "操作成功，评估关闭前可再次操作"
         try:
             driver.find_element_by_xpath("//*[@class='btngrouppg btn3']//a[2]").click()
             time.sleep(2)
-            try:
-                print('弹框:', driver.find_element_by_xpath("//div[@class='aui_content']//strong").text)
+            # try:
+            msg_pj = driver.find_element_by_xpath("//div[@class='aui_content']//strong").text
+            print('弹框:', msg_pj)
+            time.sleep(2)
+            if (msg_pj != msg_success):
+                print("修改教师评价")
+                # 点修改按钮
+                driver.find_element_by_xpath('//*[@class="aui_state_highlight"]/following-sibling::button').click()
                 time.sleep(2)
-                driver.find_element_by_xpath('//button[@class="aui_state_highlight"]').send_keys(Keys.ENTER)
+                for i in range(0, js_pg):
+                    # 点第5颗心
+                    driver.find_elements_by_xpath(
+                        "//table[@class='table table-bordered']//li[5]").pop(i).click()
+                    time.sleep(1)
+                # 点保存
+                driver.execute_script("document.documentElement.scrollTop = 10000;")  # 滚动条
+                driver.find_element_by_xpath("//*[@class='jxpg container-fluid']//a[3]").click()
                 time.sleep(2)
                 print('弹框:', driver.find_element_by_xpath("//div[@class='aui_content']//strong").text)
+                # 点关闭
                 driver.find_element_by_xpath("//*[@class='aui_buttons']//button").send_keys(Keys.ENTER)
-            except NoSuchElementException as msg:
-                print('本课程已评估,前往下一课!', msg)
+                # 点下一课
+                time.sleep(2)
+                driver.find_element_by_xpath("//*[@class='jxpg container-fluid']//a[2]").click()
+            # 点不修改
+            # driver.find_element_by_xpath('//*[@class="aui_state_highlight"]').send_keys(Keys.ENTER)
+            # 关闭
+            # driver.find_element_by_xpath("//*[@class='aui_buttons']//button").send_keys(Keys.ENTER)
+            # except NoSuchElementException as msg:
+            # print('本课程已评估,前往下一课!', msg)
         except NoSuchElementException as msg:
             print('本学期所有课程都已评估！', msg)
         time.sleep(2)
@@ -99,8 +122,14 @@ class LoginJXGL():
         time.sleep(2)
         print('弹框:', driver.find_element_by_xpath("//div[@class='aui_content']//strong").text)
         driver.find_element_by_xpath('//button[@class="aui_state_highlight"]').send_keys(Keys.ENTER)
-        time.sleep(3)
+        time.sleep(2)
+        # 返回列表
+        driver.find_element_by_xpath("//*[@class='jxpg container-fluid']//a[1]").send_keys(Keys.ENTER)
+        time.sleep(1)
+        driver.find_element_by_xpath('//button[@class="aui_state_highlight"]').send_keys(Keys.ENTER)
         print("填写问卷测试完毕")
+        driver.delete_all_cookies()
+        time.sleep(3)
         driver.quit()
 
     # 历史评估查看

@@ -21,7 +21,7 @@ class Test_JXGL():
         self.driver.maximize_window()
         print('测试浏览器:' + self.driver.name)
         time.sleep(3)
-        self.driver.quit()
+        # self.driver.quit()
 
     # 登录
     def login(self):
@@ -47,6 +47,8 @@ class Test_JXGL():
         # 用cell 函数
         username = my_sheet.cell(row=3, column=1).value
         password = my_sheet.cell(row=3, column=2).value
+        # username = '2017012040'
+        # password = 'a123456'
         LoginJXGL().userlogin(self.driver, username, password)
         LoginJXGL().fill_questionaire(self.driver)
         LoginJXGL().email()
@@ -64,9 +66,7 @@ class Test_JXGL():
         LoginJXGL().view_evaluation(self.driver)
 
 
-
 # 执行测试
-Test_JXGL().login()
-# Test_JXGL().questionaire()
+# Test_JXGL().login()
+Test_JXGL().questionaire()
 # Test_JXGL().evaluation()
-# Test_JXGL().LoginJXGL().email()

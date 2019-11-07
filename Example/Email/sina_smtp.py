@@ -6,13 +6,13 @@ import smtplib
 from email.mime.text import MIMEText
 # 处理多种形态的邮件主体我们需要 MIMEMultipart 类
 from email.mime.multipart import MIMEMultipart
-# 处理图片需要 MIMEImage 类
+# 处理图片需要 MIMEImage 类   b396d7b686e6d9d9
 from email.mime.image import MIMEImage
 
 # 设置服务器所需信息
-fromaddr = 'dxx2018@sina.cn'  # 邮件发送方邮箱地址
-password = '1caa85b5a6e13b7d'  # 密码(部分邮箱为授权码)
-toaddrs = ['xiesp@tsinghua.edu.cn', 'xdx2016@tsinghua.edu.cn']  # 邮件接受方邮箱地址，注意需要[]包裹，这意味着你可以写多个邮件地址群发
+fromaddr = 'chercheren2008@sina.com'  # 邮件发送方邮箱地址
+password = 'b396d7b686e6d9d9'  # 密码(部分邮箱为授权码)
+toaddrs = ['xiesp@tsinghua.edu.cn', 'wlxt@tsinghua.edu.cn']  # 邮件接受方邮箱地址，注意需要[]包裹，这意味着你可以写多个邮件地址群发
 # 设置email信息
 # ---------------------------发送字符串的邮件-----------------------------
 # 邮件内容设置
