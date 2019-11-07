@@ -49,6 +49,7 @@ class Test_JXGL():
         password = my_sheet.cell(row=3, column=2).value
         LoginJXGL().userlogin(self.driver, username, password)
         LoginJXGL().fill_questionaire(self.driver)
+        LoginJXGL().email()
 
     # 查阅历史问卷
     def evaluation(self):
