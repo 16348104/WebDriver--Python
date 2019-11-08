@@ -38,8 +38,8 @@ class Test_JXGL():
         time.sleep(5)
         self.driver.quit()
 
-    # 填写问卷
-    def questionaire(self):
+    # 填写未评估课程问卷
+    def questionaire_wp(self):
         wb = load_workbook(r'E:\sample.xlsx', read_only=True)
         my_sheet = wb.worksheets[0]
         # A2 = my_sheet["A2"]
@@ -47,11 +47,24 @@ class Test_JXGL():
         # 用cell 函数
         username = my_sheet.cell(row=3, column=1).value
         password = my_sheet.cell(row=3, column=2).value
-        # username = '2017012040'
-        # password = 'a123456'
         LoginJXGL().userlogin(self.driver, username, password)
-        LoginJXGL().fill_questionaire(self.driver)
-        LoginJXGL().email()
+        LoginJXGL().fill_questionaire_wp(self.driver)
+        self.driver.quit()
+
+        # 填写已评估课程问卷
+    def questionaire_yp(self):
+        wb = load_workbook(r'E:\sample.xlsx', read_only=True)
+        my_sheet = wb.worksheets[0]
+        # A2 = my_sheet["A2"]
+        # B2 = my_sheet["B2"]
+        # 用cell 函数
+        username = my_sheet.cell(row=2, column=1).value
+        password = my_sheet.cell(row=2, column=2).value
+        LoginJXGL().userlogin(self.driver, username, password)
+        LoginJXGL().fill_questionaire_yp(self.driver)
+        # LoginJXGL().email()
+        self.driver.quit()
+
 
     # 查阅历史问卷
     def evaluation(self):
@@ -64,9 +77,11 @@ class Test_JXGL():
         password = my_sheet.cell(row=2, column=2).value
         LoginJXGL().userlogin(self.driver, username, password)
         LoginJXGL().view_evaluation(self.driver)
+        # LoginJXGL().email()
 
 
 # 执行测试
 # Test_JXGL().login()
-Test_JXGL().questionaire()
-# Test_JXGL().evaluation()
+# Test_JXGL().questionaire_wp()
+Test_JXGL().questionaire_yp()
+Test_JXGL().evaluation()
