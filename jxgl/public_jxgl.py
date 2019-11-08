@@ -134,15 +134,16 @@ class LoginJXGL():
 
     # 历史评估查看
     def view_evaluation(self, driver):
+        # 进入课程
         driver.find_element_by_xpath("//ul[@class='page-sidebar-menu']//li[5]//a[1]").click()
         print(driver.find_element_by_xpath("//li[@class='active']//span[@class='title']").text)
         time.sleep(2)
         driver.find_element_by_xpath("//tr[1]//td[5]//a[1]").click()
         driver.execute_script("document.documentElement.scrollTop = 10000;")  # 滚动条
-        time.sleep(5)
-        driver.execute_script("document.documentElement.scrollTop = 0;")  # 滚动条
+        time.sleep(3)
+        driver.find_element_by_xpath("//span[@class='go-top']").click()
         driver.find_element_by_xpath("//a[@class='btn btn-pgfh']").click()
-        time.sleep(5)
+        time.sleep(3)
         driver.quit()
         print("查阅历史评估测试完毕")
 
