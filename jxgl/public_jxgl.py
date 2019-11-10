@@ -132,7 +132,7 @@ class LoginJXGL():
         driver.find_element_by_xpath("//a[@class='btn btn-pgfh']").send_keys(Keys.ENTER)
         time.sleep(1)
         driver.find_element_by_xpath('//button[@class="aui_state_highlight"]').send_keys(Keys.ENTER)
-        print("填写问卷测试完毕")
+        print("填写未评问卷测试完毕")
         driver.delete_all_cookies()
         time.sleep(3)
         # driver.quit()
@@ -185,7 +185,7 @@ class LoginJXGL():
             time.sleep(1)
         # 保存评价
         driver.execute_script("document.documentElement.scrollTop = 10000;")  # 滚动条
-        msg_success = "操作成功，评估关闭前可再次操作"
+        # msg_success = "操作成功，评估关闭前可再次操作"
         try:
             driver.find_element_by_xpath("//*[@class='btngrouppg btn3']//a[2]").click()
             time.sleep(2)
@@ -236,9 +236,37 @@ class LoginJXGL():
         driver.find_element_by_xpath("//a[@class='btn btn-pgfh']").send_keys(Keys.ENTER)
         time.sleep(1)
         driver.find_element_by_xpath('//button[@class="aui_state_highlight"]').send_keys(Keys.ENTER)
-        print("填写问卷测试完毕")
+        print("填写已评问卷测试完毕")
         driver.delete_all_cookies()
         time.sleep(3)
+
+    # 转换评估课程
+    def change_list(self, driver):
+        print('切换评估课程')
+        driver.find_element_by_xpath("//ul[@class='page-sidebar-menu']//li[4]//a[1]").click()
+        time.sleep(1)
+        print(driver.find_element_by_xpath("//li[@class='active']//span[@class='title']").text)
+        driver.find_element_by_xpath('//tr[1]//td[6]//a[1]').click()
+        time.sleep(2)
+        print('当前课程名:', driver.find_element_by_xpath("//div[@class='head']").text)
+        driver.find_element_by_xpath('//*[@id="controlw"]/i').click()
+        time.sleep(1)
+        cj_list = len(driver.find_elements_by_xpath("//*[@id='youwindow']//a"))
+        ran_list = random.randrange(0, cj_list - 1)
+        print('随机数', ran_list)
+        driver.find_elements_by_xpath("//*[@id='youwindow']//a").pop(ran_list).click()
+        time.sleep(2)
+        print('弹框:', driver.find_element_by_xpath("//div[@class='aui_content']//strong").text)
+        driver.find_element_by_xpath('//button[@class="aui_state_highlight"]').send_keys(Keys.ENTER)
+        time.sleep(2)
+        print('课程名:', driver.find_element_by_xpath("//div[@class='head']").text)
+        driver.execute_script("document.documentElement.scrollTop = 10000;")
+        driver.find_element_by_xpath("//span[@class='go-top']").click()
+        # 返回列表
+        driver.find_element_by_xpath("//a[@class='btn btn-pgfh']").send_keys(Keys.ENTER)
+        time.sleep(1)
+        driver.find_element_by_xpath('//button[@class="aui_state_highlight"]').send_keys(Keys.ENTER)
+
 
     # 历史评估查看
     def view_evaluation(self, driver):
@@ -250,7 +278,7 @@ class LoginJXGL():
         driver.execute_script("document.documentElement.scrollTop = 10000;")  # 滚动条
         time.sleep(3)
         driver.find_element_by_xpath("//span[@class='go-top']").click()
-        # 返回
+        # 返回首页
         driver.find_element_by_xpath("//a[@class='btn btn-pgfh']").click()
         time.sleep(3)
         driver.quit()

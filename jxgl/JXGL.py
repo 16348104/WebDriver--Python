@@ -1,6 +1,5 @@
 import time
 
-
 from selenium import webdriver
 from openpyxl import *
 import xlrd
@@ -52,6 +51,7 @@ class Test_JXGL():
         self.driver.quit()
 
         # 填写已评估课程问卷
+
     def questionaire_yp(self):
         wb = load_workbook(r'E:\sample.xlsx', read_only=True)
         my_sheet = wb.worksheets[0]
@@ -65,6 +65,19 @@ class Test_JXGL():
         # LoginJXGL().email()
         self.driver.quit()
 
+    # 转换评估课程
+    def change(self):
+        readbook = xlrd.open_workbook(r'E:\sample.xlsx')
+        # writebook = xlwt.Workbook()#打开一个excel
+        # sheet = writebook.add_sheet('test')#在打开的excel中添加一个sheet
+        # 获取读入的文件的第一个sheet
+        table = readbook.sheets()[0]
+        username = table.cell(2, 0).value  # 获取2行1列的表格值
+        password = table.cell(2, 1).value  # 获取2行2列的表格值
+        print(username, password)
+        LoginJXGL().userlogin(self.driver, username, password)
+        LoginJXGL().change_list(self.driver)
+        self.driver.quit()
 
     # 查阅历史问卷
     def evaluation(self):
@@ -85,3 +98,4 @@ class Test_JXGL():
 # Test_JXGL().questionaire_wp()
 Test_JXGL().questionaire_yp()
 Test_JXGL().evaluation()
+Test_JXGL().change()
