@@ -1,0 +1,10 @@
+1561734872330	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/mc/8cprv2kd7cx2qt6whrfy1rm80000gn/T/rust_mozprofile.bFuKVIbo7fOj"
+1561734873211	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1561734873211	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1561734873211	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1561734875425	Marionette	INFO	Listening on port 51528
+1561734875525	Marionette	WARN	TLS certificate errors will be ignored for this session
+1561734887714	Marionette	INFO	Stopped listening on port 51528
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
