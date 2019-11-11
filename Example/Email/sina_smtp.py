@@ -12,7 +12,7 @@ from email.mime.image import MIMEImage
 # 设置服务器所需信息
 fromaddr = 'chercheren2008@sina.com'  # 邮件发送方邮箱地址
 password = 'b396d7b686e6d9d9'  # 密码(部分邮箱为授权码)
-toaddrs = ['xiesp@tsinghua.edu.cn', 'wlxt@tsinghua.edu.cn']  # 邮件接受方邮箱地址，注意需要[]包裹，这意味着你可以写多个邮件地址群发
+toaddrs = ['xdx2016@mail.tsinghua.edu.cn', 'wlxt@tsinghua.edu.cn']  # 邮件接受方邮箱地址，注意需要[]包裹，这意味着你可以写多个邮件地址群发
 # 设置email信息
 # ---------------------------发送字符串的邮件-----------------------------
 # 邮件内容设置

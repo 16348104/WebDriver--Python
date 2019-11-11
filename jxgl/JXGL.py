@@ -24,7 +24,7 @@ class Test_JXGL():
 
     # 登录
     def login(self):
-        wb = load_workbook(r'E:\sample.xlsx', read_only=True)
+        wb = load_workbook(r'sample.xlsx', read_only=True)
         my_sheet = wb.worksheets[0]
         # A2 = my_sheet["A2"]
         # B2 = my_sheet["B2"]
@@ -39,7 +39,7 @@ class Test_JXGL():
 
     # 填写未评估课程问卷
     def questionaire_wp(self):
-        wb = load_workbook(r'E:\sample.xlsx', read_only=True)
+        wb = load_workbook(r'sample.xlsx', read_only=True)
         my_sheet = wb.worksheets[0]
         # A2 = my_sheet["A2"]
         # B2 = my_sheet["B2"]
@@ -53,7 +53,7 @@ class Test_JXGL():
         # 填写已评估课程问卷
 
     def questionaire_yp(self):
-        wb = load_workbook(r'E:\sample.xlsx', read_only=True)
+        wb = load_workbook(r'sample.xlsx', read_only=True)
         my_sheet = wb.worksheets[0]
         # A2 = my_sheet["A2"]
         # B2 = my_sheet["B2"]
@@ -63,11 +63,12 @@ class Test_JXGL():
         LoginJXGL().userlogin(self.driver, username, password)
         LoginJXGL().fill_questionaire_yp(self.driver)
         # LoginJXGL().email()
+        time.sleep(3)
         self.driver.quit()
 
     # 转换评估课程
     def change(self):
-        readbook = xlrd.open_workbook(r'E:\sample.xlsx')
+        readbook = xlrd.open_workbook(r'sample.xlsx')
         # writebook = xlwt.Workbook()#打开一个excel
         # sheet = writebook.add_sheet('test')#在打开的excel中添加一个sheet
         # 获取读入的文件的第一个sheet
@@ -77,11 +78,13 @@ class Test_JXGL():
         print(username, password)
         LoginJXGL().userlogin(self.driver, username, password)
         LoginJXGL().change_list(self.driver)
+        LoginJXGL().email()
+        time.sleep(3)
         self.driver.quit()
 
     # 查阅历史问卷
     def evaluation(self):
-        wb = load_workbook(r'E:\sample.xlsx', read_only=True)
+        wb = load_workbook(r'sample.xlsx', read_only=True)
         my_sheet = wb.worksheets[0]
         # A2 = my_sheet["A2"]
         # B2 = my_sheet["B2"]
@@ -90,12 +93,14 @@ class Test_JXGL():
         password = my_sheet.cell(row=2, column=2).value
         LoginJXGL().userlogin(self.driver, username, password)
         LoginJXGL().view_evaluation(self.driver)
+        time.sleep(3)
         # LoginJXGL().email()
+        self.driver.quit()
 
 
 # 执行测试
 # Test_JXGL().login()
 # Test_JXGL().questionaire_wp()
-Test_JXGL().questionaire_yp()
-Test_JXGL().evaluation()
+# Test_JXGL().questionaire_yp()
+# Test_JXGL().evaluation()
 Test_JXGL().change()

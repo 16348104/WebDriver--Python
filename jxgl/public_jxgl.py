@@ -1,7 +1,9 @@
 import os
 import time
 import random
-
+import smtplib
+from email.header import Header
+from email.mime.text import MIMEText
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
@@ -248,7 +250,7 @@ class LoginJXGL():
         print(driver.find_element_by_xpath("//li[@class='active']//span[@class='title']").text)
         driver.find_element_by_xpath('//tr[1]//td[6]//a[1]').click()
         time.sleep(2)
-        print('当前课程名:', driver.find_element_by_xpath("//div[@class='head']").text)
+        print('当前课程:', driver.find_element_by_xpath("//div[@class='head']").text)
         driver.find_element_by_xpath('//*[@id="controlw"]/i').click()
         time.sleep(1)
         cj_list = len(driver.find_elements_by_xpath("//*[@id='youwindow']//a"))
@@ -259,9 +261,11 @@ class LoginJXGL():
         print('弹框:', driver.find_element_by_xpath("//div[@class='aui_content']//strong").text)
         driver.find_element_by_xpath('//button[@class="aui_state_highlight"]').send_keys(Keys.ENTER)
         time.sleep(2)
-        print('课程名:', driver.find_element_by_xpath("//div[@class='head']").text)
+        print('转换后课程:', driver.find_element_by_xpath("//div[@class='head']").text)
         driver.execute_script("document.documentElement.scrollTop = 10000;")
+        time.sleep(2)
         driver.find_element_by_xpath("//span[@class='go-top']").click()
+        time.sleep(2)
         # 返回列表
         driver.find_element_by_xpath("//a[@class='btn btn-pgfh']").send_keys(Keys.ENTER)
         time.sleep(1)
@@ -286,4 +290,29 @@ class LoginJXGL():
 
     # 发邮件
     def email(self):
-        os.system("E:/163study/WebDriver--Python/Example/Email/sina_smtp.py")
+        fromaddr = 'chercheren2008@sina.com'
+        password = 'b396d7b686e6d9d9'
+        toaddrs = ['xdx@pku.org.cn', 'wlxt@tsinghua.edu.cn']
+        # 设置email信息
+        # ---------------------------发送字符串的邮件-----------------------------
+        # 邮件内容设置
+        message = MIMEText('此为系统测试邮件，请勿直接回复！', 'plain', 'utf-8')
+        # 邮件主题
+        message['Subject'] = '教学评估测试完成!'
+        # 发送方信息
+        message['From'] = fromaddr
+        # 接受方信息可以不填
+        # message['To'] = toaddrs[0]
+        # message['To'] = toaddrs[1]
+        # 登录并发送邮件
+        try:
+            server = smtplib.SMTP('smtp.sina.cn')  # 新浪邮箱服务器地址，端口默认为25
+            server.login(fromaddr, password)
+            server.sendmail(fromaddr, toaddrs, message.as_string())
+            print('Success,Email has send out!')
+            server.quit()
+
+        except smtplib.SMTPException as e:
+            print('error', e)  # 打印错误
+        # os.system("E:/163study/WebDriver--Python/Example/Email/sina_smtp.py")
+
