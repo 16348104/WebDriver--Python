@@ -34,8 +34,7 @@ class Test_JXGL():
         # print(A2.value, B2.value)
         # print(user, password)
         LoginJXGL().userlogin(self.driver, username, password)
-        time.sleep(5)
-        self.driver.quit()
+
 
     # 填写未评估课程问卷
     def questionaire_wp(self):
@@ -48,7 +47,7 @@ class Test_JXGL():
         password = my_sheet.cell(row=3, column=2).value
         LoginJXGL().userlogin(self.driver, username, password)
         LoginJXGL().fill_questionaire_wp(self.driver)
-        self.driver.quit()
+
 
         # 填写已评估课程问卷
 
@@ -63,8 +62,7 @@ class Test_JXGL():
         LoginJXGL().userlogin(self.driver, username, password)
         LoginJXGL().fill_questionaire_yp(self.driver)
         # LoginJXGL().email()
-        time.sleep(3)
-        self.driver.quit()
+
 
     # 转换评估课程
     def change(self):
@@ -79,8 +77,7 @@ class Test_JXGL():
         LoginJXGL().userlogin(self.driver, username, password)
         LoginJXGL().change_list(self.driver)
         LoginJXGL().email()
-        time.sleep(3)
-        self.driver.quit()
+
 
     # 查阅历史问卷
     def evaluation(self):
