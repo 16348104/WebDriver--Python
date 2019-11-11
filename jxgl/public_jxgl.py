@@ -6,6 +6,7 @@ from email.header import Header
 from email.mime.text import MIMEText
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys
 
 
@@ -29,16 +30,13 @@ class LoginJXGL():
         window_2 = driver.current_window_handle
         print('所有句柄:', windows)
         print("当前窗口：", window_2)
-        driver.delete_all_cookies()
-        time.sleep(2)
-        driver.quit()
 
     # 未评估问卷填写
     def fill_questionaire_wp(self, driver):
         driver.find_element_by_xpath("//ul[@class='page-sidebar-menu']//li[4]//a[1]").click()
         time.sleep(1)
         print(driver.find_element_by_xpath("//li[@class='active']//span[@class='title']").text)
-        driver.find_element_by_xpath('//tr[2]//td[6]//a[1]').click()
+        driver.find_element_by_xpath('//tr[11]//td[6]//a[1]').click()
         time.sleep(3)
         print('课程名:', driver.find_element_by_xpath("//div[@class='head']").text)
         print('教师评价')
@@ -67,7 +65,7 @@ class LoginJXGL():
             for i in range(0, zj_pg):
                 # 点第二颗心
                 driver.find_elements_by_xpath(
-                    "//table[@class='table table-bordered']//li[2]").pop(i).click()
+                    "//table[@class='table table-bordered third']//li[2]").pop(i).click()
                 time.sleep(1)
         print('建议与意见')
         driver.find_element_by_xpath("//span[@class='go-top']").click()
@@ -91,7 +89,6 @@ class LoginJXGL():
             time.sleep(2)
             if (msg_pj != msg_success):
                 print("修改教师评价")
-                driver.find_element_by_xpath("//span[@class='go-top']").click()
                 # 点修改按钮
                 driver.find_element_by_xpath('//*[@class="aui_state_highlight"]/following-sibling::button').click()
                 time.sleep(2)
@@ -137,16 +134,13 @@ class LoginJXGL():
         time.sleep(1)
         driver.find_element_by_xpath('//button[@class="aui_state_highlight"]').send_keys(Keys.ENTER)
         print("填写未评问卷测试完毕")
-        driver.delete_all_cookies()
-        time.sleep(2)
-        driver.quit()
 
-    # 已评估问卷填写
+    # 已评估问卷填写2017013478
     def fill_questionaire_yp(self, driver):
         driver.find_element_by_xpath("//ul[@class='page-sidebar-menu']//li[4]//a[1]").click()
         time.sleep(1)
         print(driver.find_element_by_xpath("//li[@class='active']//span[@class='title']").text)
-        driver.find_element_by_xpath('//tr[1]//td[6]//a[1]').click()
+        driver.find_element_by_xpath('//tr[4]//td[6]//a[1]').click()
         time.sleep(3)
         print('课程名:', driver.find_element_by_xpath("//div[@class='head']").text)
         print('教师评价')
@@ -175,7 +169,7 @@ class LoginJXGL():
             for i in range(0, zj_pg):
                 # 点第二颗心
                 driver.find_elements_by_xpath(
-                    "//table[@class='table table-bordered']//li[2]").pop(i).click()
+                    "//table[@class='table table-bordered third']//li[2]").pop(i).click()
                 time.sleep(1)
         print('建议与意见')
         driver.find_element_by_xpath("//span[@class='go-top']").click()
@@ -241,8 +235,6 @@ class LoginJXGL():
         time.sleep(1)
         driver.find_element_by_xpath('//button[@class="aui_state_highlight"]').send_keys(Keys.ENTER)
         print("填写已评问卷测试完毕")
-        driver.delete_all_cookies()
-        time.sleep(3)
 
     # 转换评估课程
     def change_list(self, driver):
@@ -278,22 +270,36 @@ class LoginJXGL():
         # 进入课程
         driver.find_element_by_xpath("//ul[@class='page-sidebar-menu']//li[5]//a[1]").click()
         print(driver.find_element_by_xpath("//li[@class='active']//span[@class='title']").text)
+        # 选学期
         time.sleep(2)
-        driver.find_element_by_xpath("//tr[1]//td[5]//a[1]").click()
-        driver.execute_script("document.documentElement.scrollTop = 10000;")  # 滚动条
+        driver.find_element_by_xpath('//*[@id="lsxnxq"]').click()
+        # 定位到2019-2020秋季学期
         time.sleep(3)
+        above = driver.find_element_by_xpath('//*[@id="lsxnxq"]//option[11]')
+        # 悬停到2019-2020秋季学期
+        # ActionChains(driver).move_to_element(above).perform()
+        # time.sleep(1)
+        above.click()
+        driver.find_element_by_xpath("//tr[1]//td[5]//a[1]").click()
+        time.sleep(2)
+        print('当前课程:', driver.find_element_by_xpath("//div[@class='head']").text)
+        # 点汉堡包
+        driver.find_element_by_xpath("//i[@class='sidebar-toggler hidden-phone']").click()
+
+        time.sleep(2)
+        driver.execute_script("document.documentElement.scrollTop = 10000;")  # 滚动条
+        time.sleep(2)
         driver.find_element_by_xpath("//span[@class='go-top']").click()
         # 返回首页
         driver.find_element_by_xpath("//a[@class='btn btn-pgfh']").click()
-        time.sleep(3)
-        driver.quit()
+        time.sleep(4)
         print("查阅历史评估测试完毕")
 
     # 发邮件
     def email(self):
         fromaddr = 'chercheren2008@sina.com'
         password = 'b396d7b686e6d9d9'
-        toaddrs = ['xdx@pku.org.cn', 'wlxt@tsinghua.edu.cn']
+        toaddrs = ['xdx@pku.org.cn', 'xiesp@tsinghua.edu.cn']
         # 设置email信息
         # ---------------------------发送字符串的邮件-----------------------------
         # 邮件内容设置
@@ -317,4 +323,8 @@ class LoginJXGL():
             print('error', e)  # 打印错误
         # os.system("E:/163study/WebDriver--Python/Example/Email/sina_smtp.py")
 
-
+    # 关闭浏览器
+    def closed(self, driver):
+        driver.delete_all_cookies()
+        time.sleep(3)
+        driver.quit()
