@@ -29,8 +29,8 @@ class LoginJXGL():
         window_2 = driver.current_window_handle
         print('所有句柄:', windows)
         print("当前窗口：", window_2)
-        time.sleep(2)
         driver.delete_all_cookies()
+        time.sleep(2)
         driver.quit()
 
     # 未评估问卷填写
@@ -138,8 +138,8 @@ class LoginJXGL():
         driver.find_element_by_xpath('//button[@class="aui_state_highlight"]').send_keys(Keys.ENTER)
         print("填写未评问卷测试完毕")
         driver.delete_all_cookies()
-        time.sleep(3)
-
+        time.sleep(2)
+        driver.quit()
 
     # 已评估问卷填写
     def fill_questionaire_yp(self, driver):
@@ -273,7 +273,6 @@ class LoginJXGL():
         time.sleep(1)
         driver.find_element_by_xpath('//button[@class="aui_state_highlight"]').send_keys(Keys.ENTER)
 
-
     # 历史评估查看
     def view_evaluation(self, driver):
         # 进入课程
@@ -317,4 +316,5 @@ class LoginJXGL():
         except smtplib.SMTPException as e:
             print('error', e)  # 打印错误
         # os.system("E:/163study/WebDriver--Python/Example/Email/sina_smtp.py")
+
 
