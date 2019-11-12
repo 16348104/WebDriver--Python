@@ -272,20 +272,14 @@ class LoginJXGL():
         print(driver.find_element_by_xpath("//li[@class='active']//span[@class='title']").text)
         # 选学期
         time.sleep(2)
-        driver.find_element_by_xpath('//*[@id="lsxnxq"]').click()
+        above = driver.find_element_by_xpath('//*[@id="lsxnxq"]')
         # 定位到2019-2020秋季学期
-        time.sleep(3)
-        above = driver.find_element_by_xpath('//*[@id="lsxnxq"]//option[11]')
-        # 悬停到2019-2020秋季学期
-        # ActionChains(driver).move_to_element(above).perform()
-        # time.sleep(1)
-        above.click()
+        above.find_element_by_xpath('//*[@id="lsxnxq"]/option[11]').click()
         driver.find_element_by_xpath("//tr[1]//td[5]//a[1]").click()
         time.sleep(2)
         print('当前课程:', driver.find_element_by_xpath("//div[@class='head']").text)
         # 点汉堡包
         driver.find_element_by_xpath("//i[@class='sidebar-toggler hidden-phone']").click()
-
         time.sleep(2)
         driver.execute_script("document.documentElement.scrollTop = 10000;")  # 滚动条
         time.sleep(2)
