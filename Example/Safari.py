@@ -5,17 +5,27 @@ from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys
-driver = webdriver.Safari()
-driver.get('http://info.syx.thcic.cn')
-driver.maximize_window()
-driver.find_element_by_xpath('//*[@id="userName"]').send_keys("2017013478")
-driver.find_element_by_xpath('//input[@name="password"]').send_keys('a123456')
-time.sleep(4)
-driver.find_element_by_xpath('//td[@class="but"]/input').send_keys(Keys.ENTER)
-print("登录信息门户")
+
+browser = webdriver.Safari()
+browser.get('http://weibo.com')
+browser.maximize_window()
 time.sleep(10)
-driver.find_element_by_xpath('//*[@id="menu"]/li[1]/a[8]').click()
+
+
+
+# 不记住
+browser.find_element_by_xpath("//input[@id='login_form_savestate']").click()
 time.sleep(3)
-print("进入教学评估")
-time.sleep(10)
-driver.quit()
+# 输入帐号密码
+# browser.find_element_by_xpath("//input[@id='loginname']").send_keys('dxx2018@sina.cn')
+# browser.find_element_by_xpath("//input[@type='password']").send_keys('2008@sina')
+# time.sleep(4)
+# 点击登录
+# browser.find_element_by_xpath("//div[@id='pl_unlogin_home_login']//div[6]//a[1]").click()
+time.sleep(15)
+browser.quit()
+# 查找页面中的所有 点赞按钮
+# allzan = browser.find_elements_by_css_selector('em.W_ficon.ficon_praised.S_txt2')
+#
+# time.sleep(10)
+# browser.quit()
