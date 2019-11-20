@@ -9,11 +9,11 @@ from public_jxgl import LoginJXGL
 class Test_JXGL():
     def __init__(self):
         # self.driver = webdriver.Chrome()
-        # self.driver = webdriver.Firefox()
+        self.driver = webdriver.Firefox()
         # self.driver = webdriver.Ie()
         # Mac os
         # self.driver = webdriver.Safari()
-        self.driver = webdriver.Firefox(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/geckodriver')
+        # self.driver = webdriver.Firefox(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/geckodriver')
         # self.driver = webdriver.Chrome(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/chromedriver')
         # info模拟环境
         self.driver.get('http://info.syx.thcic.cn')
