@@ -28,3 +28,4 @@ JavaScript warning: http://jxgl.syx.thcic.cn/jxpg/res/ui/metronic/js/jquery-1.10
 JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
 JavaScript warning: http://jxgl.syx.thcic.cn/jxpg/res/ui/metronic/js/jquery-1.10.1.min.js, line 2: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
 JavaScript warning: http://jxgl.syx.thcic.cn/jxpg/res/ui/metronic/js/jquery-1.10.1.min.js, line 2: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+1574240338344	Marionette	INFO	Stopped listening on port 55916
