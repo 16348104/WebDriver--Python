@@ -16,11 +16,12 @@ class LoginJXGL():
         print("public:", username, password)
         driver.find_element_by_xpath('//*[@id="userName"]').send_keys(username)
         driver.find_element_by_xpath('//input[@name="password"]').send_keys(password)
-        time.sleep(1)
-        driver.find_element_by_xpath('//td[@class="but"]/input').click()
-        time.sleep(3)
+        time.sleep(4)
+        driver.find_element_by_xpath('//td[@class="but"]/input').send_keys(Keys.ENTER)
         print("登录信息门户")
+        time.sleep(5)
         driver.find_element_by_xpath('//*[@id="menu"]/li[1]/a[8]').click()
+        # driver.find_element_by_xpath('//*[@id="menu"]/li[1]/a[contains(@href,"112")]').click()
         time.sleep(3)
         print("进入教学评估")
         # # 切换【第二个窗口】
@@ -30,6 +31,8 @@ class LoginJXGL():
         window_2 = driver.current_window_handle
         print('所有句柄:', windows)
         print("当前窗口：", window_2)
+        time.sleep(20)
+        driver.quit()
 
     # 未评估问卷填写
     def fill_questionaire_wp(self, driver):

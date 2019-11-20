@@ -8,26 +8,28 @@ from public_jxgl import LoginJXGL
 
 class Test_JXGL():
     def __init__(self):
-        self.driver = webdriver.Chrome()
+        # self.driver = webdriver.Chrome()
         # self.driver = webdriver.Firefox()
         # self.driver = webdriver.Ie()
         # Mac os
         # self.driver = webdriver.Safari()
-        # self.driver = webdriver.Chrome(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/chromedriver'）
+        self.driver = webdriver.Firefox(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/geckodriver')
+        # self.driver = webdriver.Chrome(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/chromedriver')
         # info模拟环境
         self.driver.get('http://info.syx.thcic.cn')
         self.driver.maximize_window()
         print('测试浏览器:' + self.driver.name)
         time.sleep(3)
 
-    # 登录
+        # 登录
+
     def login(self):
         wb = load_workbook(r'sample.xlsx', read_only=True)
         my_sheet = wb.worksheets[0]
         username = my_sheet.cell(row=2, column=1).value
         password = my_sheet.cell(row=2, column=2).value
         LoginJXGL().userlogin(self.driver, username, password)
-        time.sleep(10)
+
 
     # 填写未评估课程问卷2017012040
     def questionaire_wp(self):
@@ -43,6 +45,7 @@ class Test_JXGL():
         LoginJXGL().closed(self.driver)
 
         # 填写已评估课程问卷2017013478
+
     def questionaire_yp(self):
         wb = load_workbook(r'sample.xlsx', read_only=True)
         my_sheet = wb.worksheets[0]
@@ -84,10 +87,9 @@ class Test_JXGL():
         # LoginJXGL().email()
 
 
-
 # 执行测试
-# Test_JXGL().login()
+Test_JXGL().login()
 # Test_JXGL().questionaire_wp()
 # Test_JXGL().questionaire_yp()
 # Test_JXGL().change()
-Test_JXGL().evaluation()
+# Test_JXGL().evaluation()
