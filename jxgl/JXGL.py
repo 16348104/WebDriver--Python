@@ -30,7 +30,6 @@ class Test_JXGL():
         password = my_sheet.cell(row=2, column=2).value
         LoginJXGL().userlogin(self.driver, username, password)
 
-
     # 填写未评估课程问卷2017012040
     def questionaire_wp(self):
         wb = load_workbook(r'sample.xlsx', read_only=True)
