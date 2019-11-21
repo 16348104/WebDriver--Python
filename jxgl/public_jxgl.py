@@ -177,7 +177,7 @@ class LoginJXGL():
         print('建议与意见')
         driver.find_element_by_xpath("//span[@class='go-top']").click()
         proposal = len(driver.find_elements_by_xpath('//*[@id="xswjtxFormid"]//textarea'))
-        print('textarea:', proposal)
+        print('意见框:', proposal)
         for i in range(0, proposal):
             driver.find_elements_by_xpath('//*[@id="xswjtxFormid"]//textarea').pop(i).clear()
             time.sleep(0.5)
