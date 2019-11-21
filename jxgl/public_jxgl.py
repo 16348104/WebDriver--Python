@@ -31,8 +31,8 @@ class LoginJXGL():
         window_2 = driver.current_window_handle
         print('所有句柄:', windows)
         print("当前窗口：", window_2)
-        time.sleep(20)
-        driver.quit()
+        time.sleep(5)
+        # driver.quit()
 
     # 未评估问卷填写
     def fill_questionaire_wp(self, driver):
@@ -296,7 +296,7 @@ class LoginJXGL():
     def email(self):
         fromaddr = 'chercheren2008@sina.com'
         password = 'b396d7b686e6d9d9'
-        toaddrs = ['xdx@pku.org.cn', 'xiesp@tsinghua.edu.cn']
+        toaddrs = ['xdx@pku.org.cn', 'wlxt@tsinghua.edu.cn']
         # 设置email信息
         # ---------------------------发送字符串的邮件-----------------------------
         # 邮件内容设置
