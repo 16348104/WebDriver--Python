@@ -1,26 +1,23 @@
 import time
 
-
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys
 
-browser = webdriver.Safari()
-driver = webdriver.Firefox(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/geckodriver')
+# browser = webdriver.Safari()
+browser = webdriver.Firefox(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/geckodriver')
 browser.get('http://weibo.com')
 browser.maximize_window()
 time.sleep(10)
 
-
-
-# 不记住
+# 不记住用户名
 browser.find_element_by_xpath("//input[@id='login_form_savestate']").click()
 time.sleep(3)
 # 输入帐号密码
-# browser.find_element_by_xpath("//input[@id='loginname']").send_keys('dxx2018@sina.cn')
-# browser.find_element_by_xpath("//input[@type='password']").send_keys('2008@sina')
-# time.sleep(4)
+browser.find_element_by_xpath("//input[@id='loginname']").send_keys('dxx2018@sina.cn')
+browser.find_element_by_xpath("//input[@type='password']").send_keys('2008@sina')
+time.sleep(4)
 # 点击登录
 # browser.find_element_by_xpath("//div[@id='pl_unlogin_home_login']//div[6]//a[1]").click()
 time.sleep(15)
