@@ -5,3 +5,5 @@ out
 *.iml
 gradlew
 gradlew.bat
+wlxt/debug.log
+wlxt/geckodriver.log
