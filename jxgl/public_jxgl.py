@@ -6,7 +6,6 @@ from email.header import Header
 from email.mime.text import MIMEText
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys
 
 
@@ -31,6 +30,7 @@ class LoginJXGL():
         window_2 = driver.current_window_handle
         print('所有句柄:', windows)
         print("当前窗口：", window_2)
+        driver.maximize_window()
         time.sleep(5)
         # driver.quit()
 

@@ -10,10 +10,10 @@ class Test_JXGL():
     def __init__(self):
         # self.driver = webdriver.Chrome()
         # self.driver = webdriver.Firefox()
-        # self.driver = webdriver.Ie()
+        self.driver = webdriver.Ie()
         # Mac os
         # self.driver = webdriver.Safari()
-        self.driver = webdriver.Firefox(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/geckodriver')
+        # self.driver = webdriver.Firefox(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/geckodriver')
         # self.driver = webdriver.Chrome(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/chromedriver')
         # info模拟环境
         self.driver.get('http://info.syx.thcic.cn')
@@ -87,8 +87,8 @@ class Test_JXGL():
 
 
 # 执行测试
-# Test_JXGL().login()
+Test_JXGL().login()
 # Test_JXGL().questionaire_wp()
 # Test_JXGL().questionaire_yp()
 # Test_JXGL().change()
-Test_JXGL().evaluation()
+# Test_JXGL().evaluation()
