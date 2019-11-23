@@ -2,7 +2,7 @@ import time
 
 
 from selenium import webdriver
-from public2 import LoginInfo
+from Pub2 import LoginInfo
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys
 
