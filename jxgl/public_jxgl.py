@@ -21,7 +21,7 @@ class LoginJXGL():
         time.sleep(5)
         driver.find_element_by_xpath('//*[@id="menu"]/li[1]/a[8]').click()
         # driver.find_element_by_xpath('//*[@id="menu"]/li[1]/a[contains(@href,"112")]').click()
-        time.sleep(3)
+        time.sleep(4)
         print("进入教学评估")
         # # 切换【第二个窗口】
         windows = driver.window_handles
