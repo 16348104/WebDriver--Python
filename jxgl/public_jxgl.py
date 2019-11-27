@@ -4,7 +4,6 @@ import random
 import smtplib
 from email.header import Header
 from email.mime.text import MIMEText
-from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
 
@@ -18,9 +17,8 @@ class LoginJXGL():
         time.sleep(4)
         driver.find_element_by_xpath('//td[@class="but"]/input').send_keys(Keys.ENTER)
         print("登录信息门户")
-        time.sleep(5)
-        driver.find_element_by_xpath('//*[@id="menu"]/li[1]/a[8]').click()
-        # driver.find_element_by_xpath('//*[@id="menu"]/li[1]/a[contains(@href,"112")]').click()
+        time.sleep(10)
+        driver.find_element_by_xpath('//li[1]/a[8]').click()
         time.sleep(4)
         print("进入教学评估")
         # # 切换【第二个窗口】

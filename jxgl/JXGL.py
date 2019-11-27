@@ -4,6 +4,7 @@ from selenium import webdriver
 from openpyxl import *
 import xlrd
 from public_jxgl import LoginJXGL
+from selenium.webdriver.common.keys import Keys
 
 
 class Test_JXGL():
@@ -19,7 +20,6 @@ class Test_JXGL():
         self.driver.get('http://info.syx.thcic.cn')
         self.driver.maximize_window()
         print('测试浏览器:' + self.driver.name)
-        time.sleep(3)
 
         # 登录
 
