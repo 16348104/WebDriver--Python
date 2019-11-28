@@ -47,7 +47,7 @@ class LoginJXGL():
             # 点第一颗心
             driver.find_elements_by_xpath(
                 "//table[@class='table table-bordered']//li[1]").pop(i).click()
-            time.sleep(1)
+            time.sleep(1.5)
         # 保存教师评价
         # driver.find_element_by_xpath("//div[@class='jxpg container-fluid']//a[2]").click()
         # print('弹框消息:', driver.find_element_by_xpath("//div[@class='aui_content']//strong"))
@@ -244,7 +244,7 @@ class LoginJXGL():
         time.sleep(1)
         print(driver.find_element_by_xpath("//li[@class='active']//span[@class='title']").text)
         driver.find_element_by_xpath('//tr[1]//td[6]//a[1]').click()
-        time.sleep(2)
+        time.sleep(3)
         print('当前课程:', driver.find_element_by_xpath("//div[@class='head']").text)
         driver.find_element_by_xpath('//*[@id="controlw"]/i').click()
         time.sleep(1)
@@ -285,6 +285,8 @@ class LoginJXGL():
         driver.execute_script("document.documentElement.scrollTop = 10000;")  # 滚动条
         time.sleep(2)
         driver.find_element_by_xpath("//span[@class='go-top']").click()
+        driver.execute_script("document.documentElement.scrollTop = 10000;")  # 滚动条
+        time.sleep(1)
         # 返回首页
         driver.find_element_by_xpath("//a[@class='btn btn-pgfh']").click()
         time.sleep(4)
@@ -294,13 +296,13 @@ class LoginJXGL():
     def email(self):
         fromaddr = 'chercheren2008@sina.com'
         password = 'b396d7b686e6d9d9'
-        toaddrs = ['xdx@pku.org.cn', 'wlxt@tsinghua.edu.cn']
+        toaddrs = ['xdx@pku.org.cn', 'wlxt@tsinghua.edu.cn', 'billy11@tsinghua.edu.cn']
         # 设置email信息
         # ---------------------------发送字符串的邮件-----------------------------
         # 邮件内容设置
         message = MIMEText('此为系统测试邮件，请勿直接回复！', 'plain', 'utf-8')
         # 邮件主题
-        message['Subject'] = '教学评估测试完成!'
+        message['Subject'] = '教学评估自动化测试完成!'
         # 发送方信息
         message['From'] = fromaddr
         # 接受方信息可以不填

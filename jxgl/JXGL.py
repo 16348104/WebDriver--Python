@@ -87,8 +87,8 @@ class Test_JXGL():
 
 
 # 执行测试
-Test_JXGL().login()
+# Test_JXGL().login()
 # Test_JXGL().questionaire_wp()
 # Test_JXGL().questionaire_yp()
 # Test_JXGL().change()
-# Test_JXGL().evaluation()
+Test_JXGL().evaluation()
