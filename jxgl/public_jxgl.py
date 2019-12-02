@@ -296,7 +296,7 @@ class LoginJXGL():
     def email(self):
         fromaddr = 'chercheren2008@sina.com'
         password = 'b396d7b686e6d9d9'
-        toaddrs = ['xdx@pku.org.cn', 'wlxt@tsinghua.edu.cn', 'billy11@tsinghua.edu.cn']
+        toaddrs = ['xdx@pku.org.cn', 'wlxt@tsinghua.edu.cn']
         # 设置email信息
         # ---------------------------发送字符串的邮件-----------------------------
         # 邮件内容设置
