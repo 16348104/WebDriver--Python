@@ -292,6 +292,7 @@ class LoginJXGL():
         time.sleep(4)
         print("查阅历史评估测试完毕")
 
+
     # 发邮件
     def email(self):
         fromaddr = 'chercheren2008@sina.com'
