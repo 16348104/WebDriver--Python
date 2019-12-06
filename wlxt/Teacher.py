@@ -357,8 +357,8 @@ if zy_geren == 'true' and jf_fz == 'true':  # 个人分值作业
         except NoSuchElementException as msg:
             print('批阅截图', msg)
             driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'PZJ' + ".png")  # modify
-        driver.refresh()
-        time.sleep(2)
+        driver.back()
+        time.sleep(3)
         print('批量下载作业附件')
         driver.find_element_by_xpath('//*[@id="done"]//input[@class="head-checkbox"]').click()
         driver.find_element_by_xpath('//*[@id="operate1"]/a[2]').click()
@@ -367,6 +367,7 @@ if zy_geren == 'true' and jf_fz == 'true':  # 个人分值作业
                 "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
         except NoSuchElementException:
             pass
+        time.sleep(3)
 elif zy_geren == 'true' and jf_ffz == 'true':  # 个人非分值作业
     try:
         driver.find_element_by_xpath('//*[@id="done"]/tbody/tr/td[11]/a')  # 已交作业名单beforePiYue为空
@@ -420,6 +421,17 @@ elif zy_geren == 'true' and jf_ffz == 'true':  # 个人非分值作业
         except NoSuchElementException as msg:
             print('批阅截图', msg)
             driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'PZJ' + ".png")  # modify
+        driver.back()
+        time.sleep(3)
+        print('批量下载作业附件')
+        driver.find_element_by_xpath('//*[@id="done"]//input[@class="head-checkbox"]').click()
+        driver.find_element_by_xpath('//*[@id="operate1"]/a[2]').click()
+        try:
+            print('弹框结果:' + driver.find_element_by_css_selector(
+                "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+        except NoSuchElementException:
+            pass
+        time.sleep(3)
 elif zy_zu == 'true' and jf_fz == 'true':  # 分值组作业
     try:
         driver.find_element_by_xpath('//*[@id="done"]/tbody/tr/td[8]/a')  # 已交作业名单beforePiYue为空
