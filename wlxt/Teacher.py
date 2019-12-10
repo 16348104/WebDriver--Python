@@ -80,12 +80,13 @@ ticks = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 # print ("当前时间戳为:", tomorrow)
 driver.find_element_by_name('i_user').send_keys('2004980847')
 driver.find_element_by_name('i_pass').send_keys('123')
+time.sleep(1)
 # user = input('name:')
 # password = input('pw:"')
 # driver.find_element_by_name("i_user").send_keys(user)
 # driver.find_element_by_name("i_pass").send_keys(password)
 driver.find_element_by_id("loginButtonId").click()
-time.sleep(1)
+time.sleep(2)
 print(driver.title, "第1个窗口")
 # driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
 driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  # 开发环境60240202-0
@@ -314,12 +315,11 @@ driver.find_element_by_xpath("//*[@class='zhan']").click()  # 展开
 time.sleep(1)
 if zy_geren == 'true' and jf_fz == 'true':  # 个人分值作业
     try:
-        driver.find_element_by_xpath('//*[@id="done"]/tbody/tr/td[11]/a')  # 已交作业名单beforePiYue为空
+        driver.find_element_by_xpath('//*[@id="done"]//tr[1]/td[11]/a')  # 已交作业名单beforePiYue为空
     except NoSuchElementException as msg:
-        print('表中数据为空,作业未提交', msg)
+        print('表中数据为空作业未提交', msg)
         driver.find_element_by_xpath("//ul[@class='mytabs clearfix']/li[2]").click()
         driver.find_element_by_xpath('//*[@id="undo"]//th[1]/input').click()
-        time.sleep(2)
         print('批量设为已交')
         driver.find_element_by_xpath('//*[@id="operate2"]/a').click()
         time.sleep(1)
@@ -334,18 +334,30 @@ if zy_geren == 'true' and jf_fz == 'true':  # 个人分值作业
             print('批阅截图', msg)
             driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'PZJ' + ".png")  # modify
     else:
-        driver.find_element_by_xpath('//*[@id="done"]/tbody/tr/td[11]/a').click()  # 批阅作业
-        time.sleep(2)
+        # 批量下载作业
+        driver.find_element_by_xpath('//*[@id="done"]//input[@class="head-checkbox"]').click()
+        driver.find_element_by_xpath('//*[@id="operate1"]/a[2]').click()
         try:
-            driver.find_element_by_xpath('//*[@id="attachment222"]/div[2]/a[2]').click()  # 下载学生的作业附件
+            print('弹框结果:' + driver.find_element_by_css_selector(
+                "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+        except NoSuchElementException:
+            print('批量下载作业附件')
+        # 批阅第一个作业
+        driver.find_element_by_xpath('//*[@id="done"]//tr[1]/td[11]/a[1]').click()
+        time.sleep(3)
+        # 下载学生的作业附件
+        try:
+            driver.find_element_by_xpath('//*[@id="attachment222"]/div[2]/a[2]').click()
         except NoSuchElementException as msg:
             print('无上交作业附件', msg)
         driver.find_element_by_xpath("//*[@id='cj']").clear()
         gr_cj = random.randint(0, 100)
         print('成绩:', gr_cj)
-        driver.find_element_by_xpath("//*[@id='cj']").send_keys(gr_cj)  # 打分
+        # 打分
+        driver.find_element_by_xpath("//*[@id='cj']").send_keys(gr_cj)
         driver.find_element_by_xpath("//*[@id='documention']").clear()
-        driver.find_element_by_xpath("//*[@id='documention']").send_keys('个人作业已阅')  # 填评语
+        # 填评语
+        driver.find_element_by_xpath("//*[@id='documention']").send_keys('个人作业已阅')
         driver.find_element_by_id('fileupload').send_keys(
             r'D:/review.docx')  # modify      # 传评语附件
         time.sleep(1)
@@ -357,25 +369,16 @@ if zy_geren == 'true' and jf_fz == 'true':  # 个人分值作业
         except NoSuchElementException as msg:
             print('批阅截图', msg)
             driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'PZJ' + ".png")  # modify
-        driver.back()
-        time.sleep(3)
-        print('批量下载作业附件')
-        driver.find_element_by_xpath('//*[@id="done"]//input[@class="head-checkbox"]').click()
-        driver.find_element_by_xpath('//*[@id="operate1"]/a[2]').click()
-        try:
-            print('弹框结果:' + driver.find_element_by_css_selector(
-                "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
-        except NoSuchElementException:
-            pass
-        time.sleep(3)
+
 elif zy_geren == 'true' and jf_ffz == 'true':  # 个人非分值作业
     try:
-        driver.find_element_by_xpath('//*[@id="done"]/tbody/tr/td[11]/a')  # 已交作业名单beforePiYue为空
+        # 已交作业名单beforePiYue为空
+        driver.find_element_by_xpath('//*[@id="done"]//tr[1]/td[11]/a')
     except NoSuchElementException as msg:
-        print('表中数据为空,作业未提交', msg)
+        print('表中数据为空作业未提交', msg)
+        # 点未交名单
         driver.find_element_by_xpath("//ul[@class='mytabs clearfix']/li[2]").click()
         driver.find_element_by_xpath('//*[@id="undo"]//th[1]/input').click()
-        time.sleep(2)
         print('批量设为已交')
         driver.find_element_by_xpath('//*[@id="operate2"]/a').click()
         time.sleep(1)
@@ -390,7 +393,16 @@ elif zy_geren == 'true' and jf_ffz == 'true':  # 个人非分值作业
             print('批阅截图', msg)
             driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'PZJ' + ".png")  # modify
     else:
-        driver.find_element_by_xpath('//*[@id="done"]/tbody/tr/td[11]/a').click()  # 批阅作业
+        # 批量下载作业
+        driver.find_element_by_xpath('//*[@id="done"]//input[@class="head-checkbox"]').click()
+        driver.find_element_by_xpath('//*[@id="operate1"]/a[2]').click()
+        try:
+            print('弹框结果:' + driver.find_element_by_css_selector(
+                "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+        except NoSuchElementException:
+            print('批量下载作业附件')
+        # 批阅第一个作业
+        driver.find_element_by_xpath('//*[@id="done"]//tr[1]/td[11]/a[1]').click()
         time.sleep(1)
         try:
             driver.find_element_by_xpath("//a[@class='ml-10']")  # 学生作业附件
@@ -434,11 +446,36 @@ elif zy_geren == 'true' and jf_ffz == 'true':  # 个人非分值作业
         time.sleep(3)
 elif zy_zu == 'true' and jf_fz == 'true':  # 分值组作业
     try:
-        driver.find_element_by_xpath('//*[@id="done"]/tbody/tr/td[8]/a')  # 已交作业名单beforePiYue为空
+        driver.find_element_by_xpath('//*[@id="done"]//tr[1]/td[8]/a')  # 已交作业名单beforePiYue为空
     except NoSuchElementException as msg:
         print('表中数据为空,作业未提交', msg)
+        # 点未交名单
+        driver.find_element_by_xpath("//ul[@class='mytabs clearfix']/li[2]").click()
+        driver.find_element_by_xpath('//*[@id="undo"]//th[1]/input').click()
+        print('批量设为已交')
+        driver.find_element_by_xpath('//*[@id="operate2"]/a').click()
+        time.sleep(1)
+        print(driver.find_element_by_xpath("//div[@class='zeromodal-body']//div[@class='zeromodal-title1']").text)
+        driver.find_element_by_xpath(
+            "//div[contains(@class,'zeromodal-footer')]//button[@class='btn btn-primary']").click()
+        time.sleep(2)
+        try:
+            print('弹框结果:' + driver.find_element_by_css_selector(
+                "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+        except:
+            print('批阅截图', msg)
+            driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'PZJ' + ".png")  # modify
     else:
-        driver.find_element_by_xpath('//*[@id="done"]/tbody/tr/td[8]/a').click()  # 批阅作业
+        # 批量下载作业
+        driver.find_element_by_xpath('//*[@id="done"]//input[@class="head-checkbox"]').click()
+        driver.find_element_by_xpath('//*[@id="operate1"]/a[2]').click()
+        try:
+            print('弹框结果:' + driver.find_element_by_css_selector(
+                "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+        except NoSuchElementException:
+            print('批量下载作业附件')
+        # 批阅第一个组作业
+        driver.find_element_by_xpath('//*[@id="done"]//tr[1]/td[8]/a').click()
         time.sleep(1)
         try:
             driver.find_element_by_xpath('//*[@id="attachment2"]/div[2]/a[2]').click()  # 下载学生作业附件
@@ -463,11 +500,36 @@ elif zy_zu == 'true' and jf_fz == 'true':  # 分值组作业
             driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'PZY' + ".png")  # modify
 elif zy_zu == 'true' and jf_ffz == 'true':  # 非分值组作业
     try:
-        driver.find_element_by_xpath('//*[@id="done"]/tbody/tr/td[8]/a')  # 已交作业名单beforePiYue为空
+        driver.find_element_by_xpath('//*[@id="done"]//tr[1]/td[8]/a')  # 已交作业名单beforePiYue为空
     except NoSuchElementException as msg:
         print('表中数据为空,作业未提交', msg)
+        driver.find_element_by_xpath("//ul[@class='mytabs clearfix']/li[2]").click()
+        driver.find_element_by_xpath('//*[@id="undo"]//th[1]/input').click()
+        time.sleep(2)
+        print('批量设为已交')
+        driver.find_element_by_xpath('//*[@id="operate2"]/a').click()
+        time.sleep(1)
+        print(driver.find_element_by_xpath("//div[@class='zeromodal-body']//div[@class='zeromodal-title1']").text)
+        driver.find_element_by_xpath(
+            "//div[contains(@class,'zeromodal-footer')]//button[@class='btn btn-primary']").click()
+        time.sleep(2)
+        try:
+            print('弹框结果:' + driver.find_element_by_css_selector(
+                "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+        except:
+            print('批阅截图', msg)
+            driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'PZJ' + ".png")  # modify
     else:
-        driver.find_element_by_xpath('//*[@id="done"]/tbody/tr/td[8]/a').click()  # 批阅作业
+        # 批量下载作业
+        driver.find_element_by_xpath('//*[@id="done"]//input[@class="head-checkbox"]').click()
+        driver.find_element_by_xpath('//*[@id="operate1"]/a[2]').click()
+        try:
+            print('弹框结果:' + driver.find_element_by_css_selector(
+                "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+        except NoSuchElementException:
+            print('批量下载作业附件')
+        # 批阅第一个组作业
+        driver.find_element_by_xpath('//*[@id="done"]//tr[1]/td[8]/a').click()
         time.sleep(1)
         try:
             driver.find_element_by_xpath('//*[@id="attachment2"]/div[2]/a[2]').click()  # 下载学生作业附件
