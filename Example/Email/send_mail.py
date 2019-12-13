@@ -3,10 +3,10 @@ from email.header import Header
 from email.mime.text import MIMEText
 
 smtpsever = 'smtp.126.com'
-# password = input("input:")
-password = ''
-user = ''
-sender = ''
+password = input("input:")
+# password = ''
+user = 'xiaodaxing@126.com'
+sender = 'xiaodaxing@126.com'
 # receiver = ['yumj@tsinghua.edu.cn', 'xdx2016@tsinghua.edu.cn']
 receiver = '16348104@qq.com'
 # receiver0 = 'xdx2016@tsinghua.edu.cn'
