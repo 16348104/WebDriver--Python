@@ -312,12 +312,13 @@ time.sleep(2)
 # 批阅作业列表beforePageList
 driver.find_element_by_xpath('//tr[2]//td[8]//a[1]').click()  # 去批阅作业
 driver.find_element_by_xpath("//*[@class='zhan']").click()  # 展开
-time.sleep(1)
+time.sleep(2)
 if zy_geren == 'true' and jf_fz == 'true':  # 个人分值作业
     try:
         driver.find_element_by_xpath('//*[@id="done"]//tr[1]/td[11]/a')  # 已交作业名单beforePiYue为空
     except NoSuchElementException as msg:
         print('表中数据为空作业未提交', msg)
+        # 点未交名单
         driver.find_element_by_xpath("//ul[@class='mytabs clearfix']/li[2]").click()
         driver.find_element_by_xpath('//*[@id="undo"]//th[1]/input').click()
         print('批量设为已交')
