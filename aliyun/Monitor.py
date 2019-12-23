@@ -47,5 +47,4 @@ print('截图')
 driver.save_screenshot('C:/Users/zb/Downloads/FireShot/Monitor.png')
 current_time = time.strftime("%y-%m-%d %H:%M:%S", time.localtime(time.time()))
 print('在', current_time, '退出cloudmonitor')
-
-driver.close()
+driver.quit()
