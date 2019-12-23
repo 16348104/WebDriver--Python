@@ -5,8 +5,8 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
 
-driver = webdriver.Firefox()
-# driver = webdriver.Chrome()
+# driver = webdriver.Firefox()
+driver = webdriver.Chrome()
 # driver = webdriver.Chrome(
 #     executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/chromedriver')  # mac  chrome
 # driver = webdriver.Firefox(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/geckodriver')# mac  firefox
@@ -14,7 +14,7 @@ print("======登录阿里云监控=====")
 print('测试浏览器:' + driver.name)
 driver.get('https://cloudmonitor.console.aliyun.com')
 driver.maximize_window()
-driver.implicitly_wait(1)
+time.sleep(1)
 driver.switch_to.frame('alibaba-login-box')  # 切入框架
 driver.find_element_by_xpath('//*[@id="login"]/div[1]/i').click()
 # driver.find_element_by_xpath('//input[@id="fm-login-id"]').send_keys('')
@@ -24,7 +24,7 @@ driver.find_element_by_xpath('//*[@id="login"]/div[1]/i').click()
 #     Keys.ENTER)
 date = driver.find_element_by_xpath('//*[@id="login"]/div[2]/div/div[1]/div[2]/p').text
 print(date)
-time.sleep(20)
+time.sleep(15)
 driver.switch_to.default_content()
 time.sleep(2)
 # driver.find_element_by_css_selector(
@@ -37,9 +37,11 @@ time.sleep(4)
 print('站点管理')
 driver.get(
     'https://cloudmonitor.console.aliyun.com/?spm=5176.12818093.aliyun_sidebar.aliyun_sidebar_cms.488716d0VtQA3i#/newSite/list/')
-time.sleep(4)
+time.sleep(7)
 driver.find_element_by_xpath("//span[contains(text(),'网络学堂应用服务监控2')]").click()
-time.sleep(10)
+time.sleep(3)
+driver.find_element_by_xpath("//*[@class='icon-collapse-left']").click()
+time.sleep(13)
 print('截图')
 # driver.save_screenshot('/Users/xdx/Desktop/Monitor.png')  # mac
 driver.save_screenshot('C:/Users/zb/Downloads/FireShot/Monitor.png')
