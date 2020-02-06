@@ -37,12 +37,13 @@ import time
 # ==============
 
 # 打开课工场网站主页【第一个窗口】
-driver = webdriver.Chrome()
-driver.get('http://www.kgc.cn/')
+# driver = webdriver.Chrome()
+driver = webdriver.Firefox()
+driver.get('http://www.baidu.cn/')
 driver.maximize_window()
 # 点击热点关注，进入【第二个窗口】
-driver.find_element_by_link_text('热点关注').click()
-time.sleep(3)
+# driver.find_element_by_link_text('热点关注').click()
+time.sleep(5)
 # =========================================
 # 使用第一种方法切换浏览器【切换到第二个窗口】
 # windows = driver.window_handles
