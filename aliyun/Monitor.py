@@ -46,7 +46,14 @@ time.sleep(13)
 print('截图')
 # driver.save_screenshot('/Users/xdx/Desktop/Monitor.png')  # mac
 driver.save_screenshot('D:/Monitor.png')
-time.sleep(3)
+time.sleep(2)
+current_time = time.strftime("%y-%m-%d %H:%M:%S", time.localtime(time.time()))
+print(current_time, '退出cloudmonitor')
+# os.open('E:/WebDriver--Python/Example/Email/send_mail2.py')
+driver.delete_all_cookies()
+print('关闭浏览器，删除cookie')
+time.sleep(1)
+driver.quit()
 ##发邮件
 print('去发邮件!')
 import smtplib
@@ -84,11 +91,5 @@ smtp.login(user, password)
 smtp.sendmail(sender, receiver, msgRoot.as_string())
 smtp.quit()
 print('Success,Email has send out!')
-current_time = time.strftime("%y-%m-%d %H:%M:%S", time.localtime(time.time()))
-print(current_time, '退出cloudmonitor')
-# os.open('E:/WebDriver--Python/Example/Email/send_mail2.py')
-driver.delete_all_cookies()
-print('关闭浏览器，删除cookie')
-time.sleep(1)
-driver.quit()
+
 
