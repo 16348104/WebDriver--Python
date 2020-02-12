@@ -6,10 +6,10 @@ from selenium.webdriver.common.keys import Keys
 import time
 import os
 
-driver = webdriver.Firefox()
+# driver = webdriver.Firefox()
 # driver = webdriver.Chrome()
-# driver = webdriver.Chrome(
-#     executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/chromedriver')  # mac  chrome
+driver = webdriver.Chrome(
+    executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/chromedriver')  # mac  chrome
 # driver = webdriver.Firefox(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/geckodriver')# mac  firefox
 print("======登录阿里云监控=====")
 print('测试浏览器:' + driver.name)
@@ -25,9 +25,8 @@ driver.find_element_by_xpath('//*[@id="login"]/div[1]/i').click()
 #     Keys.ENTER)
 date = driver.find_element_by_xpath('//*[@id="login"]/div[2]/div/div[1]/div[2]/p').text
 print(date)
-time.sleep(15)
+time.sleep(5)
 driver.switch_to.default_content()
-time.sleep(2)
 # driver.find_element_by_css_selector(
 #     'body > div.viewframeContainer > div.aliyun-console-help-guide > div.help-guide-step.help-guide-step-1 > div.help-guide-step-header > button > i').click()
 time.sleep(2)
@@ -43,9 +42,9 @@ driver.find_element_by_xpath("//span[contains(text(),'网络学堂应用服务�
 time.sleep(3)
 driver.find_element_by_xpath("//*[@class='icon-collapse-left']").click()
 time.sleep(13)
-print('截图')
-# driver.save_screenshot('/Users/xdx/Desktop/Monitor.png')  # mac
-driver.save_screenshot('D:/Monitor.png')
+print('保存截图')
+driver.save_screenshot('/Users/xdx/Desktop/Monitor.png')  # mac
+# driver.save_screenshot('D:/Monitor.png')
 time.sleep(2)
 current_time = time.strftime("%y-%m-%d %H:%M:%S", time.localtime(time.time()))
 print(current_time, '退出cloudmonitor')
@@ -76,7 +75,8 @@ subject = '阿里云监控截图'
 msgRoot = MIMEText('<html><h3>Python Mail</h3></html>', 'html', 'utf-8')
 # msgRoot = MIMEText('此为系统测试邮件，请勿直接回复！', 'plain', 'utf-8')
 # mail_msg = 'Hello,Our task is done.'
-sendfile = open('D:/Monitor.png', 'rb').read()
+# sendfile = open('D:/Monitor.png', 'rb').read()
+sendfile = open('/Users/xdx/Desktop/Monitor.png', 'rb').read()  # mac
 att = MIMEText(sendfile, 'png', 'utf-8')
 att["Content-Type"] = 'application/octet-stream'
 att["Content-Disposition"] = 'attachment;filename="Monitor.png"'
