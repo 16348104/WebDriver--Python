@@ -107,7 +107,7 @@ print('获得:', score, '分')
 print('今天任务已完成!')
 current_time = time.strftime("%y-%m-%d %H:%M:%S", time.localtime(time.time()))
 print('在', current_time, '退出Dmz社区')
-browser.close()
+browser.quit()
 ##发邮件
 print('去发邮件!')
 smtpsever = 'smtp.126.com'

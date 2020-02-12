@@ -37,8 +37,8 @@ import time
 # ==============
 
 # 打开课工场网站主页【第一个窗口】
-# driver = webdriver.Chrome()
-driver = webdriver.Firefox()
+driver = webdriver.Chrome()
+# driver = webdriver.Firefox()
 driver.get('http://www.baidu.cn/')
 driver.maximize_window()
 # 点击热点关注，进入【第二个窗口】

@@ -20,7 +20,7 @@ browser.find_element_by_xpath("//input[@id='loginname']").send_keys('dxx2018@sin
 browser.find_element_by_xpath("//input[@type='password']").send_keys('2008@sina')
 time.sleep(4)
 # 点击登录
-# browser.find_element_by_xpath("//div[@id='pl_unlogin_home_login']//div[6]//a[1]").click()
+browser.find_element_by_xpath("//div[@id='pl_unlogin_home_login']//div[6]//a[1]").click()
 time.sleep(15)
 browser.quit()
 # 查找页面中的所有 点赞按钮
