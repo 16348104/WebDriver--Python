@@ -7,9 +7,9 @@ import time
 import os
 
 # driver = webdriver.Firefox()
-# driver = webdriver.Chrome()
-driver = webdriver.Chrome(
-    executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/chromedriver')  # mac  chrome
+driver = webdriver.Chrome()
+# driver = webdriver.Chrome(
+#     executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/chromedriver')  # mac  chrome
 # driver = webdriver.Firefox(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/geckodriver')# mac  firefox
 print("======登录阿里云监控=====")
 print('测试浏览器:' + driver.name)
@@ -29,7 +29,6 @@ time.sleep(5)
 driver.switch_to.default_content()
 # driver.find_element_by_css_selector(
 #     'body > div.viewframeContainer > div.aliyun-console-help-guide > div.help-guide-step.help-guide-step-1 > div.help-guide-step-header > button > i').click()
-time.sleep(2)
 print('站点监控')
 driver.get(
     'https://cloudmonitor.console.aliyun.com/?spm=5176.2020520111.aliyun_sidebar.aliyun_sidebar_cms.6ff9d103iaAGn8#/home/ecs')
@@ -43,16 +42,10 @@ time.sleep(3)
 driver.find_element_by_xpath("//*[@class='icon-collapse-left']").click()
 time.sleep(13)
 print('保存截图')
-driver.save_screenshot('/Users/xdx/Desktop/Monitor.png')  # mac
-# driver.save_screenshot('D:/Monitor.png')
+# driver.save_screenshot('/Users/xdx/Desktop/Monitor.png')  # mac
+driver.save_screenshot('D:/Monitor.png')
 time.sleep(2)
 current_time = time.strftime("%y-%m-%d %H:%M:%S", time.localtime(time.time()))
-print(current_time, '退出cloudmonitor')
-# os.open('E:/WebDriver--Python/Example/Email/send_mail2.py')
-driver.delete_all_cookies()
-print('关闭浏览器，删除cookie')
-time.sleep(1)
-driver.quit()
 ##发邮件
 print('去发邮件!')
 import smtplib
@@ -75,8 +68,8 @@ subject = '阿里云监控截图'
 msgRoot = MIMEText('<html><h3>Python Mail</h3></html>', 'html', 'utf-8')
 # msgRoot = MIMEText('此为系统测试邮件，请勿直接回复！', 'plain', 'utf-8')
 # mail_msg = 'Hello,Our task is done.'
-# sendfile = open('D:/Monitor.png', 'rb').read()
-sendfile = open('/Users/xdx/Desktop/Monitor.png', 'rb').read()  # mac
+sendfile = open('D:/Monitor.png', 'rb').read()
+# sendfile = open('/Users/xdx/Desktop/Monitor.png', 'rb').read()  # mac
 att = MIMEText(sendfile, 'png', 'utf-8')
 att["Content-Type"] = 'application/octet-stream'
 att["Content-Disposition"] = 'attachment;filename="Monitor.png"'
@@ -91,5 +84,12 @@ smtp.login(user, password)
 smtp.sendmail(sender, receiver, msgRoot.as_string())
 smtp.quit()
 print('Success,Email has send out!')
+print(current_time, '退出cloudmonitor')
+# os.open('E:/WebDriver--Python/Example/Email/send_mail2.py')
+driver.delete_all_cookies()
+print('关闭浏览器，删除cookie')
+time.sleep(1)
+driver.quit()
+
 
 
