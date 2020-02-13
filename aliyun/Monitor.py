@@ -56,7 +56,7 @@ from email.mime.text import MIMEText
 smtpsever = 'smtp.126.com'
 # 用户名密码
 # password = input("input:")
-password = 'xdx2019'
+password = ''
 user = 'xiaodaxing@126.com'
 # 发件箱
 sender = 'xiaodaxing@126.com'
