@@ -5,12 +5,17 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
 import os
+import smtplib
+from email.header import Header
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
 
 # driver = webdriver.Firefox()
-driver = webdriver.Chrome()
+# driver = webdriver.Chrome()  # windows
 # driver = webdriver.Chrome(
 #     executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/chromedriver')  # mac  chrome
-# driver = webdriver.Firefox(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/geckodriver')# mac  firefox
+driver = webdriver.Firefox(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/geckodriver')  # mac  firefox
 print("======登录阿里云监控=====")
 print('测试浏览器:' + driver.name)
 driver.get('https://cloudmonitor.console.aliyun.com')
@@ -19,7 +24,7 @@ time.sleep(10)
 driver.switch_to.frame('alibaba-login-box')  # 切入框架
 driver.find_element_by_xpath('//*[@id="login"]/div[1]/i').click()
 # driver.find_element_by_xpath('//input[@id="fm-login-id"]').send_keys('')
-# time.sleep(1)
+time.sleep(1)
 # driver.find_element_by_xpath('//*[@id="fm-login-password"]').send_keys('')
 # driver.find_element_by_xpath('//*[@id="login-form"]/div[4]/button').send_keys(
 #     Keys.ENTER)
@@ -42,21 +47,23 @@ time.sleep(3)
 driver.find_element_by_xpath("//*[@class='icon-collapse-left']").click()
 time.sleep(13)
 print('保存截图')
-# driver.save_screenshot('/Users/xdx/Desktop/Monitor.png')  # mac
-driver.save_screenshot('D:/Monitor.png')
+driver.save_screenshot('/Users/xdx/Desktop/Monitor.png')  # mac
+driver.save_screenshot('D:/Monitor.png')  # windows
 time.sleep(2)
 current_time = time.strftime("%y-%m-%d %H:%M:%S", time.localtime(time.time()))
+print('程序于', current_time, '退出cloudmonitor')
+# os.open('E:/WebDriver--Python/Example/Email/send_mail2.py')
+driver.delete_all_cookies()
+print('关闭浏览器，删除cookie')
+time.sleep(1)
+driver.quit()
 ##发邮件
 print('去发邮件!')
-import smtplib
-from email.header import Header
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
 # 发送邮件服务器
 smtpsever = 'smtp.126.com'
 # 用户名密码
 # password = input("input:")
-password = ''
+password = 'xdx2019'
 user = 'xiaodaxing@126.com'
 # 发件箱
 sender = 'xiaodaxing@126.com'
@@ -68,8 +75,8 @@ subject = '阿里云监控截图'
 msgRoot = MIMEText('<html><h3>Python Mail</h3></html>', 'html', 'utf-8')
 # msgRoot = MIMEText('此为系统测试邮件，请勿直接回复！', 'plain', 'utf-8')
 # mail_msg = 'Hello,Our task is done.'
-sendfile = open('D:/Monitor.png', 'rb').read()
-# sendfile = open('/Users/xdx/Desktop/Monitor.png', 'rb').read()  # mac
+# sendfile = open('D:/Monitor.png', 'rb').read()  # windows
+sendfile = open('/Users/xdx/Desktop/Monitor.png', 'rb').read()  # mac
 att = MIMEText(sendfile, 'png', 'utf-8')
 att["Content-Type"] = 'application/octet-stream'
 att["Content-Disposition"] = 'attachment;filename="Monitor.png"'
@@ -84,12 +91,3 @@ smtp.login(user, password)
 smtp.sendmail(sender, receiver, msgRoot.as_string())
 smtp.quit()
 print('Success,Email has send out!')
-print(current_time, '退出cloudmonitor')
-# os.open('E:/WebDriver--Python/Example/Email/send_mail2.py')
-driver.delete_all_cookies()
-print('关闭浏览器，删除cookie')
-time.sleep(1)
-driver.quit()
-
-
-
