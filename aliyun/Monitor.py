@@ -45,14 +45,15 @@ time.sleep(7)
 driver.find_element_by_xpath("//span[contains(text(),'网络学堂应用服务监控2')]").click()
 time.sleep(3)
 driver.find_element_by_xpath("//*[@class='icon-collapse-left']").click()
-time.sleep(13)
-print('保存截图')
-driver.save_screenshot('/Users/xdx/Desktop/Monitor.png')  # mac
-driver.save_screenshot('D:/Monitor.png')  # windows
+time.sleep(10)
+driver.execute_script("document.documentElement.scrollTop = 10000;")  # 滚动条
 time.sleep(2)
+print('保存截图')
+# driver.save_screenshot('/Users/xdx/Desktop/Monitor.png')  # mac
+driver.save_screenshot('D:/Monitor.png')  # windows
 current_time = time.strftime("%y-%m-%d %H:%M:%S", time.localtime(time.time()))
 print('程序于', current_time, '退出cloudmonitor')
-# os.open('E:/WebDriver--Python/Example/Email/send_mail2.py')
+# os.system('E:/WebDriver--Python/Example/Email/send_mail2.py')
 driver.delete_all_cookies()
 print('关闭浏览器，删除cookie')
 time.sleep(1)
@@ -75,8 +76,8 @@ subject = '阿里云监控截图'
 msgRoot = MIMEText('<html><h3>Python Mail</h3></html>', 'html', 'utf-8')
 # msgRoot = MIMEText('此为系统测试邮件，请勿直接回复！', 'plain', 'utf-8')
 # mail_msg = 'Hello,Our task is done.'
-# sendfile = open('D:/Monitor.png', 'rb').read()  # windows
-sendfile = open('/Users/xdx/Desktop/Monitor.png', 'rb').read()  # mac
+sendfile = open('D:/Monitor.png', 'rb').read()  # windows
+# sendfile = open('/Users/xdx/Desktop/Monitor.png', 'rb').read()  # mac
 att = MIMEText(sendfile, 'png', 'utf-8')
 att["Content-Type"] = 'application/octet-stream'
 att["Content-Disposition"] = 'attachment;filename="Monitor.png"'

@@ -7,28 +7,30 @@ from email.mime.text import MIMEText
 smtpsever = 'smtp.126.com'
 # 用户名密码
 # password = input("input:")
-password = 'xdx2019'
+password = ''
 user = 'xiaodaxing@126.com'
 # 发件箱
 sender = 'xiaodaxing@126.com'
 # 收件箱
-receiver = ['47283875@qq.com', 'wlxt@tsinghua.edu.cn']
+receiver = ['16348104@qq.com', 'wlxt@tsinghua.edu.cn']
 # 邮件主题
 subject = '阿里云监控截图'
-# HTML类型邮件正文
-msgRoot = MIMEText('<html><h3>Python Mail</h3></html>', 'html', 'utf-8')
-# msgRoot = MIMEText('此为系统测试邮件，请勿直接回复！', 'plain', 'utf-8')
-# mail_msg = 'Hello,Our task is done.'
+# 如名字所示Multipart就是分多个部分
+msgRoot = MIMEMultipart()
+msgRoot['Subject'] = subject
+msgRoot['From'] = user
+
+# ---这是文字部分---
+att = MIMEText("此为系统测试邮件，请勿直接回复！", 'plain', 'utf-8')
+# msgRoot = MIMEText('<html><h3>Python Mail</h3></html>', 'html', 'utf-8')
+# msgRoot = MIMEText(mail_msg, 'html', 'utf-8')
+msgRoot.attach(att)
+
+# ---这是附件部分---
 sendfile = open('D:/Monitor.png', 'rb').read()
 att = MIMEText(sendfile, 'png', 'utf-8')
 att["Content-Type"] = 'application/octet-stream'
 att["Content-Disposition"] = 'attachment;filename="Monitor.png"'
-# msgRoot = MIMEText(mail_msg, 'html', 'utf-8')
-msgRoot = MIMEMultipart('related')
-msgRoot['Subject'] = subject
-msgRoot['From'] = user
-# msgRoot['To'] = receiver
-# msg['To'] = receiver2
 msgRoot.attach(att)
 smtp = smtplib.SMTP()
 smtp.set_debuglevel(1)
