@@ -25,6 +25,8 @@ driver.find_element_by_xpath('//*[@id="login"]/div[1]/i').click()
 time.sleep(3)
 date = driver.find_element_by_xpath('//*[@id="login"]/div[2]/div/div[1]/div[2]/p').text
 print(date)
+# time.sleep(3)
+# print(date)
 driver.switch_to.default_content()
 time.sleep(8)
 # driver.find_element_by_css_selector(
@@ -64,7 +66,7 @@ print('去发邮件!')
 smtpsever = 'smtp.126.com'
 # 用户名密码
 # password = input("input:")
-password = 'xdx2019'
+password = ''
 user = 'xiaodaxing@126.com'
 # 发件箱
 sender = 'xiaodaxing@126.com'

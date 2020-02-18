@@ -786,3 +786,446 @@ WebGL(000001B089123000)::ForceLoseContext
 
 ###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
 
+1581553502768	mozrunner::runner	INFO	Running command: "D:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\XDX\\AppData\\Local\\Temp\\rust_mozprofileU5Cukj"
+1581553508362	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1581553508548	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1581553508548	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1581553508549	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1581553508549	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1581553513227	Marionette	INFO	Listening on port 10390
+1581553513267	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://g.alicdn.com/??nextbox/ace-homepage-footer-list/0.0.70/index.js,nextbox/ace-homepage-footer-list/0.0.70/services.js, line 1: TypeError: c is undefined
+JavaScript error: https://account.aliyun.com/login/login.htm?oauth_callback=https%3A%2F%2Fcloudmonitor.console.aliyun.com%2F, line 127: TypeError: window.$ACE_BLOCK_RENDER is undefined
+WebGL(000001CE83F0E000)::ForceLoseContext
+WebGL(000001CE892F2800)::ForceLoseContext
+WebGL(000001CE87073000)::ForceLoseContext
+WebGL(000001CE87076000)::ForceLoseContext
+WebGL(000001CE8A9C2800)::ForceLoseContext
+WebGL(000001CE8A9BC800)::ForceLoseContext
+WebGL(000001CE81831000)::ForceLoseContext
+WebGL(000001CE87077000)::ForceLoseContext
+WebGL(000001CE87077000)::ForceLoseContext
+WebGL(000001CE83F1B800)::ForceLoseContext
+WebGL(000001CE83F7F800)::ForceLoseContext
+WebGL(000001CE83F19800)::ForceLoseContext
+WebGL(000001CE83F8A800)::ForceLoseContext
+WebGL(000001CE83F04000)::ForceLoseContext
+WebGL(000001CE83FD7000)::ForceLoseContext
+WebGL(000001CE8A961000)::ForceLoseContext
+WebGL(000001CE8A965800)::ForceLoseContext
+WebGL(000001CE89250000)::ForceLoseContext
+WebGL(000001CE8A962800)::ForceLoseContext
+WebGL(000001CE9BF2F000)::ForceLoseContext
+WebGL(000001CE83F0B800)::ForceLoseContext
+WebGL(000001CE83FE5000)::ForceLoseContext
+WebGL(000001CE83FEC000)::ForceLoseContext
+WebGL(000001CE87087000)::ForceLoseContext
+WebGL(000001CE9BFC4000)::ForceLoseContext
+WebGL(000001CEA2505000)::ForceLoseContext
+JavaScript error: https://g.alicdn.com/??nextbox/ace-dpl-account-component/0.0.76/index.js,nextbox/ace-dpl-account-component/0.0.76/services.js, line 1: TypeError: top is null
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x370126,name=PContent::Msg_ScriptError) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x660029,name=PNecko::Msg_RemoveRequestContext) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x660029,name=PNecko::Msg_RemoveRequestContext) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1581553556387	Marionette	INFO	Stopped listening on port 10390
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1581553565466	mozrunner::runner	INFO	Running command: "D:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\XDX\\AppData\\Local\\Temp\\rust_mozprofile2oKoZQ"
+1581553566010	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1581553566148	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1581553566148	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1581553566149	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1581553566149	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1581553569654	Marionette	INFO	Listening on port 10514
+1581553569805	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://g.alicdn.com/??nextbox/ace-homepage-footer-list/0.0.70/index.js,nextbox/ace-homepage-footer-list/0.0.70/services.js, line 1: TypeError: c is undefined
+JavaScript error: https://account.aliyun.com/login/login.htm?oauth_callback=https%3A%2F%2Fcloudmonitor.console.aliyun.com%2F, line 127: TypeError: window.$ACE_BLOCK_RENDER is undefined
+WebGL(000001C48D104800)::ForceLoseContext
+WebGL(000001C48F442800)::ForceLoseContext
+WebGL(000001C48E6C5000)::ForceLoseContext
+WebGL(000001C48E6CF800)::ForceLoseContext
+WebGL(000001C49305B000)::ForceLoseContext
+WebGL(000001C49306B000)::ForceLoseContext
+WebGL(000001C48AA41000)::ForceLoseContext
+WebGL(000001C48E6D1000)::ForceLoseContext
+WebGL(000001C48E6CF000)::ForceLoseContext
+WebGL(000001C48D119000)::ForceLoseContext
+WebGL(000001C48D121000)::ForceLoseContext
+WebGL(000001C493D57800)::ForceLoseContext
+WebGL(000001C49709E800)::ForceLoseContext
+WebGL(000001C48F436000)::ForceLoseContext
+WebGL(000001C4A2EB7800)::ForceLoseContext
+WebGL(000001C4A956A800)::ForceLoseContext
+WebGL(000001C4A9572800)::ForceLoseContext
+1581553638432	Marionette	INFO	Stopped listening on port 10514
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1582016426834	mozrunner::runner	INFO	Running command: "D:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\XDX\\AppData\\Local\\Temp\\rust_mozprofilebW4kvc"
+1582016431908	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1582016432107	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1582016432107	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1582016432122	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1582016432122	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1582016437038	Marionette	INFO	Listening on port 4760
+1582016437278	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://g.alicdn.com/??nextbox/ace-homepage-footer-list/0.0.70/index.js,nextbox/ace-homepage-footer-list/0.0.70/services.js, line 1: TypeError: c is undefined
+JavaScript error: https://account.aliyun.com/login/login.htm?oauth_callback=https%3A%2F%2Fcloudmonitor.console.aliyun.com%2F, line 127: TypeError: window.$ACE_BLOCK_RENDER is undefined
+WebGL(0000017C13060800)::ForceLoseContext
+WebGL(0000017C13056000)::ForceLoseContext
+WebGL(0000017C125A5000)::ForceLoseContext
+WebGL(0000017C18A0C800)::ForceLoseContext
+WebGL(0000017C13298000)::ForceLoseContext
+WebGL(0000017C18A08000)::ForceLoseContext
+WebGL(0000017C18485000)::ForceLoseContext
+WebGL(0000017C0EE3A000)::ForceLoseContext
+WebGL(0000017C112CF800)::ForceLoseContext
+JavaScript error: https://g.alicdn.com/??nextbox/ace-homepage-footer-list/0.0.70/index.js,nextbox/ace-homepage-footer-list/0.0.70/services.js, line 1: TypeError: c is undefined
+JavaScript error: https://account.aliyun.com/login/login.htm?oauth_callback=https%3A%2F%2Fcloudmonitor.console.aliyun.com%2F%3Fspm%3D5176.2020520111.aliyun_sidebar.aliyun_sidebar_cms.6ff9d103iaAGn8#/home/ecs, line 127: TypeError: window.$ACE_BLOCK_RENDER is undefined
+WebGL(0000017C1328F000)::ForceLoseContext
+WebGL(0000017C18A08800)::ForceLoseContext
+WebGL(0000017C259DD000)::ForceLoseContext
+WebGL(0000017C259DE800)::ForceLoseContext
+WebGL(0000017C26583000)::ForceLoseContext
+WebGL(0000017C26583800)::ForceLoseContext
+WebGL(0000017C26588800)::ForceLoseContext
+WebGL(0000017C0EE41000)::ForceLoseContext
+JavaScript error: https://g.alicdn.com/??nextbox/ace-homepage-footer-list/0.0.70/index.js,nextbox/ace-homepage-footer-list/0.0.70/services.js, line 1: TypeError: c is undefined
+WebGL(0000017C1149D000)::ForceLoseContext
+JavaScript error: https://account.aliyun.com/login/login.htm?oauth_callback=https%3A%2F%2Fcloudmonitor.console.aliyun.com%2F%3Fspm%3D5176.12818093.aliyun_sidebar.aliyun_sidebar_cms.488716d0VtQA3i#/newSite/list/, line 127: TypeError: window.$ACE_BLOCK_RENDER is undefined
+WebGL(0000017C114A3000)::ForceLoseContext
+WebGL(0000017C28D94800)::ForceLoseContext
+WebGL(0000017C28D91800)::ForceLoseContext
+WebGL(0000017C28D9C800)::ForceLoseContext
+WebGL(0000017C26585000)::ForceLoseContext
+WebGL(0000017C28DAA000)::ForceLoseContext
+WebGL(0000017C0EE39000)::ForceLoseContext
+WebGL(0000017C112D0800)::ForceLoseContext
+WebGL(0000017C112CC800)::ForceLoseContext
+WebGL(0000017C112D3000)::ForceLoseContext
+WebGL(0000017C18D47000)::ForceLoseContext
+WebGL(0000017C259CD800)::ForceLoseContext
+JavaScript error: resource://gre/modules/UpdateTimerManager.jsm, line 352: TypeError: setting getter-only property "gLogEnabled"
+JavaScript error: resource://gre/modules/ModulesPing.jsm, line 70: NS_ERROR_XPC_JAVASCRIPT_ERROR_WITH_DETAILS: [JavaScript Error: "setting getter-only property "gLogEnabled"" {file: "resource://gre/modules/UpdateTimerManager.jsm" line: 352}]'[JavaScript Error: "setting getter-only property "gLogEnabled"" {file: "resource://gre/modules/UpdateTimerManager.jsm" line: 352}]' when calling method: [nsIUpdateTimerManager::registerTimer]
+1582016492806	Marionette	INFO	Stopped listening on port 4760
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1582016505847	mozrunner::runner	INFO	Running command: "D:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\XDX\\AppData\\Local\\Temp\\rust_mozprofileqji2xP"
+1582016506374	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1582016506514	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1582016506514	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1582016506514	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1582016506515	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1582016509813	Marionette	INFO	Listening on port 4924
+1582016510190	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://g.alicdn.com/??nextbox/ace-homepage-footer-list/0.0.70/index.js,nextbox/ace-homepage-footer-list/0.0.70/services.js, line 1: TypeError: c is undefined
+JavaScript error: https://account.aliyun.com/login/login.htm?oauth_callback=https%3A%2F%2Fcloudmonitor.console.aliyun.com%2F, line 127: TypeError: window.$ACE_BLOCK_RENDER is undefined
+WebGL(000001EFAF1B6800)::ForceLoseContext
+WebGL(000001EFAF1AF800)::ForceLoseContext
+WebGL(000001EFB3126800)::ForceLoseContext
+WebGL(000001EFB3137800)::ForceLoseContext
+WebGL(000001EFB31E5800)::ForceLoseContext
+WebGL(000001EFB31EC800)::ForceLoseContext
+WebGL(000001EFB31F2800)::ForceLoseContext
+WebGL(000001EFAB03C800)::ForceLoseContext
+WebGL(000001EFAD608800)::ForceLoseContext
+WebGL(000001EFAD61D000)::ForceLoseContext
+WebGL(000001EFAD802800)::ForceLoseContext
+WebGL(000001EFAD80C800)::ForceLoseContext
+WebGL(000001EFAD8B5000)::ForceLoseContext
+WebGL(000001EFAD8B4000)::ForceLoseContext
+WebGL(000001EFAD8C1000)::ForceLoseContext
+WebGL(000001EF9F07C000)::ForceLoseContext
+WebGL(000001EFAD802800)::ForceLoseContext
+WebGL(000001EFC0B65000)::ForceLoseContext
+WebGL(000001EFC0B66800)::ForceLoseContext
+WebGL(000001EFC0B74800)::ForceLoseContext
+JavaScript error: https://g.alicdn.com/??nextbox/ace-homepage-footer-list/0.0.70/index.js,nextbox/ace-homepage-footer-list/0.0.70/services.js, line 1: TypeError: c is undefined
+JavaScript error: https://account.aliyun.com/login/login.htm?oauth_callback=https%3A%2F%2Fcloudmonitor.console.aliyun.com%2F%3Fspm%3D5176.12818093.aliyun_sidebar.aliyun_sidebar_cms.488716d0VtQA3i#/newSite/list/, line 127: TypeError: window.$ACE_BLOCK_RENDER is undefined
+WebGL(000001EFAF113800)::ForceLoseContext
+WebGL(000001EFC15C4800)::ForceLoseContext
+WebGL(000001EFAD812000)::ForceLoseContext
+WebGL(000001EFB7773000)::ForceLoseContext
+WebGL(000001EFB7770000)::ForceLoseContext
+WebGL(000001EFB7778800)::ForceLoseContext
+WebGL(000001EFB7796000)::ForceLoseContext
+1582016540198	Marionette	INFO	Stopped listening on port 4924
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1582017578410	mozrunner::runner	INFO	Running command: "D:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\XDX\\AppData\\Local\\Temp\\rust_mozprofilefq7q3V"
+1582017578964	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1582017579111	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1582017579111	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1582017579112	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1582017579112	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1582017582330	Marionette	INFO	Listening on port 6856
+1582017582755	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://g.alicdn.com/??nextbox/ace-homepage-footer-list/0.0.70/index.js,nextbox/ace-homepage-footer-list/0.0.70/services.js, line 1: TypeError: c is undefined
+JavaScript error: https://account.aliyun.com/login/login.htm?oauth_callback=https%3A%2F%2Fcloudmonitor.console.aliyun.com%2F, line 127: TypeError: window.$ACE_BLOCK_RENDER is undefined
+WebGL(0000018D15172800)::ForceLoseContext
+WebGL(0000018D15183000)::ForceLoseContext
+WebGL(0000018D15187000)::ForceLoseContext
+WebGL(0000018D15768800)::ForceLoseContext
+WebGL(0000018D1576C000)::ForceLoseContext
+WebGL(0000018D15778000)::ForceLoseContext
+WebGL(0000018D05289800)::ForceLoseContext
+WebGL(0000018D11338000)::ForceLoseContext
+WebGL(0000018D11338000)::ForceLoseContext
+WebGL(0000018D13919800)::ForceLoseContext
+WebGL(0000018D11339000)::ForceLoseContext
+WebGL(0000018D278BD800)::ForceLoseContext
+WebGL(0000018D278C5800)::ForceLoseContext
+WebGL(0000018D14CAA000)::ForceLoseContext
+WebGL(0000018D14CB7000)::ForceLoseContext
+1582017635965	Marionette	INFO	Stopped listening on port 6856
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1582017762812	mozrunner::runner	INFO	Running command: "D:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\XDX\\AppData\\Local\\Temp\\rust_mozprofilepT5hGt"
+1582017763362	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1582017763501	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1582017763502	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1582017763502	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1582017763502	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1582017766529	Marionette	INFO	Listening on port 7028
+1582017766641	Marionette	WARN	TLS certificate errors will be ignored for this session
+WebGL(000001806F743800)::ForceLoseContext
+WebGL(000001806F749800)::ForceLoseContext
+WebGL(000001806A63A800)::ForceLoseContext
+WebGL(0000018071B1A800)::ForceLoseContext
+WebGL(0000018071B1C000)::ForceLoseContext
+WebGL(000001806F519800)::ForceLoseContext
+WebGL(000001806F529800)::ForceLoseContext
+WebGL(000001806F533800)::ForceLoseContext
+WebGL(000001806D0A6800)::ForceLoseContext
+WebGL(0000018071CAC800)::ForceLoseContext
+WebGL(0000018073561000)::ForceLoseContext
+WebGL(000001806F51F000)::ForceLoseContext
+WebGL(0000018071B21000)::ForceLoseContext
+WebGL(000001806CD48800)::ForceLoseContext
+WebGL(000001806CD48000)::ForceLoseContext
+WebGL(0000018002219000)::ForceLoseContext
+WebGL(000001800221F000)::ForceLoseContext
+1582018418044	Marionette	INFO	Stopped listening on port 7028
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1582018985749	mozrunner::runner	INFO	Running command: "D:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\XDX\\AppData\\Local\\Temp\\rust_mozprofilewzNjcU"
+1582018986295	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1582018986447	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1582018986447	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1582018986447	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1582018986448	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1582018989557	Marionette	INFO	Listening on port 9096
+1582018989594	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://g.alicdn.com/??nextbox/ace-homepage-footer-list/0.0.70/index.js,nextbox/ace-homepage-footer-list/0.0.70/services.js, line 1: TypeError: c is undefined
+JavaScript error: https://account.aliyun.com/login/login.htm?oauth_callback=https%3A%2F%2Fcloudmonitor.console.aliyun.com%2F, line 127: TypeError: window.$ACE_BLOCK_RENDER is undefined
+WebGL(0000021BCD4D2000)::ForceLoseContext
+WebGL(0000021BCB67B800)::ForceLoseContext
+WebGL(0000021BCB682000)::ForceLoseContext
+WebGL(0000021BCB684800)::ForceLoseContext
+WebGL(0000021BCF15D000)::ForceLoseContext
+WebGL(0000021BCB694800)::ForceLoseContext
+WebGL(0000021BD068E800)::ForceLoseContext
+WebGL(0000021BC7040800)::ForceLoseContext
+WebGL(0000021BC95C4000)::ForceLoseContext
+WebGL(0000021BC95D9000)::ForceLoseContext
+WebGL(0000021BC95E1800)::ForceLoseContext
+WebGL(0000021BC992D800)::ForceLoseContext
+WebGL(0000021BC992E800)::ForceLoseContext
+WebGL(0000021BDEAD9800)::ForceLoseContext
+WebGL(0000021BDEADE800)::ForceLoseContext
+WebGL(0000021BDEB1E000)::ForceLoseContext
+WebGL(0000021BDEB71000)::ForceLoseContext
+WebGL(0000021BDEB74800)::ForceLoseContext
+WebGL(0000021BC992F000)::ForceLoseContext
+WebGL(0000021BC992E000)::ForceLoseContext
+JavaScript error: https://g.alicdn.com/??nextbox/ace-homepage-footer-list/0.0.70/index.js,nextbox/ace-homepage-footer-list/0.0.70/services.js, line 1: TypeError: c is undefined
+JavaScript error: https://account.aliyun.com/login/login.htm?oauth_callback=https%3A%2F%2Fcloudmonitor.console.aliyun.com%2F%3Fspm%3D5176.12818093.aliyun_sidebar.aliyun_sidebar_cms.488716d0VtQA3i#/newSite/list/, line 127: TypeError: window.$ACE_BLOCK_RENDER is undefined
+WebGL(0000021BC99B2800)::ForceLoseContext
+WebGL(0000021BC99BA000)::ForceLoseContext
+WebGL(0000021BDEB76000)::ForceLoseContext
+WebGL(0000021BD1402800)::ForceLoseContext
+WebGL(0000021BE1CD2000)::ForceLoseContext
+WebGL(0000021BD143E800)::ForceLoseContext
+WebGL(0000021BD1448800)::ForceLoseContext
+WebGL(0000021BC7059800)::ForceLoseContext
+WebGL(0000021BC95C8000)::ForceLoseContext
+WebGL(0000021BC95CE000)::ForceLoseContext
+WebGL(0000021BC95CD800)::ForceLoseContext
+WebGL(0000021BCD4CB000)::ForceLoseContext
+WebGL(0000021BCD4D4000)::ForceLoseContext
+1582019046930	Marionette	INFO	Stopped listening on port 9096
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1582019056003	mozrunner::runner	INFO	Running command: "D:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\XDX\\AppData\\Local\\Temp\\rust_mozprofileaiGu8C"
+1582019056536	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1582019056684	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1582019056684	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1582019056684	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1582019056684	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1582019059782	Marionette	INFO	Listening on port 9230
+1582019059840	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://g.alicdn.com/??nextbox/ace-homepage-footer-list/0.0.70/index.js,nextbox/ace-homepage-footer-list/0.0.70/services.js, line 1: TypeError: c is undefined
+JavaScript error: https://account.aliyun.com/login/login.htm?oauth_callback=https%3A%2F%2Fcloudmonitor.console.aliyun.com%2F, line 127: TypeError: window.$ACE_BLOCK_RENDER is undefined
+WebGL(0000016CD7B14800)::ForceLoseContext
+WebGL(0000016CD9225800)::ForceLoseContext
+WebGL(0000016CD9227800)::ForceLoseContext
+WebGL(0000016CD9233000)::ForceLoseContext
+WebGL(0000016CD9BBB800)::ForceLoseContext
+WebGL(0000016CDDC02800)::ForceLoseContext
+WebGL(0000016CC928A000)::ForceLoseContext
+WebGL(0000016CD5552000)::ForceLoseContext
+WebGL(0000016CD7B08800)::ForceLoseContext
+JavaScript error: https://g.alicdn.com/??nextbox/ace-homepage-footer-list/0.0.70/index.js,nextbox/ace-homepage-footer-list/0.0.70/services.js, line 1: TypeError: c is undefined
+JavaScript error: https://account.aliyun.com/login/login.htm?oauth_callback=https%3A%2F%2Fcloudmonitor.console.aliyun.com%2F%3Fspm%3D5176.2020520111.aliyun_sidebar.aliyun_sidebar_cms.6ff9d103iaAGn8#/home/ecs, line 127: TypeError: window.$ACE_BLOCK_RENDER is undefined
+WebGL(0000016CD9BBD800)::ForceLoseContext
+WebGL(0000016CDDC12800)::ForceLoseContext
+WebGL(0000016CEB5C8000)::ForceLoseContext
+WebGL(0000016CEB5CB000)::ForceLoseContext
+WebGL(0000016CEB5DC000)::ForceLoseContext
+WebGL(0000016CEB5E3000)::ForceLoseContext
+WebGL(0000016CEB5E3800)::ForceLoseContext
+WebGL(0000016CC9288800)::ForceLoseContext
+JavaScript error: https://g.alicdn.com/??nextbox/ace-homepage-footer-list/0.0.70/index.js,nextbox/ace-homepage-footer-list/0.0.70/services.js, line 1: TypeError: c is undefined
+JavaScript error: https://account.aliyun.com/login/login.htm?oauth_callback=https%3A%2F%2Fcloudmonitor.console.aliyun.com%2F%3Fspm%3D5176.12818093.aliyun_sidebar.aliyun_sidebar_cms.488716d0VtQA3i#/newSite/list/, line 127: TypeError: window.$ACE_BLOCK_RENDER is undefined
+WebGL(0000016CD9BB4000)::ForceLoseContext
+WebGL(0000016CEBA0C000)::ForceLoseContext
+WebGL(0000016CDB5CE000)::ForceLoseContext
+WebGL(0000016CEA3D0000)::ForceLoseContext
+WebGL(0000016CEB5D5000)::ForceLoseContext
+WebGL(0000016CEA3D0800)::ForceLoseContext
+WebGL(0000016CEC9C7000)::ForceLoseContext
+WebGL(0000016CD9BAB800)::ForceLoseContext
+WebGL(0000016CDB5E3000)::ForceLoseContext
+WebGL(0000016CD7B87000)::ForceLoseContext
+WebGL(0000016CD7B90800)::ForceLoseContext
+WebGL(0000016CD7B13000)::ForceLoseContext
+WebGL(0000016CD7B82800)::ForceLoseContext
+1582019112660	Marionette	INFO	Stopped listening on port 9230
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1582019500626	mozrunner::runner	INFO	Running command: "D:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\XDX\\AppData\\Local\\Temp\\rust_mozprofile5IL9G2"
+1582019501199	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1582019501337	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1582019501337	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1582019501338	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1582019501338	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1582019504735	Marionette	INFO	Listening on port 9670
+1582019504967	Marionette	WARN	TLS certificate errors will be ignored for this session
+WebGL(0000023A8FC41000)::ForceLoseContext
+WebGL(0000023A8FC48800)::ForceLoseContext
+WebGL(0000023A913C7000)::ForceLoseContext
+WebGL(0000023A913CD800)::ForceLoseContext
+WebGL(0000023A913CD000)::ForceLoseContext
+WebGL(0000023A92EA4000)::ForceLoseContext
+WebGL(0000023A92EAD800)::ForceLoseContext
+WebGL(0000023A92EAE000)::ForceLoseContext
+WebGL(0000023A8DD66000)::ForceLoseContext
+WebGL(0000023A8DD64800)::ForceLoseContext
+WebGL(0000023A913CC000)::ForceLoseContext
+WebGL(0000023A8DD5A800)::ForceLoseContext
+WebGL(0000023A92EA8000)::ForceLoseContext
+WebGL(0000023A8D146000)::ForceLoseContext
+WebGL(0000023A8D907000)::ForceLoseContext
+WebGL(0000023A934B2000)::ForceLoseContext
+WebGL(0000023AA1888800)::ForceLoseContext
+WebGL(0000023A912D0800)::ForceLoseContext
+WebGL(0000023A92EA5800)::ForceLoseContext
+JavaScript error: resource:///actors/ContentMetaChild.jsm, line 167: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: https://g.alicdn.com/??nextbox/ace-homepage-footer-list/0.0.70/index.js,nextbox/ace-homepage-footer-list/0.0.70/services.js, line 1: TypeError: c is undefined
+JavaScript error: https://account.aliyun.com/login/login.htm?oauth_callback=https%3A%2F%2Fcloudmonitor.console.aliyun.com%2F%3Faccounttraceid%3D1e81ea75737748c1bc8f4c1f6a8ba94epdtv#/home/ecs, line 127: TypeError: window.$ACE_BLOCK_RENDER is undefined
+WebGL(0000023AA3BF7800)::ForceLoseContext
+WebGL(0000023AA8222000)::ForceLoseContext
+WebGL(0000023AA3A81800)::ForceLoseContext
+WebGL(0000023AA398C000)::ForceLoseContext
+WebGL(0000023AA3BE9800)::ForceLoseContext
+WebGL(0000023AA397E000)::ForceLoseContext
+WebGL(0000023AA5F86000)::ForceLoseContext
+WebGL(0000023A8D134800)::ForceLoseContext
+WebGL(0000023A8D139000)::ForceLoseContext
+1582019862874	Marionette	INFO	Stopped listening on port 9670
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1582019603818	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1582019603818	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1582019603819	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1582019603819	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1582019607338	Marionette	INFO	Listening on port 9817
+1582019607459	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://g.alicdn.com/??nextbox/ace-homepage-footer-list/0.0.70/index.js,nextbox/ace-homepage-footer-list/0.0.70/services.js, line 1: TypeError: c is undefined
+JavaScript error: https://account.aliyun.com/login/login.htm?oauth_callback=https%3A%2F%2Fcloudmonitor.console.aliyun.com%2F, line 127: TypeError: window.$ACE_BLOCK_RENDER is undefined
+WebGL(0000022B7AED5000)::ForceLoseContext
+WebGL(0000022B78EA5000)::ForceLoseContext
+WebGL(0000022B78EAB800)::ForceLoseContext
+WebGL(0000022B78EB0000)::ForceLoseContext
+WebGL(0000022B7ABA1000)::ForceLoseContext
+WebGL(0000022B7CE37000)::ForceLoseContext
+WebGL(0000022B68889000)::ForceLoseContext
+WebGL(0000022B74A61000)::ForceLoseContext
+WebGL(0000022B76F52000)::ForceLoseContext
+WebGL(0000022B7711B800)::ForceLoseContext
+WebGL(0000022B7711E800)::ForceLoseContext
+JavaScript error: resource:///actors/ContentMetaChild.jsm, line 167: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+WebGL(0000022B7AEDD800)::ForceLoseContext
+WebGL(0000022B7CE2B000)::ForceLoseContext
+WebGL(0000022B7719D000)::ForceLoseContext
+WebGL(0000022B771A8000)::ForceLoseContext
+1582019645174	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+bail@chrome://marionette/content/sync.js:237:64
+1582019658374	Marionette	INFO	Stopped listening on port 9817
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
