@@ -25,8 +25,8 @@ driver.find_element_by_xpath('//*[@id="login"]/div[1]/i').click()
 time.sleep(3)
 date = driver.find_element_by_xpath('//*[@id="login"]/div[2]/div/div[1]/div[2]/p').text
 print(date)
-# time.sleep(3)
-# print(date)
+# time.sleep(4)
+# print(driver.find_element_by_xpath('//*[@id="login"]/div[2]/div/div[1]/div[2]/p').text)
 driver.switch_to.default_content()
 time.sleep(8)
 # driver.find_element_by_css_selector(
