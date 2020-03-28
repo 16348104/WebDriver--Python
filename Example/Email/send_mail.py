@@ -2,11 +2,11 @@ import smtplib
 from email.header import Header
 from email.mime.text import MIMEText
 
-smtpsever = 'smtp.126.com'
+smtpsever = 'smtp.sina.cn'
 password = input("input password:")
 # password = ''
-user = 'xiaodaxing@126.com'
-sender = 'xiaodaxing@126.com'
+user = 'chercheren2008@sina.com'
+sender = 'chercheren2008@sina.com'
 # receiver = ['yumj@tsinghua.edu.cn', 'xdx2016@tsinghua.edu.cn']
 receiver = '16348104@qq.com'
 # receiver0 = 'xdx2016@tsinghua.edu.cn'

@@ -4,13 +4,13 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 # 发送邮件服务器
-smtpsever = 'smtp.126.com'
+smtpsever = 'smtp.sina.cn'
 # 用户名密码
 # password = input("input:")
 password = ''
-user = 'xiaodaxing@126.com'
+user = 'chercheren2008@sina.com'
 # 发件箱
-sender = 'xiaodaxing@126.com'
+sender = 'chercheren2008@sina.com'
 # 收件箱
 receiver = ['16348104@qq.com', 'wlxt@tsinghua.edu.cn']
 # 邮件主题
