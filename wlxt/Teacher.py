@@ -633,13 +633,12 @@ except NoSuchElementException as msg:
     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'FBHT' + ".png")  # modify截图
 # print('话题置顶')
 # driver.find_element_by_xpath("//*[@id='table']/tbody/tr[1]/td[7]/a[3]").click()
-time.sleep(2)
+time.sleep(3)
 print('编辑话题')
 driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_tltb"]').click()
-time.sleep(1)
+time.sleep(2)
 driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[7]/a[1]').click()
 # driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[2]/a').click()
-# time.sleep(2)
 # driver.find_element_by_xpath('//*[@class="tlbtparent"]//a[1]').click()
 time.sleep(2)
 # 富文本表情
@@ -657,10 +656,10 @@ try:
 except NoSuchElementException as msg:
     print('截图', msg)
     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'HD' + ".png")  # modify截图
-time.sleep(5)
+time.sleep(3)
 print("浏览讨论帖")
-# driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_tltb"]').click()
-# time.sleep(1)
+driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_tltb"]').click()
+time.sleep(1)
 driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[2]/a').click()  # 第一条话题
 time.sleep(1)
 driver.execute_script("document.documentElement.scrollTop = 10000;")
@@ -693,7 +692,7 @@ else:
     ran = random.randrange(key)
     print('讨论附件随机数:', ran)
     time.sleep(1)
-    driver.find_elements_by_xpath("//*[@id='removeFile']").pop(0).click()
+    driver.find_elements_by_xpath("//*[@id='removeFile']").pop(ran).click()
 time.sleep(2)
 print("回复其他人的跟帖")
 # driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_tltb"]').click()
