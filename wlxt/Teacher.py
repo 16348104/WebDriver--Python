@@ -24,6 +24,9 @@ profile.set_preference('browser.helperApps.neverAsk.saveToDisk',
                        'application/zip,application/xhtml+xml,application/xml,application/x-msdownload,application/octet/octet-stream,application/exe,txt/csv,application/pdf,application/x-msexcl,application/x-excel,application/excel,image/png,image/jpeg,text/html,text/plain,text/x-c')
 # driver = webdriver.Firefox(firefox_profile=profile)
 driver = webdriver.Chrome()
+# driver = webdriver.Firefox()
+# driver = webdriver.Ie()
+
 driver.delete_all_cookies()
 time.sleep(1)
 
@@ -683,23 +686,19 @@ except NoSuchElementException as msg_MP3:
     print('无音频文件', msg_MP3)
 print('随机下载讨论附件')
 try:
-    driver.find_element_by_xpath("//*[@id='removeFile']")
+    # driver.find_element_by_xpath("//*[@id='removeFile']")
+    driver.execute_script("document.documentElement.scrollTop = 0;")
+    time.sleep(2)
+    driver.find_element_by_css_selector("#removeFile").click()
 except NoSuchElementException as msg:
-    print('无附件', msg)
-else:
-    key = len(driver.find_elements_by_xpath("//*[@id='removeFile']"))
-    print("子回复附件个数:", key)
-    ran = random.randrange(key)
-    print('讨论附件随机数:', ran)
-    time.sleep(1)
-    driver.find_elements_by_xpath("//*[@id='removeFile']").pop(ran).click()
-time.sleep(2)
+    print('无讨论附件', msg)
+
 print("回复其他人的跟帖")
 # driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_tltb"]').click()
 driver.find_element_by_xpath('//*[@class="notice"]//a[2]').click()
-time.sleep(3)
+time.sleep(2)
 driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[2]/td[2]/a').click()  # 选第二条话题
-driver.execute_script("document.documentElement.scrollTop = 10000;")
+driver.execute_script("document.documentElement.scrollTop = 1000;")
 time.sleep(2)
 try:
     # 定位子回复
@@ -757,7 +756,6 @@ driver.find_element_by_xpath("//*[@id='canyu']").click()
 time.sleep(2)
 driver.find_element_by_xpath('//*[@id="canyutable"]/tbody/tr[1]/td[2]/a').click()
 time.sleep(2)
-driver.execute_script("document.documentElement.scrollTop = 10000;")
 # Play Video
 try:
     driver.find_element_by_xpath("//video")
@@ -776,13 +774,13 @@ try:
     time.sleep(5)
 except NoSuchElementException as msg_MP3:
     print('无音频文件', msg_MP3)
-
 print('随机下载讨论附件')
 try:
     driver.find_element_by_xpath("//*[@id='removeFile']")
 except NoSuchElementException as msg:
     print('无子回复附件', msg)
 else:
+    driver.execute_script("document.documentElement.scrollTop = 600;")
     key = len(driver.find_elements_by_xpath("//*[@id='removeFile']"))
     print("子回复附件个数:", key)
     ran = random.randrange(key)
@@ -790,7 +788,7 @@ else:
     driver.find_elements_by_xpath("//*[@id='removeFile']").pop(ran).click()
 print('回复我参与的话题')
 # 切换编辑器
-driver.execute_script("document.documentElement.scrollTop = 10000;")
+driver.execute_script("document.documentElement.scrollTop = 1000;")
 driver.find_element_by_xpath("//div[@class='answer']//span[@class='rt toeditor']").click()
 time.sleep(2)
 ## ckeditor公式
@@ -870,7 +868,7 @@ time.sleep(2)
 #     print('刷新CKeditor!', msg_math)
 #     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'ckeidtor' + ".png")  # modify截图
 #     driver.refresh()
-#     time.sleep(2)
+#     time.sleep(3)
 # # CKeditor插入公式
 # driver.find_element_by_xpath("//a[@id='cke_39']").click()
 # time.sleep(1)
