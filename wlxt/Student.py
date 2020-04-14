@@ -245,7 +245,7 @@ driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[2]/a').click()
 time.sleep(2)
 print('浏览讨论帖')
 # 隐藏讨论区顶部的蓝条
-driver.execute_script( 'document.getElementById("tlbt").style.display="none"')
+driver.execute_script('document.getElementById("tlbt").style.display="none"')
 #  Play Audio
 try:
     driver.find_element_by_xpath("//p[@id='wtnr']//p//audio")
@@ -335,9 +335,11 @@ else:
     print('对楼主回复贴位置:', ran_hf)  # 索引位置+1
     # print('随机回复楼主讨论帖楼层:', ran_hf + 1)
     # 点回复
-    driver.execute_script("document.documentElement.scrollTop = 400;")
-    driver.find_elements_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']").pop(
-        ran_hf).click()
+    # driver.execute_script("document.documentElement.scrollTop = 400;")
+    element1 = driver.find_elements_by_xpath(
+        "//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']").pop(
+        ran_hf)
+    driver.execute_script("arguments[0].click();", element1)
     time.sleep(2)
     # 切换ckeditor
     driver.find_element_by_xpath(switch_span).click()
@@ -361,8 +363,9 @@ else:
     time.sleep(3)
     print('发表子回复')
     driver.execute_script("document.documentElement.scrollTop = 1000;")
-    driver.find_element_by_xpath(submit).click()
-    time.sleep(2)
+    element2 = driver.find_element_by_xpath(submit)
+    driver.execute_script("arguments[0].click();", element2)
+    time.sleep(3)
     # driver.find_elements_by_xpath("//input[contains(@class,'submit')]").pop(ran_hf).click()
     try:
         print('弹框结果:' + driver.find_element_by_css_selector(
@@ -377,7 +380,7 @@ time.sleep(1)
 driver.find_element_by_xpath('//*[@id="canyutable"]/tbody/tr[1]/td[2]/a').click()
 time.sleep(2)
 # 隐藏讨论区顶部的蓝条
-driver.execute_script( 'document.getElementById("tlbt").style.display="none"')
+driver.execute_script('document.getElementById("tlbt").style.display="none"')
 # driver.execute_script("document.documentElement.scrollTop = 1000;")
 # Play Video
 try:
