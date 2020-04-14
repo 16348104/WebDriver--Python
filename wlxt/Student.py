@@ -70,8 +70,8 @@ print('登录后句柄:' + driver.current_window_handle)
 driver.find_element_by_name('i_user').clear()
 driver.find_element_by_name('i_pass').clear()
 # time.sleep(30)
-# driver.find_element_by_name('i_user').send_keys('2014013037')
-driver.find_element_by_name('i_user').send_keys('2014013024')
+driver.find_element_by_name('i_user').send_keys('2014210389')
+# driver.find_element_by_name('i_user').send_keys('2010010545')
 driver.find_element_by_name('i_pass').send_keys('123')
 # user = input('name:')
 # password = input('pw:"')
@@ -244,6 +244,8 @@ time.sleep(1)
 driver.find_element_by_xpath('//*[@id="table"]/tbody/tr[1]/td[2]/a').click()
 time.sleep(2)
 print('浏览讨论帖')
+# 隐藏讨论区顶部的蓝条
+driver.execute_script( 'document.getElementById("tlbt").style.display="none"')
 #  Play Audio
 try:
     driver.find_element_by_xpath("//p[@id='wtnr']//p//audio")
@@ -268,8 +270,8 @@ try:
 except NoSuchElementException as msg:
     print('楼主没有附件!', msg)
 print('回复楼主')
-# driver.find_element_by_xpath('//*[@id="answerFirstLink"]').click()
-driver.find_element_by_xpath('//*[@id="FirstbtLink"]').click()
+driver.find_element_by_xpath('//*[@id="answerFirstLink"]').click()
+# driver.find_element_by_xpath('//*[@id="FirstbtLink"]').click()
 time.sleep(3)
 # 切换编辑器
 driver.find_element_by_xpath('//*[@id="editFirstAnswerFormId"]/div[1]/p/span[2]').click()
@@ -298,9 +300,9 @@ except NoSuchElementException as msg:
     print('截图', msg)
     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'HT' + ".png")  # modify截图
 time.sleep(3)
-print('回复他人跟帖')
+print('回复自己的跟帖')
 try:
-    # 回复他人
+    # 回复自己的跟帖
     driver.find_element_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']")
 except NoSuchElementException as msg:
     print('暂无回复', msg)
@@ -313,15 +315,15 @@ else:
     item = driver.find_elements_by_xpath(
         "//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']//*[contains(@id,'span_first')]").pop(
         ran_hf).get_attribute('id')
+    print('span元素ID:' + item)
     num = re.sub(r'\D', '', item)
-    print("回复楼层id:", num)
+    print("定位回复楼层id:", num)
     ###此功能暂不使用###
     # 定位回复他人文本域
     # textarea = "//*[contains(@id," + "\'" + num + "\'" + ")]//*[@name='nr']"
     # 定位点击查看其他人跟帖
     # click_span = "//*[contains(@id," + "\'" + num + "\'" + ")]//*[@id='hufuitem']/a"
     ########
-
     # 定位发表按钮 //div[contains(@id,'38380462')]//input[@class='rt count_submit']
     submit = "//*[contains(@id," + "\'" + num + "\'" + ")]//*[@class='rt count_submit']"
     # 定位切换编辑器 //div[contains(@id,'38380462')]//span[@class='rt toeditor']
@@ -329,14 +331,14 @@ else:
     # 定位添加附件   //input[@id='fileupload38380462']
     str1 = "fileupload"
     add_attch = "//*[@id=" + "\'" + str1 + num + "\'" + "]"
-    print('学生回复楼主讨论帖个数:', hf_list)
-    print('hf_list:', ran_hf)
-    print('随机回复楼主讨论帖楼层:', ran_hf + 1)
-    driver.execute_script("document.documentElement.scrollTop = 500;")
-    time.sleep(2)
+    print('学生对楼主回复帖总数:', hf_list)
+    print('对楼主回复贴位置:', ran_hf)  # 索引位置+1
+    # print('随机回复楼主讨论帖楼层:', ran_hf + 1)
     # 点回复
+    driver.execute_script("document.documentElement.scrollTop = 400;")
     driver.find_elements_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']").pop(
         ran_hf).click()
+    time.sleep(2)
     # 切换ckeditor
     driver.find_element_by_xpath(switch_span).click()
     time.sleep(2)
@@ -353,11 +355,12 @@ else:
         driver.execute_script(js)
         time.sleep(1)
         driver.find_element_by_xpath('//*/table/tbody/tr[1]/td[1]/a/img').click()
-        time.sleep(4)
+        time.sleep(3)
     print('上传子回复附件')
     driver.find_element_by_xpath(add_attch).send_keys(r'D:\Homework.pdf')  # modify
-    time.sleep(2)
+    time.sleep(3)
     print('发表子回复')
+    driver.execute_script("document.documentElement.scrollTop = 1000;")
     driver.find_element_by_xpath(submit).click()
     time.sleep(2)
     # driver.find_elements_by_xpath("//input[contains(@class,'submit')]").pop(ran_hf).click()
@@ -372,8 +375,10 @@ print('浏览我参与的讨论话题')
 driver.find_element_by_xpath("//*[@id='canyu']").click()
 time.sleep(1)
 driver.find_element_by_xpath('//*[@id="canyutable"]/tbody/tr[1]/td[2]/a').click()
-time.sleep(1)
-driver.execute_script("document.documentElement.scrollTop = 10000;")
+time.sleep(2)
+# 隐藏讨论区顶部的蓝条
+driver.execute_script( 'document.getElementById("tlbt").style.display="none"')
+# driver.execute_script("document.documentElement.scrollTop = 1000;")
 # Play Video
 try:
     driver.find_element_by_xpath("//video")
@@ -613,10 +618,10 @@ driver.find_element_by_xpath('//span[@class="rt right"]/child::a[2]').click()  #
 #     time.sleep(1)
 driver.find_element_by_xpath('//ul[@id="myTags"]//li[1]//input').send_keys('wlxt@tsinghua.edu.cn')
 driver.find_element_by_xpath('//ul[@id="myTags"]//li[1]//input').send_keys(Keys.ENTER)
-time.sleep(1)
-driver.find_element_by_xpath('//ul[@id="myTags"]//li[2]/input').send_keys('谢老师')
-driver.find_element_by_xpath('//ul[@id="myTags"]//li[2]//input').send_keys(Keys.ENTER)
-time.sleep(1)
+time.sleep(2)
+# driver.find_element_by_xpath('//ul[@id="myTags"]//li[2]/input').send_keys('谢老师')
+# driver.find_element_by_xpath('//ul[@id="myTags"]//li[2]//input').send_keys(Keys.ENTER)
+# time.sleep(1)
 # driver.find_element_by_xpath('//ul[@id="myTags"]//li[3]/input').send_keys('杜娟')
 # driver.find_element_by_xpath('//ul[@id="myTags"]//li[3]//input').send_keys(Keys.ENTER)
 
