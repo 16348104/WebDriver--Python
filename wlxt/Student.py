@@ -271,7 +271,6 @@ except NoSuchElementException as msg:
     print('楼主没有附件!', msg)
 print('回复楼主')
 driver.find_element_by_xpath('//*[@id="answerFirstLink"]').click()
-# driver.find_element_by_xpath('//*[@id="FirstbtLink"]').click()
 time.sleep(3)
 # 切换编辑器
 driver.find_element_by_xpath('//*[@id="editFirstAnswerFormId"]/div[1]/p/span[2]').click()
@@ -299,6 +298,7 @@ try:
 except NoSuchElementException as msg:
     print('截图', msg)
     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'HT' + ".png")  # modify截图
+# driver.execute_script("document.documentElement.scrollTop = 0;")
 time.sleep(3)
 print('回复自己的跟帖')
 try:
@@ -312,9 +312,10 @@ else:
     ran_hf = random.randrange(hf_list)
     print('随机数', ran_hf)
     # 获取回复楼层id
-    item = driver.find_elements_by_xpath(
+    span_first = driver.find_elements_by_xpath(
         "//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']//*[contains(@id,'span_first')]").pop(
-        ran_hf).get_attribute('id')
+        ran_hf)
+    item = span_first.get_attribute('id')
     print('span元素ID:' + item)
     num = re.sub(r'\D', '', item)
     print("定位回复楼层id:", num)
@@ -332,47 +333,56 @@ else:
     str1 = "fileupload"
     add_attch = "//*[@id=" + "\'" + str1 + num + "\'" + "]"
     print('学生对楼主回复帖总数:', hf_list)
-    print('对楼主回复贴位置:', ran_hf)  # 索引位置+1
+    print('回复贴楼层:', ran_hf + 2)
     # print('随机回复楼主讨论帖楼层:', ran_hf + 1)
     # 点回复
-    # driver.execute_script("document.documentElement.scrollTop = 400;")
-    element1 = driver.find_elements_by_xpath(
+    # element1 = driver.find_elements_by_xpath(
+    #     "//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']").pop(
+    #     ran_hf)
+    driver.find_elements_by_xpath(
         "//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']").pop(
-        ran_hf)
-    driver.execute_script("arguments[0].click();", element1)
-    time.sleep(2)
+        ran_hf).click()
+    # element1.click()
+    # driver.execute_script("arguments[0].click();", element1)
+    time.sleep(3)
     # 切换ckeditor
     driver.find_element_by_xpath(switch_span).click()
+    print(switch_span)
     time.sleep(2)
     # driver.find_elements_by_xpath("//div[@id='mypanel']//span[contains(@class,'toeditor')]").pop(ran_hf).click()
     try:
         # 加富文本表情
-        driver.find_element_by_xpath('//a[@id="cke_37"]')
+        # driver.find_element_by_xpath('//a[@id="cke_37"]')
+        driver.find_element_by_xpath('//a[@id="cke_117"]')
     except NoSuchElementException as msg:
         driver.refresh()
         time.sleep(3)
     else:
-        driver.find_element_by_xpath('//a[@id="cke_37"]').click()
+        # driver.find_element_by_xpath('//a[@id="cke_37"]').click()
+        driver.find_element_by_xpath('//a[@id="cke_117"]').click()
         js = "document.getElementsByClassName('cke_dialog_background_cover')[0].style.display = 'none'"
         driver.execute_script(js)
-        time.sleep(1)
+        time.sleep(5)
         driver.find_element_by_xpath('//*/table/tbody/tr[1]/td[1]/a/img').click()
-        time.sleep(3)
-    print('上传子回复附件')
-    driver.find_element_by_xpath(add_attch).send_keys(r'D:\Homework.pdf')  # modify
-    time.sleep(3)
-    print('发表子回复')
-    driver.execute_script("document.documentElement.scrollTop = 1000;")
-    element2 = driver.find_element_by_xpath(submit)
-    driver.execute_script("arguments[0].click();", element2)
-    time.sleep(3)
-    # driver.find_elements_by_xpath("//input[contains(@class,'submit')]").pop(ran_hf).click()
-    try:
-        print('弹框结果:' + driver.find_element_by_css_selector(
-            "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
-    except NoSuchElementException as msg:
-        print('截图', msg)
-        driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'HD' + ".png")  # modify截图
+        time.sleep(5)
+        print('上传回复附件')
+        driver.find_element_by_xpath(add_attch).send_keys(r'D:\Homework.pdf')  # modify
+        time.sleep(2)
+        print('发表自己的跟帖')
+        # driver.execute_script("document.documentElement.scrollTop = 10000;")
+        # element2 = driver.find_element_by_xpath(submit)
+        # driver.execute_script("arguments[0].click();", element2)
+        print('回复按钮:', submit)
+        driver.find_element_by_xpath(submit).click()
+        print('回复按钮:', submit)
+        time.sleep(2)
+        # driver.find_elements_by_xpath("//input[contains(@class,'submit')]").pop(ran_hf).click()
+        try:
+            print('弹框结果:' + driver.find_element_by_css_selector(
+                "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+        except NoSuchElementException as msg:
+            print('截图', msg)
+            driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'HD' + ".png")  # modify截图
 driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_tltb"]').click()
 print('浏览我参与的讨论话题')
 driver.find_element_by_xpath("//*[@id='canyu']").click()
@@ -381,7 +391,6 @@ driver.find_element_by_xpath('//*[@id="canyutable"]/tbody/tr[1]/td[2]/a').click(
 time.sleep(2)
 # 隐藏讨论区顶部的蓝条
 driver.execute_script('document.getElementById("tlbt").style.display="none"')
-# driver.execute_script("document.documentElement.scrollTop = 1000;")
 # Play Video
 try:
     driver.find_element_by_xpath("//video")
@@ -606,6 +615,7 @@ time.sleep(3)
 ####################################################课程邮件#############################################################
 print('=====测试课程邮件=====')
 driver.find_element_by_xpath("//a[@id='wlxt_mail_yj_yjxxb']").click()
+driver.find_element_by_xpath('//*[@class="detail"]//i').click()
 time.sleep(2)
 print('浏览邮件')
 driver.find_element_by_xpath('//*[@id="list"]/tbody/tr[1]/td[2]/a').click()  # 浏览邮件
@@ -633,7 +643,7 @@ time.sleep(2)
 # driver.find_element_by_xpath('//label[@class="mycheck"]').click()
 js = "document.getElementById('bt').value = new Date().toLocaleString();"
 val = driver.execute_script(js)
-driver.find_element_by_xpath('//input[@id="bt"]').send_keys('LocalHost网络学堂自动化测试结果—学生端功能正常')
+driver.find_element_by_xpath('//input[@id="bt"]').send_keys('wlxt160自动化测试结果—学生端功能正常')
 # 定位iframe
 iframe = driver.find_element_by_xpath("//iframe[contains(@title,'nrStr')]")
 # 切入iframe

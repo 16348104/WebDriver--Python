@@ -1095,6 +1095,7 @@ time.sleep(2)
 # ######################################################课程邮件##########################################################
 print('=====测试课程邮件=====')
 driver.find_element_by_xpath("//a[@id='wlxt_mail_yj_yjxxb']").click()
+driver.find_element_by_xpath('//*[@class="detail"]//i').click()
 time.sleep(2)
 print("浏览邮件")
 driver.find_element_by_xpath('//*[@id="list"]/tbody/tr[1]/td[2]/a').click()  # 浏览邮件
@@ -1106,11 +1107,11 @@ driver.find_element_by_xpath('//span[@class="rt right"]/child::a').click()
 # 正式环境发邮件
 # driver.find_element_by_class_name("ui-autocomplete-input").send_keys(
 #    "xiesp@tsinghua.edu.cn,wlxt@tsinghua.edu.cn,dj1005@tsinghua.edu.cn,zhongwenfeng@tsinghua.edu.cn")
-driver.find_element_by_xpath('//*[@id="myTags"]/li/input').send_keys('wlxt@tsinghua.edu.cn,dxx2018@sina.cn')
+driver.find_element_by_xpath('//*[@id="myTags"]/li/input').send_keys('wlxt@tsinghua.edu.cn')
 time.sleep(2)
-driver.find_element_by_id("bt").send_keys(ticks + "LocalHost网络学堂自动测试:教师端系统正常")
+driver.find_element_by_id("bt").send_keys(ticks + "wlxt160自动测试:教师端系统正常")
 print("抄送到本人邮箱")
-driver.find_element_by_xpath('//label[@class="mycheck"]').click()
+# driver.find_element_by_xpath('//label[@class="mycheck"]').click()
 driver.find_element_by_id("submitButton").click()
 time.sleep(2)
 try:
