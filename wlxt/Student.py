@@ -70,7 +70,7 @@ print('登录后句柄:' + driver.current_window_handle)
 driver.find_element_by_name('i_user').clear()
 driver.find_element_by_name('i_pass').clear()
 # time.sleep(30)
-driver.find_element_by_name('i_user').send_keys('2014210389')
+driver.find_element_by_name('i_user').send_keys('2014013024')
 # driver.find_element_by_name('i_user').send_keys('2010010545')
 driver.find_element_by_name('i_pass').send_keys('123')
 # user = input('name:')
@@ -301,6 +301,7 @@ except NoSuchElementException as msg:
 # driver.execute_script("document.documentElement.scrollTop = 0;")
 time.sleep(3)
 print('回复自己的跟帖')
+driver.refresh()
 try:
     # 回复自己的跟帖
     driver.find_element_by_xpath("//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']")
@@ -334,16 +335,15 @@ else:
     add_attch = "//*[@id=" + "\'" + str1 + num + "\'" + "]"
     print('学生对楼主回复帖总数:', hf_list)
     print('回复贴楼层:', ran_hf + 2)
-    # print('随机回复楼主讨论帖楼层:', ran_hf + 1)
     # 点回复
-    # element1 = driver.find_elements_by_xpath(
-    #     "//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']").pop(
-    #     ran_hf)
-    driver.find_elements_by_xpath(
+    element1 = driver.find_elements_by_xpath(
         "//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']").pop(
-        ran_hf).click()
+        ran_hf)
+    # driver.find_elements_by_xpath(
+    #     "//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']").pop(
+    #     ran_hf).click()
     # element1.click()
-    # driver.execute_script("arguments[0].click();", element1)
+    driver.execute_script("arguments[0].click();", element1)
     time.sleep(3)
     # 切换ckeditor
     driver.find_element_by_xpath(switch_span).click()
@@ -612,11 +612,11 @@ time.sleep(3)
 #         driver.find_elements_by_xpath('//a[@id="removeFile"]').pop(0).click()
 # print('=====答疑测试完毕=====')
 # time.sleep(2)
-####################################################课程邮件#############################################################
+####################################################课程邮件############################################################
 print('=====测试课程邮件=====')
 driver.find_element_by_xpath("//a[@id='wlxt_mail_yj_yjxxb']").click()
+time.sleep(1)
 driver.find_element_by_xpath('//*[@class="detail"]//i').click()
-time.sleep(2)
 print('浏览邮件')
 driver.find_element_by_xpath('//*[@id="list"]/tbody/tr[1]/td[2]/a').click()  # 浏览邮件
 time.sleep(1)

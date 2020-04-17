@@ -700,7 +700,6 @@ try:
     driver.find_element_by_css_selector("#removeFile").click()
 except NoSuchElementException as msg:
     print('无讨论附件', msg)
-
 print("回复其他人的跟帖")
 # driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_tltb"]').click()
 driver.find_element_by_xpath('//*[@class="notice"]//a[2]').click()
@@ -1095,6 +1094,7 @@ time.sleep(2)
 # ######################################################课程邮件##########################################################
 print('=====测试课程邮件=====')
 driver.find_element_by_xpath("//a[@id='wlxt_mail_yj_yjxxb']").click()
+time.sleep(1)
 driver.find_element_by_xpath('//*[@class="detail"]//i').click()
 time.sleep(2)
 print("浏览邮件")
@@ -1111,7 +1111,7 @@ driver.find_element_by_xpath('//*[@id="myTags"]/li/input').send_keys('wlxt@tsing
 time.sleep(2)
 driver.find_element_by_id("bt").send_keys(ticks + "wlxt160自动测试:教师端系统正常")
 print("抄送到本人邮箱")
-# driver.find_element_by_xpath('//label[@class="mycheck"]').click()
+driver.find_element_by_xpath('//label[@class="mycheck"]').click()
 driver.find_element_by_id("submitButton").click()
 time.sleep(2)
 try:
