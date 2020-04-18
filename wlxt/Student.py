@@ -336,14 +336,13 @@ else:
     print('学生对楼主回复帖总数:', hf_list)
     print('回复贴楼层:', ran_hf + 2)
     # 点回复
-    element1 = driver.find_elements_by_xpath(
+    driver.find_elements_by_xpath(
         "//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']").pop(
-        ran_hf)
-    # driver.find_elements_by_xpath(
+        ran_hf).click()
+    # element1 = driver.find_elements_by_xpath(
     #     "//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']").pop(
-    #     ran_hf).click()
-    # element1.click()
-    driver.execute_script("arguments[0].click();", element1)
+    #     ran_hf)
+    # driver.execute_script("arguments[0].click();", element1)
     time.sleep(3)
     # 切换ckeditor
     driver.find_element_by_xpath(switch_span).click()
