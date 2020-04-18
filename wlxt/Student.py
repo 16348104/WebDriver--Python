@@ -339,6 +339,7 @@ else:
     driver.find_elements_by_xpath(
         "//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']").pop(
         ran_hf).click()
+
     # element1 = driver.find_elements_by_xpath(
     #     "//*[starts-with(@onclick,'delHf')]/following-sibling::*[@class='huifu']").pop(
     #     ran_hf)
