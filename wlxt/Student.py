@@ -373,7 +373,7 @@ else:
         # driver.execute_script("arguments[0].click();", element2)
         print('回复按钮:', submit)
         driver.find_element_by_xpath(submit).click()
-        print('回复按钮:', submit)
+        # print('回复按钮:', submit)
         time.sleep(2)
         # driver.find_elements_by_xpath("//input[contains(@class,'submit')]").pop(ran_hf).click()
         try:
