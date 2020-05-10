@@ -760,7 +760,7 @@ print('浏览我参与的讨论话题')
 driver.find_element_by_xpath('//*[@id="wlxt_bbs_bbs_tltb"]').click()
 time.sleep(1)
 driver.find_element_by_xpath("//*[@id='canyu']").click()
-time.sleep(2)
+time.sleep(1)
 driver.find_element_by_xpath('//*[@id="canyutable"]/tbody/tr[1]/td[2]/a').click()
 time.sleep(2)
 # 隐藏讨论区顶部的蓝条

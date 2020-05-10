@@ -346,7 +346,7 @@ else:
     time.sleep(3)
     # 切换ckeditor
     driver.find_element_by_xpath(switch_span).click()
-    print(switch_span)
+    print('定位切换编辑器:',switch_span)
     time.sleep(2)
     # driver.find_elements_by_xpath("//div[@id='mypanel']//span[contains(@class,'toeditor')]").pop(ran_hf).click()
     try:
