@@ -351,13 +351,11 @@ else:
     # driver.find_elements_by_xpath("//div[@id='mypanel']//span[contains(@class,'toeditor')]").pop(ran_hf).click()
     try:
         # 加富文本表情
-        # driver.find_element_by_xpath('//a[@id="cke_37"]')
         driver.find_element_by_xpath('//a[@id="cke_117"]')
     except NoSuchElementException as msg:
         driver.refresh()
         time.sleep(3)
     else:
-        # driver.find_element_by_xpath('//a[@id="cke_37"]').click()
         driver.find_element_by_xpath('//a[@id="cke_117"]').click()
         js = "document.getElementsByClassName('cke_dialog_background_cover')[0].style.display = 'none'"
         driver.execute_script(js)
@@ -375,7 +373,6 @@ else:
         driver.find_element_by_xpath(submit).click()
         # print('回复按钮:', submit)
         time.sleep(2)
-        # driver.find_elements_by_xpath("//input[contains(@class,'submit')]").pop(ran_hf).click()
         try:
             print('弹框结果:' + driver.find_element_by_css_selector(
                 "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
