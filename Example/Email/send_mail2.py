@@ -6,7 +6,6 @@ from email.mime.text import MIMEText
 # 发送邮件服务器
 smtpsever = 'smtp.sina.cn'
 # 用户名密码
-# password = input("input:")
 password = ''
 user = 'chercheren2008@sina.com'
 # 发件箱

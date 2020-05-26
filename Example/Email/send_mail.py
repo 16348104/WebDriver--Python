@@ -4,7 +4,6 @@ from email.mime.text import MIMEText
 
 smtpsever = 'smtp.sina.cn'
 password = input("input password:")
-# password = ''
 user = 'chercheren2008@sina.com'
 sender = 'chercheren2008@sina.com'
 # receiver = ['yumj@tsinghua.edu.cn', 'xdx2016@tsinghua.edu.cn']
