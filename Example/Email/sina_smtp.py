@@ -8,7 +8,7 @@ from email.mime.image import MIMEImage
 
 # 设置服务器所需信息
 fromaddr = 'wlxt@mail.tsinghua.edu.cn'  # 邮件发送方邮箱地址  chercheren2008@sina.com
-password = 'wlxt88122'  # 密码(部分邮箱为授权码)
+password = ''  # 密码(部分邮箱为授权码)
 toaddrs = ['xdx2016@mail.tsinghua.edu.cn', 'xiesp@tsinghua.edu.cn',
            '16348104@qq.com']  # 邮件接受方邮箱地址，注意需要[]包裹，这意味着你可以写多个邮件地址群发
 # 设置email信息
