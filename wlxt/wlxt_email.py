@@ -28,7 +28,7 @@ def Send_mail():
     # 收件箱
     receiver = ['xdx2016@mail.tsinghua.edu.cn', 'xiesp@tsinghua.edu.cn']
     # 邮件主题
-    subject = '网络学堂课程文件转码失败'
+    subject = '网络学堂课程文件监控'
     # 如名字所示Multipart就是分多个部分
     msgRoot = MIMEMultipart()
     msgRoot['Subject'] = subject
