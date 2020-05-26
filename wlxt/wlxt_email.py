@@ -26,9 +26,9 @@ def Send_mail():
     # 发件箱
     sender = 'chercheren2008@sina.com'
     # 收件箱
-    receiver = ['16348104@qq.com', 'xiesp@tsinghua.edu.cn']
+    receiver = ['xdx2016@mail.tsinghua.edu.cn', 'xiesp@tsinghua.edu.cn']
     # 邮件主题
-    subject = '网络学堂课程文件监控'
+    subject = '网络学堂课程文件转码失败'
     # 如名字所示Multipart就是分多个部分
     msgRoot = MIMEMultipart()
     msgRoot['Subject'] = subject
@@ -112,19 +112,16 @@ try:
 except NoSuchElementException as msg:
     print('截图', msg)
     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'KJ' + ".png")  # 截图modify
-    # Email()
-time.sleep(3)
-# 下载课件
-# driver.find_element_by_xpath("//tbody//tr[1]//td[8]//a[1]").click()
+    Send_mail()
+time.sleep(4)
 print('预览课件')
-time.sleep(3)
 str1 = driver.find_element_by_xpath("//tbody//tr[1]//td[8]//a[2]").get_attribute('class')
 print(str1)
 # 正则表达式
 searchObj = re.search(r'disabled', str1, re.I)
 if searchObj is None:
-    print('课件可以预览!')
-    time.sleep(5)
+    print('文件类型可以预览!')
+    time.sleep(2)  # 等待预览
     driver.find_element_by_xpath("//tbody//tr[1]//td[8]//a[2]").click()  # 点预览按钮
     windows = driver.window_handles  # 显示所有句柄
     window_1 = driver.current_window_handle
@@ -144,7 +141,7 @@ if searchObj is None:
             "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
         driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'KJZM' + ".png")  # 截图modify
         time.sleep(2)
-        # Send_mail()
+        Send_mail()
     # Play Video
     try:
         driver.find_element_by_xpath("//button[@class='vjs-big-play-button']").click()
