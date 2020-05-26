@@ -19,12 +19,15 @@ def time_format():
 # 发邮件
 def Send_mail():
     # 发送邮件服务器
-    smtpsever = 'smtp.sina.cn'
+    # smtpsever = 'smtp.sina.cn'
+    smtpsever = 'mail.tsinghua.edu.cn'
     # 用户名密码
     password = ''
-    user = 'chercheren2008@sina.com'
+    # user = 'chercheren2008@sina.com'
+    user = 'xdx2016@mail.tsinghua.edu.cn'
     # 发件箱
-    sender = 'chercheren2008@sina.com'
+    # sender = 'chercheren2008@sina.com'
+    sender = 'xdx2016@mail.tsinghua.edu.cn'
     # 收件箱
     receiver = ['xdx2016@mail.tsinghua.edu.cn', 'xiesp@tsinghua.edu.cn','dxx2018@sina.cn']
     # 邮件主题
@@ -34,10 +37,10 @@ def Send_mail():
     msgRoot['Subject'] = subject
     msgRoot['From'] = user
     # ---这是文字部分---
-    att = MIMEText("此为系统测试邮件，请勿直接回复！", 'plain', 'utf-8')
-    # msgRoot = MIMEText('<html><h3>Python Mail</h3></html>', 'html', 'utf-8')
+    # att = MIMEText("此为系统测试邮件，请勿直接回复！", 'plain', 'utf-8')
+    # msgRoot.attach(att)
+    msgRoot = MIMEText('<html><h5>此为系统测试邮件，请勿直接回复！</h5></html>', 'html', 'utf-8')
     # msgRoot = MIMEText(mail_msg, 'html', 'utf-8')
-    msgRoot.attach(att)
     # ---这是附件部分---
     # sendfile = open('D:/Monitor.png', 'rb').read()
     # att = MIMEText(sendfile, 'png', 'utf-8')
