@@ -9,12 +9,17 @@ from selenium.webdriver.common.keys import Keys
 from email.header import Header
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+
 driver = webdriver.Chrome()
+# driver = webdriver.Chrome(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/chromedriver')  # mac  chrome
 driver.delete_all_cookies()
 time.sleep(1)
+
+
 def time_format():
     current_time = time.strftime("%y-%m-%d %H-%M-%S", time.localtime(time.time()))
     return current_time
+
 
 # 发邮件
 def Send_mail():
@@ -24,12 +29,12 @@ def Send_mail():
     # 用户名密码
     password = ''
     # user = 'chercheren2008@sina.com'
-    user = 'xdx2016@mail.tsinghua.edu.cn'
+    user = 'wlxt@mail.tsinghua.edu.cn'
     # 发件箱
     # sender = 'chercheren2008@sina.com'
-    sender = 'xdx2016@mail.tsinghua.edu.cn'
+    sender = 'wlxt@mail.tsinghua.edu.cn'
     # 收件箱
-    receiver = ['xdx2016@mail.tsinghua.edu.cn', 'xiesp@tsinghua.edu.cn','dxx2018@sina.cn']
+    receiver = ['xdx2016@mail.tsinghua.edu.cn', 'xiesp@tsinghua.edu.cn', 'dxx2018@sina.cn']
     # 邮件主题
     subject = '网络学堂课程文件监控'
     # 如名字所示Multipart就是分多个部分
@@ -42,7 +47,7 @@ def Send_mail():
     msgRoot = MIMEText('<html><h5>此为系统测试邮件，请勿直接回复！</h5></html>', 'html', 'utf-8')
     # msgRoot = MIMEText(mail_msg, 'html', 'utf-8')
     # ---这是附件部分---
-    # sendfile = open('D:/Monitor.png', 'rb').read()
+    # sendfile = open('D:/KJ.png', 'rb').read() #modify
     # att = MIMEText(sendfile, 'png', 'utf-8')
     # att["Content-Type"] = 'application/octet-stream'
     # att["Content-Disposition"] = 'attachment;filename="Monitor.png"'
@@ -57,6 +62,8 @@ def Send_mail():
         print('Success,Email has send out!')
     except smtplib.SMTPException as email:
         print('error', email)  # 打印错误
+
+
 ######################################################登录网络学堂######################################################
 # 打开网络学堂
 # driver.get("http://wlxt160.thitc.cn")
@@ -99,7 +106,6 @@ time.sleep(1)
 js = "document.getElementById('fileupload').style.display=\'block\'"
 driver.execute_script(js)
 driver.find_element_by_name("bt").send_keys("测试课件" + ticks)
-driver.find_element_by_xpath("//div[@class='list']//label[1]").click()  # 重要标记
 # 设置截止时间
 driver.find_element_by_xpath("//*[@id='endtime']").click()
 driver.find_element_by_xpath("//span[@class='laydate-btns-confirm']").click()
@@ -142,7 +148,7 @@ if searchObj is None:
     else:
         print(driver.find_element_by_css_selector(
             "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
-        driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'KJZM' + ".png")  # 截图modify
+        driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'ZM' + ".png")  # 截图modify
         time.sleep(2)
         Send_mail()
     # Play Video
