@@ -26,7 +26,7 @@ def Send_mail():
     # 发件箱
     sender = 'chercheren2008@sina.com'
     # 收件箱
-    receiver = ['xdx2016@mail.tsinghua.edu.cn', 'xiesp@tsinghua.edu.cn']
+    receiver = ['xdx2016@mail.tsinghua.edu.cn', 'xiesp@tsinghua.edu.cn','dxx2018@sina.cn']
     # 邮件主题
     subject = '网络学堂课程文件监控'
     # 如名字所示Multipart就是分多个部分
