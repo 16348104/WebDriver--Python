@@ -29,7 +29,7 @@ def Send_mail():
     smtpsever = 'mail.tsinghua.edu.cn'
     # 用户名密码
     user = 'xdx2016@tsinghua.edu.cn'
-    password = 'XiaoDaXing2019'
+    password = ''
     # 发件箱
     sender = 'xdx2016@tsinghua.edu.cn'
     # 收件箱
@@ -72,7 +72,7 @@ print(driver.title)
 print('测试浏览器:' + driver.name)
 ticks = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 driver.find_element_by_name('i_user').send_keys('xdx2016')
-driver.find_element_by_name('i_pass').send_keys('XiaoDaXing2019')
+driver.find_element_by_name('i_pass').send_keys('')
 time.sleep(1)
 driver.find_element_by_id("loginButtonId").click()
 time.sleep(3)
