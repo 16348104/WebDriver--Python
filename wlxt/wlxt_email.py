@@ -18,7 +18,8 @@ time.sleep(1)
 
 
 def time_format():
-    current_time = time.strftime("%y-%m-%d %H-%M-%S", time.localtime(time.time()))
+    current_time = time.strftime("%y-%m-%d %H-%M-%S",
+                                 time.localtime(time.time()))
     return current_time
 
 
@@ -28,7 +29,7 @@ def Send_mail():
     smtpsever = 'mail.tsinghua.edu.cn'
     # 用户名密码
     user = 'xdx2016@tsinghua.edu.cn'
-    password = ''
+    password = 'XiaoDaXing2019'
     # 发件箱
     sender = 'xdx2016@tsinghua.edu.cn'
     # 收件箱
@@ -71,12 +72,13 @@ print(driver.title)
 print('测试浏览器:' + driver.name)
 ticks = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 driver.find_element_by_name('i_user').send_keys('xdx2016')
-driver.find_element_by_name('i_pass').send_keys('')
+driver.find_element_by_name('i_pass').send_keys('XiaoDaXing2019')
 time.sleep(1)
 driver.find_element_by_id("loginButtonId").click()
 time.sleep(3)
 print(driver.title, "第1个窗口")
-driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
+driver.find_element_by_xpath(
+    "//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
 time.sleep(1)
 # 切换到第二个窗口
 # 当前窗口句柄
@@ -97,7 +99,8 @@ print('=====测试课程文件=====')
 driver.find_element_by_xpath("//a[@id='wlxt_kj_wlkc_kjxxb']").click()
 time.sleep(2)
 print('发课件')
-driver.find_element_by_xpath('//span[@class="rt right"]/child::a').click()  # 上课件
+driver.find_element_by_xpath(
+    '//span[@class="rt right"]/child::a').click()  # 上课件
 time.sleep(1)
 js = "document.getElementById('fileupload').style.display=\'block\'"
 driver.execute_script(js)
@@ -113,7 +116,8 @@ driver.find_element_by_id("sub").click()
 time.sleep(2)
 try:
     print('弹框结果:' + driver.find_element_by_css_selector(
-        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+        "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1"
+    ).text)
 except NoSuchElementException as msg:
     print('截图', msg)
     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'KJ' + ".png")  # 截图modify
@@ -122,14 +126,16 @@ driver.find_element_by_xpath("//a[@id='wlxt_kj_wlkc_kjxxb']").click()
 time.sleep(3)
 print('预览课件')
 time.sleep(1)
-str1 = driver.find_element_by_xpath("//tbody//tr[1]//td[8]//a[2]").get_attribute('class')
+str1 = driver.find_element_by_xpath(
+    "//tbody//tr[1]//td[8]//a[2]").get_attribute('class')
 print(str1)
 # 正则表达式
 searchObj = re.search(r'disabled', str1, re.I)
 if searchObj is None:
     print('文件类型可以预览!')
-    time.sleep(3)  # 等待预览
-    driver.find_element_by_xpath("//tbody//tr[1]//td[8]//a[2]").click()  # 点预览按钮
+    time.sleep(4)  # 等待预览
+    driver.find_element_by_xpath(
+        "//tbody//tr[1]//td[8]//a[2]").click()  # 点预览按钮
     windows = driver.window_handles  # 显示所有句柄
     window_1 = driver.current_window_handle
     print('所有句柄:', windows)
@@ -139,33 +145,26 @@ if searchObj is None:
     time.sleep(1)
     try:
         driver.find_element_by_css_selector(
-            "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
+            "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1"
+        )
     except NoSuchElementException:  # 课件正常转码
         print('课件已经转码！')
     # 课件转码中
     else:
-        print(driver.find_element_by_css_selector(
-            "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
+        print(
+            driver.find_element_by_css_selector(
+                "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1"
+            ).text)
         driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'ZM' + ".png")  # 截图modify
-        # time.sleep(1)
         Send_mail()
     # Play Video
     try:
-        driver.find_element_by_xpath("//button[@class='vjs-big-play-button']").click()
+        driver.find_element_by_xpath(
+            "//button[@class='vjs-big-play-button']").click()
         print('预览视频文件!')
         time.sleep(4)
     except NoSuchElementException as msg:
         print('暂无视频文件', msg)
-    # Play Audio
-    # try:
-    #     Audio = driver.find_element_by_css_selector("#mp3")
-    #     js_audio = "var audio = document.getElementById('mp3');audio.play();"
-    #     driver.execute_script(js_audio)
-    #     print('预览音频文件!')
-    #     time.sleep(5)
-    # except NoSuchElementException as msg:
-    #     print('暂无音频文件', msg)
-    # time.sleep(1)
     # 切换到第2个窗口
     driver.switch_to.window(windows[1])
     print("当前窗口：", window_1)
@@ -180,6 +179,6 @@ time.sleep(2)
 #     Keys.ENTER)
 # print('=====退出网络学堂=====')
 driver.delete_all_cookies()
-time.sleep(3)
+time.sleep(1)
 print('关闭浏览器，删除cookie')
 driver.quit()
