@@ -27,12 +27,12 @@ def Send_mail():
     # 发送邮件服务器
     smtpsever = 'mail.tsinghua.edu.cn'
     # 用户名密码
-    user = 'wlxt@mail.tsinghua.edu.cn'
+    user = 'xdx2016@tsinghua.edu.cn'
     password = ''
     # 发件箱
-    sender = 'wlxt@mail.tsinghua.edu.cn'
+    sender = 'xdx2016@tsinghua.edu.cn'
     # 收件箱
-    receiver = ['xdx2016@mail.tsinghua.edu.cn', '40757200@qq.com', '16348104@qq.com']
+    receiver = ['wlxt@mail.tsinghua.edu.cn', 'yumj@tsinghua.edu.cn']
     # 邮件主题
     subject = '网络学堂课程文件监控报警'
     # 如名字所示Multipart就是分多个部分
@@ -40,9 +40,9 @@ def Send_mail():
     msgRoot['Subject'] = subject
     msgRoot['From'] = user
     # ---这是文字部分---
-    # att = MIMEText("此为系统测试邮件，请勿直接回复！", 'plain', 'utf-8')
-    # msgRoot.attach(att)
-    msgRoot = MIMEText('<html><h5>此为系统测试邮件，请勿直接回复！</h5></html>', 'html', 'utf-8')
+    att = MIMEText("此为系统测试邮件，请勿直接回复！", 'plain', 'utf-8')
+    msgRoot.attach(att)
+    # msgRoot = MIMEText('<html><h5>此为系统测试邮件，请勿直接回复！</h5></html>', 'html', 'utf-8')
     # msgRoot = MIMEText(mail_msg, 'html', 'utf-8')
     # ---这是附件部分---
     # sendfile = open('D:/KJ.png', 'rb').read() #modify
@@ -136,7 +136,7 @@ if searchObj is None:
     print("当前窗口：", window_1)
     # 切换窗口
     driver.switch_to.window(windows[2])  # 切换到第3个窗口
-    time.sleep(2)
+    time.sleep(1)
     try:
         driver.find_element_by_css_selector(
             "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1")
@@ -147,7 +147,7 @@ if searchObj is None:
         print(driver.find_element_by_css_selector(
             "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
         driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'ZM' + ".png")  # 截图modify
-        time.sleep(1)
+        # time.sleep(1)
         Send_mail()
     # Play Video
     try:
@@ -157,17 +157,16 @@ if searchObj is None:
     except NoSuchElementException as msg:
         print('暂无视频文件', msg)
     # Play Audio
-    try:
-        Audio = driver.find_element_by_css_selector("#mp3")
-        js_audio = "var audio = document.getElementById('mp3');audio.play();"
-        driver.execute_script(js_audio)
-        print('预览音频文件!')
-        time.sleep(5)
-    except NoSuchElementException as msg:
-        print('暂无音频文件', msg)
-    driver.close()
+    # try:
+    #     Audio = driver.find_element_by_css_selector("#mp3")
+    #     js_audio = "var audio = document.getElementById('mp3');audio.play();"
+    #     driver.execute_script(js_audio)
+    #     print('预览音频文件!')
+    #     time.sleep(5)
+    # except NoSuchElementException as msg:
+    #     print('暂无音频文件', msg)
+    # time.sleep(1)
     # 切换到第2个窗口
-    time.sleep(1)
     driver.switch_to.window(windows[1])
     print("当前窗口：", window_1)
 else:
@@ -179,7 +178,7 @@ time.sleep(2)
 # time.sleep(1)
 # driver.find_element_by_xpath("//div[contains(@class,'zeromodal-footer')]//button[@class='btn btn-primary']").send_keys(
 #     Keys.ENTER)
-print('=====退出网络学堂=====')
+# print('=====退出网络学堂=====')
 driver.delete_all_cookies()
 time.sleep(3)
 print('关闭浏览器，删除cookie')
