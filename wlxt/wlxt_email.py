@@ -26,8 +26,8 @@ def Send_mail():
     # 发送邮件服务器
     smtpsever = 'mail.tsinghua.edu.cn'
     # 用户名密码
-    password = ''
     user = 'wlxt@mail.tsinghua.edu.cn'
+    password = ''
     # 发件箱
     sender = 'wlxt@mail.tsinghua.edu.cn'
     # 收件箱
@@ -63,7 +63,6 @@ def Send_mail():
 
 ######################################################登录网络学堂######################################################
 # 打开网络学堂
-# driver.get("http://wlxt160.thitc.cn")
 driver.get("http://learn.tsinghua.edu.cn")
 driver.maximize_window()
 print("======登录网络学堂=====")
@@ -77,7 +76,6 @@ driver.find_element_by_id("loginButtonId").click()
 time.sleep(3)
 print(driver.title, "第1个窗口")
 driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
-# driver.find_element_by_xpath("//a[contains(text(),'60240202-0')]").click()  # 开发环境60240202-0
 time.sleep(1)
 # 切换到第二个窗口
 # 当前窗口句柄
@@ -104,8 +102,8 @@ js = "document.getElementById('fileupload').style.display=\'block\'"
 driver.execute_script(js)
 driver.find_element_by_name("bt").send_keys("测试课件" + ticks)
 # 设置截止时间
-driver.find_element_by_xpath("//*[@id='endtime']").click()
-driver.find_element_by_xpath("//span[@class='laydate-btns-confirm']").click()
+# driver.find_element_by_xpath("//*[@id='endtime']").click()
+# driver.find_element_by_xpath("//span[@class='laydate-btns-confirm']").click()
 time.sleep(1)
 driver.find_element_by_name("fileupload").send_keys("D:\mov.mp4")  # modify
 # driver.find_element_by_id('fileupload').send_keys(
@@ -120,15 +118,16 @@ except NoSuchElementException as msg:
     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'KJ' + ".png")  # 截图modify
     Send_mail()
 driver.find_element_by_xpath("//a[@id='wlxt_kj_wlkc_kjxxb']").click()
-time.sleep(2)
+time.sleep(3)
 print('预览课件')
+time.sleep(1)
 str1 = driver.find_element_by_xpath("//tbody//tr[1]//td[8]//a[2]").get_attribute('class')
 print(str1)
 # 正则表达式
 searchObj = re.search(r'disabled', str1, re.I)
 if searchObj is None:
     print('文件类型可以预览!')
-    time.sleep(2)  # 等待预览
+    time.sleep(3)  # 等待预览
     driver.find_element_by_xpath("//tbody//tr[1]//td[8]//a[2]").click()  # 点预览按钮
     windows = driver.window_handles  # 显示所有句柄
     window_1 = driver.current_window_handle
@@ -147,7 +146,7 @@ if searchObj is None:
         print(driver.find_element_by_css_selector(
             "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
         driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'ZM' + ".png")  # 截图modify
-        time.sleep(2)
+        time.sleep(1)
         Send_mail()
     # Play Video
     try:
