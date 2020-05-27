@@ -24,19 +24,16 @@ def time_format():
 # 发邮件
 def Send_mail():
     # 发送邮件服务器
-    # smtpsever = 'smtp.sina.cn'
     smtpsever = 'mail.tsinghua.edu.cn'
     # 用户名密码
     password = ''
-    # user = 'chercheren2008@sina.com'
     user = 'wlxt@mail.tsinghua.edu.cn'
     # 发件箱
-    # sender = 'chercheren2008@sina.com'
     sender = 'wlxt@mail.tsinghua.edu.cn'
     # 收件箱
-    receiver = ['xdx2016@mail.tsinghua.edu.cn', 'xiesp@tsinghua.edu.cn', 'dxx2018@sina.cn']
+    receiver = ['xdx2016@mail.tsinghua.edu.cn', '40757200@qq.com', '16348104@qq.com']
     # 邮件主题
-    subject = '网络学堂课程文件监控'
+    subject = '网络学堂课程文件监控报警'
     # 如名字所示Multipart就是分多个部分
     msgRoot = MIMEMultipart()
     msgRoot['Subject'] = subject
@@ -114,7 +111,7 @@ driver.find_element_by_name("fileupload").send_keys("D:\mov.mp4")  # modify
 # driver.find_element_by_id('fileupload').send_keys(
 #     r'/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/readme.txt')  # mac上传文件
 driver.find_element_by_id("sub").click()
-time.sleep(1)
+time.sleep(2)
 try:
     print('弹框结果:' + driver.find_element_by_css_selector(
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1").text)
@@ -122,7 +119,8 @@ except NoSuchElementException as msg:
     print('截图', msg)
     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'KJ' + ".png")  # 截图modify
     Send_mail()
-time.sleep(4)
+driver.find_element_by_xpath("//a[@id='wlxt_kj_wlkc_kjxxb']").click()
+time.sleep(2)
 print('预览课件')
 str1 = driver.find_element_by_xpath("//tbody//tr[1]//td[8]//a[2]").get_attribute('class')
 print(str1)
