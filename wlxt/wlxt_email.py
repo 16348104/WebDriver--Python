@@ -111,7 +111,7 @@ driver.find_element_by_name("bt").send_keys("测试课件" + ticks)
 time.sleep(1)
 driver.find_element_by_name("fileupload").send_keys("D:\mov.mp4")  # modify
 # driver.find_element_by_id('fileupload').send_keys(
-#     r'/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/readme.txt')  # mac上传文件
+#     r'/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/mov.mp4')  # mac上传文件
 driver.find_element_by_id("sub").click()
 time.sleep(2)
 try:
