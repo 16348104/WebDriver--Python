@@ -7,13 +7,30 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.image import MIMEImage
 from selenium.common.exceptions import NoSuchElementException, UnexpectedAlertPresentException, TimeoutException, \
     ElementNotInteractableException
-# browser = webdriver.Firefox()
+
+browser = webdriver.Firefox(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/geckodriver')
 # browser = webdriver.Chrome()
-browser = webdriver.Chrome(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/chromedriver')
 browser.get('http://www.dmzshequ.com')
 browser.maximize_window()
-time.sleep(5)
-##发邮件
+time.sleep(2)
+print(browser.title)
+# js_login = "showWindow('login', this.href)"
+# browser.execute_script(js_login)
+browser.find_element_by_xpath("//div[@class='deandl_before']/a[1]").click()
+time.sleep(3)
+
+
+def login(user, password):
+    browser.find_element_by_name("username").send_keys(user)
+    browser.find_element_by_name("password").send_keys(password)
+
+
+## 登录
+login('', '')
+time.sleep(2)
+browser.find_element_by_name('seccodeverify').send_keys()
+
+# 发邮件
 print('去发邮件!')
 smtpsever = 'mail.tsinghua.edu.cn'
 user = '@tsinghua.edu.cn'
@@ -21,7 +38,7 @@ password = ''
 sender = '@tsinghua.edu.cn'
 receiver = ['yumj@tsinghua.edu.cn']
 subject = 'DMZ摇一摇'
-mail_msg = '<html><h3>Hello,<br>Our task is done.</h3></html>'
+mail_msg = '<html><h3>Successfully！<br>Our task is done.</h3></html>'
 msg = MIMEText(mail_msg, 'html', 'utf-8')
 msg['Subject'] = Header(subject, 'utf-8')
 msg['From'] = user
@@ -32,5 +49,4 @@ smtp.connect(smtpsever, 25)
 smtp.login(user, password)
 smtp.sendmail(sender, receiver, msg.as_string())
 smtp.quit()
-print('Email has send out!')
-# browser.quit()
+print('Successfully！Email has send out!')
