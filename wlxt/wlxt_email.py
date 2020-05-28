@@ -77,8 +77,7 @@ time.sleep(1)
 driver.find_element_by_id("loginButtonId").click()
 time.sleep(3)
 print(driver.title, "第1个窗口")
-driver.find_element_by_xpath(
-    "//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
+driver.find_element_by_xpath("//a[contains(text(),'20740084-998')]").click()  # 正式20740084-998
 time.sleep(1)
 # 切换到第二个窗口
 # 当前窗口句柄
@@ -102,16 +101,18 @@ print('发课件')
 driver.find_element_by_xpath(
     '//span[@class="rt right"]/child::a').click()  # 上课件
 time.sleep(1)
-js = "document.getElementById('fileupload').style.display=\'block\'"
-driver.execute_script(js)
+# js = "document.getElementById('fileupload').style.display=\'block\'"
+# driver.execute_script(js)
+# 选课件类别
+driver.find_element_by_xpath('//*[@id="kjfl-box"]/label[2]').click()
 driver.find_element_by_name("bt").send_keys("测试课件" + ticks)
 # 设置截止时间
 # driver.find_element_by_xpath("//*[@id='endtime']").click()
 # driver.find_element_by_xpath("//span[@class='laydate-btns-confirm']").click()
-time.sleep(1)
 driver.find_element_by_name("fileupload").send_keys("D:\mov.mp4")  # modify
 # driver.find_element_by_id('fileupload').send_keys(
 #     r'/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/mov.mp4')  # mac上传文件
+time.sleep(1)
 driver.find_element_by_id("sub").click()
 time.sleep(2)
 try:
@@ -123,19 +124,16 @@ except NoSuchElementException as msg:
     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'KJ' + ".png")  # 截图modify
     Send_mail()
 driver.find_element_by_xpath("//a[@id='wlxt_kj_wlkc_kjxxb']").click()
-time.sleep(3)
+time.sleep(2)
 print('预览课件')
-time.sleep(1)
-str1 = driver.find_element_by_xpath(
-    "//tbody//tr[1]//td[8]//a[2]").get_attribute('class')
+str1 = driver.find_element_by_xpath("//tbody//tr[1]//td[8]//a[2]").get_attribute('class')
 print(str1)
 # 正则表达式
 searchObj = re.search(r'disabled', str1, re.I)
 if searchObj is None:
     print('文件类型可以预览!')
-    time.sleep(4)  # 等待预览
-    driver.find_element_by_xpath(
-        "//tbody//tr[1]//td[8]//a[2]").click()  # 点预览按钮
+    # time.sleep(1)  # 等待预览
+    driver.find_element_by_xpath("//tbody//tr[1]//td[8]//a[2]").click()  # 点预览按钮
     windows = driver.window_handles  # 显示所有句柄
     window_1 = driver.current_window_handle
     print('所有句柄:', windows)
@@ -166,6 +164,7 @@ if searchObj is None:
     except NoSuchElementException as msg:
         print('暂无视频文件', msg)
     # 切换到第2个窗口
+    driver.close()
     driver.switch_to.window(windows[1])
     print("当前窗口：", window_1)
 else:
