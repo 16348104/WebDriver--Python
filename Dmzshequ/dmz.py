@@ -16,9 +16,9 @@ time.sleep(5)
 ##发邮件
 print('去发邮件!')
 smtpsever = 'mail.tsinghua.edu.cn'
-user = 'xdx2016@tsinghua.edu.cn'
+user = '@tsinghua.edu.cn'
 password = ''
-sender = 'xdx2016@tsinghua.edu.cn'
+sender = '@tsinghua.edu.cn'
 receiver = ['yumj@tsinghua.edu.cn']
 subject = 'DMZ摇一摇'
 mail_msg = '<html><h3>Hello,<br>Our task is done.</h3></html>'
