@@ -7,17 +7,18 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.image import MIMEImage
 from selenium.common.exceptions import NoSuchElementException, UnexpectedAlertPresentException, TimeoutException, \
     ElementNotInteractableException
-browser = webdriver.Firefox()
+# browser = webdriver.Firefox()
 # browser = webdriver.Chrome()
+browser = webdriver.Chrome(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/chromedriver')
 browser.get('http://www.dmzshequ.com')
 browser.maximize_window()
 time.sleep(5)
 ##发邮件
 print('去发邮件!')
 smtpsever = 'mail.tsinghua.edu.cn'
-user = 'yumj@tsinghua.edu.cn'
+user = 'xdx2016@tsinghua.edu.cn'
 password = ''
-sender = 'yumj@tsinghua.edu.cn'
+sender = 'xdx2016@tsinghua.edu.cn'
 receiver = ['yumj@tsinghua.edu.cn']
 subject = 'DMZ摇一摇'
 mail_msg = '<html><h3>Hello,<br>Our task is done.</h3></html>'
