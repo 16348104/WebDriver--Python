@@ -35,9 +35,9 @@ browser.find_element_by_name('seccodeverify').send_keys()
 print('去发邮件!')
 # smtpsever = 'smtp.sina.com'
 smtpsever = 'mail.tsinghua.edu.cn'
-user = 'yumj'
+user = 'yumj@tsinghua.edu.cn'
 password = '*******'
-sender = ''
+sender = 'yumj@tsinghua.edu.cn'
 receiver = ['yumj@tsinghua.edu.cn', '214423717@qq.com']
 subject = 'DMZ摇一摇'
 mail_msg = '<html><h3>Successfully！<br>Our task is done.</h3></html>'
