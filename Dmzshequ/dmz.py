@@ -27,16 +27,17 @@ def login(user, password):
 
 
 ## 登录
-login('', '')
+login('zijing228', 'yu123456')
 time.sleep(2)
 browser.find_element_by_name('seccodeverify').send_keys()
 
 # 发邮件
 print('去发邮件!')
-smtpsever = 'smtp.sina.com'
-user = 'chercheren2008@sina.com'
-password = ''
-sender = 'chercheren2008@sina.com'
+# smtpsever = 'smtp.sina.com'
+smtpsever = 'mail.tsinghua.edu.cn'
+user = 'yumj'
+password = '*******'
+sender = ''
 receiver = ['yumj@tsinghua.edu.cn', '214423717@qq.com']
 subject = 'DMZ摇一摇'
 mail_msg = '<html><h3>Successfully！<br>Our task is done.</h3></html>'
