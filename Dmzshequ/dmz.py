@@ -8,7 +8,8 @@ from email.mime.image import MIMEImage
 from selenium.common.exceptions import NoSuchElementException, UnexpectedAlertPresentException, TimeoutException, \
     ElementNotInteractableException
 
-browser = webdriver.Firefox(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/geckodriver')
+# browser = webdriver.Firefox(executable_path='/Users/xdx/PycharmProjects/WebDriver--Python/geckodriver')
+browser = webdriver.Firefox()
 # browser = webdriver.Chrome()
 browser.get('http://www.dmzshequ.com')
 browser.maximize_window()
@@ -32,11 +33,11 @@ browser.find_element_by_name('seccodeverify').send_keys()
 
 # 发邮件
 print('去发邮件!')
-smtpsever = 'mail.tsinghua.edu.cn'
-user = '@tsinghua.edu.cn'
+smtpsever = 'smtp.sina.com'
+user = 'chercheren2008@sina.com'
 password = ''
-sender = '@tsinghua.edu.cn'
-receiver = ['yumj@tsinghua.edu.cn']
+sender = 'chercheren2008@sina.com'
+receiver = ['yumj@tsinghua.edu.cn', '214423717@qq.com']
 subject = 'DMZ摇一摇'
 mail_msg = '<html><h3>Successfully！<br>Our task is done.</h3></html>'
 msg = MIMEText(mail_msg, 'html', 'utf-8')
