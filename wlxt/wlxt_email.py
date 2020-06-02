@@ -18,8 +18,7 @@ time.sleep(1)
 
 
 def time_format():
-    current_time = time.strftime("%y-%m-%d %H-%M-%S",
-                                 time.localtime(time.time()))
+    current_time = time.strftime("%y-%m-%d %H-%M-%S", time.localtime(time.time()))
     return current_time
 
 
@@ -28,8 +27,8 @@ def Send_mail():
     # 发送邮件服务器
     smtpsever = 'mail.tsinghua.edu.cn'
     # 用户名密码
-    user = 'xdx2016@tsinghua.edu.cn'
-    password = ''
+    user = 'wlxt@tsinghua.edu.cn'
+    password = 'wlxt88122'
     # 发件箱
     sender = 'xdx2016@tsinghua.edu.cn'
     # 收件箱
@@ -41,16 +40,16 @@ def Send_mail():
     msgRoot['Subject'] = subject
     msgRoot['From'] = user
     # ---这是文字部分---
-    att = MIMEText("此为系统测试邮件，请勿直接回复！", 'plain', 'utf-8')
+    att = MIMEText("详见附件。" "此为系统测试邮件，请勿直接回复！", 'plain', 'utf-8')
     msgRoot.attach(att)
     # msgRoot = MIMEText('<html><h5>此为系统测试邮件，请勿直接回复！</h5></html>', 'html', 'utf-8')
     # msgRoot = MIMEText(mail_msg, 'html', 'utf-8')
     # ---这是附件部分---
-    # sendfile = open('D:/KJ.png', 'rb').read() #modify
-    # att = MIMEText(sendfile, 'png', 'utf-8')
-    # att["Content-Type"] = 'application/octet-stream'
-    # att["Content-Disposition"] = 'attachment;filename="Monitor.png"'
-    # msgRoot.attach(att)
+    sendfile = open('C:/Users/zb/Downloads/FireShot/KJ.png', 'rb').read()  # modify
+    att = MIMEText(sendfile, 'png', 'utf-8')
+    att["Content-Type"] = 'application/octet-stream'
+    att["Content-Disposition"] = 'attachment;filename="Monitor_KJ.png"'
+    msgRoot.attach(att)
     try:
         smtp = smtplib.SMTP()
         smtp.set_debuglevel(1)
@@ -114,17 +113,18 @@ driver.find_element_by_name("fileupload").send_keys("D:\mov.mp4")  # modify
 #     r'/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/mov.mp4')  # mac上传文件
 time.sleep(1)
 driver.find_element_by_id("sub").click()
-time.sleep(2)
+# time.sleep(2)
 try:
     print('弹框结果:' + driver.find_element_by_css_selector(
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1"
     ).text)
 except NoSuchElementException as msg:
     print('截图', msg)
-    driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'KJ' + ".png")  # 截图modify
+    driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + 'KJ' + ".png")  # 截图modify
+    time.sleep(1)
     Send_mail()
 driver.find_element_by_xpath("//a[@id='wlxt_kj_wlkc_kjxxb']").click()
-time.sleep(2)
+time.sleep(1)
 print('预览课件')
 str1 = driver.find_element_by_xpath("//tbody//tr[1]//td[8]//a[2]").get_attribute('class')
 print(str1)
@@ -153,14 +153,15 @@ if searchObj is None:
             driver.find_element_by_css_selector(
                 "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1"
             ).text)
-        driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + time_format() + 'ZM' + ".png")  # 截图modify
+        driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + 'KJ' + ".png")  # 截图modify
+        time.sleep(1)
         Send_mail()
     # Play Video
     try:
         driver.find_element_by_xpath(
             "//button[@class='vjs-big-play-button']").click()
         print('预览视频文件!')
-        time.sleep(4)
+        time.sleep(3)
     except NoSuchElementException as msg:
         print('暂无视频文件', msg)
     # 切换到第2个窗口
