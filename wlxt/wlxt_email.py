@@ -32,7 +32,7 @@ def Send_mail():
     # 发件箱
     sender = 'xdx2016@tsinghua.edu.cn'
     # 收件箱
-    receiver = ['wlxt@mail.tsinghua.edu.cn', 'yumj@tsinghua.edu.cn']
+    receiver = ['wlxt@mail.tsinghua.edu.cn']
     # 邮件主题
     subject = '网络学堂课程文件监控报警'
     # 如名字所示Multipart就是分多个部分
