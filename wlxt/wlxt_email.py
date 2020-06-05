@@ -28,7 +28,7 @@ def Send_mail():
     smtpsever = 'mail.tsinghua.edu.cn'
     # 用户名密码
     user = 'wlxt@tsinghua.edu.cn'
-    password = 'wlxt88122'
+    password = ''
     # 发件箱
     sender = 'xdx2016@tsinghua.edu.cn'
     # 收件箱
@@ -113,7 +113,7 @@ driver.find_element_by_name("fileupload").send_keys("D:\mov.mp4")  # modify
 #     r'/Users/xdx/PycharmProjects/WebDriver--Python/wlxt/mov.mp4')  # mac上传文件
 time.sleep(1)
 driver.find_element_by_id("sub").click()
-# time.sleep(2)
+time.sleep(2)
 try:
     print('弹框结果:' + driver.find_element_by_css_selector(
         "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1"
@@ -121,10 +121,9 @@ try:
 except NoSuchElementException as msg:
     print('截图', msg)
     driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + 'KJ' + ".png")  # 截图modify
-    time.sleep(1)
     Send_mail()
-driver.find_element_by_xpath("//a[@id='wlxt_kj_wlkc_kjxxb']").click()
-time.sleep(1)
+# driver.find_element_by_xpath("//a[@id='wlxt_kj_wlkc_kjxxb']").click()
+time.sleep(4)
 print('预览课件')
 str1 = driver.find_element_by_xpath("//tbody//tr[1]//td[8]//a[2]").get_attribute('class')
 print(str1)
@@ -132,7 +131,7 @@ print(str1)
 searchObj = re.search(r'disabled', str1, re.I)
 if searchObj is None:
     print('文件类型可以预览!')
-    # time.sleep(1)  # 等待预览
+    time.sleep(3)  # 等待预览
     driver.find_element_by_xpath("//tbody//tr[1]//td[8]//a[2]").click()  # 点预览按钮
     windows = driver.window_handles  # 显示所有句柄
     window_1 = driver.current_window_handle
@@ -154,7 +153,6 @@ if searchObj is None:
                 "body > div.zeromodal-container.alert > div.zeromodal-body > div.zeromodal-title1"
             ).text)
         driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + 'KJ' + ".png")  # 截图modify
-        time.sleep(1)
         Send_mail()
     # Play Video
     try:
