@@ -154,6 +154,7 @@ if searchObj is None:
             ).text)
         driver.get_screenshot_as_file("C:/Users/zb/Downloads/FireShot/" + 'KJ' + ".png")  # 截图modify
         Send_mail()
+        
     # Play Video
     try:
         driver.find_element_by_xpath(
