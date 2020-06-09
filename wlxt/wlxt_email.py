@@ -30,26 +30,26 @@ def Send_mail():
     user = 'wlxt@tsinghua.edu.cn'
     password = ''
     # 发件箱
-    sender = 'xdx2016@tsinghua.edu.cn'
+    sender = 'wlxt@tsinghua.edu.cn'
     # 收件箱
-    receiver = ['wlxt@mail.tsinghua.edu.cn']
+    receiver = ['wlxt@mail.tsinghua.edu.cn', 'xdx2016@tsinghua.edu.cn']
     # 邮件主题
-    subject = '网络学堂课程文件监控报警'
+    subject = '网络学堂课程文件响应超时'
     # 如名字所示Multipart就是分多个部分
     msgRoot = MIMEMultipart()
     msgRoot['Subject'] = subject
     msgRoot['From'] = user
     # ---这是文字部分---
-    att = MIMEText("详见附件。" "此为系统测试邮件，请勿直接回复！", 'plain', 'utf-8')
+    att = MIMEText("此为系统测试邮件，请勿直接回复！", 'plain', 'utf-8')
     msgRoot.attach(att)
     # msgRoot = MIMEText('<html><h5>此为系统测试邮件，请勿直接回复！</h5></html>', 'html', 'utf-8')
     # msgRoot = MIMEText(mail_msg, 'html', 'utf-8')
     # ---这是附件部分---
-    sendfile = open('C:/Users/zb/Downloads/FireShot/KJ.png', 'rb').read()  # modify
-    att = MIMEText(sendfile, 'png', 'utf-8')
-    att["Content-Type"] = 'application/octet-stream'
-    att["Content-Disposition"] = 'attachment;filename="Monitor_KJ.png"'
-    msgRoot.attach(att)
+    # sendfile = open('C:/Users/zb/Downloads/FireShot/KJ.png', 'rb').read()  # modify
+    # att = MIMEText(sendfile, 'png', 'utf-8')
+    # att["Content-Type"] = 'application/octet-stream'
+    # att["Content-Disposition"] = 'attachment;filename="Monitor_KJ.png"'
+    # msgRoot.attach(att)
     try:
         smtp = smtplib.SMTP()
         smtp.set_debuglevel(1)
