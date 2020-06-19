@@ -1,6 +1,5 @@
 import time
 
-
 from selenium import webdriver
 from pub2 import LoginInfo
 from selenium.webdriver import ActionChains
@@ -165,7 +164,7 @@ class LoginTest():
         # link_dict = {}
         print('测试浏览器:' + self.driver.name)
         print("======登录English_info======")
-        username = 'zhaoyq19'
+        username = ''
         password = ''
         LoginInfo().user_login(self.driver, username, password)
         time.sleep(2)
