@@ -2,7 +2,7 @@ import time
 
 
 from selenium import webdriver
-from Pub2 import LoginInfo
+from pub2 import LoginInfo
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys
 
@@ -19,9 +19,9 @@ class LoginTest():
         # Eng_info开发环境
         # driver.get('http://101.6.28.150:29009')
         # Eng_info模拟环境
-        self.driver.get('http://infoen.syx.thcic.cn')
+        # self.driver.get('http://infoen.syx.thcic.cn')
         # Eng_info正式环境
-        # self.driver.get('http://eng.info.tsinghua.edu.cn')
+        self.driver.get('http://eng.info.tsinghua.edu.cn')
         self.driver.maximize_window()
         print("======进入info学生端=====")
         time.sleep(4)
@@ -30,8 +30,8 @@ class LoginTest():
 
     # 本科生登录
     def test_bachelor_login(self):
-        user = '2017013478'
-        password = 'a123456'
+        user = ''
+        password = ''
         LoginInfo().user_login(self.driver, user, password)
 
     # 硕士生登录
@@ -69,8 +69,8 @@ class LoginTest():
         window_2 = self.driver.current_window_handle
         print("当前窗口：", window_2)
         print("======登录English_info======")
-        username = '2017213677'
-        password = 'a123456'
+        username = ''
+        password = ''
         LoginInfo().user_login(self.driver, username, password)
         time.sleep(2)
         print(self.driver.find_element_by_xpath('//li[@class="name"]').text)
@@ -165,8 +165,8 @@ class LoginTest():
         # link_dict = {}
         print('测试浏览器:' + self.driver.name)
         print("======登录English_info======")
-        username = '2019430117'
-        password = 'a123456'
+        username = 'zhaoyq19'
+        password = ''
         LoginInfo().user_login(self.driver, username, password)
         time.sleep(2)
         print(self.driver.find_element_by_xpath('//li[@class="name"]').text)
@@ -202,5 +202,6 @@ class LoginTest():
 # LoginTest().test_admin_login()
 # LoginTest().test_bachelor_login()
 # LoginTest().test_logout()
-LoginTest().test_enginfo()
-# LoginTest().test_URL()
+# 回归测试
+# LoginTest().test_enginfo()
+LoginTest().test_URL()
