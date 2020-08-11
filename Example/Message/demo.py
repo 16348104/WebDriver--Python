@@ -3,7 +3,7 @@ import urllib
 import time
 
 appkey = '5c8cd448cf2cb4646e56c214a6519b6d'  # 固定的不变，请勿泄露
-mobile = '13141286103'  # 短信接受者的手机号码
+mobile = ''  # 短信接受者的手机号码
 tpl_id = '217252'  # 固定的不变
 errorMsg = '响应时间超长（错误信息xxxx）'  # 根据实际情况修改
 
