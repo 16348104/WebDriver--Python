@@ -13,8 +13,7 @@ params = 'key=%s&mobile=%s&tpl_id=%s&tpl_value=%s' % (appkey, mobile, tpl_id, ur
 response = requests.get("https://v.juhe.cn/sms/send?" + params)
 print(response.text)
 
-
-#!/usr/bin/python
+# !/usr/bin/python
 # -*- coding: utf-8 -*-
 # import json, urllib
 # from urllib import urlencode
@@ -34,3 +33,5 @@ print(response.text)
 #     print(res)
 # else:
 #     print("请求异常")
+
+
