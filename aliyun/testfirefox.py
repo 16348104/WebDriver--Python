@@ -2,7 +2,8 @@ import time
 
 from selenium import webdriver
 
-driver = webdriver.Chrome()
+# driver = webdriver.Chrome()
+driver = webdriver.Ie()
 driver.get('https://cloudmonitor.console.aliyun.com')
 current_time = time.strftime("%y-%m-%d %H:%M:%S", time.localtime())
 print('在', current_time, '退出监控')
