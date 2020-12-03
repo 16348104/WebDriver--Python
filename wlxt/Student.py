@@ -3,6 +3,7 @@ import os
 import re
 import win32gui
 import win32con
+import win32api
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException, UnexpectedAlertPresentException, \
     ElementNotInteractableException
